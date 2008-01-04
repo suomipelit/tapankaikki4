@@ -7,6 +7,16 @@
 #define EXPORT
 #define _stat stat
 
+#define _snprintf snprintf
+#define _getcwd getcwd
+#define stricmp strcasecmp
+
+#ifdef DEBUG
+#  define EF_DEBUG 1
+#else
+#  define EF_DEBUG 0
+#endif
+
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>

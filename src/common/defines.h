@@ -3,7 +3,7 @@
 
 #include "linux.h"
 #include "windows.h"
-#include "vld.h"
+//#include "vld.h"
 
 enum TNetworkMode
 {
