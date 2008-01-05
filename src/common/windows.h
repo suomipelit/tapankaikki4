@@ -16,9 +16,6 @@ inline void ChangeDir(const char* str)
 	_chdir(str);
 }
 
-
-#define putch putchar
-
 #ifdef _DEBUG
 #define EF_DEBUG 1
 #else

@@ -3,13 +3,11 @@
 
 #ifdef __LINUX__
 
-#define putch putchar	
 #define EXPORT
 #define _stat stat
 
 #define _snprintf snprintf
 #define _getcwd getcwd
-#define stricmp strcasecmp
 
 #ifdef DEBUG
 #  define EF_DEBUG 1
@@ -21,10 +19,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-
-//#include "error.h"
-EXPORT void TKAssert( const char* aAssertion, const char* file, int line );
-#define ASSERT(a) (void)( (a) || (TKAssert(#a, __FILE__, __LINE__), 0) )
 
 inline void ChangeDir(const char* str)
 {

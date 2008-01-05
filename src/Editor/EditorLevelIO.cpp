@@ -321,7 +321,7 @@ bool CEditorLevelIO::SaveLevelAs()
 	{
 		char *tmp;
 
-		if (tmp_filename.size()<4 || stricmp(tmp_filename.c_str()+tmp_filename.size()-4,".lev")!=0)
+		if (tmp_filename.size()<4 || strcasecmp(tmp_filename.c_str()+tmp_filename.size()-4,".lev")!=0)
 		{
 			tmp=(char*)malloc(tmp_filename.size()+5);
 			sprintf(tmp, "%s.lev", tmp_filename.c_str());

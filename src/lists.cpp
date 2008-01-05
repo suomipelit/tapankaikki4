@@ -339,7 +339,11 @@ void CEpisodeList::Sort()
 
 	for (a=1;a<iEpisodes.size()-1;a++)
 		for (b=a;b<iEpisodes.size();b++)
+#ifndef __LINUX__
 			if (stricmp(iEpisodes[a]->Name(),iEpisodes[b]->Name())>0) // a "bigger" than b
+#else
+			if (strcasecmp(iEpisodes[a]->Name(),iEpisodes[b]->Name())>0) // a "bigger" than b
+#endif
 			{
 				tmp=iEpisodes[a];
 				iEpisodes[a]=iEpisodes[b];
