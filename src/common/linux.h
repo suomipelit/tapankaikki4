@@ -31,16 +31,6 @@ inline void ChangeDir(const char* str)
 	chdir(str);
 }
 
-inline char* itoa(int a, char *str,int radix)
-{
-	ASSERT( radix == 10 || radix == 16 );
-	if (radix == 10)
-		sprintf(str,"%d", a);
-	else
-		sprintf(str,"%x", a);
-	return str;
-}
-
 inline char* strupr(char *buf)
 {	int len=strlen(buf);
 	

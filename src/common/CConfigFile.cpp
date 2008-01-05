@@ -98,7 +98,7 @@ EXPORT std::string CConfigFile::Value( const char* aPrefix, int aNumber ) const
 	std::string str( aPrefix );
 
 	str+='[';
-	itoa(aNumber,tmp,10);
+	sprintf(tmp, "%d", aNumber);
 	str+=tmp;
 	str+=']';
 

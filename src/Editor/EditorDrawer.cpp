@@ -713,7 +713,7 @@ void CEditorDrawer::Write(int aX,int aY,const char* aText, CFonts::TVertAlign aV
 void CEditorDrawer::Write(int aX,int aY,int aNumber, CFonts::TVertAlign aVAlign, CFonts::THorizAlign aHAlign)
 {
 	char Text[255];
-	itoa(aNumber,Text,10);
+	sprintf(Text, "%d", aNumber);
 	iGraphics->Fonts()->Write(aX,aY,Text, aVAlign, aHAlign,iDrawBuffer);
 }
 

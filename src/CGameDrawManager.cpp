@@ -587,7 +587,7 @@ void CGameDrawManager::DrawInfos(CPlayer const* aPlayer, const CRect<int>& aDraw
 	if (x<0) 
 		x=1;
 
-	itoa(x, text, 10);
+	sprintf(text, "%d", x);
 	if (wtype->BulletType()!=EBulletFist) 
 		iGGI->Font(CGameGraphicsInterface::ESmallFont)->Write(3+aDrawRect.iLeft, aDrawRect.Height()-21-z+aDrawRect.iTop, text,CFonts::EDrawBelow, CFonts::EDrawToRight,   iGGI->DrawBuffer());
 }
