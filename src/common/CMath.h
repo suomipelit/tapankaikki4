@@ -15,7 +15,13 @@ template <class T> class CCoord;
 #define ANGLEFIX(a) { while (a>=360) a-=360;\
 					  while (a<0) a+=360; }
 
-#ifndef __LINUX__
+#ifdef __LINUX__
+
+#include <algorithm>
+using std::min;
+using std::max;
+
+#else
 
 #ifndef min
 #define min(a,b) ((a)<=(b)?(a):(b))
@@ -25,17 +31,11 @@ template <class T> class CCoord;
 #define max(a,b) ((a)> (b)?(a):(b)) 
 #endif
 
-#else	// __LINUX__
+#endif
 
 #ifndef abs
 template<class T> inline T abs(const T& a) { return a<0 ? -a : a; }
 #endif
-
-#include <algorithm>
-using std::min;
-using std::max;
-
-#endif	// end __LINUX__
 
 class CMath
 {
@@ -44,13 +44,8 @@ private:
 	
 public:
 
-#ifndef __LINUX__
 	EXPORT static const CMath* Static();
 	EXPORT static void Destroy();
-#else
-	static const CMath* Static();
-	static void Destroy();
-#endif
 
 	static inline void Swap(int& a,int& b)
 	{

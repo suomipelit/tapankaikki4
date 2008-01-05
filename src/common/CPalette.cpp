@@ -2,9 +2,7 @@
 
 #include "CMath.h"
 
-#ifndef __LINUX__
 #include <string.h>
-#endif
 
 void CPalette::LoadEFPPal(const char *name)
 {

@@ -51,11 +51,7 @@ CEditorApp::CEditorApp()
 	
 	iGD=new CGraphicsDevice("Tapan Kaikki Bloodshed - Level Editor","editor.ico");
 	iGD->SetCursorMode(SDL_ENABLE);
-#ifndef __LINUX__
-	iGD->SetMode(640,480,8,0,SDL_RESIZABLE);
-#else
 	iGD->SetMode(640,480,0,0,SDL_RESIZABLE);
-#endif
 	
 	if(SDL_GetWMInfo(&WndInfo)<0)  {
         /* Can't get WndInfo */
