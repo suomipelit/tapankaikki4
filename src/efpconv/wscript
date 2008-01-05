@@ -4,7 +4,7 @@
 def build(bld):
 	obj = bld.create_obj('cpp', 'program')
 	obj.find_sources_in_dirs('.')
-	obj.uselib='libsdl'
+	obj.uselib='SDL'
 	obj.uselib_local='tk4common'
 	obj.target='efpconv'
 

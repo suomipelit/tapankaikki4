@@ -4,7 +4,7 @@
 def build(bld):
 	obj = bld.create_obj('cpp', 'staticlib')
 	obj.find_sources_in_dirs('.')
-	obj.uselib='libsdl'
+	obj.uselib='SDL'
 	obj.target='tk4common'
 	obj.install_var = 0
 

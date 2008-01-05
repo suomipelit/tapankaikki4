@@ -17,8 +17,9 @@ def configure(conf):
 	conf.check_tool('compiler_cxx')
 
 	# Check for SDL and GTK libraries
-	conf.check_pkg('sdl', destvar='libsdl')
-	conf.check_pkg('gtk+-2.0', destvar='libgtk')
+	if not conf.check_pkg2('sdl', version='1.2', uselib='SDL', mandatory=0):
+		conf.check_cfg2('sdl', uselib='SDL')
+	conf.check_pkg2('gtk+-2.0', version='2.0', uselib='GTK')
 
 	# Check for used additional libraries
 	conf.check_library2('SDL_image')
