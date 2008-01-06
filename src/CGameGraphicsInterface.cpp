@@ -110,7 +110,7 @@ void CGameGraphicsInterface::ChangeMode(const CCoord<int>& aMode)
 	iGD->GetPalette(pal);
 	iGD->SetPalette(pal,0);
 	
-	ret=iGD->SetMode(aMode.X(),aMode.Y(),0,iOptions->Data().iFullScreen, iExtraFlags );
+	ret=iGD->SetMode(aMode.X(),aMode.Y(),KBitDepth,iOptions->Data().iFullScreen, iExtraFlags );
 	iOptions->UpdateGammaChanges();
 
 	if (ret!=0) 

@@ -30,6 +30,8 @@ const float KEnemyRotationSpeed=3.4f; // computer players rotate speed
 
 const int KTimerFreq=100;
 
+const int KBitDepth=16;
+
 // Sounds...
 enum TMenuSoundEffect
 {

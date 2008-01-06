@@ -59,7 +59,7 @@ bool CEventFilter::HandleEvent(SDL_Event	 event)
 	}
 	if (event.type == SDL_VIDEORESIZE)
 	{
-		iGD->SetMode(event.resize.w,event.resize.h,0,0,SDL_RESIZABLE);
+		iGD->SetMode(event.resize.w,event.resize.h,KBitDepth,0,SDL_RESIZABLE);
 		iDrawer->Resize(iGD->Width(),iGD->Height());
 		Refresh = true;
 		return true;
