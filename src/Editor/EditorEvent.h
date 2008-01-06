@@ -1,5 +1,5 @@
-#ifndef __EDITOREVENT_H_
-#define __EDITOREVENT_H_
+#ifndef __EDITOREVENT_H
+#define __EDITOREVENT_H
 
 class CEditorEvent
 {

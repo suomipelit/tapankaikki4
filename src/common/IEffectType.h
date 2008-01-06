@@ -1,5 +1,5 @@
-#ifndef __IEFFECTTYPE_H_
-#define __IEFFECTTYPE_H_
+#ifndef __IEFFECTTYPE_H
+#define __IEFFECTTYPE_H
 
 #include "defines.h"
 #include "CGameTypeData.h"

@@ -1,5 +1,5 @@
-#ifndef __GAMESTATE_H_
-#define __GAMESTATE_H_
+#ifndef __CGAMESTATE_H
+#define __CGAMESTATE_H
 
 #define MAINSTATEMASK 0xff00
 #define MAINSTATESHIFT 8

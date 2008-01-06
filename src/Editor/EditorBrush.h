@@ -1,5 +1,5 @@
-#ifndef __EDITORBRUSH_H_
-#define __EDITORBRUSH_H_
+#ifndef __EDITORBRUSH_H
+#define __EDITORBRUSH_H
 
 #include "../common/CEditableLevel.h"
 

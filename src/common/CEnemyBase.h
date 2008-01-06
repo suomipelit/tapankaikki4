@@ -1,5 +1,5 @@
-#ifndef __ENEMYBASE_H_
-#define __ENEMYBASE_H_
+#ifndef __CENEMYBASE_H
+#define __CENEMYBASE_H
 
 #include "IEnemyType.h"
 #include "CGameTypeData.h"

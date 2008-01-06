@@ -1,5 +1,5 @@
-#ifndef __CLIGHTTABLE_H_
-#define __CLIGHTTABLE_H_ 
+#ifndef __CLIGHTTABLE_H
+#define __CLIGHTTABLE_H 
 
 #include "defines.h"
 

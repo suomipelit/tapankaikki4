@@ -1,5 +1,5 @@
-#ifndef __OPTIONS_H_
-#define __OPTIONS_H_
+#ifndef __COPTIONS_H
+#define __COPTIONS_H
 
 #include <vector>
 #include "CKeys.h"

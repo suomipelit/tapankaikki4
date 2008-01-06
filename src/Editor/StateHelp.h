@@ -1,5 +1,5 @@
-#ifndef __STATEHELP_H_
-#define __STATEHELP_H_
+#ifndef __STATEHELP_H
+#define __STATEHELP_H
 
 #include "EditorState.h"
 #include "editorapp.h"

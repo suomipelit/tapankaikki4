@@ -1,5 +1,5 @@
-#ifndef __MATH_H_
-#define __MATH_H_
+#ifndef __CMATH_H
+#define __CMATH_H
 
 #include "defines.h"
 //#include "CCoord.h"

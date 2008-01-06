@@ -1,5 +1,5 @@
-#ifndef __BODYPART_H_
-#define __BODYPART_H_
+#ifndef __CBODYPART_H
+#define __CBODYPART_H
 
 #include "common/CCoord.h"
 #include "common/Types.h"

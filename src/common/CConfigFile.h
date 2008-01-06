@@ -1,5 +1,5 @@
-#ifndef __CCONFIGFILE_H_
-#define __CCONFIGFILE_H_
+#ifndef __CCONFIGFILE_H
+#define __CCONFIGFILE_H
 
 #include <map>
 #include <string>

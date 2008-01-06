@@ -2,8 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifndef __GAMEMENUBASE_H_
-#define __GAMEMENUBASE_H_
+#ifndef __CGAMEMENUBASE_H
+#define __CGAMEMENUBASE_H
 
 #include <SDL.h>
 #include <vector>

@@ -1,5 +1,5 @@
-#ifndef __CLIGHTMAP_H_
-#define __CLIGHTMAP_H_
+#ifndef __CLIGHTMAP_H
+#define __CLIGHTMAP_H
 
 #include "defines.h"
 

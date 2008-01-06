@@ -1,5 +1,5 @@
-#ifndef __CLEVELRUNTIMEDATA_H_
-#define __CLEVELRUNTIMEDATA_H_ 
+#ifndef __CLEVELRUNTIMEDATA_H
+#define __CLEVELRUNTIMEDATA_H 
 
 #include <vector>
 #include <list>

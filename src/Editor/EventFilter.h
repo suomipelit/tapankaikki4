@@ -1,5 +1,5 @@
-#ifndef __EVENTFILTER_H_
-#define __EVENTFILTER_H_
+#ifndef __EVENTFILTER_H
+#define __EVENTFILTER_H
 
 #include <SDL.h>
 #include "../common/IEventInterface.h"

@@ -1,5 +1,5 @@
-#ifndef ___WINDOWS_H_
-#define ___WINDOWS_H_
+#ifndef __WINDOWS_H
+#define __WINDOWS_H
 
 #ifdef WIN32
 

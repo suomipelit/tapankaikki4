@@ -1,5 +1,5 @@
-#ifndef __NETWORK_H_
-#define __NETWORK_H_
+#ifndef __NETWORK_H
+#define __NETWORK_H
 
 #include "common/CLevel.h"
 

@@ -1,5 +1,5 @@
-#ifndef __CGAMEMODEDEATHMATCH_H_
-#define __CGAMEMODEDEATHMATCH_H_
+#ifndef __CGAMEMODEDEATHMATCH_H
+#define __CGAMEMODEDEATHMATCH_H
 
 #include "IGameMode.h"
 

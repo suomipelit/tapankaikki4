@@ -1,5 +1,5 @@
-#ifndef __GAMESYSTEM_H_
-#define __GAMESYSTEM_H_
+#ifndef __CGAMESYSTEM_H
+#define __CGAMESYSTEM_H
 
 #include "CGameState.h"
 #include "ICharacterObserver.h"

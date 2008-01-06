@@ -1,5 +1,5 @@
-#ifndef __MOUSE_H
-#define __MOUSE_H
+#ifndef __CMOUSE_H
+#define __CMOUSE_H
 
 #include "defines.h"
 

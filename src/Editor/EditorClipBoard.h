@@ -1,5 +1,5 @@
-#ifndef __EDITORCLIPBOARD_H_
-#define __EDITORCLIPBOARD_H_
+#ifndef __EDITORCLIPBOARD_H
+#define __EDITORCLIPBOARD_H
 #include <vector>
 #include "EditorClipBoardBlock.h"
 

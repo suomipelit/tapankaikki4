@@ -1,5 +1,5 @@
-#ifndef __CGAMESTATISTICSDATA_H_
-#define __CGAMESTATISTICSDATA_H_ 
+#ifndef __CGAMESTATISTICSDATA_H
+#define __CGAMESTATISTICSDATA_H 
 
 #include <vector>
 #include "common/defines.h"

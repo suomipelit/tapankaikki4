@@ -1,5 +1,5 @@
-#ifndef __ENEMY_H_
-#define __ENEMY_H_
+#ifndef __CENEMY_H
+#define __CENEMY_H
 
 #include "CCharacter.h"
 

@@ -1,5 +1,5 @@
-#ifndef __IBULLETOBSERVER_H_
-#define __IBULLETOBSERVER_H_
+#ifndef __IBULLETOBSERVER_H
+#define __IBULLETOBSERVER_H
 
 class CPlayer;
 class CEnemy;

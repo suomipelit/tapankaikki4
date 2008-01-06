@@ -1,5 +1,5 @@
-#ifndef __EVENTFILTER_H_
-#define __EVENTFILTER_H_
+#ifndef __CEVENTFILTER_H
+#define __CEVENTFILTER_H
 
 #include "common/IEventInterface.h"
 

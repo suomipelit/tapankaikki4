@@ -1,5 +1,5 @@
-#ifndef __STATEGETBLOCK_H_
-#define __STATEGETBLOCK_H_
+#ifndef __STATEGETBLOCK_H
+#define __STATEGETBLOCK_H
 
 #include "EditorState.h"
 #include "../common/CEditableLevel.h"

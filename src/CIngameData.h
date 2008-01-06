@@ -1,5 +1,5 @@
-#ifndef __CINGAMEDATA_H_
-#define __CINGAMEDATA_H_
+#ifndef __CINGAMEDATA_H
+#define __CINGAMEDATA_H
 
 #include <SDL_mixer.h>
 #include <vector>

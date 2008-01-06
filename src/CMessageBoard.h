@@ -1,5 +1,5 @@
-#ifndef __MESSAGEBOARD_H_
-#define __MESSAGEBOARD_H_
+#ifndef __CMESSAGEBOARD_H
+#define __CMESSAGEBOARD_H
 
 #include <SDL.h>
 #include "common/defines.h"

@@ -1,5 +1,5 @@
-#ifndef __EDITORGRAPHICS_H_
-#define __EDITORGRAPHICS_H_
+#ifndef __EDITORGRAPHICS_H
+#define __EDITORGRAPHICS_H
 
 #define KWallSprites 6
 

@@ -1,5 +1,5 @@
-#ifndef __IENEMYTYPE_H_
-#define __IENEMYTYPE_H_
+#ifndef __IENEMYTYPE_H
+#define __IENEMYTYPE_H
 
 #include "CGameTypeData.h"
 

@@ -1,5 +1,5 @@
-#ifndef __RECT_H_
-#define __RECT_H_
+#ifndef __CRECT_H
+#define __CRECT_H
 
 #include <SDL.h>
 #include "error.h"

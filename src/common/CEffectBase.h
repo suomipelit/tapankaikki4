@@ -1,5 +1,5 @@
-#ifndef __EFFECTBASE_H_
-#define __EFFECTBASE_H_
+#ifndef __CEFFECTBASE_H
+#define __CEFFECTBASE_H
 
 #include "IEffectType.h"
 

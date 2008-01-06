@@ -1,5 +1,5 @@
-#ifndef __FONTS_H_
-#define __FONTS_H_
+#ifndef __CFONTS_H
+#define __CFONTS_H
 
 #include "CRect.h"
 

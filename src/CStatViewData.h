@@ -1,5 +1,5 @@
-#ifndef __CSTATVIEWDATA_H_
-#define __CSTATVIEWDATA_H_
+#ifndef __CSTATVIEWDATA_H
+#define __CSTATVIEWDATA_H
 
 class CStatViewData
 {

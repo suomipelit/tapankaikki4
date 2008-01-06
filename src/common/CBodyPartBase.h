@@ -1,5 +1,5 @@
-#ifndef __BODYPARTBASE_H_
-#define __BODYPARTBASE_H_
+#ifndef __CBODYPARTBASE_H
+#define __CBODYPARTBASE_H
 
 #include "IBodyPartType.h"
 #include "defines.h"

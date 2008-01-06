@@ -1,5 +1,5 @@
-#ifndef __EDITORLEVELIO_H_
-#define __EDITORLEVELIO_H_
+#ifndef __EDITORLEVELIO_H
+#define __EDITORLEVELIO_H
 #include <SDL_syswm.h>
 
 class CEditableLevel;

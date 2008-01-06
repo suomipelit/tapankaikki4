@@ -1,5 +1,5 @@
-#ifndef __GRAPHICSBUFFER_H_
-#define __GRAPHICSBUFFER_H_
+#ifndef __CGRAPHICSBUFFER_H
+#define __CGRAPHICSBUFFER_H
 
 #include "defines.h"
 #include "CRect.h"

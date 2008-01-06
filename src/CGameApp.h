@@ -1,5 +1,5 @@
-#ifndef __GAMEAPP_H_
-#define __GAMEAPP_H_
+#ifndef __CGAMEAPP_H
+#define __CGAMEAPP_H
 
 #include "IGUIStateController.h"
 #include "IGraphicsModeObserver.h"

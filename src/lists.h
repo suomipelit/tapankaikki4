@@ -1,5 +1,5 @@
-#ifndef __LISTS_H_
-#define __LISTS_H_
+#ifndef __LISTS_H
+#define __LISTS_H
 
 #include <vector>
 

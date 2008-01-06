@@ -1,5 +1,5 @@
-#ifndef __STATENEWLEVEL_H_
-#define __STATENEWLEVEL_H_
+#ifndef __STATENEWLEVEL_H
+#define __STATENEWLEVEL_H
 
 #include "EditorState.h"
 

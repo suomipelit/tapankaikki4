@@ -1,5 +1,5 @@
-#ifndef __CGAMESUBSTATEQUIT_H_
-#define __CGAMESUBSTATEQUIT_H_
+#ifndef __CGAMESUBSTATEQUIT_H
+#define __CGAMESUBSTATEQUIT_H
 
 #include "common/CRect.h"
 #include "IGameSubState.h"

@@ -1,5 +1,5 @@
-#ifndef ___LINUX_H__
-#define ___LINUX_H__
+#ifndef __LINUX_H
+#define __LINUX_H
 
 #ifdef __LINUX__
 

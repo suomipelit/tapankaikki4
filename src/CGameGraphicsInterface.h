@@ -1,5 +1,5 @@
-#ifndef __GAMEGRAPHICSINTERFACE_H_
-#define __GAMEGRAPHICSINTERFACE_H_
+#ifndef __CGAMEGRAPHICSINTERFACE_H
+#define __CGAMEGRAPHICSINTERFACE_H
 
 #include <list>
 #include "common/defines.h"

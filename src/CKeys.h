@@ -1,5 +1,5 @@
-#ifndef __KEYS_H_
-#define __KEYS_H_
+#ifndef __CKEYS_H
+#define __CKEYS_H
 
 #include "common/defines.h"
 

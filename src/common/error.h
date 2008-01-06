@@ -1,5 +1,5 @@
-#ifndef __ERROR_H_
-#define __ERROR_H_
+#ifndef __ERROR_H
+#define __ERROR_H
 
 #include "defines.h"
 #include <exception>

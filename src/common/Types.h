@@ -1,5 +1,5 @@
-#ifndef __TYPES_H_
-#define __TYPES_H_
+#ifndef __TYPES_H
+#define __TYPES_H
 
 #include "IShield.h"
 #include "CEnemyBase.h"

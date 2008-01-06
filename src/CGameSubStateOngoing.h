@@ -1,5 +1,5 @@
-#ifndef __CGAMESUBSTATEONGOING_H_
-#define __CGAMESUBSTATEONGOING_H_
+#ifndef __CGAMESUBSTATEONGOING_H
+#define __CGAMESUBSTATEONGOING_H
 
 #include "IGameSubState.h"
 #include "IPositionalSoundObserver.h"

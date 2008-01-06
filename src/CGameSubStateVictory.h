@@ -1,5 +1,5 @@
-#ifndef __CGAMESUBSTATEVICTORY_H_
-#define __CGAMESUBSTATEVICTORY_H_
+#ifndef __CGAMESUBSTATEVICTORY_H
+#define __CGAMESUBSTATEVICTORY_H
 
 #include "IGameSubState.h"
 

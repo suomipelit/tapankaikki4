@@ -1,5 +1,5 @@
-#ifndef __CGraphicsDevice_H_
-#define __CGraphicsDevice_H_
+#ifndef __CGRAPHICSDEVICE_H
+#define __CGRAPHICSDEVICE_H
 
 #include "CGraphicsBuffer.h"
 #include "CDrawArea.h"

@@ -1,5 +1,5 @@
-#ifndef __CGAMEMODECOOPERATIVE_H_
-#define __CGAMEMODECOOPERATIVE_H_
+#ifndef __CGAMEMODECOOPERATIVE_H
+#define __CGAMEMODECOOPERATIVE_H
 
 #include "IGameMode.h"
 

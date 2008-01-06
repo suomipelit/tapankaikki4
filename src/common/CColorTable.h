@@ -1,5 +1,5 @@
-#ifndef __CCOLORTABLE_H_
-#define __CCOLORTABLE_H_
+#ifndef __CCOLORTABLE_H
+#define __CCOLORTABLE_H
 
 #include "CLightMap.h"
 #include "CLightTable.h"

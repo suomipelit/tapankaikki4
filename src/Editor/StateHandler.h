@@ -1,5 +1,5 @@
-#ifndef __STATEHANDLER_H_
-#define __STATEHANDLER_H_
+#ifndef __STATEHANDLER_H
+#define __STATEHANDLER_H
 
 #include "editorapp.h" // Editmodes found here
 

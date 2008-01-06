@@ -1,5 +1,5 @@
-#ifndef __CSTATE_H_
-#define __CSTATE_H_
+#ifndef __CSTATE_H
+#define __CSTATE_H
 
 class CState
 {

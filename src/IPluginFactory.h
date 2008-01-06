@@ -1,5 +1,5 @@
-#ifndef __IPLUGINFACTORY_H_
-#define __IPLUGINFACTORY_H_
+#ifndef __IPLUGINFACTORY_H
+#define __IPLUGINFACTORY_H
 
 class IPluginFactory
 {

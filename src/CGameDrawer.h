@@ -1,5 +1,5 @@
-#ifndef __GAMEDRAWER_H_
-#define __GAMEDRAWER_H_
+#ifndef __CGAMEDRAWER_H
+#define __CGAMEDRAWER_H
 
 #include "common/Types.h"
 #include "common/CRect.h"

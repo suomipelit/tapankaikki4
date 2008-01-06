@@ -1,5 +1,5 @@
-#ifndef __STATEEDITLEVEL_H__
-#define __STATEEDITLEVEL_H__
+#ifndef __STATEEDITLEVEL_H
+#define __STATEEDITLEVEL_H
 #include "EditorState.h"
 
 class CEditorTools;

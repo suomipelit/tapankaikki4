@@ -1,5 +1,5 @@
-#ifndef __GAMEPALETTE_H_
-#define __GAMEPALETTE_H_
+#ifndef __CPALETTE_H
+#define __CPALETTE_H
 
 //#include <stdio.h>
 #include <SDL.h>

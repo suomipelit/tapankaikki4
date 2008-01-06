@@ -1,5 +1,5 @@
-#ifndef __GAMETYPEDATA_H_
-#define __GAMETYPEDATA_H_
+#ifndef __CGAMETYPEDATA_H
+#define __CGAMETYPEDATA_H
 
 #include "defines.h"
 
