@@ -9,6 +9,8 @@
 #define EXPORT __declspec(dllimport)
 #endif
 
+#define DIR_SEPARATOR '\\'
+
 #include <direct.h>
 
 inline void ChangeDir(const char* str)

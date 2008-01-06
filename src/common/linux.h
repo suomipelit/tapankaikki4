@@ -9,6 +9,8 @@
 #define _snprintf snprintf
 #define _getcwd getcwd
 
+#define DIR_SEPARATOR '/'
+
 #ifdef DEBUG
 #  define EF_DEBUG 1
 #else

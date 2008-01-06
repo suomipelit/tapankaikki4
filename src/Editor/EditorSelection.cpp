@@ -1,5 +1,5 @@
 #include "EditorSelection.h"
-#include <malloc.h>
+#include <stdlib.h>
 #include <memory.h>
 
 CEditorSelection::CEditorSelection(void)
