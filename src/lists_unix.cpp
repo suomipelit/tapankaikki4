@@ -14,7 +14,7 @@
 
 namespace
 {
-	inline int filter_dir(dirent* dir)
+	inline int filter_dir(const dirent* dir)
 	{
 		struct stat info;
 		if (stat(dir->d_name, &info) == 0)
@@ -22,7 +22,7 @@ namespace
 				return true;
 		return false;
 	}
-	inline int filter_norm_lev(dirent* dir)
+	inline int filter_norm_lev(const dirent* dir)
 	{
 		struct stat info;
 		if (stat(dir->d_name, &info) == 0)
@@ -36,7 +36,7 @@ namespace
 			}
 		return false;
 	}
-	inline int filter_level(dirent* file)
+	inline int filter_level(const dirent* file)
 	{
 		if(strncasecmp(file->d_name, "level", 5) == 0) {
 			const char* tmp = file->d_name+5;
