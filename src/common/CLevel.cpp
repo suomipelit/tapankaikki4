@@ -868,9 +868,9 @@ EXPORT char* CLevel::ReadLevelName(const char* aName)
 		tmp = strdup( lev->iGeneralLevelInfo.iComment );
 		ASSERT( tmp );
 	}
-	catch (CFailureException& /*e*/)
+	catch (CFailureException& exception)
 	{
-		LOG1( "File reading failed: %s\n", aName);
+		LOG2( "File reading failed: %s, Exception: %s\n", aName, exception.what());
 		tmp = strdup( "(Level loading error!)" );
 		ASSERT( tmp );
 	}

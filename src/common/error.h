@@ -6,9 +6,13 @@
 
 class CGameException : public std::exception
 {
+private:
+	const char *errorstr;
 protected:
 	EXPORT CGameException();
 	EXPORT CGameException(const char *const& str);
+public:
+	EXPORT const char *what();
 };
 
 // three levels of exceptions

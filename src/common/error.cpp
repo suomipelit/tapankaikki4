@@ -9,13 +9,16 @@
 #include "error.h"
 
 CGameException::CGameException(const char *const& str)
-#ifndef __LINUX__
-: exception( str )
-#endif
 {
+	errorstr = str;
 #ifdef _DEBUG
 //	_asm { int 3h }; // Break here
 #endif
+}
+
+const char *CGameException::what()
+{
+	return errorstr;
 }
 
 void TKAssert( const char* aAssertion, const char* file, int line )
