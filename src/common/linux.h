@@ -4,6 +4,8 @@
 #ifdef __LINUX__
 
 #define EXPORT
+#define NORETURN
+
 #define _stat stat
 
 #define _snprintf snprintf

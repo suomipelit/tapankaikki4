@@ -9,6 +9,8 @@
 #define EXPORT __declspec(dllimport)
 #endif
 
+#define NORETURN __declspec(noreturn)
+
 #define DIR_SEPARATOR '\\'
 
 #include <direct.h>
