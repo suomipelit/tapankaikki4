@@ -1,10 +1,21 @@
 #! /usr/bin/env python
 # encoding: utf-8
 
+import sys
+
 def build(bld):
-	obj = bld.create_obj('cpp', 'staticlib')
-	obj.find_sources_in_dirs('.')
-	obj.uselib='SDL'
-	obj.target='tk4common'
-	obj.install_var = 0
+	if sys.platform == "win32":
+		obj = bld.create_obj('cpp', 'shlib')
+		obj.find_sources_in_dirs('.')
+		obj.uselib='SDL'
+		obj.target='tk4common'
+		# Export symbols, default behaviour is import
+		obj.defines = ['COMMON_EXPORTS']
+	else:
+		obj = bld.create_obj('cpp', 'staticlib')
+		obj.find_sources_in_dirs('.')
+		obj.uselib='SDL'
+		obj.target='tk4common'
+		# Don't install the static library, it will be linked
+		obj.install_var = 0
 

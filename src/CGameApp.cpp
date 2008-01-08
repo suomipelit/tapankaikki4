@@ -334,15 +334,17 @@ void CGameApp::Run(int argc,char *argv[])
 		{
 			case '1': extra |= SDL_HWACCEL;
 					break;
+
 			case '2': extra |= SDL_HWSURFACE;
 					break;
+
 			case 'W':iOptions->Data().iFullScreen=0; 
 					 break;
 
 			case 'L':b=atoi(argv[++a]);
 					 if(b>0) iDebugStartLevel=b - 1;
-
 					 break;
+
 			default:
 					error("Unkwown commandline parameter!?!\n");
 					break;

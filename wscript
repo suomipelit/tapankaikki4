@@ -1,6 +1,8 @@
 #! /usr/bin/env python
 # encoding: utf-8
 
+import sys
+
 # the following two variables are used by the target "waf dist"
 VERSION='4.0.8'
 APPNAME='tk'
@@ -28,14 +30,17 @@ def configure(conf):
 	# Check for SDL and GTK libraries
 	if not conf.check_pkg2('sdl', version='1.2.9', uselib='SDL', mandatory=0):
 		conf.check_cfg2('sdl', uselib='SDL')
-	conf.check_pkg2('gtk+-2.0', version='2.0', uselib='GTK')
 
 	# Check for used additional libraries
 	check_library(conf, 'SDL_image', uselib='SDL_image', path=conf.env['LIBPATH_SDL'])
 	check_library(conf, 'SDL_mixer', uselib='SDL_mixer', path=conf.env['LIBPATH_SDL'])
 	check_library(conf, 'SDL_net', uselib='SDL_net', path=conf.env['LIBPATH_SDL'])
 	
-	# Define that we want to use the linux header
+	# On Windows native win32 api is used and therefore GTK+ is not needed
+	if sys.platform != "win32":
+		conf.check_pkg2('gtk+-2.0', version='2.0', uselib='GTK')
+
+	# Define that we want to use the linux header (remove this hack later)
 	conf.env['CXXDEFINES'] = '__LINUX__'
 
 	# Remove -Wall flag added by waf because it causes too much warnings
