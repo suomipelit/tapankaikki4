@@ -8,7 +8,7 @@ CMoneyCrate::CMoneyCrate( const CCoord<int>& aPos, int aAmount, IGUIStateControl
 	CCrate( aPos, aController  )
 {
 	iAmount = aAmount;
-	ASSERT(_snprintf(buf,20,"money (%d)",iAmount)>0);
+	ASSERT(EF_SNPRINTF(buf,20,"money (%d)",iAmount)>0);
 }
 
 void CMoneyCrate::TryPickup( CPlayer* aPicker, const CRect<int>& aDrawRect )

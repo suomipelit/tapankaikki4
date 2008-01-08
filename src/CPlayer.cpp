@@ -922,9 +922,9 @@ void CPlayer::BulletPlayerKill( CPlayer* aPlayer )
 	char buf[KMaxMessagesLengthOnBoard];
 
 	if (aPlayer!= this)		
-		ASSERT(_snprintf(buf,KMaxMessagesLengthOnBoard,iDynData->LevelRuntime()->IngameData()->RandomKillText(),iName,aPlayer->iName)>0);
+		ASSERT(EF_SNPRINTF(buf,KMaxMessagesLengthOnBoard,iDynData->LevelRuntime()->IngameData()->RandomKillText(),iName,aPlayer->iName)>0);
 	if (aPlayer == this) // has to be this way. Some problems with ASSERT macro
-		ASSERT(_snprintf(buf,KMaxMessagesLengthOnBoard,iDynData->LevelRuntime()->IngameData()->RandomSuicideText(),iName)>0);
+		ASSERT(EF_SNPRINTF(buf,KMaxMessagesLengthOnBoard,iDynData->LevelRuntime()->IngameData()->RandomSuicideText(),iName)>0);
 
 	iGS->GUIStateController()->MessageBoard()->AddMessage(buf);
 	

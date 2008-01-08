@@ -117,7 +117,7 @@ void CGameSubStateStatistics::Draw(CDrawArea& aDirtyArea,CDrawArea& aDrawArea,CG
 	{
 		if ( iTimeBonus > 0 )
 		{
-			ASSERT(_snprintf(text,KTempStringLength,"Time limit: %s Your time: %s Time bonus: +%d",
+			ASSERT(EF_SNPRINTF(text,KTempStringLength,"Time limit: %s Your time: %s Time bonus: +%d",
 				iGameDrawManager->FormatTime((int)(iDynData->LevelRuntime()->Level().iGeneralLevelInfo.iTimeLimit)).c_str(),
 				iGameDrawManager->FormatTime(iDynData->iCompleteTime).c_str(),
 				iTimeBonus)>0);
@@ -126,14 +126,14 @@ void CGameSubStateStatistics::Draw(CDrawArea& aDirtyArea,CDrawArea& aDrawArea,CG
 		{
 			if ( iTimeBonus < 0 )
 			{
-				ASSERT(_snprintf(text,KTempStringLength,"Time limit: %s Your time: %s Time penalty: %d",
+				ASSERT(EF_SNPRINTF(text,KTempStringLength,"Time limit: %s Your time: %s Time penalty: %d",
 					iGameDrawManager->FormatTime((int)(iDynData->LevelRuntime()->Level().iGeneralLevelInfo.iTimeLimit)).c_str(),
 					iGameDrawManager->FormatTime(iDynData->iCompleteTime).c_str(),
 					iTimeBonus)>0);
 			}
 			else
 			{
-				ASSERT(_snprintf(text,KTempStringLength,"Time limit: %s Your time: %s",
+				ASSERT(EF_SNPRINTF(text,KTempStringLength,"Time limit: %s Your time: %s",
 					iGameDrawManager->FormatTime((int)(iDynData->LevelRuntime()->Level().iGeneralLevelInfo.iTimeLimit)).c_str(),
 					iGameDrawManager->FormatTime(iDynData->iCompleteTime).c_str())>0);
 			}
@@ -165,16 +165,16 @@ void CGameSubStateStatistics::DrawPlayerInfo( int aPartOfScreen, int aPlayerNo, 
 		b=0;
 
 	if (b)
-		ASSERT(_snprintf(text,KTempStringLength, "Kills for %s", plyStats.iPlayer->iName)>0);
+		ASSERT(EF_SNPRINTF(text,KTempStringLength, "Kills for %s", plyStats.iPlayer->iName)>0);
 	if (!b) // ASSERT fuk-up
-		ASSERT(_snprintf(text,KTempStringLength, "No kills for %s", plyStats.iPlayer->iName)>0);
+		ASSERT(EF_SNPRINTF(text,KTempStringLength, "No kills for %s", plyStats.iPlayer->iName)>0);
 
 	aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Write(16+horizStart, 60, text,CFonts::EDrawBelow, CFonts::EDrawToRight, aGGI->DrawBuffer());
 
 	for (a = 0, b = 60+aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Height()*2; a < EEnemyAmount; a++) 
 		if (stats.iEnemyKills[a] > 0) 
 		{
-			ASSERT(_snprintf(text,KTempStringLength, "%d %s%s",
+			ASSERT(EF_SNPRINTF(text,KTempStringLength, "%d %s%s",
 				stats.iEnemyKills[a],
 				iGameData->TypeData()->iEnemyType[a]->Name(),
 				stats.iEnemyKills[a] > 1? "s":"")>0);
@@ -183,7 +183,7 @@ void CGameSubStateStatistics::DrawPlayerInfo( int aPartOfScreen, int aPlayerNo, 
 
 			if ( iDynData->GameMode()->ActionTimeMatters() )
 			{
-				ASSERT(_snprintf(text,KTempStringLength,"+%d", iGameData->TypeData()->iEnemyType[a]->Reward()*stats.iEnemyKills[a])>0);
+				ASSERT(EF_SNPRINTF(text,KTempStringLength,"+%d", iGameData->TypeData()->iEnemyType[a]->Reward()*stats.iEnemyKills[a])>0);
 				aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Write(220+horizStart, b, text,CFonts::EDrawBelow, CFonts::EDrawToRight, aGGI->DrawBuffer());
 			}
 			b+=aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Height();
@@ -192,15 +192,15 @@ void CGameSubStateStatistics::DrawPlayerInfo( int aPartOfScreen, int aPlayerNo, 
 	if ( plyKills && iDynData->GameMode()->Frags() )
 	{
 		b+=aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Height();
-        ASSERT(_snprintf(text,KTempStringLength,"%d Frags",plyKills)>0);
+        ASSERT(EF_SNPRINTF(text,KTempStringLength,"%d Frags",plyKills)>0);
 		aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Write(16+horizStart, b,text,CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer());
 		b+=aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Height();
 
-		ASSERT(_snprintf(text,KTempStringLength,"Total kills: %d",stats.TotalKills()+plyKills)>0);
+		ASSERT(EF_SNPRINTF(text,KTempStringLength,"Total kills: %d",stats.TotalKills()+plyKills)>0);
 	}
 	else
 	{
-        ASSERT(_snprintf(text,KTempStringLength,"Total kills: %d",stats.TotalKills())>0);
+        ASSERT(EF_SNPRINTF(text,KTempStringLength,"Total kills: %d",stats.TotalKills())>0);
 	}
 
 	b+=aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Height();
@@ -208,7 +208,7 @@ void CGameSubStateStatistics::DrawPlayerInfo( int aPartOfScreen, int aPlayerNo, 
 	aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Write(16+horizStart, b,text,CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer());
 	b+=aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Height();
 
-	ASSERT(_snprintf(text,KTempStringLength,"Accuracy: %.1f%%",stats.Accuracy())>0);
+	ASSERT(EF_SNPRINTF(text,KTempStringLength,"Accuracy: %.1f%%",stats.Accuracy())>0);
 
 	aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Write(16+horizStart, b, text,CFonts::EDrawBelow, CFonts::EDrawToRight, aGGI->DrawBuffer());
 	b+=aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Height();
@@ -216,7 +216,7 @@ void CGameSubStateStatistics::DrawPlayerInfo( int aPartOfScreen, int aPlayerNo, 
 	if ( iDynData->GameMode()->ActionTimeMatters() ) // TODO: korjaa joskus
 	{
 		ASSERT( plyStats.iPlayer->iCash >= 0 );
-		ASSERT(_snprintf(text,KTempStringLength,"Cash: %d",plyStats.iPlayer->iCash)>0);
+		ASSERT(EF_SNPRINTF(text,KTempStringLength,"Cash: %d",plyStats.iPlayer->iCash)>0);
 		aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Write(16+horizStart, b, text,CFonts::EDrawBelow, CFonts::EDrawToRight, aGGI->DrawBuffer());
 	}
 }

@@ -14,7 +14,7 @@ void CPalette::LoadEFPPal(const char *name)
 	FILE *efp=fopen(name,"rb");
 
 	if (efp==NULL)
-		error("CPalette::LoadEFPPal: File %s couldn't be opened (curdir==%s)!", name,_getcwd( dir, 256));
+		error("CPalette::LoadEFPPal: File %s couldn't be opened (curdir==%s)!", name,EF_GETCWD( dir, 256));
 
 	fseek(efp,-768,SEEK_END);
 	ReadPalette(efp);
@@ -30,7 +30,7 @@ void CPalette::LoadPCXPal(const char *name)
 	FILE *pcx=fopen(name,"rb");
 
 	if (!pcx)
-		error("CPalette::LoadPCXPal: File %s couldn't be opened (curdir==%s)!", name,_getcwd( dir, 256));
+		error("CPalette::LoadPCXPal: File %s couldn't be opened (curdir==%s)!", name,EF_GETCWD( dir, 256));
 
 	fseek(pcx,-768,SEEK_END);
 	ReadPalette(pcx);

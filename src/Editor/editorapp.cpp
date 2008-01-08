@@ -42,11 +42,7 @@ CEditorApp::CEditorApp()
 	SDL_SetTimer(1000/KFrameRate, TimerCallBack);
 	SDL_SysWMinfo WndInfo; 
 
-#ifndef __LINUX__ 
-    WndInfo.window = 0;
-#else
-    WndInfo.info.x11.window = 0;
-#endif
+    WndInfo.EF_SDLWINDOW = 0;
     SDL_VERSION(&WndInfo.version);
 	
 	iGD=new CGraphicsDevice("Tapan Kaikki Bloodshed - Level Editor","editor.ico");

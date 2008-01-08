@@ -31,7 +31,7 @@ void TKAssert( const char* aAssertion, const char* file, int line )
 	str += ") failed at ";
 	str += file;
 	str += ",";
-	_snprintf(buf,20,"%d",line);
+	EF_SNPRINTF(buf,20,"%d",line);
 	str += buf;
 	str += KNewLine;
 

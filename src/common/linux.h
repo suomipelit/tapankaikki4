@@ -6,10 +6,11 @@
 #define EXPORT
 #define NORETURN
 
-#define _stat stat
-
-#define _snprintf snprintf
-#define _getcwd getcwd
+/* Some functions and names that differ on windows and other platforms */
+#define EF_STAT stat
+#define EF_SNPRINTF snprintf
+#define EF_GETCWD getcwd
+#define EF_SDLWINDOW info.x11.window /* window in SDL_SysWMinfo structure */
 
 #define DIR_SEPARATOR '/'
 

@@ -175,11 +175,11 @@ void CGameMenuItemNetworkModeSelect::UpdateText()
 	tmp=(char*)malloc(strlen(iParamStr)+20);
 	switch (iParent->Container()->Options()->Data().iMultiPlayNetworkMode)
 	{
-		case ENetworkModeNone:ASSERT(_snprintf(tmp,strlen(iParamStr)+20,"%s: disabled",iParamStr)>0);
+		case ENetworkModeNone:ASSERT(EF_SNPRINTF(tmp,strlen(iParamStr)+20,"%s: disabled",iParamStr)>0);
 			if (iSplitSelect)
 				iSplitSelect->EnableSplit();
 			break;
-		case ENetworkModeServer:ASSERT(_snprintf(tmp,strlen(iParamStr)+20,"%s: server",iParamStr)>0);break;
+		case ENetworkModeServer:ASSERT(EF_SNPRINTF(tmp,strlen(iParamStr)+20,"%s: server",iParamStr)>0);break;
 		default:error("CGameMenuItemNetworkModeSelect::UpdateText: Some kind of a traditional fuck-up.");
 	};
 	SetText(tmp);
@@ -235,7 +235,7 @@ void CGameMenuItemGameModeSelect::UpdateText()
     char *tmp;
 	tmp=(char*)malloc(strlen(iParamStr)+20);
 	
-	ASSERT(_snprintf(tmp,strlen(iParamStr)+20,"%s: %s",iParamStr,
+	ASSERT(EF_SNPRINTF(tmp,strlen(iParamStr)+20,"%s: %s",iParamStr,
 		iParent->Container()->StateController()->GameData()->GameMode(
 			iParent->Container()->Options()->Data().iMultiPlayGameMode
 			)->Name())>0);
@@ -344,13 +344,13 @@ void CGameMenuItemSplitSelect::UpdateText()
 
 	switch (iParent->Container()->Options()->Data().iMultiPlayers)
 	{
-		case 1:ASSERT(_snprintf(tmp,strlen(iParamStr)+20,"%s: disabled",iParamStr)>0);
+		case 1:ASSERT(EF_SNPRINTF(tmp,strlen(iParamStr)+20,"%s: disabled",iParamStr)>0);
 			ASSERT( iNetSelect );
 			iNetSelect->EnableNetwork();
 			break;
 		case 2:
 		case 3:
-		case 4:ASSERT(_snprintf(tmp,strlen(iParamStr)+20,"%s: %d players",iParamStr,iParent->Container()->Options()->Data().iMultiPlayers)>0);break;
+		case 4:ASSERT(EF_SNPRINTF(tmp,strlen(iParamStr)+20,"%s: %d players",iParamStr,iParent->Container()->Options()->Data().iMultiPlayers)>0);break;
 		default:error("CGameMenuItemSplitSelect::UpdateText: Too many players...");
 	}
 
@@ -410,7 +410,7 @@ void CGameMenuItemBoolean::UpdateText()
 {
 	char *tmp;
 	tmp=(char*)malloc(strlen(iParamStr)+KBoolCatMax+2);
-	ASSERT(_snprintf(tmp,strlen(iParamStr)+KBoolCatMax+2,"%s %s",iParamStr,KBoolCatStr[(*iBool)? 1:0])>0);
+	ASSERT(EF_SNPRINTF(tmp,strlen(iParamStr)+KBoolCatMax+2,"%s %s",iParamStr,KBoolCatStr[(*iBool)? 1:0])>0);
 	SetText(tmp);
 	free(tmp);
 }
@@ -488,7 +488,7 @@ void CGameMenuItemResolution::UpdateText()
 {
 	char tmp[ 150 ];
 
-	ASSERT(_snprintf(tmp,150,"%s%dx%d",iParamStr,iGameMode->X(),iGameMode->Y() )>0);
+	ASSERT(EF_SNPRINTF(tmp,150,"%s%dx%d",iParamStr,iGameMode->X(),iGameMode->Y() )>0);
 	SetText( tmp );
 }
 
@@ -601,7 +601,7 @@ void CGameMenuItemPercent::UpdateText()
 
 	if (*iPercent<iLow) (*iPercent)=iLow;
 	if (*iPercent>iHigh) (*iPercent)=iHigh;
-	ASSERT(_snprintf(tmp,100,"%s %.0f%%",iParamStr,(*iPercent)*100)>0);
+	ASSERT(EF_SNPRINTF(tmp,100,"%s %.0f%%",iParamStr,(*iPercent)*100)>0);
 	SetText(tmp);
 }
 
@@ -897,7 +897,7 @@ void CGameMenuItemLevelSelect::UpdateText()
 
 	CheckDisable();
 
-	ASSERT(_snprintf(tmp,256,"%s: %s",iParamStr,
+	ASSERT(EF_SNPRINTF(tmp,256,"%s: %s",iParamStr,
 		epi->LevelName(iOptions->Data().iMultiPlayLevel))>0);
 	SetText(tmp);
 }
@@ -978,7 +978,7 @@ void CGameMenuItemEpisodeSelect::UpdateText()
 	if (iOptions->Data().iMultiPlayEpisode<0)
 		iOptions->Data().iMultiPlayEpisode = iOptions->EpisodeList()->Amount( iOptions->Data().iMultiPlayGameMode )-1;
 
-	ASSERT(_snprintf(tmp,256,"%s: %s",iParamStr,iOptions->EpisodeList()->Episode( iOptions->Data().iMultiPlayEpisode,  iOptions->Data().iMultiPlayGameMode )->Name() )>0);
+	ASSERT(EF_SNPRINTF(tmp,256,"%s: %s",iParamStr,iOptions->EpisodeList()->Episode( iOptions->Data().iMultiPlayEpisode,  iOptions->Data().iMultiPlayGameMode )->Name() )>0);
 
 	SetText(tmp);
 }

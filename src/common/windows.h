@@ -8,8 +8,13 @@
 #else
 #define EXPORT __declspec(dllimport)
 #endif
-
 #define NORETURN __declspec(noreturn)
+
+/* Some functions and names that differ on windows and other platforms */
+#define EF_STAT _stat
+#define EF_SNPRINTF _snprintf
+#define EF_GETCWD _getcwd
+#define EF_SDLWINDOW window /* window in SDL_SysWMinfo structure */
 
 #define DIR_SEPARATOR '\\'
 
