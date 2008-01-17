@@ -79,18 +79,16 @@ public:
 	void UpdateGammaChanges();
 	inline CEpisodeList* EpisodeList(){return iEpisodeList;};
 	COptionsData& Data();
-	inline int MusicThemes(){ return (int)iMusicThemes.size();}
-	inline char* MusicTheme(int a){ if (a<0 || a>=(signed)iMusicThemes.size()) return NULL;	return iMusicThemes.at(a);}
+	inline int MusicThemes(){ return (int)iMusicThemeList->Amount();}
+	inline char* MusicTheme(int a){ if (a<0 || a>=(signed)iMusicThemeList->Amount()) return NULL; return iMusicThemeList->MusicTheme(a);}
 	char* MouseModeText();
 
 private:
-	void LoadThemes();
-
 	CEpisodeList* iEpisodeList;
 	CSoundPlayer* iSP;
 
 	COptionsData iData;
-	std::vector<char *> iMusicThemes;
+	CMusicThemeList* iMusicThemeList;
 };
 
 

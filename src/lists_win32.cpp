@@ -148,3 +148,31 @@ void CDeathMatchEpisode::ListFiles(char *filenames)
 	}
 	_findclose(er);
 }
+
+void CMusicThemeList::LoadThemes()
+{
+	struct _finddata_t fbuf;
+
+	int er,error=0;
+	bool ok;
+
+	er = _findfirst("music/*",&fbuf);
+	while(er != 0&&error==0)
+	{
+		if ((fbuf.attrib&_A_SUBDIR)== _A_SUBDIR)
+		{
+			ok=true;
+			for (int a=0;ok&&a<KForbiddenFileAmount;a++)
+				if (stricmp(fbuf.name,KForbiddenFiles[a])==0)
+					ok=false;
+
+			if (ok)
+			{
+				char* level=strdup(fbuf.name);
+				iMusicThemes.push_back(level);
+			}
+		}
+		error=_findnext(er,&fbuf);
+	}
+	_findclose(er);
+}

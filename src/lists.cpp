@@ -107,3 +107,25 @@ unsigned int CEpisodeList::Amount( bool aDMEpisodes )
 		return (unsigned int)iDMEpisodes.size();
 }
 
+CMusicThemeList::~CMusicThemeList()
+{
+	Reset();
+}
+
+char* CMusicThemeList::MusicTheme( unsigned int aIndex )
+{
+	ASSERT( aIndex<iMusicThemes.size() );
+	return iMusicThemes.at( aIndex );
+}
+
+void CMusicThemeList::Reset()
+{
+	unsigned int a;
+
+	for (a=0;a<iMusicThemes.size();a++)
+	{
+		free (iMusicThemes.at(a));
+	}
+	iMusicThemes.clear();
+}
+

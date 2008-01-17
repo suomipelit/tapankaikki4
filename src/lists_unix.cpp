@@ -190,3 +190,32 @@ void CDeathMatchEpisode::ListFiles(char *filenames)
 	}
 	free(filelist);
 }
+
+void CMusicThemeList::LoadThemes()
+{
+	if (chdir("music") == 0) {
+		DIR* fbuf = opendir(".");
+		dirent* cur;
+		struct stat info;
+		bool ok;
+		while ((cur = readdir(fbuf))) {
+			if (stat(cur->d_name, &info) == 0) {
+				if (S_ISDIR(info.st_mode)) {
+					ok = true;
+					for(int a=0; a<KForbiddenFileAmount; a++)
+						if (strcasecmp(cur->d_name, KForbiddenFiles[a]) == 0) {
+							ok = false;
+							break;
+						}
+					if (ok) {
+						char* level = strdup(cur->d_name);
+						iMusicThemes.push_back(level);
+					}
+				}
+			}
+		}
+		closedir(fbuf);
+
+		chdir("..");
+	}
+}

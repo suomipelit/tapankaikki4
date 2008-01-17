@@ -3,15 +3,6 @@
 #include <string.h> 
 #include <SDL.h>
 
-#ifndef __LINUX__
-#include <io.h>
-#else
-#include <dirent.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#endif
-
-
 #include "COptions.h"
 
 #include "CSoundPlayer.h"
@@ -81,6 +72,8 @@ COptions::COptions(CSoundPlayer* aSP): iSP(aSP)
 	iEpisodeList=new CEpisodeList;
 	iEpisodeList->ListFiles("levs");
 
+	iMusicThemeList=new CMusicThemeList;
+
     Load();
 
 	// some sanity checks
@@ -104,12 +97,7 @@ COptions::~COptions()
 
 	Save();
 	delete iEpisodeList;
-
-	for(a=0;a<iMusicThemes.size();a++)
-	{
-		free (iMusicThemes.at(a));
-	}
-	iMusicThemes.clear();
+	delete iMusicThemeList;
 }
 
 COptionsData& COptions::Data()
@@ -149,66 +137,8 @@ void COptions::Load()
 		}
 	}
 
-	LoadThemes();
+	iMusicThemeList->LoadThemes();
 	UpdateAudioChanges();
-}
-
-void COptions::LoadThemes()
-{
-#ifndef __LINUX__
-	struct _finddata_t fbuf;
-
-	int er,error=0;
-	bool ok;
-
-	er = _findfirst("music/*",&fbuf);
-	while(er != 0&&error==0)
-	{
-		if ((fbuf.attrib&_A_SUBDIR)== _A_SUBDIR)
-		{
-			ok=true;
-			for (int a=0;ok&&a<KForbiddenFileAmount;a++)
-				if (stricmp(fbuf.name,KForbiddenFiles[a])==0)
-					ok=false;
-
-			if (ok)
-			{
-				char* level=strdup(fbuf.name);
-				iMusicThemes.push_back(level);
-			}
-		}
-		error=_findnext(er,&fbuf);
-	}
-	_findclose(er);
-
-#else	// __LINUX__
-
-	if (chdir("music") == 0) {
-		DIR* fbuf = opendir(".");
-		dirent* cur;
-		struct stat info;
-		bool ok;
-		while ((cur = readdir(fbuf))) {
-			if (stat(cur->d_name, &info) == 0) {
-				if (S_ISDIR(info.st_mode)) {
-					ok = true;
-					for(int a=0; a<KForbiddenFileAmount; a++)
-						if (strcasecmp(cur->d_name, KForbiddenFiles[a]) == 0) {
-							ok = false;
-							break;
-						}
-					if (ok) {
-						char* level = strdup(cur->d_name);
-						iMusicThemes.push_back(level);
-					}
-				}
-			}
-		}
-		closedir(fbuf);
-
-		chdir("..");
-	}
-#endif	// __LINUX__
 }
 
 void COptions::UpdateGammaChanges()
