@@ -107,6 +107,10 @@ unsigned int CEpisodeList::Amount( bool aDMEpisodes )
 		return (unsigned int)iDMEpisodes.size();
 }
 
+CMusicThemeList::CMusicThemeList()
+{
+}
+
 CMusicThemeList::~CMusicThemeList()
 {
 	Reset();
