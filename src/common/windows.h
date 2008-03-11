@@ -31,6 +31,28 @@ inline void ChangeDir(const char* str)
 #define EF_DEBUG 0
 #endif // _DEBUG
 
+#ifndef min
+#define min(a,b) ((a)<=(b)?(a):(b))
+#endif
+
+#ifndef max
+#define max(a,b) ((a)> (b)?(a):(b)) 
+#endif
+
+inline const char* strcasestr(const char* src,const char* match)
+{
+	ASSERT(src);
+	ASSERT(match);
+	int a;
+	int mlen=strlen(match);
+	int l=(int)(strlen(src)-mlen);
+	
+	for (a=0;a<=l;a++)
+		if (strnicmp(src+a,match,mlen)==NULL)
+			return src+a;
+	
+	return NULL;
+}
 
 #endif // _WINDOWS
 

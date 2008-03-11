@@ -29,23 +29,6 @@ namespace
 	} TPCXHeader;
 }
 
-#ifndef __LINUX__
-const char* strcasestr(const char* src,const char* match)
-{
-	ASSERT(src);
-	ASSERT(match);
-	int a;
-	int mlen=strlen(match);
-	int l=(int)(strlen(src)-mlen);
-	
-	for (a=0;a<=l;a++)
-		if (strnicmp(src+a,match,mlen)==NULL)
-			return src+a;
-	
-	return NULL;
-}
-#endif
-
 #define swappaa(a,b) { a+=b;b=a-b;a-=b; }
 #define KFixedPointBits 10
 

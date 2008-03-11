@@ -303,9 +303,9 @@ void CGraphicsDevice::ListVideoModes()
 
 	/* Check if our resolution is unrestricted */
 	if(
-#ifndef __LINUX__
+/* XXX what's the use of this, used to be in windows
 		modes == (SDL_Rect **)-1 || 
-#endif
+/*
 		modes == (SDL_Rect **)0)
 	{   
 		iFullScreenPossible = false;
