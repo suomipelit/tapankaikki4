@@ -4,6 +4,7 @@
 #include "CSpotlight.h"
 #include "CSteam.h"
 #include "CMath.h"
+#include "SDL_endian.h"
 
 namespace
 {
@@ -209,13 +210,19 @@ void CLevel::Load(const char* aName)
 
 		strcpy(iLevelFileName,aName);
 
-		if ( fread(&iVersion, 4, 1, dat)<=0 ) 
+		try
+		{
+			iVersion = ReadInt(dat);
+		}
+		catch ( CEOFException e )
+		{
 			throw CFailureException("CLevel::Load: Level file too short.");
+		}
 
 		fseek( dat, 0, SEEK_SET );
 
 		if ( iVersion > 100 ) 
-			throw CFailureException("CLevel::Load: Level file corrupted?");
+			throw CFailureException("CLevel::Load: Level file corrupted?" + iVersion);
 
 		try
 		{
@@ -313,6 +320,7 @@ void CLevel::LoadNewFormat(FILE* aFile)
 				}
 			case KGeneralLevelInfo:
 				{
+					// FIXME: endianness problem
 					int ret = fread(&iGeneralLevelInfo,sizeof(iGeneralLevelInfo),1,aFile);
 					if ( ret != 1 )
 						throw CFailureException("CLevel::LoadNewFormat: KGeneralLevelInfo chunk read failed!");
@@ -386,6 +394,7 @@ void CLevel::LoadNewFormat(FILE* aFile)
 					for (int a=0;a<amount;a++)
 					{
 						TCrateInfo tmpCrate;
+						// FIXME: endianness problem
 						if (fread(&tmpCrate, sizeof(TCrateInfo), 1, aFile)!=1) 
 							throw CFailureException("CLevel::LoadNewFormat: File loading error 1");
 
@@ -400,6 +409,7 @@ void CLevel::LoadNewFormat(FILE* aFile)
 					for (int a=0;a<amount;a++)
 					{
 						TCrateInfo tmpCrate;
+						// FIXME: endianness problem
 						if (fread(&tmpCrate, sizeof(TCrateInfo), 1, aFile)!=1) 
 							throw CFailureException("CLevel::LoadNewFormat: File loading error 2");
 						
@@ -420,6 +430,7 @@ void CLevel::LoadNewFormat(FILE* aFile)
 					for (int a=0;a<amount;a++)
 					{
 						TEnemyCoords tmpEnemy;
+						// FIXME: endianness problem
 						if (fread(&tmpEnemy, sizeof(TEnemyCoords), 1, aFile)!=1) 
 							throw CFailureException("CLevel::LoadNewFormat: File loading error 3");
 
@@ -474,21 +485,38 @@ void CLevel::LoadOldFormat(FILE* aFile)
 {
 	int a, bullets, weapons;
 
-	if(fread(&iVersion, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: version read failure");
+	try {
+		iVersion = ReadInt(aFile);
+	} catch (CFailureException e) {
+		throw CFailureException("CLevel::LoadOldFormat: version read failure");
+	}
 	if (iVersion>KLastOldFormatVersion) 
 		throw CCriticalException("CLevel::LoadOldFormat: loading new file with old loader!");
-	if (fread(&iWidth, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 1");
-	if (fread(&iHeight, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 2");
+
+	try {
+		iWidth = ReadInt(aFile);
+		iHeight = ReadInt(aFile);
+	} catch (CFailureException e) {
+		throw CFailureException("CLevel::LoadOldFormat: File loading error 1");
+	}
 
 	iLevelData = new TBlock[iHeight*iWidth];
 
 	for (a=0;a<iWidth * iHeight;a++)
 	{
-		if (fread(&iLevelData[a].iType, 4 , 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 3");
-		if (fread(&iLevelData[a].iNumber, 4 , 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 4");
+		try {
+			iLevelData[a].iType = (TBlockType) ReadInt(aFile);
+			iLevelData[a].iNumber = ReadInt(aFile);
+		} catch (CFailureException e) {
+			throw CFailureException("CLevel::LoadOldFormat: File loading error 2");
+		}
 		if (iVersion<6)
 		{
-			if (fread(&iLevelData[a].iShadow, 4 , 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 5");
+			try {
+				iLevelData[a].iShadow == ReadInt(aFile);
+			} catch (CFailureException e) {
+				throw CFailureException("CLevel::LoadOldFormat: File loading error 3");
+			}
  			if (iLevelData[a].iType==EBlockTypeWall)
 			{
 				ASSERT( iLevelData[a].iNumber < KBlockHeightTableSize );
@@ -499,7 +527,11 @@ void CLevel::LoadOldFormat(FILE* aFile)
 		}
         else 
 		{
-			if (fread(&iLevelData[a].iHeight, 4 , 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 6");
+			try {
+				iLevelData[a].iHeight = ReadInt(aFile);
+			} catch (CFailureException e) {
+				throw CFailureException("CLevel::LoadOldFormat: File loading error 4");
+			}
 			if (iLevelData[a].iType==EBlockTypeFloor) 
 				iLevelData[a].iHeight=0; 
 		}
@@ -521,24 +553,37 @@ void CLevel::LoadOldFormat(FILE* aFile)
 			iPlStart.push_back( CCoord<int>(x,y) );
 	}
 
-	if (fread(&tmp, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 7");
+	try {
+		tmp = ReadInt(aFile);
+	} catch (CFailureException e) {
+		throw CFailureException("CLevel::LoadOldFormat: File loading error 5");
+	}
 	for (a=0;a<tmp;a++) 
 	{
 		AddSpotLight(aFile);
 	}
 
-	if (fread(&tmp, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 8");
+	try {
+		tmp = ReadInt(aFile);
+	} catch (CFailureException e) {
+		throw CFailureException("CLevel::LoadOldFormat: File loading error 6");
+	}
 	for (a=0;a<tmp;a++) 
 	{
 		AddSteam(aFile);
 	}
 
-	if (fread(iGeneralLevelInfo.iComment,20, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 8");
-	if (fread(&iGeneralLevelInfo.iTimeLimit,4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 9");
+	if (fread(iGeneralLevelInfo.iComment,20, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 7");
+	try {
+		iGeneralLevelInfo.iTimeLimit = ReadInt(aFile);
+	} catch (CFailureException e) {
+		throw CFailureException("CLevel::LoadOldFormat: File loading error 8");
+	}
 	memset(iGeneralLevelInfo.iEnemies,0,4*EEnemyAmount);
 
 	if (KVersionEnemies[iVersion])
-		if (fread(iGeneralLevelInfo.iEnemies,4*KVersionEnemies[iVersion], 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 10");
+		// FIXME: endianness problem
+		if (fread(iGeneralLevelInfo.iEnemies,4*KVersionEnemies[iVersion], 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 9");
 
 	memset( &iRandomCratesNormal, 0, sizeof( iRandomCratesNormal ) ); 
 	memset( &iRandomCratesDM, 0, sizeof( iRandomCratesDM ) ); 
@@ -561,24 +606,34 @@ void CLevel::LoadOldFormat(FILE* aFile)
 	{
 		int tmp;
 
-		if (fread(&tmp, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 17");
+		try {
+			tmp = ReadInt(aFile);
+		} catch (CFailureException e) {
+			throw CFailureException("CLevel::LoadOldFormat: File loading error 10");
+		}
 
 		iPlacedCratesNormal.reserve(tmp);
 		for (int a=0;a<tmp;a++)
 		{
 			TCrateInfo tmpCrate;
-			if (fread(&tmpCrate, sizeof(TCrateInfo), 1, aFile)!=1) throw CFailureException("CLevel::LoadOldFormat: File loading error 18");
+			// FIXME: endianness problem
+			if (fread(&tmpCrate, sizeof(TCrateInfo), 1, aFile)!=1) throw CFailureException("CLevel::LoadOldFormat: File loading error 11");
 
 			iPlacedCratesNormal.push_back( tmpCrate );
 		}
 
-		if (fread(&tmp, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 19");
+		try {
+			tmp = ReadInt(aFile);
+		} catch (CFailureException e) {
+			throw CFailureException("CLevel::LoadOldFormat: File loading error 12");
+		}
 
 		iPlacedCratesDM.reserve(tmp);
 		for (int a=0;a<tmp;a++)
 		{
 			TCrateInfo tmpCrate;
-			if (fread(&tmpCrate, sizeof(TCrateInfo), 1, aFile)!=1) throw CFailureException("CLevel::LoadOldFormat: File loading error 20");
+			// FIXME: endianness problem
+			if (fread(&tmpCrate, sizeof(TCrateInfo), 1, aFile)!=1) throw CFailureException("CLevel::LoadOldFormat: File loading error 13");
 
 			iPlacedCratesDM.push_back( tmpCrate );
 		}
@@ -586,16 +641,20 @@ void CLevel::LoadOldFormat(FILE* aFile)
 
 	if (iVersion>=6)
 	{
-		if (fread(&iOutBlock.iNumber, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 21");
-		if (fread(&iOutBlock.iType, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 22");
-
 		int tmp;
-		if (fread(&tmp, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 23");
+		try {
+			iOutBlock.iNumber = ReadInt(aFile);
+			iOutBlock.iType = (TBlockType) ReadInt(aFile);
+			tmp = ReadInt(aFile);
+		} catch (CFailureException e) {
+			throw CFailureException("CLevel::LoadOldFormat: File loading error 14");
+		}
 
 		iEnemy.reserve(tmp);
 		for (a=0;a<tmp;a++)
 		{
 			TEnemyCoords enemy;
+			// FIXME: endianness problem
 			if (fread(&enemy,sizeof(TEnemyCoords), 1, aFile)!=1) throw CFailureException("CLevel::LoadOldFormat: File loading error 24");
 
 			iEnemy.push_back( enemy );
@@ -945,7 +1004,7 @@ int CLevel::ReadInt( FILE* aFptr )
 			throw CFailureException("CLevel::ReadInt: fread failed!");
 	}
 
-	return temp;
+	return SDL_SwapLE32(temp);
 } 
 
 bool CLevel::DustBlock(const CCoord<int>& aPos) const
