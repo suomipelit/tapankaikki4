@@ -3,6 +3,7 @@
 
 #include "common/Types.h"
 #include "common/CCoord.h"
+#include "common/IBulletType.h"
 
 class IBulletObserver;
 class CPlayer;

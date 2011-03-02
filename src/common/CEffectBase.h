@@ -12,7 +12,7 @@ public:
 	int Delay() const;
 	bool Random() const;// boolean
 	bool Sprite() const; // boolean
-    int XS() const;
+        int XS() const;
 	int YS() const; 
 	int Offset() const;
 	TLightTable LightTable() const;

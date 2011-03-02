@@ -3,6 +3,7 @@
 
 #include "common/Types.h"
 #include "common/CRect.h"
+#include "common/CColorTable.h"
 
 class CGraphicsBuffer;
 class CLevel;

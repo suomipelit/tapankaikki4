@@ -356,12 +356,12 @@ void CGameDrawer::DrawMapPixel(int aOffset,int aSize,int aColor, CGraphicsBuffer
 	
 	for (a=0;a<aSize;a++)    
 		for (b=0;b<aSize;b++)
-			if (aColor>=0) 
-				(*aDrawBuffer)[aOffset+a*aDrawBuffer->Width()+b] =
-				(unsigned char)aColor;
-			else 
-				(*aDrawBuffer)[aOffset+a*aDrawBuffer->Width()+b] =
-				iColorTable->ShadowTable[(*aDrawBuffer)[aOffset+a*aDrawBuffer->Width()+b]][15];
+                        if (aColor>=0) 
+                                (*aDrawBuffer)[aOffset+a*aDrawBuffer->Width()+b] =
+                                        (unsigned char)aColor;
+                        else 
+                                (*aDrawBuffer)[aOffset+a*aDrawBuffer->Width()+b] =
+                                        iColorTable->ShadowTable[(*aDrawBuffer)[aOffset+a*aDrawBuffer->Width()+b]][15];
 }
 
 

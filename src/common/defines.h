@@ -2,6 +2,7 @@
 #define __DEFINES_H_
 
 #include "linux.h"
+#include "macosx.h"
 #include "windows.h"
 //#include "vld.h"
 
@@ -65,7 +66,7 @@ const int KMaxNetworkDataSize=1024;
 
 enum TMenuSpriteNo
 {
-	EMenuSpriteEFLogo,
+	EMenuSpriteEFLogo=0,
 	EMenuSpriteMenuBG,
 	EMenuSpriteTKLogo,
 	EMenuSpriteStatisticsBack,
@@ -124,6 +125,102 @@ enum TLightTable
 	ELightTableRed,
 	ELightTableEnd
 };
+
+enum TDirection
+{
+	ENowhere=-1,
+	EUp,
+	EDown,
+	ELeft,
+	ERight
+};
+
+enum TBodyPart
+{
+	EBodyPartHead=0,
+	EBodyPartArm,
+	EBodyPartChest,
+	EBodyPartEntrails,
+	EBodyPartLeftLeg,
+	EBodyPartRightLeg,
+	EBodyPartShit,
+	EBodyPartBurnedChest,
+	EBodyPartSkull,
+	EBodyPartBones,
+	EBodyPartAmount
+};
+
+// Effects...
+enum TEffect
+{
+	EEffectNoEffect=-1,
+	EEffectBlood=0,
+	EEffectSmoke,
+	EEffectExplo,
+	EEffectMetal,
+	EEffectMetalYellow,
+	EEffectMetalRed,
+	EEffectSmoke2,
+	EEffectBloodOnGround,
+	EEffectGunSmoke,
+	EEffectSteam,
+	EEffectTeleport,
+	EEffectFootprint,
+	EEffectFlame,
+	EEffectFlame2,
+	EEffectAmount
+};
+
+enum TEnemy
+{
+	EEnemyPistolboy=0,
+	EEnemyShotgunManiac,
+	EEnemyUziRebel,
+	EEnemyCommando,
+	EEnemyBazookaBoy,
+	EEnemyCivilian,
+	EEnemyPunisher,
+	EEnemyFlamer,
+	EEnemyPunk,
+	EEnemyGrenadeGay,
+	EEnemyAmount
+};
+
+enum TWeapon
+{
+	EWeaponFist=0,
+	EWeaponPistol,
+	EWeaponShotgun,
+	EWeaponUzi,
+	EWeaponAutoRifle,
+	EWeaponRocketLauncher,
+	EWeaponAutoLauncher,
+	EWeaponHeavyLauncher,
+	EWeaponAutoShotgun,
+	EWeaponC4Activator,
+	EWeaponFlameThrower,
+	EWeaponMineDropper,
+	EWeaponGrenadeLauncher,
+	EWeaponAmount
+};
+
+enum TBullet
+{
+	EBulletFist=0,
+	EBullet9mm,
+	EBullet12mm,
+	EBulletShotgunShells,
+	EBulletLightRockets,
+	EBulletMediumRockets,
+	EBulletHeavyRockets,
+	EBulletC4Explosives,
+	EBulletGas,
+	EBulletMines,
+	EBulletGrenades,
+	EBulletExplosionRay,
+	EBulletAmount
+};
+
 
 #endif
 

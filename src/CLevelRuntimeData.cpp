@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include "common/CMath.h"
+#include "common/IEnemyType.h"
 #include "CWeaponCrate.h"
 #include "CBulletCrate.h"
 #include "CEnergyCrate.h"

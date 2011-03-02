@@ -1,7 +1,8 @@
 #include <string.h>
+#include "defines.h"
+#include "Types.h"
 #include "error.h"
 #include "CGameTypeData.h"
-#include "Types.h"
 
 CGameTypeData::CGameTypeData()
 {

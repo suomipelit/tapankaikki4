@@ -4,6 +4,7 @@
 #include "CBullet.h"
 
 #include "common/CMath.h"
+#include "common/IWeaponType.h"
 
 #include "CSoundPlayer.h"
 #include "CGameApp.h"

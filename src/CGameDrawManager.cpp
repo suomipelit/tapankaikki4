@@ -5,6 +5,10 @@
 #include "common/CMath.h"
 #include "common/CSpotlight.h"
 #include "common/CEventHandler.h"
+#include "common/IEffectType.h"
+#include "common/IEnemyType.h"
+#include "common/IWeaponType.h"
+#include "common/CColorTable.h"
 
 #include "CLevelRuntimeData.h"
 #include "CIngameData.h"

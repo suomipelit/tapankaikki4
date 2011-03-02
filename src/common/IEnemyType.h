@@ -1,7 +1,7 @@
 #ifndef __IENEMYTYPE_H_
 #define __IENEMYTYPE_H_
 
-#include "CGameTypeData.h"
+#include "defines.h"
 
 class IEnemyType
 {

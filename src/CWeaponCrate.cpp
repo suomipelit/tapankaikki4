@@ -1,5 +1,6 @@
-#include "common/Types.h"
 #include "common/CGameTypeData.h"
+#include "common/Types.h"
+#include "common/IWeaponType.h"
 
 #include "CWeaponCrate.h"
 #include "CPlayer.h"

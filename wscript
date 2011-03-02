@@ -36,7 +36,7 @@ def configure(conf):
 	check_library(conf, 'SDL_net', uselib='SDL_net', path=conf.env['LIBPATH_SDL'])
 	
 	# Define that we want to use the linux header
-	conf.env['CXXDEFINES'] = '__LINUX__'
+	# conf.env['CXXDEFINES'] = '__LINUX__'
 
 	# Remove -Wall flag added by waf because it causes too much warnings
 	conf.env['CXXFLAGS'].remove('-Wall')

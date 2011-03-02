@@ -8,6 +8,9 @@
 #include "common/CEventHandler.h"
 #include "common/CMath.h"
 #include "common/Types.h"
+#include "common/IBodyPartType.h"
+#include "common/IWeaponType.h"
+#include "common/IShield.h"
 
 #include "CCrate.h"
 #include "CGameSystem.h"

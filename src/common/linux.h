@@ -3,6 +3,8 @@
 
 #ifdef __LINUX__
 
+#error "NOO"
+
 #define putch putchar	
 #define EXPORT
 #define _stat stat

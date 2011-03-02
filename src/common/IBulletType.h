@@ -1,8 +1,6 @@
 #ifndef __IBULLETTYPE_H_
 #define __IBULLETTYPE_H_
 
-#include "CGameTypeData.h"
-
 class IBulletType
 {
 public:
@@ -30,7 +28,7 @@ public:
 	virtual TBounceType BounceType() const=0;
 	virtual TIngameSoundEffect BounceSound() const=0;
 	virtual int Speed() const=0;
-    virtual int TimeBeforeSpin() const=0;
+        virtual int TimeBeforeSpin() const=0;
 	// how much speed of bullet slows down each frame 
 	virtual float Slow() const=0;
 	virtual float Power() const=0;
@@ -45,11 +43,11 @@ public:
 	virtual int MaximumForPlayer() const=0;
 	virtual int RocketLength() const=0; // lenght of rocket
 	virtual int RocketColor() const=0; // color of rocket
-    virtual TGameSprite Sprite() const=0; // Number of Sprite
+        virtual TGameSprite Sprite() const=0; // Number of Sprite
 	virtual int XS() const=0;
 	virtual int YS() const=0;
-    virtual int SpriteAngles() const=0;
-    virtual TLightTable Light() const=0;
+        virtual int SpriteAngles() const=0;
+        virtual TLightTable Light() const=0;
 	virtual int LightSize() const=0;
 	virtual int LightLuminance() const=0;
 	virtual float LightAdd() const=0;

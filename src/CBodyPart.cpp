@@ -2,6 +2,7 @@
 
 #include "common/CMath.h"
 #include "common/Types.h"
+#include "common/IBodyPartType.h"
 
 #include "CSoundPlayer.h"
 #include "CIngameData.h"

@@ -1,6 +1,7 @@
 #include "CBulletCrate.h"
 #include "common/Types.h"
 #include "common/CGameTypeData.h"
+#include "common/IBulletType.h"
 #include "IGUIStateController.h"
 #include "CPlayer.h"
 

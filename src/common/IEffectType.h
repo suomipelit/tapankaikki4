@@ -2,7 +2,6 @@
 #define __IEFFECTTYPE_H_
 
 #include "defines.h"
-#include "CGameTypeData.h"
 
 class IEffectType
 {
@@ -13,7 +12,7 @@ public:
 	virtual int Delay() const=0;
 	virtual bool Random() const=0;// boolean
 	virtual bool Sprite() const=0; // boolean
-    virtual int XS() const=0;
+        virtual int XS() const=0;
 	virtual int YS() const=0; 
 	virtual int Offset() const=0;
 	virtual TLightTable LightTable() const=0;

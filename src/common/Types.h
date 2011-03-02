@@ -375,13 +375,4 @@ public:
 	float EffectSpeed() const;
 };
 
-enum TDirection
-{
-	ENowhere=-1,
-	EUp,
-	EDown,
-	ELeft,
-	ERight
-};
-
 #endif

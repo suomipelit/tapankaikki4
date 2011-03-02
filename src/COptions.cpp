@@ -3,7 +3,9 @@
 #include <string.h> 
 #include <SDL.h>
 
-#ifndef __LINUX__
+#include "common/defines.h"
+
+#ifndef __unix__
 #include <io.h>
 #else
 #include <dirent.h>

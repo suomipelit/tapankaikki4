@@ -2,7 +2,6 @@
 #define __ENEMYBASE_H_
 
 #include "IEnemyType.h"
-#include "CGameTypeData.h"
 
 class CEnemyBase :
 	public IEnemyType
@@ -13,8 +12,8 @@ public:
 	int Sprite() const;
 	float Speed() const;
 	enum TWeapon CurrentWeapon() const;
-    int Hostile() const;
-	int Energy() const;
+        int Hostile() const;
+        int Energy() const;
 	int Reward() const;
 	int ExplosionDeath() const;
 	int SightDistance() const;

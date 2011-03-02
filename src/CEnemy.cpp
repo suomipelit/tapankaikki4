@@ -3,6 +3,8 @@
 #include "CEnemy.h"
 
 #include "common/CMath.h"
+#include "common/IEnemyType.h"
+#include "common/IWeaponType.h"
 #include "CGameSystem.h"
 #include "CSoundPlayer.h"
 #include "IGUIStateController.h"

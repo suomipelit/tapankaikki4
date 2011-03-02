@@ -3,98 +3,12 @@
 
 #include "defines.h"
 
-enum TBodyPart
-{
-	EBodyPartHead,
-	EBodyPartArm,
-	EBodyPartChest,
-	EBodyPartEntrails,
-	EBodyPartLeftLeg,
-	EBodyPartRightLeg,
-	EBodyPartShit,
-	EBodyPartBurnedChest,
-	EBodyPartSkull,
-	EBodyPartBones,
-	EBodyPartAmount
-};
-
-// Effects...
-enum TEffect
-{
-	EEffectNoEffect=-1,
-	EEffectBlood=0,
-	EEffectSmoke,
-	EEffectExplo,
-	EEffectMetal,
-	EEffectMetalYellow,
-	EEffectMetalRed,
-	EEffectSmoke2,
-	EEffectBloodOnGround,
-	EEffectGunSmoke,
-	EEffectSteam,
-	EEffectTeleport,
-	EEffectFootprint,
-	EEffectFlame,
-	EEffectFlame2,
-	EEffectAmount
-};
-
-enum TEnemy
-{
-	EEnemyPistolboy=0,
-	EEnemyShotgunManiac,
-	EEnemyUziRebel,
-	EEnemyCommando,
-	EEnemyBazookaBoy,
-	EEnemyCivilian,
-	EEnemyPunisher,
-	EEnemyFlamer,
-	EEnemyPunk,
-	EEnemyGrenadeGay,
-	EEnemyAmount
-};
-
-enum TWeapon
-{
-	EWeaponFist=0,
-	EWeaponPistol,
-	EWeaponShotgun,
-	EWeaponUzi,
-	EWeaponAutoRifle,
-	EWeaponRocketLauncher,
-	EWeaponAutoLauncher,
-	EWeaponHeavyLauncher,
-	EWeaponAutoShotgun,
-	EWeaponC4Activator,
-	EWeaponFlameThrower,
-	EWeaponMineDropper,
-	EWeaponGrenadeLauncher,
-	EWeaponAmount
-};
-
-enum TBullet
-{
-	EBulletFist=0,
-	EBullet9mm,
-	EBullet12mm,
-	EBulletShotgunShells,
-	EBulletLightRockets,
-	EBulletMediumRockets,
-	EBulletHeavyRockets,
-	EBulletC4Explosives,
-	EBulletGas,
-	EBulletMines,
-	EBulletGrenades,
-	EBulletExplosionRay,
-	EBulletAmount
-};
-
-class IShield;
-class IBodyPartType;
-class IBulletType;
-class IWeaponType;
-class IEnemyType;
-class IEffectType;
+#include "IEffectType.h"
+#include "IBodyPartType.h"
+#include "IBulletType.h"
+#include "IWeaponType.h"
+#include "IEnemyType.h"
+#include "IShield.h"
 
 class CGameTypeData
 {
