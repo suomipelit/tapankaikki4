@@ -1,0 +1,609 @@
+<STYLE TYPE="text/css"> <!-- body {background: #000000; color: #a07000; font-family: arial; }
+	A { color: #cc5000; font-weight: bold;text-decoration: none}
+	A:hover {color: #ff5000; text-decoration: underline}
+	H1, H2, H3, H4, H5, H6, H7, H8 {font-weight: bold; color: #cc0000; font-family: tahoma}
+	H1, H2 {text-align: center; }
+	H4 {text-decoration: underline}
+	H5 {font-size: 12 pt;}
+	--></STYLE>
+<center>
+	<table background="htmlback.jpg">
+		<tr>
+			<td width="50"></td>
+			<td width="700">
+				<CENTER>
+					<H1><a href="http://www.errorfree.eu.org"><img border="0" src="htmleflogo.gif"></a></H1>
+					<H2>proudly presents</H2>
+					<img border="0" src="htmltklogo.gif">
+				</CENTER>
+				<BLOCKQUOTE>
+					<h3><a href="#1">1. What's new</a></h3>
+					<h3><a href="#2">2. System requirements</a></h3>
+					<h3><a href="#3">3. Game info</a></h3>
+					<h3><a href="#4">4. Using TK Editor</a></h3>
+					<h3><a href="#5">5. Using efpconv.exe</a></h3>
+					<h3><a href="#6">6. Troubleshooting</a></h3>
+					<h3><a href="#7">7. Credits</a></h3>
+					<h3><a href="#8">8. Error Free Productions</a></h3>
+				</BLOCKQUOTE><a name="1"></a>
+				<H3>1. What's new</H3>
+				<blockquote>
+					<h4><u>TK Bloodshed</u></h4>
+					<H5>Official TK 4 Bloodshed&nbsp;4.06 (patch)</H5>
+					<li>
+					Added the&nbsp;gamma setting in options. Though the hardware might not always 
+					support it.
+					<LI>
+					Online update check&nbsp;is now on by default.
+					<LI>
+					Removed Deathmatch "episode" from cooperative game modes.
+					<LI>
+					Added possibility for user graphics, sounds, music and some texts&nbsp;without 
+					need of overwriting&nbsp;default data&nbsp;files.
+					<LI>
+					Some more graphics are now generated in the fly, if they are missing. 
+					walls1_X.generated.efp are generated (old name was walls1_X.efp) if they are 
+					missing. This is convenient for those who want to make their own graphic mods 
+					for the game. Graphic files walls1_X.efp are not needed by the game anymore.
+					<LI>
+					Level version bump.
+					<LI>
+					Fixed filetype detection for graphic files.
+					<li>
+					Fixed episode selection. It can be now controlled using player 1 keys.
+					<LI>
+					Updated "Using TK Editor" section of this document.
+					<li>
+						Added two new crate types (money and target).
+						<H5>Official TK 4 Bloodshed&nbsp;4.05 (patch)</H5>
+					<li>
+						Fixed resolution change problem.
+						<H5>Official TK 4 Bloodshed&nbsp;4.04 (patch)</H5>
+					<li>
+					Mouse wheel functionality added for adding objects in editor
+					<li>
+					Fixed problems related to writing level comment in editor
+					<li>
+					Embedded icons inside exe files
+					<LI>
+					Fixed stereo sound in single player mode
+					<LI>
+					Bodyparts don't move&nbsp;anymore&nbsp;behind walls in explosions
+					<LI>
+					Fixed frag messages
+					<LI>
+					Player names can now be up to 14 letters.
+					<LI>
+					Added the possibility to enable target system in DM options
+					<LI>
+					Limited the speed of bodyparts
+					<LI>
+					Fixed some grenade related bugs
+					<li>
+						Some internal changes
+						<H5>Official TK 4 Bloodshed&nbsp;4.03 (patch)</H5>
+					<li>
+					Placing DM crates is now possible with Z-key in the editor
+					<li>
+					Paste mode can now be canceled with right mouse button in the editor
+					<li>
+					Mouse wheel can now be used for zooming in the editor
+					<li>
+					Editor framerate limited to 20fps
+					<li>
+					Cursor coordinates are now shown in the editor
+					<li>
+					Map toggle key changed from TAB to F5
+					<li>
+					Framerate toggle key changed from F5 to F6
+					<li>
+					Changed screen update methods
+					<li>
+					Multiplier bug with gas crates in the editor fixed
+					<li>
+					ALT-TAB problem should be fixed now
+					<li>
+					ALT-ENTER no more functions as ENTER in menus.
+					<li>
+					Keys can now be changed even though they are assigned to other player.
+					<li>
+					Smaller resolutions can be used again.
+					<LI>
+					Next gun in line is now chosen automatically when you run out of ammo. Guns 
+					have certain priorities
+					<li>
+					Burning damage halved
+					<li>
+					Outblock height adjusting is now possible (Level version upgrade)
+					<li>
+					Fire effects for rockets and burning fixed
+					<LI>
+					Fixed problem with incorrect files in "levs" directory
+					<LI>
+					Added "reset to defaults" in options
+					<LI>
+					It is possible to disable enemies in DM now. (switch in options didn't work 
+					earlier).
+					<LI>
+					Fixed moving speed (DM options)
+					<LI>
+					Fixed level info screen (DM)
+					<LI>
+					Windows icons are now included in the package
+					<LI>
+					Fixed some graphical gunfire issues
+					<LI>
+					Fixed a slowing issue in case of respawning a player
+					<LI>
+					Enemy cannot hear around the corner anymore
+					<LI>
+					ESC works now as quit also in level info view
+					<LI>
+					Enemies now choose the closest player instead of the weakest
+					<LI>
+					Fixed one bug which might have caused some random crashes during gameplay
+					<LI>
+					Optimized some routines to speed up levels which have a lot of enemies 
+					(especially civilians)
+					<LI>
+					Changed messageboard functionality so that messageboard text slowdown should be 
+					fixed (please report if it doesn't work)
+					<LI>
+					Player's weapon of choice is now remembered from the last level
+					<LI>
+					If an enemy's explosion kills more enemies those are counted as your kills
+					<LI>
+					Bodyparts move now if they are in an explosion area
+					<LI>
+					The amount of effects visible is limited to help maintain at least minimal 
+					framerate now. Also some effects (bloodstains, footsteps) vanish faster if 
+					there are lots of effects on screen.
+					<LI>
+					Fixed one graphical bug in statistics view
+					<LI>
+					Some animation problems related to shooting fixed
+					<LI>
+					Updated readme.html to contain information about efpconv.exe
+					<LI>
+					Fixed a problem with audio options menu
+					<LI>
+					Fixed a collision detection issue related to grenade bouncing
+					<LI>
+						and of course some other minor cleanups and optimizations
+						<H5>Official TK 4 Bloodshed (4.02)</H5>
+					<li>
+					Fixed several bugs based on alpha tester user feedback
+					<LI>
+					Split-screen multiplay works now with 4 players.
+					<li>
+						Some overall polishing done
+						<H5>TK 4 Bloodshed alpha 2 (4.01)</H5>
+					<li>
+					Game now works in Windows (Linux version coming ?).
+					<li>
+					Very cool 3d walls option added !!! (software draw. OpenGL coming ?)
+					<li>
+					New polygon line of sight (darkness) system !
+					<li>
+					High resolutions (resolutions now from 320x200 to 1600x1200 and more)
+					<li>
+					Mouse targeting
+					<li>
+					2 new enemies and 1 new weapon
+					<li>
+					Smoother movement and targeting
+					<li>
+					Screenshots are saved to BMP format
+					<li>
+					Code converted from C to C++ (not a very pleasant job to do)
+					<li>
+					Major internal restructuring (for future improvements :))
+					<li>
+					IPX Support gone
+					<li>
+					New Musics and sound effects
+					<li>
+					MIDAS gone, replaced with SDL_Mixer
+					<li>
+					SDL Libraries now used everything possible
+					<li>
+						Some small details added for fun ! + Gazillion bugs fixed.
+						<h4>The Ultimate TK</h4>
+						<h5>1.21 (3.21)</h5>
+					<li>
+						One major bug fixed: The enemies didn't move in splitscreen cooperative game in 
+						v1.2 !!!!
+						<h5>1.2 (3.2)</h5>
+					<li>
+					LAN (IPX) - Game!
+					<li>
+					More Music. 2 More In-game songs added.
+					<li>
+					TK has moved to SVGA! 320*240 resolution gives more visibility.
+					<li>
+					Mines added.
+					<li>
+					Shortcut keys for weapons added.
+					<li>
+					Limits for bullet amounts added.
+					<li>
+					Frames per sec shown by key F5 instead of F
+					<li>
+					Screen capture to PCX.
+					<li>
+					Player rotation angles increased to 40.
+					<li>
+					Some new episodes by Blanket
+					<li>
+					With editor v1.3 crates can be placed on levels.
+					<li>
+						New MIDAS v1.1.2 used + Many bugs fixed and many new bugs found.
+						<h5>1.1 (3.1)</h5>
+					<li>
+					Lots of work done with the source code.
+					<li>
+					Episodes added -&gt; Users can make their own episodes by creating new 
+					directories under LEVS dir.
+					<li>
+					Flamethrower added !!!!!
+					<li>
+					Some other improvements (can't remember them all).
+					<li>
+					One new episode (Blanket) included.
+					<li>
+					Moving speed for deathmatch can now be set to normal or fast.
+					<li>
+						This version was supposed to have network game but we had no time to make it :( 
+						Maybe in next version...
+						<h5>1.0 (3.0)</h5>
+					<li>
+					The first version of The Ultimate TK !!!!!!
+					<li>
+					Totally new game including Deathmatch game and Level editor.
+					<li>
+					Lots of other new features...
+					<li>
+					Because of new graphic effects game needs much more CPU speed than The Original 
+					TK -&gt; Pentium rules !!!
+					<li>
+						Lots of Original TK is still remaining for the spirit (ugh ugh).
+						<h4>The Original TK</h4>
+						<h5>2.1</h5>
+					<li>
+					The update to version 2.0 !!!!!!
+					<li>
+					Graphically better than v2.0.
+					<li>
+					Some cool LIGHT EFFECTS added !!!!
+					<li>
+					Player can kick body parts and you have 900 money when you begin.
+					<li>
+					Screen fades are even more faster and some optimizations to code have been 
+					made.
+					<li>
+						For player rotation there are 32 positions instead of 16 now.
+						<h5>2.0</h5>
+					<li>
+					MANY new things !!!
+					<li>
+					New weapons (including auto shotgun),
+					<li>
+					few new levels
+					<li>
+					many other nice features.
+					<li>
+					Now all enemies have different graphics and if you want, you can't see through 
+					walls.
+					<li>
+					Screen fades were too slow in earlier versions and so they are faster now.
+					<li>
+					Changes to GUS problems have NOT been made !!!
+					<li>
+					STRAFE added and in two player game screen follows player very nicely !
+					<li>
+						Even if it's not possible some bugs were found in version 1.1. These bugs are 
+						now fixed and there are no known bugs in this version !!!
+						<h5>2.0 beta</h5>
+					<li>
+					The beta version of version 2.0.
+					<li>
+						Lots of things were fixed after this for full version 2.0 !!!!!
+						<h5>1.1</h5>
+					<li>
+					Faster than v 1.0 because of optimized compiling.
+					<li>
+					Now uses DOS4G instead of PMODEW (just for fun).
+					<li>
+						Still problems with GUS ???
+						<h5>1.0</h5>
+					<li>
+					The First version of TK !
+					<li>
+						GUS sounds didn't work properly in some machines ???</li>
+				</blockquote><a name="2"></a>
+				<H3>2. System requirements</H3>
+				<BLOCKQUOTE>
+					<H4>Minimum:</H4>
+					<UL>
+						<LI>
+						Intel Pentium/Celeron or AMD CPU
+						<LI>
+						Some crappy keyboard
+						<LI>
+							Windows 95 or better
+						</LI>
+					</UL>
+					<H4>recommended:</H4>
+					<UL>
+						<LI>
+						AMD,Pentium 3,Celeron 800 Mhz CPU or better
+						<LI>
+						64-128Mb of RAM
+						<LI>
+						Fast SVGA card (DirectX compatible)
+						<LI>
+						Sound card (DirectX compatible)
+						<LI>
+						Good&nbsp;keyboard
+						<LI>
+							Mouse</LI></UL>
+				</BLOCKQUOTE><a name="3"></a>
+				<H3>3. Game info</H3>
+				<BLOCKQUOTE>
+					<H4>Features:</H4>
+					<UL>
+						<LI>
+							multiplayer game in split screen !!!
+							<UL>
+								<LI>
+								Max 4 players on one computer.
+								<LI>
+									No network playing</LI></UL>
+						<LI>
+						3D Walls (No texture mapping yet).&nbsp;
+						<LI>
+						Polygon based "can't see trough walls" system!&nbsp;
+						<LI>
+						Screen resolution can be changed during game.&nbsp;
+						<LI>
+						Mouse targeting.&nbsp;
+						<LI>
+						Beautiful graphics including lightning effects.&nbsp;
+						<LI>
+							Fantastic Music played on several channels.
+							<UL>
+								<LI>
+									Now&nbsp;with many soundtracks!&nbsp;</LI></UL>
+						<LI>
+						DOOMistic sounds played on several channels.
+						<LI>
+						Excellent game play.
+						<LI>
+							Lots of levels and episodes to play through.
+							<UL>
+								<LI>
+									More can be downloaded from our <A href="http://www.errorfree.eu.org/">website</A>.</LI></UL>
+						<LI>
+						Level editor.
+						<LI>
+							It's Error Free! (Do not take it too seriously ;))
+						</LI>
+					</UL>
+					<H4>Keys:</H4>
+					<li>
+					Move and fire keys are selectable (in OPTIONS MENU).
+					<li>
+					ALT+ENTER: Fullscreen/Windowed mode
+					<li>
+					F4: Change mouse mode
+					<li>
+					F5: Toggle map
+					<li>
+					F6: Shows frames per second
+					<li>
+					F7/F8: Changes screen resolution
+					<li>
+					F10: Captures screen and saves it to bmp file
+					<li>
+					PGUP/PGDOWN: Changes mouse sensitivity
+					<li>
+					HOME/END: Changes effects volume
+					<li>
+					INSERT/DELETE: Changes music volume
+					<li>
+					ESC: Quit
+					<li>
+						BACKSPACE: Removes assigned key in player key selection menu
+						<H4>Goal:</H4>
+					<LI>
+					Kill 'em.
+					<LI>
+					Collect things from playground
+					<LI>
+					Do it fast
+					<LI>
+					Do shopping. It's not necessary but helps a lot.
+					<LI>
+						&nbsp;If anything seems impossible to understand, see <a href="#5">5. 
+							Troubleshooting</a>.</LI></BLOCKQUOTE><a name="4"></a>
+				<H3>4. Using TK Editor</H3>
+				<BLOCKQUOTE> Press <b><u>F1 for HELP</u></b>!
+					<H4>About mouse</H4>
+					<li>
+					You can choose different block for both left and right mouse buttons.
+					<li>
+						Choose wall for button1 and floor for button2. It makes things easier.
+						<H4>
+							Here is easy tutorial for editor usage:
+						</H4>
+						<h5>Step 1 --</h5>
+					<li>
+					Create a new level by pressing F4 or load existing file by pressing F3.
+					<li>
+					Level x-size and y-size are in blocks.
+					<li>
+						Block currently selected for right button will be used to fill the new level.
+						<h5>Step 2 --</h5>
+					<li>
+					Design and build the walls and floor.
+					<li>
+					If you want to fill a big area with one blocktype you should use selections.
+					<li>
+					Hold CTRL key down to make new selections.
+					<li>
+					You can also add areas to selection by holding SHIFT key down and remove areas 
+					by holding ALT key down.
+					<li>
+					With right mouse button you can make "magic" selections.
+					<li>
+						When ready, add some lights and steams with Q and W keys.
+						<h5>Step 3 --</h5>
+					<li>
+						Press Enter and edit block heights just to make your level look better.
+						<h5>Step 4 --</h5>
+					<li>
+						Place some starting places for players by pressing P (at least 4 recommended).
+						<h5>Step 5 --</h5>
+					<li>
+					Press F6 and edit general level variables.
+					<li>
+					Enemies here will be randomly set on level.
+					<li>
+						You can also place enemies to certain places by pressing E.
+						<h5>Step 6 --</h5>
+					<li>
+					You can edit crate (weapon, bullet, energy) data by pressing F7 or F8 (these 
+					crates will be randomly set on level).
+					<li>
+						You can also place crates with mouse to any place on level by using A and Z 
+						keys.
+						<h5>Step 7 --</h5>
+					<li>
+						Press F2 or CTRL-S to save the level !
+						<h5>Step 8 --</h5>
+					<li>
+						Run TK and test your level...
+						<H4>How to make your own EPISODES?</H4>
+						<P>1. Make some levels and name files LEVEL1.LEV,LEVEL2.LEV...LEVEL999.LEV.
+						</P>
+						<P>2. Make new directory under LEVS directory eg. LEVS\DEATH
+						</P>
+						<P>3. Move your LEVELx.LEV files to directory
+						</P>
+						<P>4. Run game and start 1pl or 2pl game... your episode should be found at the 
+							Choose Episode Menu. Select and KILL ALL!!!!
+						</P>
+						<H4>How to use your own graphics for your own levels and episodes?</H4>
+						<P>1. Use efpconv to convert ingame graphics to some other format (like .bmp)
+						</P>
+						<P>2. Modify graphics as you like but keep 8-bit palette always the same. Remember 
+							that you don't need to modify graphics with "generated" in them. Just deleting 
+							them will do. They will be regenerated when needed next time.
+						</P>
+						<P>3. Save graphics to the directory where you are going to have your episode or 
+							level.
+						</P>
+						<P>4. Use efpconv to convert your graphics back to efp format.
+						</P>
+						<P>5. Create default.ini (in case of an episode) or XXX.ini (in case of a level) 
+							where XXX is the name of the level.<br>
+							<code>e.g. levs\myepisode\default.ini or levs\myepisode\level6.ini</code>
+						</P>
+						<P>6. Add entries from default.ini (located in TK root directory) to your own .ini 
+							file. You don't need copy all of them. Just what you need.
+						</P>
+						<P>7. Modify entries to include your graphics file.
+						</P>
+						<UL>
+							<LI>
+								<P><STRONG>Create entries also for files to be generated</STRONG> (you must have 
+									new GameSpriteWalls_X and GameSpriteWall2 entries&nbsp;if you change 
+									GameSpriteWalls and&nbsp;GameSpriteFloor2 if you change GameSpriteFloor).
+								</P>
+							<LI>
+								<P>You don't need to have those files ready because TK will generate them if they 
+									are missing. If you for some reason happen to corrupt some of your original 
+									graphic files (those with "generated" in the name), you can safely delete those 
+									and play some default&nbsp;episode. That will regenerate those files.</P>
+							</LI>
+						</UL>
+						<P>
+							<code>e.g. line from original&nbsp;TK\default.ini (do not modify this):<br>
+								GameSpriteWallClr = efps/polycolr.efp<br>
+								<br>
+								your TK\levs\myepisode\default.ini<br>
+								GameSpriteWallClr = levs\myepisode\mypolycolr.efp<br>
+						</P>
+						</CODE>
+						<P>8. Use editor to create/modify levels with new graphics.
+						</P>
+						<P>9. Test it with TK!
+						</P>
+						<P>Note! When TK loads ingame graphics before each level, it looks the level 
+							spesific .ini file for the file information, then episode spesific and after 
+							that the default .ini file if info is not found. Therefore you can always 
+							include to your .ini file only those entries, which you need to change.</P>
+						<P>This also makes possible to use some graphics in the episode set by episode 
+							spesific default.ini file and override the setting for a level with level 
+							spesific .ini file.</P>
+					</li>
+				</BLOCKQUOTE><a name="5"></a>
+				<H3>5. Using efpconv.exe:</H3>
+				<p>efpconv.exe is commandline image converter tool to convert images to and from 
+					efp format. It supports only 8-bit images because TK itself supports currently 
+					only 8-bits. Usage is simple: <blockquote> 1. Open command prompt<br>
+						2. change to directory where you want to convert files<br>
+						3. run efpconv.exe with source and destination files as parameters.<br>
+					</blockquote>
+				Example shown here. It has two different conversions:<p>
+					<img src="commandprompt.png"></p>
+				<P></P>
+				<a name="6"></a>
+				<H3>6. Troubleshooting:</H3>
+				<BLOCKQUOTE> In case of problem, please consult our <a href="http://www.errorfree.eu.org/forum">
+						discussion forum</a> (posting requires registration). It's probably the 
+					best source of information you'll ever&nbsp;have.</BLOCKQUOTE>
+				<H3><a name="7"></a>7. Credits</H3>
+				<BLOCKQUOTE dir="ltr" style="MARGIN-RIGHT: 0px">
+					<P><STRONG>Allu</STRONG>: Code, SFX, levels, GFX, website layout</P>
+					<P><STRONG>Unski</STRONG>: Code, code and more code. Also the&nbsp;website code.</P>
+				</BLOCKQUOTE><BLOCKQUOTE>
+					<P>Music tracks&nbsp;for the TK 4 are done by these merry men:
+						<br>
+						- <STRONG>Timo&amp;Tero</STRONG> from [M:AN] &amp; <STRONG>Lazer</STRONG> (Default 
+						&amp; Menu)<br>
+						- <STRONG>IceLizard</STRONG> (Heavy)<br>
+						- <STRONG>JDruid</STRONG> (Techno)
+						<br>
+						- <STRONG>Raipe</STRONG> (OldSkool)
+						<br>
+					</P>
+					<P>Additional block graphics are done by some of our loyal fans:<br>
+						- <STRONG>Rau</STRONG>
+						<br>
+						- <STRONG>SkullKid</STRONG>
+						<br>
+						- <STRONG>PRO88</STRONG>
+						<br>
+						- <STRONG>And many more...</STRONG>
+					</P>
+					<P>
+						Beta testing: <STRONG>Lazer, Jussi Parviainen, Jihar</STRONG>+ the big 
+						and&nbsp;noisy&nbsp;audience</P>
+					<P><STRONG>BIG</STRONG> Thanks to developers of LibSDL, SDL_Mixer, SDL_Net and 
+						SMPEG (<a href="http://www.libsdl.org">http://www.libsdl.org/</a>)
+					</P>
+				</BLOCKQUOTE><a name="8"></a>
+				<H3>8. Error Free Productions:</H3>
+				<BLOCKQUOTE>
+					<P>Unski - Coder, Webadmin</P>
+					<P>Allu - Coder, GFX (games, website, etc.), SFX</P>
+					<P align="center"><font size="-1"> <A HREF="http://www.errorfree.eu.org/" NAME="Errorfree Website">
+								http://www.errorfree.eu.org/</A> </font>
+					</P>
+				</BLOCKQUOTE>
+			</td>
+			<td width="50"></td>
+		</tr>
+	</table>
+</center>

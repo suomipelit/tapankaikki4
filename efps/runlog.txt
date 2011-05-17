@@ -1,0 +1,9 @@
+Error: Syntax:
+../../_build_/default/src/efpconv/efpconv <fromfile> <tofile>
+e.g. efpconv file.gif file.efp
+formats supported: efp,efp2,pcx,8-bit png (loading only),gif (loading only),8-bit jpg (loading only), sci 
+Exiting...
+Error: CGraphicsBuffer::Load: Only 8-bit surfaces allowed (victory.bmp)! 
+Exiting...
+Error: CGraphicsBuffer::Load: Only 8-bit surfaces allowed (victory.bmp)! 
+Exiting...
