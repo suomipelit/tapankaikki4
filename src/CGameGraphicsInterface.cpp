@@ -1,4 +1,5 @@
 #include <string.h>
+#include <vector>
 #include <stdlib.h>
 #include "CGameGraphicsInterface.h"
 
@@ -110,7 +111,7 @@ void CGameGraphicsInterface::ChangeMode(const CCoord<int>& aMode)
 	iGD->GetPalette(pal);
 	iGD->SetPalette(pal,0);
 	
-#ifndef __LINUX__
+#ifndef __unix__
 	ret=iGD->SetMode(aMode.X(),aMode.Y(),8,iOptions->Data().iFullScreen, iExtraFlags );
 #else
 	ret=iGD->SetMode(aMode.X(),aMode.Y(),0,iOptions->Data().iFullScreen, iExtraFlags );

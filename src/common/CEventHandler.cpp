@@ -85,7 +85,7 @@ void CEventHandler::PushKey(SDL_keysym aKSYM)
 {
 	iStackHead++;
 	if (iStackHead==iStackEnd) {iStackHead--;return;}
-#ifndef __LINUX__	// always false
+#ifndef __unix__	// always false
 	while (iStackHead>=KStackLength) iStackHead-=KStackLength;
 #endif
 

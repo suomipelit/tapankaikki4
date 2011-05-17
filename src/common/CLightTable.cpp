@@ -1,7 +1,7 @@
 #include "CLightTable.h"
 #include "CPalette.h"
 #include <math.h>
-#ifdef __LINUX__
+#ifdef __unix__
 	#include <stdlib.h>
 #endif
 
