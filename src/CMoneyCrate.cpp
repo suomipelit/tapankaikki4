@@ -1,3 +1,4 @@
+#include <vector>
 #include "CMoneyCrate.h"
 #include "common/Types.h"
 #include "common/CGameTypeData.h"

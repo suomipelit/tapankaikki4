@@ -26,7 +26,7 @@ void ChAppDir(const char *argv0)
 	{ 
 		a--; 
 	} 
-#ifndef __LINUX__
+#ifndef __unix__
 	while (str[a]!='\\');
 #else
 	while (str[a]!='/' || a==0);

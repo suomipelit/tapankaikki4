@@ -10,9 +10,7 @@ Build instructions (currently tested on Linux only):
 ./waf install
 
 The "./waf install" command will install files under the bin directory of
-current working directory. You can copy the binary files from there to your TK4
-folder. Note that you need to have the latest TK 4.0.8 version installed and
-you also need to do the following renames in order for it to work:
+current working directory. 
 
 1) Rename wavs/kickhead.WAV to wavs/kickhead.wav
 2) Rename fnts/8X8B.FNT to fnts/8x8b.fnt
