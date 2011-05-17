@@ -78,18 +78,16 @@ CEventHandler::~CEventHandler()
 
 void CEventHandler::ResetStack()
 {
-    iStackEnd=iStackHead;
+        iStackEnd=iStackHead;
 }
 
 void CEventHandler::PushKey(SDL_keysym aKSYM)
 {
-	iStackHead++;
-	if (iStackHead==iStackEnd) {iStackHead--;return;}
-#ifndef __unix__	// always false
-	while (iStackHead>=KStackLength) iStackHead-=KStackLength;
-#endif
+        iStackHead++;
+        if (iStackHead==iStackEnd) {iStackHead--;return;}
+        while (iStackHead>=KStackLength) iStackHead-=KStackLength;
 
-    iStack[iStackHead]=aKSYM;
+        iStack[iStackHead]=aKSYM;
 }
 
 int CEventHandler::HandleEvents()
