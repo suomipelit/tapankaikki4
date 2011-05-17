@@ -1,3 +1,4 @@
+#include <vector>
 #include <stdlib.h>
 
 #include "CEnemy.h"
