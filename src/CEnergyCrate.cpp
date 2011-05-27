@@ -1,3 +1,4 @@
+#include <vector>
 #include "CEnergyCrate.h"
 #include "CPlayer.h"
 #include "common/CMath.h"

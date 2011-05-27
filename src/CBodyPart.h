@@ -2,8 +2,8 @@
 #define __BODYPART_H_
 
 #include "common/CCoord.h"
-#include "common/Types.h"
-
+/*#include "common/Types.h"
+*/
 class IBodyPartType;
 class CDynGameData;
 class CSoundPlayer;

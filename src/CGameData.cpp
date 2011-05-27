@@ -1,3 +1,4 @@
+#include <vector>
 #include <string.h>
 
 #include "common/CGameTypeData.h"
@@ -16,15 +17,15 @@ namespace
 
 	TMenuSpriteData KMenuSpriteFiles[EMenuSpriteAmount]=
 	{
-		{"efps/eflogo.bmp",		CGameData::EPaletteEFLogo},
-		{"efps/menu.bmp",		CGameData::EPaletteMenu},
-		{"efps/bslogo.bmp",		CGameData::EPaletteTKLogo},
-		{"efps/staticsback.bmp",CGameData::EPaletteStatistics},
-		{"efps/shopback_normal.bmp",CGameData::EPaletteShop},
-		{"efps/shopback_hilite.bmp",-1},
-		{"efps/shopback_hollow.bmp",-1},
-		{"efps/rectangle.bmp",	-1},
-		{"efps/victory.bmp",CGameData::EPaletteVictory},
+		{"efps/eflogo.pcx",		CGameData::EPaletteEFLogo},
+		{"efps/menu.pcx",		CGameData::EPaletteMenu},
+		{"efps/bslogo.pcx",		CGameData::EPaletteTKLogo},
+		{"efps/staticsback.efp",CGameData::EPaletteStatistics},
+		{"efps/shopback_normal.efp",CGameData::EPaletteShop},
+		{"efps/shopback_hilite.efp",-1},
+		{"efps/shopback_hollow.efp",-1},
+		{"efps/rectangle.pcx",	-1},
+		{"efps/victory.pcx",CGameData::EPaletteVictory},
 	};
 }
 
