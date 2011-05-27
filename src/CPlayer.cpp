@@ -1,5 +1,6 @@
-#include<stdlib.h>
-#include<string.h>
+#include <vector>
+#include <stdlib.h>
+#include <string.h>
 
 #include <algorithm>
 
@@ -685,36 +686,36 @@ void CPlayer::MoveScr(const CRect<int>& aDrawRect)
 	SELFTEST;
 	int spd;
 
-	if (abs((iScreenPos.X()+aDrawRect.Width()/2)-(iLocation.X()+14))>100) 
+	if (fabs((iScreenPos.X()+aDrawRect.Width()/2)-(iLocation.X()+14))>100) 
 		iScreenPos.SetX(int(iLocation.X()-aDrawRect.Width()/2));
-	spd = int(abs((iScreenPos.X()+aDrawRect.Width()/2)-((35*CMath::Static()->Cose(RealAngle()))+iLocation.X()+14))/4);
+	spd = int(fabs((iScreenPos.X()+aDrawRect.Width()/2)-((35*CMath::Static()->Cose(RealAngle()))+iLocation.X()+14))/4);
 	if ((iScreenPos.X()+aDrawRect.Width()/2)<(25*CMath::Static()->Cose(RealAngle()))+iLocation.X()+14) 
-#ifndef __LINUX__
+#ifndef __unix__
 		iScreenPos = iScreenPos.AddX((float)spd);
 #else
 		iScreenPos = iScreenPos.AddX(spd);
 #endif
 	if ((iScreenPos.X()+aDrawRect.Width()/2)>(25*CMath::Static()->Cose(RealAngle()))+iLocation.X()+14) 
-#ifndef __LINUX__
+#ifndef __unix__
 		iScreenPos = iScreenPos.AddX((float)-spd);
 #else
 		iScreenPos = iScreenPos.AddX(-spd);
 #endif
 
-	spd = int(abs((iScreenPos.Y()+aDrawRect.Height()/2)-((25*CMath::Static()->Sine(RealAngle()))+iLocation.Y()+14))/4);
+	spd = int(fabs((iScreenPos.Y()+aDrawRect.Height()/2)-((25*CMath::Static()->Sine(RealAngle()))+iLocation.Y()+14))/4);
 	if (iScreenPos.Y()+aDrawRect.Height()/2<(25*CMath::Static()->Sine(RealAngle()))+iLocation.Y()+14) 
-#ifndef __LINUX__
+#ifndef __unix__
 		iScreenPos = iScreenPos.AddY((float)spd);
 #else
 		iScreenPos = iScreenPos.AddY(spd);
 #endif
 	if (iScreenPos.Y()+aDrawRect.Height()/2>(25*CMath::Static()->Sine(RealAngle()))+iLocation.Y()+14) 
-#ifndef __LINUX__
+#ifndef __unix__
 		iScreenPos = iScreenPos.AddY((float)-spd);
 #else
 		iScreenPos = iScreenPos.AddY(-spd);
 #endif
-    if (abs((iScreenPos.Y()+aDrawRect.Height()/2)-(iLocation.Y()+14))>100) 
+    if (fabs((iScreenPos.Y()+aDrawRect.Height()/2)-(iLocation.Y()+14))>100) 
 		iScreenPos.SetY(int(iLocation.Y()-(aDrawRect.Height()/2)));
 	SELFTEST;
 }

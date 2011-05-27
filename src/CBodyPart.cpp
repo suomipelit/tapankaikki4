@@ -1,11 +1,10 @@
-#include "CBodyPart.h"
-
 #include "common/CMath.h"
 #include "common/Types.h"
 #include "common/IBodyPartType.h"
 
-#include "CSoundPlayer.h"
+#include "CBodyPart.h"
 #include "CIngameData.h"
+#include "CSoundPlayer.h"
 #include "CLevelRuntimeData.h"
 
 void CBodyPart::Bounce(enum TDirection aSide)

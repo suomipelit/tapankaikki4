@@ -1,9 +1,7 @@
-#ifndef ___LINUX_H__
-#define ___LINUX_H__
+#ifndef ___MACOSX_H__
+#define ___MACOSX_H__
 
-#ifdef __LINUX__
-
-#error "NOO"
+#ifdef __APPLE__
 
 #define putch putchar	
 #define EXPORT
@@ -14,19 +12,18 @@
 #define stricmp strcasecmp
 
 #ifdef DEBUG
-#  define EF_DEBUG 1
+#define EF_DEBUG 1
 #else
-#  define EF_DEBUG 0
+#define EF_DEBUG 0
 #endif
 
-#include <ctype.h>
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-
-//#include "error.h"
 EXPORT void TKAssert( const char* aAssertion, const char* file, int line );
 #define ASSERT(a) (void)( (a) || (TKAssert(#a, __FILE__, __LINE__), 0) )
+
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
 inline void ChangeDir(const char* str)
 {
@@ -72,6 +69,9 @@ inline char *strset(char *buf,char fill)
 	}	
 	return buf;
 }
+
+#define __unix__
+#define __declspec
 
 #endif // linux
 

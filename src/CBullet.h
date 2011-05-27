@@ -20,11 +20,11 @@ protected:
 
 protected:
 	float iSpeed;
-    int iAngle;
-	float iSpriteAngle;
+        int iAngle;
+        float iSpriteAngle;
 	float iSpriteAngleAdd;
-    int iTime;
-	int iCounter;
+        int iTime;
+        int iCounter;
 	float iShareOfOriginalShot;
 	IBulletObserver *iOwner;
 

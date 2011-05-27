@@ -1,3 +1,4 @@
+#include <vector>
 #include <stdlib.h>
 #include <string.h>
 #include <SDL.h>
@@ -24,7 +25,7 @@ CSoundPlayer::CSoundPlayer():
 	DEBUG0("CSoundPlayer::CSoundPlayer()\n");
 	memset(iTheme,0,sizeof(iTheme));
 
-    Initialize();
+        Initialize();
 }
 
 CSoundPlayer::~CSoundPlayer()
