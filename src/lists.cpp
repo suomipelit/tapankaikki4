@@ -19,7 +19,7 @@
 
 const char* KForbiddenFiles[]={"..",".","CVS"};
 
-#ifdef __LINUX__
+#ifdef __unix__
 namespace
 {
 	inline int filter_dir(dirent* dir)
@@ -129,7 +129,7 @@ const char* CEpisode::LevelName(unsigned int aAt)
 
 void CEpisode::ListFiles(char *filenames)
 {
-#ifndef __LINUX__
+#ifndef __unix__
 	char name[FILENAME_MAX];
 	int a;
 	Reset();
@@ -218,7 +218,7 @@ unsigned int CEpisodeList::Amount( bool aDMEpisodes )
 
 void CEpisodeList::ListFiles(char *dirnames)
 {
-#ifndef __LINUX__
+#ifndef __unix__
 	struct _finddata_t fbuf;
 	int er,error=0;
 	int a,ok;
@@ -275,7 +275,7 @@ void CEpisodeList::ListFiles(char *dirnames)
 
 	Sort();
 
-#else	// __LINUX__
+#else	// __unix__
 
 	char tmp[FILENAME_MAX];
 	dirent** filelist;
@@ -330,7 +330,7 @@ void CEpisodeList::ListFiles(char *dirnames)
 	free(filelist);
 
 	// calling Sort not necessary since scandir quicksorts it's results
-#endif	// __LINUX__
+#endif	// __unix__
 }
 
 void CEpisodeList::Sort()
@@ -350,7 +350,7 @@ void CEpisodeList::Sort()
 
 void CDeathMatchEpisode::ListFiles(char *filenames)
 {
-#ifndef __LINUX__
+#ifndef __unix__
 	char name[FILENAME_MAX],levname[FILENAME_MAX];
 	bool ok;
 	Reset();

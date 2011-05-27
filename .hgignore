@@ -3,3 +3,5 @@ syntax: glob
 *.swp
 _build_
 .lock-wscript
+runlog.txt
+*.o

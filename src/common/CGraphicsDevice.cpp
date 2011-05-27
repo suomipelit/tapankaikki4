@@ -247,7 +247,7 @@ int CGraphicsDevice::SetMode(int aWidth,int aHeight,int aBits, bool aFullScreen,
         error("CGraphicsDevice::SetMode: SDL_SetVideoMode(%d,%d,%d,%x) failed: %s\n",aWidth,aHeight, aBits,mode, SDL_GetError());
 
 	// Make sure initialization worked out as supposed
-#ifndef __LINUX__
+#ifndef __unix__
 	ASSERT(iSDLsurface->format->BitsPerPixel==aBits);
 #else
 	ASSERT(iSDLsurface->format->BitsPerPixel==aBits || !aBits);
@@ -301,7 +301,7 @@ void CGraphicsDevice::ListVideoModes()
 	int i;
 	SDL_Rect **modes;
 	SDL_PixelFormat fmt;
-#ifndef __LINUX__
+#ifndef __unix__
 	fmt.BitsPerPixel=8;
 
 	/* Get available fullscreen modes */
@@ -312,7 +312,7 @@ void CGraphicsDevice::ListVideoModes()
 
 	/* Check if our resolution is unrestricted */
 	if(
-#ifndef __LINUX__
+#ifndef __unix__
 		modes == (SDL_Rect **)-1 || 
 #endif
 		modes == (SDL_Rect **)0)
@@ -328,7 +328,7 @@ void CGraphicsDevice::ListVideoModes()
 			/* We're not interested of modes less than 320x200... are we? */
 			if (modes[i]->w>=320&&modes[i]->h>=200)
 			{
-				#ifdef __LINUX__	// SDL_ListModes() returns often multiple modes with same resolution in linux, ignore those
+				#ifdef __unix__	// SDL_ListModes() returns often multiple modes with same resolution in linux, ignore those
 					bool tmp = true;
 					for (std::vector<CCoord<int>*>::iterator a = iResolutions.begin(); a != iResolutions.end(); ++a)
 						if ( ((*a)->X() == modes[i]->w) && ((*a)->Y() == modes[i]->h) ) {

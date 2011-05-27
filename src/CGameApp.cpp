@@ -1,8 +1,9 @@
-#include "CGameApp.h"
+#include <vector>
 #include <time.h>
 #include <string.h>
 #include <stdlib.h>
 
+#include "CGameApp.h"
 #include "common/CMath.h"
 
 #include "CGameGraphicsInterface.h"
