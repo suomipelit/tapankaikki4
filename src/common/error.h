@@ -42,7 +42,7 @@ public:
 
 EXPORT void logwrite(const char *out, ...);
 
-#ifdef __LINUX__
+#ifdef __unix__
 void error(const char *fmt,...);
 #else
 EXPORT void __declspec(noreturn) error(const char *fmt,...);
