@@ -364,7 +364,7 @@
 				RelativePath=".\IWeaponType.h">
 			</File>
 			<File
-				RelativePath=".\linux.h">
+				RelativePath=".\unix.h">
 			</File>
 			<File
 				RelativePath=".\Types.h">

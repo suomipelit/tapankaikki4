@@ -3,7 +3,7 @@ LD =		g++
 
 DATADIR ?=	/usr/local/share/tkb
 CFLAGS ?=	-Wall -O2
-CFLAGS +=	-D__LINUX__ -DDATADIR=\"${DATADIR}\" `pkg-config --cflags SDL_image sdl gtk+-2.0` -I/usr/local/include
+CFLAGS +=	-DDATADIR=\"${DATADIR}\" `pkg-config --cflags SDL_image sdl gtk+-2.0` -I/usr/local/include
 LDFLAGS +=	`pkg-config --libs SDL_image sdl gtk+-2.0` -lSDL_net
 
 SRCS = 	EditorBrush.cpp \
