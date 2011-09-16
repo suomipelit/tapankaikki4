@@ -1,7 +1,7 @@
 #ifndef __DEFINES_H_
 #define __DEFINES_H_
 
-#include "linux.h"
+#include "unix.h"
 #include "macosx.h"
 #include "windows.h"
 //#include "vld.h"
