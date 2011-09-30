@@ -1,14 +1,14 @@
 .PHONY: genlist
 
-.include "Makefile.inc"
+include Makefile.inc
 
 install:
-.       for I in ${DIRS}
-		${INSTALL_DATA_DIR} ${DESTDIR}${DATADIR}/$I
-.       endfor
-.       for I in ${FILES}
-		${INSTALL_DATA} $I ${DESTDIR}${DATADIR}/$I
-.       endfor
+	for I in ${DIRS}; do \
+		${INSTALL_DATA_DIR} "${DESTDIR}${DATADIR}/$$I" ; \
+	done
+	for I in ${FILES}; do \
+		${INSTALL_DATA} "$$I" "${DESTDIR}${DATADIR}/$$I" ; \
+	done
 
 genlist:
 	@set -e ; \
