@@ -1,5 +1,5 @@
-CC =		g++
-LD =		g++
+CC ?=		g++
+LD ?=		g++
 
 DATADIR ?=	/usr/local/share/tkb
 CFLAGS ?=	-Wall -O2

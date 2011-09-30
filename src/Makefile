@@ -1,5 +1,5 @@
-CC =		g++
-LD =		g++
+CC ?=		g++
+LD ?=		g++
 
 CFLAGS ?=	-Wall -O2
 CFLAGS +=	-DDATADIR=\"${DATADIR}\" `pkg-config --cflags SDL_image SDL_mixer sdl` -I/usr/local/include
