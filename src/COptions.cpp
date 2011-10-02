@@ -43,7 +43,7 @@ void COptionsData::Reset()
 	iMouseMode = 1;
 	iInGameVideoMode = CCoord<int>(640,480);
 	iProxyEnabled = false;
-	iWebVersionCheckingEnabled = true;
+	iWebVersionCheckingEnabled = false;
 	iMultiPlayGameMode = 0;
 	iMultiPlayEpisode = 1;
 	iMultiPlayNetworkMode = ENetworkModeNone;
