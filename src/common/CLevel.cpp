@@ -4,6 +4,7 @@
 #include "CSpotlight.h"
 #include "CSteam.h"
 #include "CMath.h"
+#include "files.h"
 
 namespace
 {
@@ -202,7 +203,7 @@ void CLevel::Load(const char* aName)
 	ASSERT(aName);
 	ASSERT(strlen(aName)>0);
 	FILE *dat;
-	dat=fopen(aName, "rb");
+	dat=fopen(getdatapath(std::string(aName)).c_str(), "rb");
 	if (dat != NULL) 
 	{
 		Reset();

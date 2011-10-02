@@ -1,5 +1,6 @@
 #include "CConfigFile.h"
 #include "error.h"
+#include "files.h"
 
 namespace
 {
@@ -27,7 +28,7 @@ void CConfigFile::LoadFile( const std::string& aFile )
 {
 	FILE *fp;
 
-	fp = fopen( aFile.c_str(), "r" );
+	fp = fopen( getdatapath(aFile).c_str(), "r" );
 	if (!fp)
 		return;
 

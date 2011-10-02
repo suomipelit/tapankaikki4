@@ -1,6 +1,8 @@
 #include "CGameApp.h"
 #include "CSplash.h"
 
+#include "common/files.h"
+
 int abnormal_exit=1;
 
 void ExitHandler()
@@ -14,40 +16,15 @@ void ExitHandler()
 	}
 }
 
-/* chdir to TK directory */
-void ChAppDir(const char *argv0)
-{	char *str;
-	int a;
-
-	str=strdup(argv0);
-	a=strlen(str);
-
-	do
-	{ 
-		a--; 
-	} 
-#ifndef __unix__
-	while (str[a]!='\\');
-#else
-	while (str[a]!='/' || a==0);
-#endif
-
-	str[a]=0;
-
-	ChangeDir(str);
-
-	free(str);
-}
-
 // TODO: CONFIGFILE
-const char* KIconFile="tk.ico";
+const char* KIconFile=getdatapath(std::string("tk.ico")).c_str();
 const char* KWindowCaption="Tapan Kaikki Bloodshed";
 
 int main(int argc,char *argv[]) 
 {
 	CGameApp* GGameApp = NULL;
 	atexit(ExitHandler);
-	//ChAppDir(argv[0]);
+	chdir(getdatapath(".").c_str());
 
 	try
 	{
