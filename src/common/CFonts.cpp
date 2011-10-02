@@ -1,5 +1,6 @@
 #include "CFonts.h"
 #include "CGraphicsBuffer.h"
+#include "files.h"
 
 CFonts::CFonts(const char *name, int aOneIsZero)
 {
@@ -19,7 +20,7 @@ int CFonts::Load(const char *name)
 
 	ASSERT(name!=NULL);
 
-	if ((fnt=fopen(name,"rb")) != 0)
+	if ((fnt=fopen(getdatapath(std::string(name)).c_str(),"rb")) != 0)
 	{
 		iWidth=fgetc(fnt);
 		iHeight=fgetc(fnt);

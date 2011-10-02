@@ -40,7 +40,7 @@ public:
 	EXPORT void LoadPCX(const std::string& aFilename, CPalette* aPalette);
 	EXPORT void LoadEFP2(const std::string& aFilename, CPalette* aPalette);
 	EXPORT void LoadSCI(const std::string& aFilename, CPalette* aPalette);
-	EXPORT void Load(const std::string& aFilename, CPalette* aPalette);
+	EXPORT void Load(std::string aFilename, CPalette* aPalette);
 
 	EXPORT void Save(const std::string& aFilename, const CPalette* aPalette) const;
 	EXPORT void SaveEFP(const std::string& aFilename, const CPalette* aPalette) const;

@@ -136,7 +136,7 @@ char* CGameGraphicsInterface::ScreenCapture()
 	while(free==0 &&num<999) 
 	{
 		ASSERT(_snprintf(fname,FILENAME_MAX,"Screen Shot %03d.bmp",num)>0);
-		if (!exists(fname)) free=1;
+		if (!exists(getsavepath(std::string(fname)).c_str())) free=1;
 		num++;
 	}
 
