@@ -26,10 +26,10 @@ INSTALL_PROGRAM =	install -c -s -o root -g bin -m 555
 all: game editor
 
 game:
-	cd src && env -i ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS}
+	cd src && env ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS}
 
 editor:
-	cd src/Editor && env -i ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS}
+	cd src/Editor && env ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS}
 
 install:
 	${INSTALL_PROGRAM_DIR} ${DESTDIR}${PREFIX}/bin
