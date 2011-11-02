@@ -62,10 +62,10 @@ TARGET = 	tkb-editor
 all: ${TARGET}
 
 ${TARGET}: ${OBJS}
-	${LD} ${LDFLAGS} ${OBJS} -o ${TARGET}
+	${CXX} ${LDFLAGS} ${OBJS} -o ${TARGET}
 
 .cpp.o:
-	${CC} ${CFLAGS} -c -o $@ ${@:.o=.cpp}
+	${CXX} ${CFLAGS} -c -o $@ ${@:.o=.cpp}
 
 clean:
 	rm -f ${OBJS} ${TARGET}
