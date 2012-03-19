@@ -1,7 +1,5 @@
 syntax: glob
-.waf*
 *.swp
 _build_
-.lock-wscript
 runlog.txt
 *.o
