@@ -42,7 +42,7 @@ CEditorApp::CEditorApp()
 	SDL_SetTimer(1000/KFrameRate, TimerCallBack);
 	SDL_SysWMinfo WndInfo; 
 
-#ifndef __LINUX__ 
+#ifndef __unix__ 
     WndInfo.window = 0;
 #else
     WndInfo.info.x11.window = 0;
@@ -51,7 +51,7 @@ CEditorApp::CEditorApp()
 	
 	iGD=new CGraphicsDevice("Tapan Kaikki Bloodshed - Level Editor","editor.ico");
 	iGD->SetCursorMode(SDL_ENABLE);
-#ifndef __LINUX__
+#ifndef __unix__
 	iGD->SetMode(640,480,8,0,SDL_RESIZABLE);
 #else
 	iGD->SetMode(640,480,0,0,SDL_RESIZABLE);
@@ -87,7 +87,7 @@ CEditorApp::CEditorApp()
 
 	iStateHandler->SetState(EEditModeEditLevel);
 
-#ifdef __LINUX__
+#ifdef __unix__
 	iDrawer->ResetAnimationFlag();
 	iStateHandler->CurrentState()->Draw(iDrawer);
 	Refresh = iDrawer->UpdateScreen();

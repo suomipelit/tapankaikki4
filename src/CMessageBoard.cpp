@@ -1,3 +1,4 @@
+#include <vector>
 #include "common/CFonts.h"
 #include "common/error.h"
 

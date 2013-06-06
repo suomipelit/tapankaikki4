@@ -1,3 +1,4 @@
+#include <vector>
 #include "CGameSubStateQuit.h"
 
 #include "common/CEventHandler.h"

@@ -1,3 +1,4 @@
+#include <vector>
 #include "CCharacter.h"
 
 #include "common/IWeaponType.h"

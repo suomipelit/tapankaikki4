@@ -13,23 +13,23 @@ namespace
 
 	typedef struct TPCXheader  
 	{
-	char  manufacturer;   // always 10
-	char  version;        // should be 5
-	char  encoding;       // 1 for RLE
-	char  bits_per_pixel; // usually 8, for 256-color
-	short xmin, ymin;     // the width  is *usually*  (xmax-xmin+1)
-	short xmax, ymax;     // the height is *usually*  (ymax-ymin+1)
-	short horz_res, vert_res;     // DPI for printing
-	char  ega_palette[48];        // junk  :)
-	char  reserved;       
-	char  num_color_planes;       // usually 1 (3 for 24-bit color)
-	short bytes_per_line;         // MUST BE an EVEN number
-	short palette_type;           // should be 1
-	char  padding[58];            // junk
+                char  manufacturer;   // always 10
+                char  version;        // should be 5
+                char  encoding;       // 1 for RLE
+                char  bits_per_pixel; // usually 8, for 256-color
+                short xmin, ymin;     // the width  is *usually*  (xmax-xmin+1)
+                short xmax, ymax;     // the height is *usually*  (ymax-ymin+1)
+                short horz_res, vert_res;     // DPI for printing
+                char  ega_palette[48];        // junk  :)
+                char  reserved;       
+                char  num_color_planes;       // usually 1 (3 for 24-bit color)
+                short bytes_per_line;         // MUST BE an EVEN number
+                short palette_type;           // should be 1
+                char  padding[58];            // junk
 	} TPCXHeader;
 }
 
-#ifndef __LINUX__
+#ifndef __unix__
 const char* strcasestr(const char* src,const char* match)
 {
 	ASSERT(src);
@@ -117,6 +117,9 @@ void CGraphicsBuffer::Load(const std::string& aFilename, CPalette* aPalette)
 			SDL_FreeSurface( surf );
 			return;
 		}
+                else
+                        error("CGraphicsBuffer::Load: Only 8-bit surfaces allowed (%s)!",aFilename.c_str());
+
 	
 	error("CGraphicsBuffer::Load: File format not detected (%s)!",aFilename.c_str());
 }
@@ -152,7 +155,7 @@ void CGraphicsBuffer::Save(const std::string& aFilename, const CPalette* aPalett
 
 	if (strcasestr(ext,".bmp"))
 	{
-        SaveBMP(aFilename,aPalette);
+                SaveBMP(aFilename,aPalette);
 		return;
 	}
 	error("CGraphicsBuffer::Save: File format not detected (%s)!",aFilename.c_str());
@@ -709,7 +712,7 @@ int CGraphicsBuffer::CopyFromSurface(SDL_Surface* aSurface, CPalette* aPalette)
 
 	if (aSurface->format->BitsPerPixel!=8||
 		aSurface->format->BytesPerPixel!=1) 
-		error("Unfortunately only 8-bit surfaces are allowed!");
+                return 1;
 
 	Resize(aSurface->w,aSurface->h);
 
