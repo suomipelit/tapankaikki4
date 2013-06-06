@@ -1,9 +1,8 @@
-#include <vector>
+#include "CGameApp.h"
 #include <time.h>
 #include <string.h>
 #include <stdlib.h>
 
-#include "CGameApp.h"
 #include "common/CMath.h"
 
 #include "CGameGraphicsInterface.h"
@@ -29,7 +28,7 @@ CGameApp::CGameApp(const char* aIcon, const char* aCaption)
 	}
 
 	// Setup Random Generator
-	srand((unsigned int)time(NULL)); 
+	srand((unsigned int)time(NULL));
 
 	iDebugStartLevel=0;
 	iActive=0;
@@ -45,7 +44,7 @@ CGameApp::CGameApp(const char* aIcon, const char* aCaption)
 	LOG0("Initializing COptions\n");
 	iOptions = new COptions(iSoundPlayer);
 	LOG0("Initializing CGameData\n");
-	iGameData= new CGameData(iOptions, this); 
+	iGameData= new CGameData(iOptions, this);
 	LOG0("Initializing CGameGraphicsInterface\n");
 	iGGI     = new CGameGraphicsInterface(iOptions, iGameData, iMBoard,aIcon,aCaption);
 	iGGI->AddObserver( this );
@@ -57,7 +56,7 @@ CGameApp::CGameApp(const char* aIcon, const char* aCaption)
 
 	/* Must be init after options! */
 	LOG0("Starting timer\n");
-	
+
 	startTimer();
 	LOG0("Initializing CGameSystem\n");
 	iGS=new CGameSystem(this);
@@ -84,7 +83,7 @@ CGameApp::CGameApp(const char* aIcon, const char* aCaption)
 		iMBoard->AddMessage("Sound system initialization FAILED!");
 }
 
-CGameApp::~CGameApp() 
+CGameApp::~CGameApp()
 {
 	stopTimer();
 
@@ -150,7 +149,7 @@ void CGameApp::Loop()
 				}
 				else throw;
 			}
-			
+
 			// draw message board over everything else
 			iMBoard->Draw(iGGI,updatedArea);
 
@@ -178,7 +177,7 @@ void CGameApp::Loop()
 				}
 				catch ( CGameException& exception )
 				{
-					if ( iState->State().iMainState == CState::EMainStateGame || 
+					if ( iState->State().iMainState == CState::EMainStateGame ||
 						iEffectData->iNextState.iMainState == CState::EMainStateGame)
 					{
 						iMBoard->AddMessage("Game threw exception:");
@@ -195,7 +194,7 @@ void CGameApp::Loop()
 				// Don't try this at home:    ;)
 				(iGGI->Fader()->*iEffectData->iFaderMethod)
 					(
-						iGGI->DrawBuffer(), 
+						iGGI->DrawBuffer(),
 						iGGI->PostProBuffer(),
 						iEffectData->iPalette,
 						iEffectData->iStarted,
@@ -280,12 +279,12 @@ CGameState* CGameApp::State()
 };
 
 CEventHandler* CGameApp::EventHandler()
-{ 
+{
 	return iEventHandler;
 }
 
 CGameGraphicsInterface* CGameApp::GGI()
-{ 
+{
 	return iGGI;
 }
 
@@ -300,12 +299,12 @@ CMessageBoard* CGameApp::MessageBoard()
 }
 
 IGameSubStateController* CGameApp::GameSystem()
-{ 
+{
 	return iGS;
 }
 
 CGameData* CGameApp::GameData()
-{ 
+{
 	return iGameData;
 }
 
@@ -324,14 +323,14 @@ void CGameApp::Run(int argc,char *argv[])
 	LOG0("TK Game Started\n------------------\n");
 	int extra = 0;
 
-	for(int a=1; a<argc; a++) 
+	for(int a=1; a<argc; a++)
 	{
 		int b=0;
 		char *tmp=strdup(argv[a]);
 		strupr(tmp);
-		
+
 		if((tmp[0]=='-')||(tmp[0]=='/'))
-		switch(tmp[1]) 
+		switch(tmp[1])
 		{
 			case '1': extra |= SDL_HWACCEL;
 					 break;
@@ -339,7 +338,7 @@ void CGameApp::Run(int argc,char *argv[])
 			case '2': extra |= SDL_HWSURFACE;
 					 break;
 
-			case 'W':iOptions->Data().iFullScreen=0; 
+			case 'W':iOptions->Data().iFullScreen=0;
 					 break;
 
 			case 'L':b=atoi(argv[++a]);
@@ -352,7 +351,7 @@ void CGameApp::Run(int argc,char *argv[])
 		}
 		free(tmp);
 	}
-	
+
 	iGGI->SetExtraFlags( extra );
 	iGGI->SetMenuMode();
 	iEventHandler->ResetStack();

@@ -1,4 +1,3 @@
-#include <vector>
 #include "CGUIStateLogo.h"
 #include "CGameGraphicsInterface.h"
 #include "IGUIStateController.h"

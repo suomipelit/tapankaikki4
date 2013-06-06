@@ -2,7 +2,7 @@
 
 #include "CMath.h"
 
-#ifndef __unix__
+#ifndef __LINUX__
 #include <string.h>
 #endif
 

@@ -10,8 +10,8 @@ void CConfigFile::Load( const std::string& aDefaultsFile, const std::string& aSe
 {
 	iConfig.clear();
 	LOG3("CConfigFile: Loading configs: %s, %s and %s\n", aPrimaryFile.c_str(), aSecondaryFile.c_str(), aDefaultsFile.c_str());
-	LoadFile( aPrimaryFile ); 
-	LoadFile( aSecondaryFile ); 
+	LoadFile( aPrimaryFile );
+	LoadFile( aSecondaryFile );
 	LoadFile( aDefaultsFile );
 
 	std::map< std::string, std::string>::iterator iter = iConfig.begin();
@@ -37,16 +37,16 @@ void CConfigFile::LoadFile( const std::string& aFile )
 		int idx=0;
 
 		fgets( tmp, TMPSIZE, fp );
-		
+
 		while ( isspace(tmp[idx]) )
 			idx++;
 
-		if ( tmp[idx]!='#' && tmp[idx]!=';' ) 
+		if ( tmp[idx]!='#' && tmp[idx]!=';' )
 		{ // not a comment
 			int eqIdx = idx;
 
 
-			while (tmp[eqIdx]!='=' && 
+			while (tmp[eqIdx]!='=' &&
 				   tmp[eqIdx]!=0)
 			   eqIdx++;
 
@@ -98,7 +98,7 @@ EXPORT std::string CConfigFile::Value( const char* aPrefix, int aNumber ) const
 	std::string str( aPrefix );
 
 	str+='[';
-	itoa(aNumber,tmp,10);
+	sprintf(tmp, "%d", aNumber);
 	str+=tmp;
 	str+=']';
 

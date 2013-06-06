@@ -1,4 +1,3 @@
-#include <vector>
 #include "CGameSubStateNextLevel.h"
 #include "CGameState.h"
 #include "IGameSubStateController.h"

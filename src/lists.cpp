@@ -19,7 +19,7 @@
 
 const char* KForbiddenFiles[]={"..",".","CVS"};
 
-#ifdef __unix__
+#ifdef __LINUX__
 namespace
 {
 	inline int filter_dir(dirent* dir)
@@ -129,7 +129,7 @@ const char* CEpisode::LevelName(unsigned int aAt)
 
 void CEpisode::ListFiles(char *filenames)
 {
-#ifndef __unix__
+#ifndef __LINUX__
 	char name[FILENAME_MAX];
 	int a;
 	Reset();
@@ -150,7 +150,7 @@ void CEpisode::ListFiles(char *filenames)
 			else
 				iLevelnames.push_back(strdup(tmp));
 			iFilenames.push_back(strdup(name));
-		} 
+		}
 		else break;
 	}
 #else
@@ -218,7 +218,7 @@ unsigned int CEpisodeList::Amount( bool aDMEpisodes )
 
 void CEpisodeList::ListFiles(char *dirnames)
 {
-#ifndef __unix__
+#ifndef __LINUX__
 	struct _finddata_t fbuf;
 	int er,error=0;
 	int a,ok;
@@ -228,7 +228,7 @@ void CEpisodeList::ListFiles(char *dirnames)
 
 	ASSERT(_snprintf(search,FILENAME_MAX,"%s/*.*",dirnames)>0);
 	Reset();
-	
+
 	// First add DM files :)
 	epi=new CDeathMatchEpisode();
 	epi->ListFiles(dirnames);
@@ -275,7 +275,7 @@ void CEpisodeList::ListFiles(char *dirnames)
 
 	Sort();
 
-#else	// __unix__
+#else	// __LINUX__
 
 	char tmp[FILENAME_MAX];
 	dirent** filelist;
@@ -330,7 +330,7 @@ void CEpisodeList::ListFiles(char *dirnames)
 	free(filelist);
 
 	// calling Sort not necessary since scandir quicksorts it's results
-#endif	// __unix__
+#endif	// __LINUX__
 }
 
 void CEpisodeList::Sort()
@@ -350,7 +350,7 @@ void CEpisodeList::Sort()
 
 void CDeathMatchEpisode::ListFiles(char *filenames)
 {
-#ifndef __unix__
+#ifndef __LINUX__
 	char name[FILENAME_MAX],levname[FILENAME_MAX];
 	bool ok;
 	Reset();

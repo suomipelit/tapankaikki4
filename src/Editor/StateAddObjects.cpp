@@ -45,15 +45,15 @@ void CStateAddObjects::Draw(CEditorDrawer* aDrawer)
 	int rX2 = iMouseX/SBS*SBS+SBS-1;
 	int rY2 = iMouseY/SBS*SBS+SBS-1;
 	char pl_num[255];
-	itoa(iPlayerToPlace+1,pl_num,10);
+	sprintf(pl_num, "%d", iPlayerToPlace+1);
 	char text[255];
 
 	aDrawer->DrawLevel(0,0,0);
-		
+
 	switch (iCurrentMode) {
 		case EEditObjectModePlaceSpotLight:
 			if (Level()->InLevel(MBX,MBY))
-				if (! iSpotSetSizeMode)				
+				if (! iSpotSetSizeMode)
 					aDrawer->DrawSpot(iMouseX,iMouseY,iSpotSize);
 				else
 					aDrawer->DrawSpot(iSpotSizeX,iSpotSizeY,iSpotSize);
@@ -64,7 +64,7 @@ void CStateAddObjects::Draw(CEditorDrawer* aDrawer)
 		break;
 		case EEditObjectModePlaceSteam:
 			if (Level()->InLevel(MBX,MBY))
-				if (! iSteamAdjustMode)				
+				if (! iSteamAdjustMode)
 					aDrawer->DrawSteam(iMouseX,iMouseY,iSteamAngle,iSteamSpeed);
 				else
 					aDrawer->DrawSteam(iSteamX,iSteamY,iSteamAngle,iSteamSpeed);
@@ -161,13 +161,13 @@ void CStateAddObjects::HandleKeys(CEventHandler* aEventHandler,CEditorDrawer* aD
 				aEventHandler->State(SDLK_END) = 0;
 			}
 			switch (iCrateType1){
-				case CLevel::EWeaponCrate:				
+				case CLevel::EWeaponCrate:
 					if (iCrateType2>=KWeaponCrates-1) iCrateType2=KWeaponCrates-1;
 				break;
-				case CLevel::EBulletCrate:				
+				case CLevel::EBulletCrate:
 					if (iCrateType2>=KBulletCrates-1) iCrateType2=KBulletCrates-1;
 				break;
-				case CLevel::EMoneyCrate:				
+				case CLevel::EMoneyCrate:
 					if (iCrateType2>=KMaxMoneyInCrate) iCrateType2=KMaxMoneyInCrate;
 					if (iCrateType2<KMoneyAdd) iCrateType2=KMoneyAdd;
 				break;
@@ -212,7 +212,7 @@ void CStateAddObjects::HandleMouse(CEventHandler* aEventHandler,CEditorDrawer* a
 	int MBX = iMouseX/SBS+aDrawer->ScrXOffs();
 	int MBY = iMouseY/SBS+aDrawer->ScrYOffs();
 	bool occupied=false;
-	
+
 	if (aEventHandler->GetMouse().Button(CMouse::EButtonWheelDown))
 	{
 		if (iCurrentMode == EEditObjectModePlaceNormalCrate ||
@@ -244,13 +244,13 @@ void CStateAddObjects::HandleMouse(CEventHandler* aEventHandler,CEditorDrawer* a
 			}
 
 			switch (iCrateType1){
-				case CLevel::EWeaponCrate:				
+				case CLevel::EWeaponCrate:
 					if (iCrateType2>=KWeaponCrates-1) iCrateType2=KWeaponCrates-1;
 				break;
-				case CLevel::EBulletCrate:				
+				case CLevel::EBulletCrate:
 					if (iCrateType2>=KBulletCrates-1) iCrateType2=KBulletCrates-1;
 				break;
-				case CLevel::EMoneyCrate:				
+				case CLevel::EMoneyCrate:
 					if (iCrateType2>=KMaxMoneyInCrate) iCrateType2=KMaxMoneyInCrate;
 				break;
 				default: iCrateType2=0;
@@ -293,7 +293,7 @@ void CStateAddObjects::HandleMouse(CEventHandler* aEventHandler,CEditorDrawer* a
 				}
 			break;
 		}
-	} 
+	}
 	else
 	{
 		iSpotSetSizeMode = 0;
@@ -367,5 +367,5 @@ void CStateAddObjects::HandleMouse(CEventHandler* aEventHandler,CEditorDrawer* a
 				}
 				aEventHandler->GetMouse().DecButton(CMouse::EButtonLeft);
 			break;
-		}	
+		}
 }

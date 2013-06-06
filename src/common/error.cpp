@@ -4,17 +4,16 @@
 #else
 #include <stdarg.h>
 #endif
+#include <cstdlib>
 #include <string>
 #include <stdio.h>
 #include "error.h"
 
 CGameException::CGameException(const char *const& str)
-#ifndef __unix__
-: exception( str )
-#endif
+: std::runtime_error( str )
 {
 #ifdef _DEBUG
-//	_asm { int 3h }; // Break here
+    assert(false);
 #endif
 }
 
@@ -36,7 +35,7 @@ void TKAssert( const char* aAssertion, const char* file, int line )
  }
 
 void logwrite(const char *out, ...)
-{ 
+{
 	FILE *f=fopen("runlog.txt","a+");
 	va_list list;
 	va_start(list, out);
@@ -48,7 +47,8 @@ void logwrite(const char *out, ...)
 }
 
 void error(const char *fmt,...)
-{	auto va_list ap;
+{
+    va_list ap;
 	char str[5000];
 
 	va_start(ap,fmt);
@@ -61,9 +61,9 @@ void error(const char *fmt,...)
 #else
 	fprintf(stderr, "Error: %s\n", str);
 #endif
-	
+
 #ifdef _DEBUG
-	_asm { int 3h }; // Let's break here
+    assert(false);
 #endif
 
 	va_end(ap);

@@ -10,6 +10,8 @@
 #endif
 
 #include <direct.h>
+#include <cstdio>
+#include <cstring>
 
 inline void ChangeDir(const char* str)
 {

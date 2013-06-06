@@ -2,6 +2,7 @@
 #define __CDRAWAREA_H_
 
 #include <vector>
+
 #include "CRect.h"
 
 const int KMaxRectsInDrawArea = 32;

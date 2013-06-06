@@ -1,4 +1,3 @@
-#include <vector>
 #include "CEventFilter.h"
 
 #include "CMessageBoard.h"

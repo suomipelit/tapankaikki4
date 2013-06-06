@@ -1,4 +1,3 @@
-#include <vector>
 #include "CEffect.h"
 #include "CLevelRuntimeData.h"
 #include "common/IEffectType.h"

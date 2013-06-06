@@ -1,9 +1,14 @@
-#include <vector>
+// CDynShopData.cpp: implementation of the CDynShopData class.
+//
+//////////////////////////////////////////////////////////////////////
 
 #include "CDynShopData.h"
 #include "common/IShield.h"
 #include "common/IWeaponType.h"
 #include "CGameData.h"
+//////////////////////////////////////////////////////////////////////
+// Construction/Destruction
+//////////////////////////////////////////////////////////////////////
 
 const int KItemsInCategories[3]={EWeaponAmount-1,EBulletAmount-2,KOtherStuffInShop};
 
