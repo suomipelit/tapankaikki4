@@ -52,7 +52,7 @@ void CColorTable::GenerateShadowTable(CPalette& aPalette)
 
 void CColorTable::WriteTables(char *aFilename)
 {
-	FILE *tab=fopen(aFilename,"wb");
+	FILE *tab=fopen(getsavepath(std::string(aFilename)).c_str(),"wb");
 	if (!tab) error("Error: Couldn't create %s!",aFilename);
 
 	fwrite(TransparencyTable,sizeof(TransparencyTable),1,tab);
@@ -66,7 +66,7 @@ void CColorTable::WriteTables(char *aFilename)
 
 int CColorTable::ReadTables(char *aFilename) 
 {
-	FILE *tab= fopen(aFilename,"rb");
+	FILE *tab= fopen(getsavepath(std::string(aFilename)).c_str(),"rb");
 
 	if (!tab) return 1;
 	fread(TransparencyTable,sizeof(TransparencyTable),1,tab);

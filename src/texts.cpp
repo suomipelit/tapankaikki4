@@ -1,5 +1,6 @@
 #include "CKeys.h"
 #include "texts.h"
+#include "common/files.h"
 
 // TODO: CONFIGFILE
 const char *k_text[EKeyAmount] = 
@@ -25,7 +26,7 @@ const char *KMusicFilenameExtensions[] =
 	".mp3",
 };
 
-const char *KOptionsFilename="options.cfg";
+const std::string KOptionsFilename="options.cfg";
 
 const int KBoolCatMax=3; // Length of maximum string in KBoolCatStr
 const char *KBoolCatStr[2] =

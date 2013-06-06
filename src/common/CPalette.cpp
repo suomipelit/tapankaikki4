@@ -1,6 +1,7 @@
 #include "CPalette.h"
 
 #include "CMath.h"
+#include "files.h"
 
 #ifndef __LINUX__
 #include <string.h>
@@ -13,7 +14,7 @@ void CPalette::LoadEFPPal(const char *name)
 
 	char dir[256];
 
-	FILE *efp=fopen(name,"rb");
+	FILE *efp=fopen(getdatapath(std::string(name)).c_str(),"rb");
 
 	if (efp==NULL)
 		error("CPalette::LoadEFPPal: File %s couldn't be opened (curdir==%s)!", name,_getcwd( dir, 256));
@@ -29,7 +30,7 @@ void CPalette::LoadPCXPal(const char *name)
 	ASSERT(strlen(name)>0);
 
 	char dir[256];
-	FILE *pcx=fopen(name,"rb");
+	FILE *pcx=fopen(getdatapath(std::string(name)).c_str(),"rb");
 
 	if (!pcx)
 		error("CPalette::LoadPCXPal: File %s couldn't be opened (curdir==%s)!", name,_getcwd( dir, 256));

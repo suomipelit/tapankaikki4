@@ -8,6 +8,7 @@
 #include <string>
 #include <stdio.h>
 #include "error.h"
+#include "files.h"
 
 CGameException::CGameException(const char *const& str)
 : std::runtime_error( str )
@@ -36,7 +37,7 @@ void TKAssert( const char* aAssertion, const char* file, int line )
 
 void logwrite(const char *out, ...)
 {
-	FILE *f=fopen("runlog.txt","a+");
+	FILE *f=fopen(getsavepath(std::string("runlog.txt")).c_str(),"a+");
 	va_list list;
 	va_start(list, out);
 

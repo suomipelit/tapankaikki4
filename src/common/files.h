@@ -8,6 +8,9 @@
 const int ESUBDIR=0;
 const int EFILE=1;
 
+EXPORT std::string getsavebasedir();
+EXPORT std::string getsavepath(const std::string& name);
+EXPORT std::string getdatapath(const std::string& name);
 EXPORT int exists(const char *name);
 EXPORT int filelen(const char *name);
 EXPORT int filetimestamp(const char *name);

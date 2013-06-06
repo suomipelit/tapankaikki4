@@ -103,10 +103,14 @@ CGraphicsBuffer::CGraphicsBuffer(CGraphicsBuffer& aBuf)
 	memcpy(iBuf,aBuf.iBuf,iWidth*iHeight);
 }
 
-void CGraphicsBuffer::Load(const std::string& aFilename, CPalette* aPalette)
+void CGraphicsBuffer::Load(std::string aFilename, CPalette* aPalette)
 {
  	ASSERT(aFilename.length()>0);
 	const char* ext = aFilename.c_str() + aFilename.find_last_of('.');
+
+	// Translate the filename to have DATADIR before
+	// calling any of the real loading functions.
+	aFilename = getdatapath(aFilename);
 
 	if (strcasestr(ext,".efp2"))
 	{
@@ -313,7 +317,7 @@ void CGraphicsBuffer::LoadSCI(const std::string& aFilename, CPalette* aPalette)
 {
 	ASSERT(aFilename.length()>0);
 
-    FILE *sci=fopen(aFilename.c_str(),"rb");
+	FILE *sci=fopen(aFilename.c_str(),"rb");
 	unsigned short width=iWidth, height=iHeight;
 	const short Sumthing_Important=0x00AF;
 	char tag[4];
@@ -345,7 +349,7 @@ void CGraphicsBuffer::SaveSCI(const std::string& aFilename, const CPalette* aPal
 {
 	ASSERT(aFilename.length()>0);
 
-    FILE *sci=fopen(aFilename.c_str(),"wb");
+	FILE *sci=fopen(getsavepath(aFilename).c_str(),"wb");
 	int a;
 	unsigned short width=iWidth, height=iHeight;
 	const short Sumthing_Important=0x00AF;
@@ -375,21 +379,21 @@ void CGraphicsBuffer::SaveEFP(const std::string& aFilename, const CPalette* aPal
 {
 	ASSERT(aFilename.length()>0);
 
-	 unsigned short width=iWidth, height=iHeight;
-     int a,samecol,size;
-	 int pixel;
-	 FILE *efp;
+	unsigned short width=iWidth, height=iHeight;
+	int a,samecol,size;
+	int pixel;
+	FILE *efp;
 
-  	 ASSERT(iWidth<=0xffff);
-	 ASSERT(iHeight<=0xffff);
+  	ASSERT(iWidth<=0xffff);
+	ASSERT(iHeight<=0xffff);
 
-     size=height*width;
-	 efp=fopen(aFilename.c_str(),"wb");
+	size=height*width;
+	efp=fopen(getsavepath(aFilename).c_str(),"wb");
 
-	 if (efp==NULL) error("CGraphicsBuffer::SaveEFP: Couldn't open file for writing (%s)", aFilename.c_str());
-     if (fwrite(KEFPTag,1,6,efp)!=6) error("CGraphicsBuffer::SaveEFP: fwrite failed (1)");
-     if (fwrite(&width,1,2,efp)!=2) error("CGraphicsBuffer::SaveEFP: fwrite failed (2)");
-     if (fwrite(&height,1,2,efp)!=2) error("CGraphicsBuffer::SaveEFP: fwrite failed (3)");
+	if (efp==NULL) error("CGraphicsBuffer::SaveEFP: Couldn't open file for writing (%s)", aFilename.c_str());
+	if (fwrite(KEFPTag,1,6,efp)!=6) error("CGraphicsBuffer::SaveEFP: fwrite failed (1)");
+	if (fwrite(&width,1,2,efp)!=2) error("CGraphicsBuffer::SaveEFP: fwrite failed (2)");
+	if (fwrite(&height,1,2,efp)!=2) error("CGraphicsBuffer::SaveEFP: fwrite failed (3)");
 
 	 for (a=0;a<size;a++)
 	 {
@@ -450,7 +454,7 @@ void CGraphicsBuffer::SavePCX(const std::string& aFilename, const CPalette* aPal
 	p.palette_type=1; // color
 	memset(p.padding,0,58);
 
-	pcx=fopen(aFilename.c_str(),"wb");
+	pcx=fopen(getsavepath(aFilename).c_str(),"wb");
 	if (pcx==NULL)
 		error("CGraphicsBuffer::SavePCX: Couldn't open file for writing (%s)", aFilename.c_str());
 
@@ -506,7 +510,7 @@ void CGraphicsBuffer::SaveEFP2(const std::string& aFilename, const CPalette* aPa
 {
 	ASSERT(aFilename.length()>0);
 
-	FILE *efp=fopen(aFilename.c_str(),"wb");
+	FILE *efp=fopen(getsavepath(aFilename).c_str(),"wb");
 
 	if (!efp) error("CGraphicsBuffer::SaveEFP2: File %s couldn't be opened!\n",aFilename.c_str());
 

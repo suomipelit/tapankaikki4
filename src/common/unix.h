@@ -1,9 +1,7 @@
-#ifndef ___LINUX_H__
-#define ___LINUX_H__
+#ifndef ___UNIX_H__
+#define ___UNIX_H__
 
-#ifdef __LINUX__
-
-//#error "NOO"
+#ifdef __unix__
 
 #define putch putchar
 #define EXPORT
@@ -73,8 +71,7 @@ inline char *strset(char *buf,char fill)
 	return buf;
 }
 
-#endif // linux
+#endif // __unix__
 
-#endif // ___LINUX_H_
-
+#endif // ___UNIX_H__
 

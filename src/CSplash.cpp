@@ -12,7 +12,7 @@ void CSplash::ShowSplash(const char* aImagePath,const char* aIcon,const char* aC
 		error("Unable to initialize SDL: %s \n", SDL_GetError());
 	}
 
-	SDL_Surface* bitmap = SDL_LoadBMP(aImagePath);
+	SDL_Surface* bitmap = SDL_LoadBMP(getdatapath(std::string(aImagePath)).c_str());
 	if (bitmap == NULL)
 	{
 		error("Unable to load splash.\n");

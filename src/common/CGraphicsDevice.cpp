@@ -248,9 +248,9 @@ int CGraphicsDevice::SetMode(int aWidth,int aHeight,int aBits, bool aFullScreen,
 	mode |= SDL_SWSURFACE;
 
 	// This must be done before videomode call...
-	if (iIconFile!=NULL && exists(iIconFile))
+	if (iIconFile!=NULL && exists(getdatapath(std::string(iIconFile)).c_str()))
 	{
-		SDL_Surface* icon=SDL_LoadBMP(iIconFile);
+		SDL_Surface* icon=SDL_LoadBMP(getdatapath(std::string(iIconFile)).c_str());
 		SDL_WM_SetIcon(icon, NULL);
 	}
 

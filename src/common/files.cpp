@@ -1,7 +1,43 @@
 #include "files.h"
 #include <sys/stat.h>
+#include <sys/types.h>
+#include <pwd.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <errno.h>
 
+const std::string SaveDataPath=getsavebasedir();
+EXPORT std::string getsavebasedir()
+{
+#ifdef __unix__
+	const char *home = getenv("HOME");
+
+	if (home == NULL)
+		exit(1);
+
+	std::string path = std::string(home) + std::string("/.tapankaikki/");
+	if (mkdir(path.c_str(), 0755) != 0 && errno != EEXIST)
+		exit(1);
+
+	return path;
+#else
+#error "getsavebasedir not implemented on this platform."
+#endif
+}
+
+EXPORT std::string getsavepath(const std::string& name)
+{
+	std::string ret = SaveDataPath + name;
+	printf("Savepath: %s\n", ret.c_str());
+	return ret;
+}
+
+EXPORT std::string getdatapath(const std::string& name)
+{
+	std::string ret = std::string(DATADIR) + std::string("/") + name;
+	printf("Datapath: %s\n", ret.c_str());
+	return ret;
+}
 
 EXPORT std::string getpath(const char *name)
 {
