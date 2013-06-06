@@ -10,20 +10,19 @@ DIRS = \
 	levs/jailbreak \
 	levs/mothafux \
 	music \
-	music/Heavy \
-	music/OldSkool \
-	music/Techno \
+	music/techno \
 	music/default \
+	music/heavy \
+	music/oldskool \
 	wavs
 FILES = \
 	default.ini \
 	editor.ico \
-	efps/BOMB2.EFP \
-	efps/ENEMY8.EFP \
-	efps/ENEMY9.EFP \
-	efps/RAMBO1.EFP \
-	efps/RAMBO3.EFP \
-	efps/RAMBO4.EFP \
+	efps/enemy8.efp \
+	efps/enemy9.efp \
+	efps/rambo1.efp \
+	efps/rambo3.efp \
+	efps/rambo4.efp \
 	efps/bodyp.efp \
 	efps/bslogo.pcx \
 	efps/c4.efp \
@@ -75,6 +74,7 @@ FILES = \
 	efps/walls1_5.efp \
 	efps/walls1_5.generated.efp \
 	efps/ware.efp \
+	efps/bomb2.efp \
 	fnts/8x8b.fnt \
 	fnts/menu15x18dark.fnt \
 	fnts/menu15x18gray.fnt \
@@ -98,39 +98,38 @@ FILES = \
 	levs/blanket/level7.lev \
 	levs/blanket/level8.lev \
 	levs/blanket/level9.lev \
-	levs/blanket2/LEVEL1.LEV \
-	levs/blanket2/LEVEL10.LEV \
-	levs/blanket2/LEVEL2.LEV \
-	levs/blanket2/LEVEL3.LEV \
-	levs/blanket2/LEVEL4.LEV \
-	levs/blanket2/LEVEL5.LEV \
-	levs/blanket2/LEVEL6.LEV \
-	levs/blanket2/LEVEL7.LEV \
-	levs/blanket2/LEVEL8.LEV \
-	levs/blanket2/LEVEL9.LEV \
+	levs/blanket2/level10.lev \
+	levs/blanket2/level2.lev \
+	levs/blanket2/level3.lev \
+	levs/blanket2/level4.lev \
+	levs/blanket2/level5.lev \
+	levs/blanket2/level6.lev \
+	levs/blanket2/level7.lev \
+	levs/blanket2/level8.lev \
+	levs/blanket2/level9.lev \
+	levs/blanket2/level1.lev \
 	levs/cave.lev \
-	levs/default/LEVEL1.LEV \
-	levs/default/LEVEL10.LEV \
-	levs/default/LEVEL2.LEV \
-	levs/default/LEVEL3.LEV \
-	levs/default/LEVEL4.LEV \
-	levs/default/LEVEL5.LEV \
-	levs/default/LEVEL6.LEV \
-	levs/default/LEVEL7.LEV \
-	levs/default/LEVEL8.LEV \
-	levs/default/LEVEL9.LEV \
+	levs/default/level10.lev \
+	levs/default/level2.lev \
+	levs/default/level3.lev \
+	levs/default/level4.lev \
+	levs/default/level5.lev \
+	levs/default/level6.lev \
+	levs/default/level7.lev \
+	levs/default/level8.lev \
+	levs/default/level9.lev \
+	levs/default/level1.lev \
 	levs/dm.lev \
-	levs/fiendis/LEVEL1.LEV \
-	levs/fiendis/LEVEL10.LEV \
-	levs/fiendis/LEVEL2.LEV \
-	levs/fiendis/LEVEL3.LEV \
-	levs/fiendis/LEVEL4.LEV \
-	levs/fiendis/LEVEL5.LEV \
-	levs/fiendis/LEVEL6.LEV \
-	levs/fiendis/LEVEL7.LEV \
-	levs/fiendis/LEVEL8.LEV \
-	levs/fiendis/LEVEL9.LEV \
-	levs/jailbreak/Level2.lev \
+	levs/fiendis/level10.lev \
+	levs/fiendis/level2.lev \
+	levs/fiendis/level3.lev \
+	levs/fiendis/level4.lev \
+	levs/fiendis/level5.lev \
+	levs/fiendis/level6.lev \
+	levs/fiendis/level7.lev \
+	levs/fiendis/level8.lev \
+	levs/fiendis/level9.lev \
+	levs/fiendis/level1.lev \
 	levs/jailbreak/level1.lev \
 	levs/jailbreak/level3.lev \
 	levs/jailbreak/level4.lev \
@@ -138,39 +137,40 @@ FILES = \
 	levs/jailbreak/level6.lev \
 	levs/jailbreak/level7.lev \
 	levs/jailbreak/level8.lev \
-	levs/mothafux/LEVEL1.LEV \
-	levs/mothafux/LEVEL10.LEV \
-	levs/mothafux/LEVEL2.LEV \
-	levs/mothafux/LEVEL3.LEV \
-	levs/mothafux/LEVEL4.LEV \
-	levs/mothafux/LEVEL5.LEV \
-	levs/mothafux/LEVEL6.LEV \
-	levs/mothafux/LEVEL7.LEV \
-	levs/mothafux/LEVEL8.LEV \
-	levs/mothafux/LEVEL9.LEV \
+	levs/jailbreak/level2.lev \
+	levs/mothafux/level10.lev \
+	levs/mothafux/level2.lev \
+	levs/mothafux/level3.lev \
+	levs/mothafux/level4.lev \
+	levs/mothafux/level5.lev \
+	levs/mothafux/level6.lev \
+	levs/mothafux/level7.lev \
+	levs/mothafux/level8.lev \
+	levs/mothafux/level9.lev \
+	levs/mothafux/level1.lev \
 	levs/seacastle.lev \
 	levs/small.lev \
-	music/Heavy/0.ogg \
-	music/Heavy/1.ogg \
-	music/Heavy/2.ogg \
-	music/Heavy/3.ogg \
-	music/Heavy/4.ogg \
-	music/OldSkool/0.ogg \
-	music/OldSkool/1.ogg \
-	music/OldSkool/2.ogg \
-	music/OldSkool/3.ogg \
-	music/OldSkool/4.ogg \
-	music/Techno/0.ogg \
-	music/Techno/1.ogg \
-	music/Techno/2.ogg \
-	music/Techno/3.ogg \
-	music/Techno/4.ogg \
+	music/techno/0.ogg \
+	music/techno/1.ogg \
+	music/techno/2.ogg \
+	music/techno/3.ogg \
+	music/techno/4.ogg \
 	music/default/0.ogg \
 	music/default/1.ogg \
 	music/default/2.ogg \
 	music/default/3.ogg \
 	music/default/4.ogg \
 	music/menu.ogg \
+	music/heavy/0.ogg \
+	music/heavy/1.ogg \
+	music/heavy/2.ogg \
+	music/heavy/3.ogg \
+	music/heavy/4.ogg \
+	music/oldskool/0.ogg \
+	music/oldskool/1.ogg \
+	music/oldskool/2.ogg \
+	music/oldskool/3.ogg \
+	music/oldskool/4.ogg \
 	options.cfg \
 	palette.tab \
 	tk.ico \

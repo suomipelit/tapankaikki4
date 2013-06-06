@@ -83,9 +83,9 @@ void CEventHandler::ResetStack()
 
 void CEventHandler::PushKey(SDL_keysym aKSYM)
 {
-	iStackHead++;
-	if (iStackHead==iStackEnd) {iStackHead--;return;}
-	while (iStackHead>=KStackLength) iStackHead-=KStackLength;
+        iStackHead++;
+        if (iStackHead==iStackEnd) {iStackHead--;return;}
+        while (iStackHead>=KStackLength) iStackHead-=KStackLength;
 
         iStack[iStackHead]=aKSYM;
 }
@@ -98,92 +98,92 @@ int CEventHandler::HandleEvents()
 	char *tmp=0;
 	
 	/* Poll for events */
-        while(iGD->SurfaceOK()&&SDL_PollEvent(&event))
-        {
-                bool ret=false;
-                for (a=0;a<iHandlers.size()&&!ret;a++)
-                {
-                        handler=iHandlers[a];
-                        ret = handler->HandleEvent(event);
-                }
+    while(iGD->SurfaceOK()&&SDL_PollEvent(&event))
+	{
+		bool ret=false;
+		for (a=0;a<iHandlers.size()&&!ret;a++)
+		{
+			handler=iHandlers[a];
+			ret = handler->HandleEvent(event);
+		}
 
-                if ( !ret )
-                        switch( event.type )
-                        {
-                                /* Keyboard event */
-                                case SDL_KEYDOWN:
+		if ( !ret )
+			switch( event.type )
+			{
+				/* Keyboard event */
+				case SDL_KEYDOWN:
 
-                                        // Check the boundary of table
-                                        if (event.key.keysym.sym<KKeyTableLength)
-                                                State(event.key.keysym.sym)=1;
+					// Check the boundary of table
+					if (event.key.keysym.sym<KKeyTableLength)
+						State(event.key.keysym.sym)=1;
 
-                                        PushKey(event.key.keysym);
-                                        break;
+					PushKey(event.key.keysym);
+					break;
 
-                                case SDL_KEYUP:
-                                        State(event.key.keysym.sym)=0;                        
-                                        break;
+				case SDL_KEYUP:
+					State(event.key.keysym.sym)=0;                        
+					break;
 
-                                case SDL_MOUSEMOTION:
-                                        if (SDL_GetAppState()&SDL_APPINPUTFOCUS)
-                                        {
-                                                iMouse->SetXPos(event.motion.x);
-                                                iMouse->SetYPos(event.motion.y);
-                                                iMouse->AddXRel(event.motion.xrel);
-                                                iMouse->AddYRel(event.motion.yrel);
-                                        }
-                                        break;
+				case SDL_MOUSEMOTION:
+					if (SDL_GetAppState()&SDL_APPINPUTFOCUS)
+					{
+						iMouse->SetXPos(event.motion.x);
+						iMouse->SetYPos(event.motion.y);
+						iMouse->AddXRel(event.motion.xrel);
+						iMouse->AddYRel(event.motion.yrel);
+					}
+					break;
 
-                                case SDL_MOUSEBUTTONDOWN:
-                                        if (SDL_GetAppState()&SDL_APPINPUTFOCUS)
-                                        {
-                                                switch (event.button.button)
-                                                {
-                                                        case SDL_BUTTON_LEFT:
-                                                                iMouse->IncButton(CMouse::EButtonLeft);
-                                                                break;
-                                                        case SDL_BUTTON_MIDDLE:
-                                                                iMouse->IncButton(CMouse::EButtonMiddle);
-                                                                break;
-                                                        case SDL_BUTTON_RIGHT:
-                                                                iMouse->IncButton(CMouse::EButtonRight);
-                                                                break;
-                                                        case SDL_BUTTON_WHEELUP:
-                                                                iMouse->IncButton(CMouse::EButtonWheelUp);
-                                                                break;
-                                                        case SDL_BUTTON_WHEELDOWN:
-                                                                iMouse->IncButton(CMouse::EButtonWheelDown);
-                                                                break;
-                                                };
-                                        }
-                                        break;
+				case SDL_MOUSEBUTTONDOWN:
+					if (SDL_GetAppState()&SDL_APPINPUTFOCUS)
+					{
+						switch (event.button.button)
+						{
+							case SDL_BUTTON_LEFT:
+								iMouse->IncButton(CMouse::EButtonLeft);
+								break;
+							case SDL_BUTTON_MIDDLE:
+								iMouse->IncButton(CMouse::EButtonMiddle);
+								break;
+							case SDL_BUTTON_RIGHT:
+								iMouse->IncButton(CMouse::EButtonRight);
+								break;
+							case SDL_BUTTON_WHEELUP:
+								iMouse->IncButton(CMouse::EButtonWheelUp);
+								break;
+							case SDL_BUTTON_WHEELDOWN:
+								iMouse->IncButton(CMouse::EButtonWheelDown);
+								break;
+						};
+					}
+					break;
 
-                                case SDL_MOUSEBUTTONUP:
-                                        switch (event.button.button)
-                                        {
-                                                case SDL_BUTTON_LEFT:
-                                                        iMouse->DecButton(CMouse::EButtonLeft);
-                                                        break;
-                                                case SDL_BUTTON_MIDDLE:
-                                                        iMouse->DecButton(CMouse::EButtonMiddle);
-                                                        break;
-                                                case SDL_BUTTON_RIGHT:
-                                                        iMouse->DecButton(CMouse::EButtonRight);
-                                                        break;
-                                        };
+				case SDL_MOUSEBUTTONUP:
+					switch (event.button.button)
+					{
+						case SDL_BUTTON_LEFT:
+							iMouse->DecButton(CMouse::EButtonLeft);
+							break;
+						case SDL_BUTTON_MIDDLE:
+							iMouse->DecButton(CMouse::EButtonMiddle);
+							break;
+						case SDL_BUTTON_RIGHT:
+							iMouse->DecButton(CMouse::EButtonRight);
+							break;
+					};
 
-                                        break;
+					break;
 
-                                        /* SDL_QUIT event (window close) */
-                                case SDL_QUIT:
-                                        return 1;
-                                        break;
+				/* SDL_QUIT event (window close) */
+				case SDL_QUIT:
+					return 1;
+					break;
 
-                                default:
-                                        break;
-                        }
-        }
-        return 0;
+				default:
+					break;
+					}
+    }
+	return 0;
 };
 
 char volatile& CEventHandler::State(int index)

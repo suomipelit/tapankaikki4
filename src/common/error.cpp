@@ -9,7 +9,7 @@
 #include "error.h"
 
 CGameException::CGameException(const char *const& str)
-#ifndef __LINUX__
+#ifndef __unix__
 : exception( str )
 #endif
 {
