@@ -9,7 +9,7 @@ namespace
 CGraphicsDevice::CGraphicsDevice(const char *aCaption, const char* aIcon): iWidth(0), iHeight(0), iBits(0), iBasicModes(0), iLocked(0), iDontLock(0), iSurfaceOK(0), iSDLsurface(0), iCursorMode(SDL_DISABLE)
 {
 	int a=0;
-	if (SDL_InitSubSystem(SDL_INIT_VIDEO)<0) 
+	if (SDL_InitSubSystem(SDL_INIT_VIDEO)<0)
 	{
         error("CGraphicsDevice::Init: Unable to init SDL_INIT_VIDEO subsystem: %s\n", SDL_GetError());
     }
@@ -48,7 +48,7 @@ CGraphicsDevice::~CGraphicsDevice()
 
 	free(iCaptionText);
 	free(iIconFile);
-	
+
 	for (iter=iResolutions.begin();iter!=iResolutions.end();iter++)
 //		free(*iter);
 		delete *iter;
@@ -118,18 +118,31 @@ void CGraphicsDevice::SaveShot(const char* aName)
 }
 
 void CGraphicsDevice::CopyToSurface(const CGraphicsBuffer* aBuf, const CRect<int>& rect)
-{	
+{
 	SDL_Rect r = rect;
 	SDL_Surface *surf = aBuf->CopyToSurface( &iPalette );
 
-	SDL_BlitSurface( surf, &r, iSDLsurface, &r );
+    // convert surface to the correct format. Is there a better way of doing that?
+    SDL_Surface* surf2 = SDL_ConvertSurface(surf, iSDLsurface->format, iSDLsurface->flags);
+    if (surf2)
+    {
+        aBuf->DeleteSurface( surf );
+        surf = surf2;
+    }
+
+
+    SDL_ClearError();
+	int result = SDL_BlitSurface( surf, &r, iSDLsurface, &r );
+	char* msg = SDL_GetError();
+
+
 
 	aBuf->DeleteSurface( surf );
 }
 
 int CGraphicsDevice::ShowBuf(const CGraphicsBuffer* aBuf, CDrawArea& aDrawArea)
-{	
-	if (Lock()) 
+{
+	if (Lock())
 		return 1;
 
 	int a=0,siz = aDrawArea.Size();
@@ -141,7 +154,7 @@ int CGraphicsDevice::ShowBuf(const CGraphicsBuffer* aBuf, CDrawArea& aDrawArea)
 		iDirtyArea.Combine(r);
 	}
 
-	if (UnLock()) 
+	if (UnLock())
 		return 1;
 
 	Update();
@@ -151,14 +164,14 @@ int CGraphicsDevice::ShowBuf(const CGraphicsBuffer* aBuf, CDrawArea& aDrawArea)
 
 
 int CGraphicsDevice::ShowBuf(const CGraphicsBuffer* aBuf, const CRect<int>& rect)
-{	
-	if (Lock()) 
+{
+	if (Lock())
 		return 1;
 
 	CopyToSurface(aBuf, rect);
     iDirtyArea.Combine(CRect<int>(rect));
 
-	if (UnLock()) 
+	if (UnLock())
 		return 1;
 
 	Update();
@@ -203,10 +216,10 @@ int CGraphicsDevice::UnLock()
 
 int CGraphicsDevice::Clear()
 {
-	if (!Lock()||
-		!iSDLsurface) return 1;
+	if (!iSDLsurface ||
+        Lock()) return 1;
 
-	SDL_FillRect( iSDLsurface, NULL, 0 );
+	SDL_FillRect( iSDLsurface, NULL, 0);
 
 	UnLock();
     SDL_UpdateRect(iSDLsurface, 0, 0,0,0);
@@ -242,12 +255,12 @@ int CGraphicsDevice::SetMode(int aWidth,int aHeight,int aBits, bool aFullScreen,
 	}
 
     iSDLsurface=SDL_SetVideoMode(aWidth,aHeight, aBits,mode);
-	
+
 	if (iSDLsurface==NULL)
         error("CGraphicsDevice::SetMode: SDL_SetVideoMode(%d,%d,%d,%x) failed: %s\n",aWidth,aHeight, aBits,mode, SDL_GetError());
 
 	// Make sure initialization worked out as supposed
-#ifndef __unix__
+#ifndef __LINUX__
 	ASSERT(iSDLsurface->format->BitsPerPixel==aBits);
 #else
 	ASSERT(iSDLsurface->format->BitsPerPixel==aBits || !aBits);
@@ -267,7 +280,7 @@ int CGraphicsDevice::SetMode(int aWidth,int aHeight,int aBits, bool aFullScreen,
 
 	Clear();
 	SDL_SetPalette(iSDLsurface, SDL_LOGPAL|SDL_PHYSPAL, iPalette.ColorData(), 0, 256);
-	
+
 	return 0;
 }
 
@@ -297,12 +310,17 @@ void CGraphicsDevice::GetPalette(CPalette& pal)
 }
 
 void CGraphicsDevice::ListVideoModes()
-{	
+{
 	int i;
 	SDL_Rect **modes;
+	const SDL_VideoInfo* videoInfo = SDL_GetVideoInfo();
 	SDL_PixelFormat fmt;
-#ifndef __unix__
-	fmt.BitsPerPixel=8;
+	if (videoInfo)
+    {
+        fmt = *videoInfo->vfmt;
+    }
+#ifndef __LINUX__
+	//fmt.BitsPerPixel=8;
 
 	/* Get available fullscreen modes */
 	modes=SDL_ListModes(&fmt, SDL_FULLSCREEN);
@@ -312,11 +330,11 @@ void CGraphicsDevice::ListVideoModes()
 
 	/* Check if our resolution is unrestricted */
 	if(
-#ifndef __unix__
-		modes == (SDL_Rect **)-1 || 
+#ifndef __LINUX__
+		modes == (SDL_Rect **)-1 ||
 #endif
 		modes == (SDL_Rect **)0)
-	{   
+	{
 		iFullScreenPossible = false;
 	}
 	else
@@ -328,7 +346,7 @@ void CGraphicsDevice::ListVideoModes()
 			/* We're not interested of modes less than 320x200... are we? */
 			if (modes[i]->w>=320&&modes[i]->h>=200)
 			{
-				#ifdef __unix__	// SDL_ListModes() returns often multiple modes with same resolution in linux, ignore those
+				#ifdef __LINUX__	// SDL_ListModes() returns often multiple modes with same resolution in linux, ignore those
 					bool tmp = true;
 					for (std::vector<CCoord<int>*>::iterator a = iResolutions.begin(); a != iResolutions.end(); ++a)
 						if ( ((*a)->X() == modes[i]->w) && ((*a)->Y() == modes[i]->h) ) {

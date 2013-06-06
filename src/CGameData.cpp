@@ -1,4 +1,3 @@
-#include <vector>
 #include <string.h>
 
 #include "common/CGameTypeData.h"
@@ -12,7 +11,7 @@ namespace
 	struct TMenuSpriteData
 	{
 		char *filename; // filename
-		int palette;	// Number of palette, -1 if none 
+		int palette;	// Number of palette, -1 if none
 	};
 
 	TMenuSpriteData KMenuSpriteFiles[EMenuSpriteAmount]=
@@ -55,7 +54,7 @@ CGameData::CGameData(COptions* aOptions, IGUIStateController* aGUIStateControlle
 	{
 		if (KMenuSpriteFiles[a].palette==-1)
 			iMenuSprite[a].Load(KMenuSpriteFiles[a].filename, NULL);
-		else 
+		else
 		{
 			iMenuSprite[a].Load(KMenuSpriteFiles[a].filename, &iPalette[KMenuSpriteFiles[a].palette]);
 
@@ -68,7 +67,7 @@ CGameData::CGameData(COptions* aOptions, IGUIStateController* aGUIStateControlle
 					n = true;
 
 			DEBUG_ASSERT( n );
-#endif 
+#endif
 		}
 	}
 

@@ -11,25 +11,48 @@ namespace
 	const char KSCITag[4] = {'R','I','X','3'};
 	const char KEFPTag[6] = {'E','F',' ','p','i','c'};
 
-	typedef struct TPCXheader  
+	typedef struct TPCXheader
 	{
-                char  manufacturer;   // always 10
-                char  version;        // should be 5
-                char  encoding;       // 1 for RLE
-                char  bits_per_pixel; // usually 8, for 256-color
-                short xmin, ymin;     // the width  is *usually*  (xmax-xmin+1)
-                short xmax, ymax;     // the height is *usually*  (ymax-ymin+1)
-                short horz_res, vert_res;     // DPI for printing
-                char  ega_palette[48];        // junk  :)
-                char  reserved;       
-                char  num_color_planes;       // usually 1 (3 for 24-bit color)
-                short bytes_per_line;         // MUST BE an EVEN number
-                short palette_type;           // should be 1
-                char  padding[58];            // junk
+	char  manufacturer;   // always 10
+	char  version;        // should be 5
+	char  encoding;       // 1 for RLE
+	char  bits_per_pixel; // usually 8, for 256-color
+	short xmin, ymin;     // the width  is *usually*  (xmax-xmin+1)
+	short xmax, ymax;     // the height is *usually*  (ymax-ymin+1)
+	short horz_res, vert_res;     // DPI for printing
+	char  ega_palette[48];        // junk  :)
+	char  reserved;
+	char  num_color_planes;       // usually 1 (3 for 24-bit color)
+	short bytes_per_line;         // MUST BE an EVEN number
+	short palette_type;           // should be 1
+	char  padding[58];            // junk
 	} TPCXHeader;
 }
 
-#ifndef __unix__
+#ifndef __LINUX__
+
+int portable_strnicmp(const char *s, const char *t, int n)
+{
+    ASSERT(s);
+    ASSERT(t);
+
+    int cc = 0;
+    if (n > 0)
+    {
+        int slen = strlen(s);
+        int tlen = strlen(t);
+
+        //n = min(slen, min(tlen, n));
+
+        for (; n>=0 && cc==0; --n)
+        {
+            cc = tolower(*s++) - tolower(*t++);
+        }
+    }
+
+    return cc;
+}
+
 const char* strcasestr(const char* src,const char* match)
 {
 	ASSERT(src);
@@ -37,11 +60,11 @@ const char* strcasestr(const char* src,const char* match)
 	int a;
 	int mlen=strlen(match);
 	int l=(int)(strlen(src)-mlen);
-	
+
 	for (a=0;a<=l;a++)
-		if (strnicmp(src+a,match,mlen)==NULL)
+		if (portable_strnicmp(src+a,match,mlen)==NULL)
 			return src+a;
-	
+
 	return NULL;
 }
 #endif
@@ -49,7 +72,7 @@ const char* strcasestr(const char* src,const char* match)
 #define swappaa(a,b) { a+=b;b=a-b;a-=b; }
 #define KFixedPointBits 10
 
-CGraphicsBuffer::CGraphicsBuffer(const CRect<int>& aRect) 
+CGraphicsBuffer::CGraphicsBuffer(const CRect<int>& aRect)
 {
 	DEBUG_ASSERT(aRect.Width()>5);
 	DEBUG_ASSERT(aRect.Height()>5);
@@ -102,7 +125,7 @@ void CGraphicsBuffer::Load(const std::string& aFilename, CPalette* aPalette)
 		LoadSCI(aFilename,aPalette);
 		return;
 	}
-	
+
 	if (strcasestr(ext,".pcx"))
 	{
 		LoadPCX(aFilename,aPalette);
@@ -117,10 +140,7 @@ void CGraphicsBuffer::Load(const std::string& aFilename, CPalette* aPalette)
 			SDL_FreeSurface( surf );
 			return;
 		}
-                else
-                        error("CGraphicsBuffer::Load: Only 8-bit surfaces allowed (%s)!",aFilename.c_str());
 
-	
 	error("CGraphicsBuffer::Load: File format not detected (%s)!",aFilename.c_str());
 }
 
@@ -139,13 +159,13 @@ void CGraphicsBuffer::Save(const std::string& aFilename, const CPalette* aPalett
 		SaveEFP(aFilename,aPalette);
 		return;
 	}
-	
+
 	if (strcasestr(ext,".sci"))
 	{
 		SaveSCI(aFilename,aPalette);
 		return;
 	}
-	
+
 	if (strcasestr(ext,".pcx"))
 	{
 		printf("CGraphicsBuffer::Save: pcx image found\n");
@@ -155,7 +175,7 @@ void CGraphicsBuffer::Save(const std::string& aFilename, const CPalette* aPalett
 
 	if (strcasestr(ext,".bmp"))
 	{
-                SaveBMP(aFilename,aPalette);
+        SaveBMP(aFilename,aPalette);
 		return;
 	}
 	error("CGraphicsBuffer::Save: File format not detected (%s)!",aFilename.c_str());
@@ -179,8 +199,8 @@ void CGraphicsBuffer::LoadEFP(const std::string& aFilename, CPalette* aPalette)
 	unsigned char *filebuffer= new unsigned char[length];
 	fread(filebuffer,length,1,efp);
 	fclose(efp);
-	
-	if (strncmp((char*)filebuffer,KEFPTag,6) ) 
+
+	if (strncmp((char*)filebuffer,KEFPTag,6) )
 		error("CGraphicsBuffer::LoadEFP: File %s is not an EFP file!\n",aFilename.c_str());
 
 	cnt+=6;
@@ -197,10 +217,10 @@ void CGraphicsBuffer::LoadEFP(const std::string& aFilename, CPalette* aPalette)
 			tavu2=filebuffer[cnt++];
 			memset(iBuf+p,tavu2,tavu-192);
 			p+=tavu-192;
-		} 
-		else 
+		}
+		else
 			iBuf[p++]=(char)tavu;
-	} 
+	}
 
 	if (aPalette)
 	{
@@ -239,15 +259,15 @@ void CGraphicsBuffer::LoadPCX(const std::string& aFilename, CPalette* aPalette)
 	for(p=0;p<(unsigned int)w*h;)
 	{
 		tavu=fgetc(pcx);
-		if (tavu>192) 
-		{ 
+		if (tavu>192)
+		{
 			tavu2=fgetc(pcx);
-			for(;tavu>192;tavu--) 
+			for(;tavu>192;tavu--)
 				iBuf[p++]=tavu2;
-		} 
-		else 
+		}
+		else
 			iBuf[p++]=tavu;
-	} 
+	}
 
 	if (aPalette)
 	{
@@ -270,14 +290,14 @@ void CGraphicsBuffer::LoadEFP2(const std::string& aFilename, CPalette* aPalette)
 	fread(buf,4,1,efp);
 	if (memcmp(buf,"EFP2",4)!=0)
 		error("CGraphicsBuffer::LoadEFP2: File malformed (%s)!",aFilename.c_str());
-	
-	fread(&iWidth,4,1,efp);	// WIDTH 
+
+	fread(&iWidth,4,1,efp);	// WIDTH
 	fread(&iHeight,4,1,efp);	// HEIGHT
 
 	Resize(iWidth,iHeight);
 	// BITS (8 bittiä => palette seuraavaksi)
 	if (fgetc(efp)!=8) error("CGraphicsBuffer::LoadEFP2: Only 8 bits EFP2 files are supported (%s)",aFilename.c_str());
-	
+
 	if (aPalette)
 		aPalette->ReadPalette(efp);
 	else
@@ -308,7 +328,7 @@ void CGraphicsBuffer::LoadSCI(const std::string& aFilename, CPalette* aPalette)
 	Resize(width,height);
 
 	fseek(sci,10,SEEK_SET);
-	
+
 	if (aPalette)
 	{
 		aPalette->ReadPalette(sci);
@@ -340,7 +360,7 @@ void CGraphicsBuffer::SaveSCI(const std::string& aFilename, const CPalette* aPal
 
 	if (aPalette)
 		aPalette->AppendPaletteDiv4(sci);
-	else 
+	else
 		for (a=0;a<768;a++)
 			fputc(0,sci);
 
@@ -370,36 +390,36 @@ void CGraphicsBuffer::SaveEFP(const std::string& aFilename, const CPalette* aPal
      if (fwrite(KEFPTag,1,6,efp)!=6) error("CGraphicsBuffer::SaveEFP: fwrite failed (1)");
      if (fwrite(&width,1,2,efp)!=2) error("CGraphicsBuffer::SaveEFP: fwrite failed (2)");
      if (fwrite(&height,1,2,efp)!=2) error("CGraphicsBuffer::SaveEFP: fwrite failed (3)");
- 
+
 	 for (a=0;a<size;a++)
 	 {
 		samecol=0;
 		if (a<size-1)
-			while(iBuf[a]==iBuf[a+samecol+1]&& 
-				samecol<(255-193)&& 
-				(a+samecol)<(size-1))			
+			while(iBuf[a]==iBuf[a+samecol+1]&&
+				samecol<(255-193)&&
+				(a+samecol)<(size-1))
 			samecol++; // kuinka paljon samaa v„ri„
 
 		if (samecol==0)
-		{ 
-			if ((pixel=(unsigned char)iBuf[a])<193) 
+		{
+			if ((pixel=(unsigned char)iBuf[a])<193)
 				fputc(pixel,efp);
-			else 
-			{ 
+			else
+			{
 				fputc(193,efp);
 				fputc(pixel,efp);
 			}
 		}
-		if (samecol>0) 
-		{ 
-			fputc(193+samecol,efp); 
+		if (samecol>0)
+		{
+			fputc(193+samecol,efp);
 			fputc((int)(unsigned char)iBuf[a],efp);
-			a+=samecol; 
-		} 
+			a+=samecol;
+		}
     }
 	if (aPalette)
 		aPalette->AppendPaletteDiv4(efp);
-	else 
+	else
 		for (a=0;a<768;a++)
 			fputc(0,efp);
 	fclose(efp);
@@ -425,16 +445,16 @@ void CGraphicsBuffer::SavePCX(const std::string& aFilename, const CPalette* aPal
 	p.vert_res=(short)75;
 	memset(p.ega_palette,0,48);
 	p.reserved=0;
-	p.num_color_planes=1; 
-	p.bytes_per_line=(short)iWidth; 
+	p.num_color_planes=1;
+	p.bytes_per_line=(short)iWidth;
 	p.palette_type=1; // color
 	memset(p.padding,0,58);
 
 	pcx=fopen(aFilename.c_str(),"wb");
-	if (pcx==NULL) 
+	if (pcx==NULL)
 		error("CGraphicsBuffer::SavePCX: Couldn't open file for writing (%s)", aFilename.c_str());
 
-    if (fwrite(&p,1,sizeof(TPCXHeader),pcx)!=sizeof(TPCXHeader)) 
+    if (fwrite(&p,1,sizeof(TPCXHeader),pcx)!=sizeof(TPCXHeader))
 		error("CGraphicsBuffer::SavePCX: fwrite failed");
 
 	while (count<iHeight*iWidth)
@@ -446,7 +466,7 @@ void CGraphicsBuffer::SavePCX(const std::string& aFilename, const CPalette* aPal
 
 		// check to see how long this "run"
 		// in the image is...
-		while(key == key2 && runcount < 63 && count<iHeight*iWidth) 
+		while(key == key2 && runcount < 63 && count<iHeight*iWidth)
        	{
 			runcount++;
 			count++;
@@ -476,7 +496,7 @@ void CGraphicsBuffer::SavePCX(const std::string& aFilename, const CPalette* aPal
 
 	if (aPalette)
 		aPalette->AppendPalette(pcx);
-	else 
+	else
 		for (int a=0;a<768;a++)
 			fputc(0,pcx);
 	fclose(pcx);
@@ -491,7 +511,7 @@ void CGraphicsBuffer::SaveEFP2(const std::string& aFilename, const CPalette* aPa
 	if (!efp) error("CGraphicsBuffer::SaveEFP2: File %s couldn't be opened!\n",aFilename.c_str());
 
 	fwrite("EFP2",4,1,efp);		// MAGIC
-	fwrite(&iWidth,4,1,efp);	// WIDTH 
+	fwrite(&iWidth,4,1,efp);	// WIDTH
 	fwrite(&iHeight,4,1,efp);	// HEIGHT
 	fputc(8,efp);				// BITS (8 bittiä => palette seuraavaksi)
 
@@ -522,7 +542,7 @@ CRect<int> CGraphicsBuffer::TransCopy(int aDX,int aDY, const CGraphicsBuffer* bu
 	int w=buf->Width();
 	unsigned char *srcptr=buf->iBuf+w*aSY+aSX;
 	unsigned char *dstptr=iBuf+aDY*iWidth+aDX;
-	
+
 
 	for (int y=0;y<aHeight;y++,srcptr+=w,dstptr+=iWidth)
 	 for (int x=0;x<aWidth;x++)
@@ -576,7 +596,7 @@ CRect<int> CGraphicsBuffer::Copy(const CGraphicsBuffer* src)
 }
 
 inline CRect<int> CGraphicsBuffer::Copy(const unsigned char *buf,int aWidth, int aHeight)
-{	
+{
 	int a;
 	DEBUG_ASSERT(buf);
 	DEBUG_ASSERT(iWidth>=aWidth);
@@ -591,7 +611,7 @@ inline CRect<int> CGraphicsBuffer::Copy(const unsigned char *buf,int aWidth, int
 }
 
 CRect<int> CGraphicsBuffer::Copy(int aDX, int aDY,const CGraphicsBuffer* buf)
-{	
+{
 	int a=0;
 	DEBUG_ASSERT(buf);
 	DEBUG_ASSERT(aDX+buf->iWidth<=iWidth);
@@ -601,7 +621,7 @@ CRect<int> CGraphicsBuffer::Copy(int aDX, int aDY,const CGraphicsBuffer* buf)
 }
 
 inline CRect<int> CGraphicsBuffer::Copy(int aDX, int aDY,const unsigned char *buf,int aWidth, int aHeight)
-{	
+{
 	int a;
 	ASSERT(iBuf!=NULL);
 	DEBUG_ASSERT(aDX+aWidth<=iWidth);
@@ -610,11 +630,11 @@ inline CRect<int> CGraphicsBuffer::Copy(int aDX, int aDY,const unsigned char *bu
 	for (a=0;a<aHeight;a++)
 		memcpy(iBuf+aDX+(a+aDY)*iWidth, buf+a*aWidth, aWidth);
 
-	return CRect<int>(aDX,aDY,aDX+aWidth,aDY+aHeight); 
+	return CRect<int>(aDX,aDY,aDX+aWidth,aDY+aHeight);
 }
 
 inline CRect<int> CGraphicsBuffer::Copy(const unsigned char *buf,int aSX, int aSY,int aWidth, int aHeight)
-{	
+{
 	int a;
 
 	ASSERT(iBuf!=NULL);
@@ -664,7 +684,7 @@ void CGraphicsBuffer::Stretch(int aNewWidth,int aNewHeight)
 	DEBUG_ASSERT(aNewHeight>0);
 	DEBUG_ASSERT(aNewWidth<0xffff);
 	DEBUG_ASSERT(aNewHeight<0xffff);
-	
+
 	for (y=0;y<aNewHeight;y++)
 		for (x=0;x<aNewWidth;x++)
 		{
@@ -694,7 +714,7 @@ SDL_Surface* CGraphicsBuffer::CopyToSurface(const CPalette* aPalette) const
 	ASSERT(aPalette);
 	SDL_Surface* surface=SDL_CreateRGBSurfaceFrom(iBuf,iWidth,iHeight,8,iWidth,8,8,8,8);
 
-	if (surface==NULL) 
+	if (surface==NULL)
 		return NULL;
 
 	ASSERT( surface->format->palette->ncolors == 256 );
@@ -706,13 +726,13 @@ SDL_Surface* CGraphicsBuffer::CopyToSurface(const CPalette* aPalette) const
 int CGraphicsBuffer::CopyFromSurface(SDL_Surface* aSurface, CPalette* aPalette)
 {
 	ASSERT(aSurface);
-	// few checks 
+	// few checks
 	if (aSurface->w==0||
 		aSurface->h==0) return 1;
 
 	if (aSurface->format->BitsPerPixel!=8||
-		aSurface->format->BytesPerPixel!=1) 
-                return 1;
+		aSurface->format->BytesPerPixel!=1)
+		error("Unfortunately only 8-bit surfaces are allowed!");
 
 	Resize(aSurface->w,aSurface->h);
 
@@ -752,18 +772,18 @@ void CGraphicsBuffer::Reset()
 	iHeight = 0;
 }
 
-CRect<int> CGraphicsBuffer::DrawBox( const CRect<int>& aRect,int aAdd) 
+CRect<int> CGraphicsBuffer::DrawBox( const CRect<int>& aRect,int aAdd)
 {
 	int a, b, c, offs=aRect.iTop*iWidth+aRect.iLeft;
-	for (a=0; a<aRect.iBottom-aRect.iTop; a++, offs+=iWidth-(aRect.iRight-aRect.iLeft)) 
-		for (b=0; b<aRect.iRight-aRect.iLeft; b++, offs++) 
+	for (a=0; a<aRect.iBottom-aRect.iTop; a++, offs+=iWidth-(aRect.iRight-aRect.iLeft))
+		for (b=0; b<aRect.iRight-aRect.iLeft; b++, offs++)
 		{
 			if (a==0||
 				a==aRect.iBottom-aRect.iTop-1||
 				b==0||
-				b==aRect.iRight-aRect.iLeft-1) 
+				b==aRect.iRight-aRect.iLeft-1)
 				c=iBuf[offs]+1;
-			else 
+			else
 				c=iBuf[offs]-aAdd;
 			if (c<0 ) c=0;
 			if (c>63) c=63;
@@ -785,17 +805,17 @@ CRect<int> CGraphicsBuffer::Rectangle(int aX1,int aY1,int aX2,int aY2,unsigned c
 	DEBUG_ASSERT(aX2<iWidth);
 	DEBUG_ASSERT(aY2<iHeight);
 	int a, offs, offs1, offs2, offs3;
-	
+
 	offs1=aOffset+aY1*iWidth+aX1;
 	offs2=aOffset+aY1*iWidth+aX2;
 	offs3=aOffset+aY2*iWidth+aX1;
 
 	memset(iBuf+offs1, aCol, (aX2-aX1) +1);
 	memset(iBuf+offs3, aCol, (aX2-aX1) +1);
-	for(a=0,offs=offs1+iWidth;a<(aY2-aY1)-1;a++,offs+=iWidth) 
+	for(a=0,offs=offs1+iWidth;a<(aY2-aY1)-1;a++,offs+=iWidth)
 		iBuf[offs]=aCol;
 
-	for(a=0,offs=offs2+iWidth;a<(aY2-aY1)-1;a++,offs+=iWidth) 
+	for(a=0,offs=offs2+iWidth;a<(aY2-aY1)-1;a++,offs+=iWidth)
 		iBuf[offs]=aCol;
 
 	return CRect<int>(aX1,aY1,aX1,aY2);
@@ -838,32 +858,32 @@ inline void CGraphicsBuffer::DrawPolyTri(int aK1,int aK2,int aX,int aY,int aHeig
 	int adder,deltaX1,deltaX2,row,StartY=0;
 	unsigned char* linePtr;
 	//unsigned char *yg,*yg2;
-	
+
 	if (aClip){
 		if (aHeight < 0)
-		{ 
+		{
 			if (aY<0 || aY+aHeight >= iHeight) return;
 			if (aHeight+aY < 0) aHeight-=aHeight+aY;
 			if (aY > iHeight-1) StartY=aY-(iHeight-1);
 		} else
-		{ 
+		{
 			if (aY>=iHeight || aY+aHeight<=0 ) return;
 			if (aY+aHeight > iHeight-1) aHeight-=aHeight+aY-(iHeight-1);
-			if (aY < 0) StartY=abs(aY); 
+			if (aY < 0) StartY=abs(aY);
 		}
 	}
-	
+
 	adder=iWidth;
 
 	linePtr=iBuf + aY*adder;//y ofs in screen
-	
+
 	// Draw from down to up
 	if (aHeight<0)
 	{
 		adder=-adder;
 		aHeight=-aHeight;
 	}
-	
+
 	deltaX1=deltaX2=aX<<KFixedPointBits; //deltaX1 = left side, deltaX2 = right side
 
 	// aK1 should be always bigger that aK2 (because memset doesn't go reverse :))
@@ -922,14 +942,14 @@ void CGraphicsBuffer::DrawPolygon(int aX1,int aY1,int aX2,int aY2,int aX3,int aY
 		DrawPolyTri(k1,k2,aX1,aY1,h,aCol,aClip);
 		return;
 	}
-	
+
 	h=aY2-aY1;
 	h2=aY3-aY1;
 	k1=((aX2-aX1)<<KFixedPointBits)/h;
 	k2=((aX3-aX1)<<KFixedPointBits)/h2;
 	DrawPolyTri(k1,k2,aX1,aY1,h,aCol,aClip);
-	
+
 	h2-=h;
 	k1=((aX2-aX3)<<KFixedPointBits)/h2;
 	DrawPolyTri(k1,-k2,aX3,aY3,-h2,aCol,aClip);
-}	
+}

@@ -56,8 +56,8 @@ const char *InfoText[KInfoTexts]={
 		  "CTRL - make new selection",
 		  "ALT - remove from selection",
 		  "SHIFT - add to selection",
-		  "enter - edit heights/edit blocks",	
-		  "space - block selection mode/level editing mode",	
+		  "enter - edit heights/edit blocks",
+		  "space - block selection mode/level editing mode",
 		  "pageup/pagedown - change block type (walls/floor)",
 		  "-/+ or mouse wheel - zoom"
           };
@@ -105,19 +105,19 @@ void CEditorDrawer::DrawRect(int aX1,int aY1,int aX2,int aY2,unsigned char aColo
 
 	if (aX1>=0 && aX1<iDrawBuffer->Width())
 		for (a=aY1;a<aY2;a++)
-			if (a>=0 && a<iDrawBuffer->Height())	
+			if (a>=0 && a<iDrawBuffer->Height())
 				iDrawBuffer->PutPixel(aX1,a,aColor);
 	if (aX2>=0 && aX2<iDrawBuffer->Width())
 		for (a=aY1;a<aY2;a++)
-			if (a>=0 && a<iDrawBuffer->Height())	
+			if (a>=0 && a<iDrawBuffer->Height())
 				iDrawBuffer->PutPixel(aX2,a,aColor);
 	if (aY1>=0 && aY1<iDrawBuffer->Height())
 		for (a=aX1;a<aX2;a++)
-			if (a>=0 && a<iDrawBuffer->Width())	
+			if (a>=0 && a<iDrawBuffer->Width())
 				iDrawBuffer->PutPixel(a,aY1,aColor);
 	if (aY2>=0 && aY2<iDrawBuffer->Height())
 		for (a=aX1;a<=aX2;a++)
-			if (a>=0 && a<iDrawBuffer->Width())	
+			if (a>=0 && a<iDrawBuffer->Width())
 				iDrawBuffer->PutPixel(a,aY2,aColor);
 }
 
@@ -129,19 +129,19 @@ void CEditorDrawer::DrawLiveRect(int aX1,int aY1,int aX2,int aY2,unsigned char a
 
 	if (aX1>=0 && aX1<iDrawBuffer->Width())
 		for (a=aY1;a<aY2;a++)
-			if (a>=0 && a<iDrawBuffer->Height())	
+			if (a>=0 && a<iDrawBuffer->Height())
 				if ((a+counter)/div%2) iDrawBuffer->PutPixel(aX1,a,aColor);
 	if (aX2>=0 && aX2<iDrawBuffer->Width())
 		for (a=aY1;a<aY2;a++)
-			if (a>=0 && a<iDrawBuffer->Height())	
+			if (a>=0 && a<iDrawBuffer->Height())
 				if ((a-counter)/div%2) iDrawBuffer->PutPixel(aX2,a,aColor);
 	if (aY1>=0 && aY1<iDrawBuffer->Height())
 		for (a=aX1;a<aX2;a++)
-			if (a>=0 && a<iDrawBuffer->Width())	
+			if (a>=0 && a<iDrawBuffer->Width())
 				if ((a-counter)/div%2) iDrawBuffer->PutPixel(a,aY1,aColor);
 	if (aY2>=0 && aY2<iDrawBuffer->Height())
 		for (a=aX1;a<=aX2;a++)
-			if (a>=0 && a<iDrawBuffer->Width())	
+			if (a>=0 && a<iDrawBuffer->Width())
 				if ((a+counter)/div%2) iDrawBuffer->PutPixel(a,aY2,aColor);
 }
 
@@ -168,7 +168,7 @@ void CEditorDrawer::DrawMap()
 	X = iDrawBuffer->Width()-iLevel->Width()*Zoom;
 	Y = 0;
 
-	for (int a=0;a < iLevel->Height();a++) 
+	for (int a=0;a < iLevel->Height();a++)
 		for (int b=0;b < iLevel->Width();b++)
 			if (iLevel->LevelData(b,a).iType==EBlockTypeWall)
 				ZoomPixel(b*Zoom+X,a*Zoom+Y,34,Zoom);
@@ -182,9 +182,9 @@ void CEditorDrawer::DrawInfo()
 	int boxWidth;
 	int boxHeight;
 	int yOffset;
-	
+
 	char text[255];
-	
+
 	strcpy(text,"Keys info (press esc to return)");
 
 	boxWidth=iGraphics->Fonts()->Length(text)*2+10;
@@ -215,9 +215,9 @@ void CEditorDrawer::DrawGeneralData(int aCursorXPos,int aCursorYPos,bool aCommen
 	int boxWidth;
 	int boxHeight;
 	int yOffset;
-	
+
 	char text[255];
-	
+
 	strcpy(text,"Edit general level data (press esc to return)");
 
 	boxWidth=iGraphics->Fonts()->Length(text)+10;
@@ -261,7 +261,7 @@ void CEditorDrawer::DrawRCData(int aCursorXPos,int aCursorYPos,int aMode)
 	std::vector< CLevel::TRandomCrateInfo >* cratesPointer;
 
 	char text[255];
-	
+
 	if (aMode==EEditNormalGameData)
 		strcpy(text,"Edit normal game random crate data (press esc to return)");
 	else
@@ -367,12 +367,12 @@ void CEditorDrawer::DrawBlock(int aX,int aY,int aType, int aNumber,int aSize,int
 	if (aNumber < 0) aNumber = 0;
 	// Exception handling end
 
-	if (aX<0) 
+	if (aX<0)
 		sx=abs(aX);
 	else
 		if (aX+ZBlockSize+aSize*aZoom > iDrawBuffer->Width())
 			ex-=aX+ZBlockSize+aSize*aZoom-iDrawBuffer->Width();
-	if (aY<0) 
+	if (aY<0)
 		sy=abs(aY);
 	else
 		if (aY+ZBlockSize+aSize*aZoom > iDrawBuffer->Height())
@@ -381,7 +381,7 @@ void CEditorDrawer::DrawBlock(int aX,int aY,int aType, int aNumber,int aSize,int
 
 	TextureOffs=((aNumber&(BlocksInRow-1)) *(KBlockSpriteSize+aSize)) +(aNumber/BlocksInRow*xSize*(KBlockSpriteSize + aSize));
 	assert(aSize<KWallSprites);
-	
+
 	switch (aType)
 	{
 	case EBlockTypeFloor:
@@ -405,7 +405,7 @@ void CEditorDrawer::DrawBlock(int aX,int aY,int aType, int aNumber,int aSize,int
 void CEditorDrawer::DrawLevelType(int aXOffs,int aYOffs,int aType)
 {
 	int a,b;
-	
+
 	for (a=0;a<iScrBlockHeight;a++)
 		for (b=0;b<iScrBlockWidth;b++)
 			if (iLevel->InLevel(aXOffs+b,aYOffs+a))
@@ -474,7 +474,7 @@ void CEditorDrawer::DrawSelection(int a3D,int aXOffs, int aYOffs)
 	{
 		xofs=block_x_ofs[iLevel->LevelData(x,y).iHeight]+(x-aXOffs)*(iLevel->LevelData(x,y).iHeight*a3D*iZoom+iScrBlockSize);
 		yofs=block_y_ofs[iLevel->LevelData(x,y).iHeight]+(y-aYOffs)*(iLevel->LevelData(x,y).iHeight*a3D*iZoom+iScrBlockSize);
-	
+
 //		if (x>=aXOffs && x<aXOffs+iScrBlockWidth && y>=aYOffs && y<aYOffs+iScrBlockHeight)
 		DrawLiveRect(xofs,yofs,xofs+(KBlockSpriteSize+iLevel->LevelData(x,y).iHeight*a3D)*iZoom-1, yofs+(KBlockSpriteSize+iLevel->LevelData(x,y).iHeight*a3D)*iZoom-1, 255, counter, div);
 		iAnimation = true;
@@ -514,8 +514,8 @@ void CEditorDrawer::DrawCircle(int aX,int aY,int aR,unsigned char aCol)
 		ang=(float)a/aR;
 		rx=aX+(int)(aR*cos(ang));
 		ry=aY+(int)(aR*sin(ang));
-	
-		if (rx>=0 && ry>=0 && rx<iDrawBuffer->Width() && ry<iDrawBuffer->Height()) 
+
+		if (rx>=0 && ry>=0 && rx<iDrawBuffer->Width() && ry<iDrawBuffer->Height())
 		 iDrawBuffer->PutPixel(rx,ry,aCol);
 	}
 }
@@ -547,7 +547,7 @@ void CEditorDrawer::DrawCrate(int aX,int aY,int aType1,int aType2,unsigned char 
 {
 	int a,b,size=KWeaponCrateSize*iZoom,start=0;
 	char texti[255];
-	
+
 	if (aX < 0 || aX >= iDrawBuffer->Width() || aY < 0 || aY >= iDrawBuffer->Height())
 		return;
 
@@ -562,22 +562,22 @@ void CEditorDrawer::DrawCrate(int aX,int aY,int aType1,int aType2,unsigned char 
 	}
 	else
 	if (aType1==CLevel::EHealthCrate)
-		strcpy(texti,"Energy");	
+		strcpy(texti,"Energy");
 	else
 	if (aType1==CLevel::EMoneyCrate)
 		sprintf(texti,"Money(%d)",aType2);
 	else
 	if (aType1==CLevel::ETargetCrate)
-		strcpy(texti,"Target");	
+		strcpy(texti,"Target");
 
 	for (a=aY+start;a<aY+size;a++)
 		for (b=aX+start;b<aX+size;b++)
-			if (a >= 0 && 
-				a < iDrawBuffer->Height() && 
-				b >= 0 && 
+			if (a >= 0 &&
+				a < iDrawBuffer->Height() &&
+				b >= 0 &&
 				b < iDrawBuffer->Width())
 				iDrawBuffer->PutPixel(b,a,aColor);
-	
+
 	Write(aX,aY+size-FontHeight(),texti);
 }
 
@@ -591,7 +591,7 @@ void CEditorDrawer::DrawObjects()
 	{
 		DrawSpot(int(SpotPtr->Location().X()*iZoom-iScrXOffs*iScrBlockSize),
 				 int(SpotPtr->Location().Y()*iZoom-iScrYOffs*iScrBlockSize),
-				 SpotPtr->Size());	
+				 SpotPtr->Size());
 		SpotPtr = SpotPtr->Next();
 	}
 
@@ -599,7 +599,7 @@ void CEditorDrawer::DrawObjects()
 	{
 		DrawSteam(int(SteamPtr->X()*iZoom-iScrXOffs*iScrBlockSize),
 			      int(SteamPtr->Y()*iZoom-iScrYOffs*iScrBlockSize),SteamPtr->Angle(),
-				  SteamPtr->Speed());	
+				  SteamPtr->Speed());
 		SteamPtr = SteamPtr->Next();
 	}
 
@@ -682,27 +682,27 @@ void CEditorDrawer::ZoomOut()
 void CEditorDrawer::SetScrXOffs(int aScrXOffs)
 {
 	iScrXOffs = aScrXOffs;
-	if (iScrXOffs < iScrBlockWidth/(-2)) iScrXOffs=iScrBlockWidth/(-2); 
-	if (iScrXOffs > iLevel->Width()-iScrBlockWidth/2) iScrXOffs=iLevel->Width()-iScrBlockWidth/2; 
+	if (iScrXOffs < iScrBlockWidth/(-2)) iScrXOffs=iScrBlockWidth/(-2);
+	if (iScrXOffs > iLevel->Width()-iScrBlockWidth/2) iScrXOffs=iLevel->Width()-iScrBlockWidth/2;
 }
 void CEditorDrawer::SetScrYOffs(int aScrYOffs)
 {
 	iScrYOffs = aScrYOffs;
-	if (iScrYOffs < iScrBlockHeight/(-2)) iScrYOffs=iScrBlockHeight/(-2); 
-	if (iScrYOffs > iLevel->Height()-iScrBlockHeight/2) iScrYOffs=iLevel->Height()-iScrBlockHeight/2; 
+	if (iScrYOffs < iScrBlockHeight/(-2)) iScrYOffs=iScrBlockHeight/(-2);
+	if (iScrYOffs > iLevel->Height()-iScrBlockHeight/2) iScrYOffs=iLevel->Height()-iScrBlockHeight/2;
 }
 
 void CEditorDrawer::SetBlockScrXOffs(int aScrXOffs)
 {
 	iBlockScrXOffs = aScrXOffs;
-	if (iBlockScrXOffs > BlocksInRow-iScrBlockWidth) iBlockScrXOffs = BlocksInRow-iScrBlockWidth; 
-	if (iBlockScrXOffs < 0) iBlockScrXOffs=0; 
+	if (iBlockScrXOffs > BlocksInRow-iScrBlockWidth) iBlockScrXOffs = BlocksInRow-iScrBlockWidth;
+	if (iBlockScrXOffs < 0) iBlockScrXOffs=0;
 }
 void CEditorDrawer::SetBlockScrYOffs(int aScrYOffs)
 {
 	iBlockScrYOffs = aScrYOffs;
-	if (iBlockScrYOffs > BlocksInCol-iScrBlockHeight) iBlockScrYOffs = BlocksInCol-iScrBlockHeight; 
-	if (iBlockScrYOffs < 0) iBlockScrYOffs=0; 
+	if (iBlockScrYOffs > BlocksInCol-iScrBlockHeight) iBlockScrYOffs = BlocksInCol-iScrBlockHeight;
+	if (iBlockScrYOffs < 0) iBlockScrYOffs=0;
 }
 
 void CEditorDrawer::Write(int aX,int aY,const char* aText, CFonts::TVertAlign aVAlign, CFonts::THorizAlign aHAlign)
@@ -713,7 +713,7 @@ void CEditorDrawer::Write(int aX,int aY,const char* aText, CFonts::TVertAlign aV
 void CEditorDrawer::Write(int aX,int aY,int aNumber, CFonts::TVertAlign aVAlign, CFonts::THorizAlign aHAlign)
 {
 	char Text[255];
-	itoa(aNumber,Text,10);
+	sprintf(Text, "%d", aNumber);
 	iGraphics->Fonts()->Write(aX,aY,Text, aVAlign, aHAlign,iDrawBuffer);
 }
 
@@ -768,11 +768,11 @@ void CEditorDrawer::DrawFace(int aX1,int aY1,int aX2,int aY2,int aX3,int aY3,int
 int CEditorDrawer::NeedToDraw(int aX,int aY,int aXAdd,int aYAdd)
 {
 	if (iLevel->InLevel(aX+aXAdd,aY+aYAdd)){
-	if ( iLevel->LevelData(aX+aXAdd,aY+aYAdd).iType == EBlockTypeWall && 
+	if ( iLevel->LevelData(aX+aXAdd,aY+aYAdd).iType == EBlockTypeWall &&
 	 	 iLevel->LevelData(aX+aXAdd,aY+aYAdd).iHeight >= iLevel->LevelData(aX,aY).iHeight )
 		 return 0;
 	} else
-	if ( iLevel->OutBlock().iType == EBlockTypeWall && 
+	if ( iLevel->OutBlock().iType == EBlockTypeWall &&
 	 	 iLevel->OutBlock().iHeight >= iLevel->LevelData(aX,aY).iHeight )
 		 return 0;
 
@@ -795,7 +795,7 @@ void CEditorDrawer::Draw3DBlockRow(int aX1,int aX2,int aY,EDrawSect aSection,int
 		block_y_ofs[b] = HalfScrBlockHeight * b * iZoom * (-1);
 	}
 
-	if (aX1<aX2) 
+	if (aX1<aX2)
 		mod = 1;
 	else
 		mod = -1;
@@ -807,9 +807,9 @@ void CEditorDrawer::Draw3DBlockRow(int aX1,int aX2,int aY,EDrawSect aSection,int
 	{
 		xofs1= b * iScrBlockSize;
 
-		LevelX = iScrXOffs+b;	
+		LevelX = iScrXOffs+b;
 
-		if (iLevel->InLevel(LevelX,LevelY))	
+		if (iLevel->InLevel(LevelX,LevelY))
 		{
 			if (iLevel->LevelData(LevelX,LevelY).iType==EBlockTypeWall)
 			{
@@ -820,49 +820,49 @@ void CEditorDrawer::Draw3DBlockRow(int aX1,int aX2,int aY,EDrawSect aSection,int
 				col2=iGraphics->WallColors()->Ptr()[iLevel->LevelData(LevelX,LevelY).iNumber+16*(iLevel->LevelData(LevelX,LevelY).iNumber/16)+16];
 				if (iLevel->LevelData(LevelX,LevelY).iHeight > 0)
 				{
-					switch(aSection) {							
+					switch(aSection) {
 					case UpLeft:
 						if (NeedToDraw(LevelX,LevelY,0,1))
-							DrawFace(xofs2-1, yofs2+iSize, xofs2+iSize, yofs2+iSize, xofs1-1, yofs1+iScrBlockSize, xofs1+iScrBlockSize,yofs1+iScrBlockSize,col2); 
+							DrawFace(xofs2-1, yofs2+iSize, xofs2+iSize, yofs2+iSize, xofs1-1, yofs1+iScrBlockSize, xofs1+iScrBlockSize,yofs1+iScrBlockSize,col2);
 						if (NeedToDraw(LevelX,LevelY,1,0))
-							DrawFace(xofs2+iSize, yofs2+iSize, xofs1+iScrBlockSize,yofs1+iScrBlockSize, xofs2+iSize, yofs2-1, xofs1+iScrBlockSize, yofs1-1,col1); 
+							DrawFace(xofs2+iSize, yofs2+iSize, xofs1+iScrBlockSize,yofs1+iScrBlockSize, xofs2+iSize, yofs2-1, xofs1+iScrBlockSize, yofs1-1,col1);
 					break;
 					case UpRight:
 						if (NeedToDraw(LevelX,LevelY,0,1))
-							DrawFace(xofs2-1, yofs2+iSize, xofs2+iSize, yofs2+iSize, xofs1, yofs1+iScrBlockSize, xofs1+iScrBlockSize,yofs1+iScrBlockSize,col2); 
+							DrawFace(xofs2-1, yofs2+iSize, xofs2+iSize, yofs2+iSize, xofs1, yofs1+iScrBlockSize, xofs1+iScrBlockSize,yofs1+iScrBlockSize,col2);
 						if (NeedToDraw(LevelX,LevelY,-1,0))
-							DrawFace(xofs2, yofs2, xofs1,yofs1, xofs2-1, yofs2 + iSize, xofs1-1, yofs1 + iScrBlockSize,col2); 
+							DrawFace(xofs2, yofs2, xofs1,yofs1, xofs2-1, yofs2 + iSize, xofs1-1, yofs1 + iScrBlockSize,col2);
 					break;
 					case DownLeft:
 						if (NeedToDraw(LevelX,LevelY,0,-1))
-							DrawFace(xofs2+iSize-1, yofs2, xofs1+iScrBlockSize,yofs1, xofs2, yofs2, xofs1-1, yofs1,col1); 
+							DrawFace(xofs2+iSize-1, yofs2, xofs1+iScrBlockSize,yofs1, xofs2, yofs2, xofs1-1, yofs1,col1);
 						if (NeedToDraw(LevelX,LevelY,1,0))
-							DrawFace(xofs2+iSize, yofs2+iSize, xofs1+iScrBlockSize,yofs1+iScrBlockSize, xofs2+iSize, yofs2-1, xofs1+iScrBlockSize, yofs1-1,col1); 
+							DrawFace(xofs2+iSize, yofs2+iSize, xofs1+iScrBlockSize,yofs1+iScrBlockSize, xofs2+iSize, yofs2-1, xofs1+iScrBlockSize, yofs1-1,col1);
 					break;
 					case DownRight:
 						if (NeedToDraw(LevelX,LevelY,0,-1))
-							DrawFace(xofs2+iSize-1, yofs2, xofs1+iScrBlockSize,yofs1, xofs2, yofs2, xofs1-1, yofs1,col1); 
+							DrawFace(xofs2+iSize-1, yofs2, xofs1+iScrBlockSize,yofs1, xofs2, yofs2, xofs1-1, yofs1,col1);
 						if (NeedToDraw(LevelX,LevelY,-1,0))
-							DrawFace(xofs2, yofs2, xofs1,yofs1, xofs2-1, yofs2 + iSize, xofs1-1, yofs1 + iScrBlockSize,col2); 
+							DrawFace(xofs2, yofs2, xofs1,yofs1, xofs2-1, yofs2 + iSize, xofs1-1, yofs1 + iScrBlockSize,col2);
 					break;
 					}
 				}
 				DrawBlock(xofs2, yofs2, iLevel->LevelData(LevelX,LevelY).iType, iLevel->LevelData(LevelX,LevelY).iNumber, iLevel->LevelData(LevelX,LevelY).iHeight,iZoom);
-				if (aSelX == LevelX && aSelY == LevelY) 
+				if (aSelX == LevelX && aSelY == LevelY)
 					DrawRect(xofs2,yofs2,xofs2+(KBlockSpriteSize+iLevel->LevelData(LevelX,LevelY).iHeight)*iZoom-1,yofs2+(KBlockSpriteSize+iLevel->LevelData(LevelX,LevelY).iHeight)*iZoom-1,255);
 			}
-		} 
-		else 
+		}
+		else
 		{
 			xofs2=block_x_ofs[iLevel->OutBlock().iHeight]+b*(iLevel->OutBlock().iHeight*iZoom+iScrBlockSize);
 			yofs2=block_y_ofs[iLevel->OutBlock().iHeight]+aY*(iLevel->OutBlock().iHeight*iZoom+iScrBlockSize);
 			DrawBlock(xofs2, yofs2, iLevel->OutBlock().iType, iLevel->OutBlock().iNumber, iLevel->OutBlock().iHeight,iZoom);
-		}   
+		}
 	}
 }
 
 
-void CEditorDrawer::Draw3DWalls(int aSelX,int aSelY) 
+void CEditorDrawer::Draw3DWalls(int aSelX,int aSelY)
 {
 	int x_start, x_end, y_start, y_end;
     int a;
@@ -871,9 +871,9 @@ void CEditorDrawer::Draw3DWalls(int aSelX,int aSelY)
 
     y_start=0;
     y_end= HalfScrBlockHeight;
-	
+
 	for (a=y_start; a<y_end ; a ++)
-	{ 
+	{
 		x_start=0;
 		x_end= HalfScrBlockWidth;
 		Draw3DBlockRow(x_start ,x_end, a, UpLeft, aSelX, aSelY);
@@ -883,8 +883,8 @@ void CEditorDrawer::Draw3DWalls(int aSelX,int aSelY)
 	}
 		y_start= iScrBlockHeight - 1;
 
-	for (a=y_start; a >= y_end ; a--) 
-	{	
+	for (a=y_start; a >= y_end ; a--)
+	{
 		x_start = 0;
 		x_end = HalfScrBlockWidth;
 		Draw3DBlockRow(x_start ,x_end, a, DownLeft, aSelX, aSelY);
@@ -892,5 +892,5 @@ void CEditorDrawer::Draw3DWalls(int aSelX,int aSelY)
 		x_end= HalfScrBlockWidth - 1;
 		Draw3DBlockRow(x_start ,x_end , a, DownRight, aSelX, aSelY);
 
-	}        
-}		
+	}
+}

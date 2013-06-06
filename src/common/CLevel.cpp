@@ -16,17 +16,17 @@ namespace
 	const int KVersionEnemies[KLastOldFormatVersion + 1]={7,7,7,7,8,8,8,10,10};// last must be same as DIFF_ENEMIES
 
 	const int KDustBlockAmount = 18;
-	const int KDustBlocks[KDustBlockAmount] = 
+	const int KDustBlocks[KDustBlockAmount] =
 	{
 		0,		  // 1
-		16*4, 
-		16*5, 
-		16*5 + 2, 
+		16*4,
+		16*5,
+		16*5 + 2,
 		16*6 + 1, // 5
-		16*6 + 1, 
-		16*6 + 2, 
-		16*7 + 1, 
-		16*7 + 2, 
+		16*6 + 1,
+		16*6 + 2,
+		16*7 + 1,
+		16*7 + 2,
 		16*7 + 3, // 10
 		21,
 		22,
@@ -98,7 +98,7 @@ void CLevel::Reset()
 	iHeight=0;
 	iCntSpotLights=0;
 	iCntSteams=0;
-	
+
 	iPlStart.clear();
 
 	iOutBlock.iCastDarkness=0;
@@ -106,7 +106,7 @@ void CLevel::Reset()
 	iOutBlock.iHeight=0;
 	iOutBlock.iNumber=0;
 	iOutBlock.iType=EBlockTypeFloor;
-   
+
 	delete[] iReachableBlock;
 	iReachableBlock=NULL;
 	delete[] iLevelData;
@@ -197,24 +197,24 @@ void CLevel::GenerateShadows()
 	}
 }
 
-void CLevel::Load(const char* aName) 
+void CLevel::Load(const char* aName)
 {
 	ASSERT(aName);
 	ASSERT(strlen(aName)>0);
 	FILE *dat;
 	dat=fopen(aName, "rb");
-	if (dat != NULL) 
+	if (dat != NULL)
 	{
 		Reset();
 
 		strcpy(iLevelFileName,aName);
 
-		if ( fread(&iVersion, 4, 1, dat)<=0 ) 
+		if ( fread(&iVersion, 4, 1, dat)<=0 )
 			throw CFailureException("CLevel::Load: Level file too short.");
 
 		fseek( dat, 0, SEEK_SET );
 
-		if ( iVersion > 100 ) 
+		if ( iVersion > 100 )
 			throw CFailureException("CLevel::Load: Level file corrupted?");
 
 		try
@@ -229,7 +229,7 @@ void CLevel::Load(const char* aName)
 			fclose( dat );
 			throw;
 		}
-		
+
 		fclose( dat );
 
 		strcpy(iLevelFileName,aName);
@@ -298,7 +298,7 @@ void CLevel::LoadNewFormat(FILE* aFile)
 					{
 						AddSpotLight( aFile );
 					}
-                    
+
 					break;
 				}
 			case KSteams:
@@ -308,7 +308,7 @@ void CLevel::LoadNewFormat(FILE* aFile)
 					{
 						AddSteam( aFile );
 					}
-                    
+
 					break;
 				}
 			case KGeneralLevelInfo:
@@ -382,11 +382,11 @@ void CLevel::LoadNewFormat(FILE* aFile)
 			case KPlacedCratesNormal:
 				{
 					int amount = ReadInt( aFile );
-					
+
 					for (int a=0;a<amount;a++)
 					{
 						TCrateInfo tmpCrate;
-						if (fread(&tmpCrate, sizeof(TCrateInfo), 1, aFile)!=1) 
+						if (fread(&tmpCrate, sizeof(TCrateInfo), 1, aFile)!=1)
 							throw CFailureException("CLevel::LoadNewFormat: File loading error 1");
 
 						iPlacedCratesNormal.push_back( tmpCrate );
@@ -400,9 +400,9 @@ void CLevel::LoadNewFormat(FILE* aFile)
 					for (int a=0;a<amount;a++)
 					{
 						TCrateInfo tmpCrate;
-						if (fread(&tmpCrate, sizeof(TCrateInfo), 1, aFile)!=1) 
+						if (fread(&tmpCrate, sizeof(TCrateInfo), 1, aFile)!=1)
 							throw CFailureException("CLevel::LoadNewFormat: File loading error 2");
-						
+
 						iPlacedCratesDM.push_back( tmpCrate );
 					}
 					break;
@@ -420,7 +420,7 @@ void CLevel::LoadNewFormat(FILE* aFile)
 					for (int a=0;a<amount;a++)
 					{
 						TEnemyCoords tmpEnemy;
-						if (fread(&tmpEnemy, sizeof(TEnemyCoords), 1, aFile)!=1) 
+						if (fread(&tmpEnemy, sizeof(TEnemyCoords), 1, aFile)!=1)
 							throw CFailureException("CLevel::LoadNewFormat: File loading error 3");
 
 						iEnemy.push_back( tmpEnemy );
@@ -475,7 +475,7 @@ void CLevel::LoadOldFormat(FILE* aFile)
 	int a, bullets, weapons;
 
 	if(fread(&iVersion, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: version read failure");
-	if (iVersion>KLastOldFormatVersion) 
+	if (iVersion>KLastOldFormatVersion)
 		throw CCriticalException("CLevel::LoadOldFormat: loading new file with old loader!");
 	if (fread(&iWidth, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 1");
 	if (fread(&iHeight, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 2");
@@ -497,22 +497,22 @@ void CLevel::LoadOldFormat(FILE* aFile)
 			else
 				iLevelData[a].iHeight=0;
 		}
-        else 
+        else
 		{
 			if (fread(&iLevelData[a].iHeight, 4 , 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 6");
-			if (iLevelData[a].iType==EBlockTypeFloor) 
-				iLevelData[a].iHeight=0; 
+			if (iLevelData[a].iType==EBlockTypeFloor)
+				iLevelData[a].iHeight=0;
 		}
 	}
 	int x,y,players,tmp;
 
-	if (iVersion<8) 
+	if (iVersion<8)
 		players = 2;
-	else 
+	else
 		players = KMaxPlayers;
 
 	iPlStart.clear();
-		
+
 	for (a=0;a<players;a++)
 	{
 		x = ReadInt( aFile );
@@ -522,13 +522,13 @@ void CLevel::LoadOldFormat(FILE* aFile)
 	}
 
 	if (fread(&tmp, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 7");
-	for (a=0;a<tmp;a++) 
+	for (a=0;a<tmp;a++)
 	{
 		AddSpotLight(aFile);
 	}
 
 	if (fread(&tmp, 4, 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 8");
-	for (a=0;a<tmp;a++) 
+	for (a=0;a<tmp;a++)
 	{
 		AddSteam(aFile);
 	}
@@ -540,8 +540,8 @@ void CLevel::LoadOldFormat(FILE* aFile)
 	if (KVersionEnemies[iVersion])
 		if (fread(iGeneralLevelInfo.iEnemies,4*KVersionEnemies[iVersion], 1, aFile)<=0) throw CFailureException("CLevel::LoadOldFormat: File loading error 10");
 
-	memset( &iRandomCratesNormal, 0, sizeof( iRandomCratesNormal ) ); 
-	memset( &iRandomCratesDM, 0, sizeof( iRandomCratesDM ) ); 
+	memset( &iRandomCratesNormal, 0, sizeof( iRandomCratesNormal ) );
+	memset( &iRandomCratesDM, 0, sizeof( iRandomCratesDM ) );
 	weapons=KVersionWeapons[iVersion];
     bullets=KVersionBullets[iVersion];
 
@@ -600,17 +600,17 @@ void CLevel::LoadOldFormat(FILE* aFile)
 
 			iEnemy.push_back( enemy );
 		}
-				
-	} 
-    else 
+
+	}
+    else
 	{
 		iOutBlock.iNumber = 16*10-1;
 		iOutBlock.iType = EBlockTypeWall;
     }
-	
-    if (iOutBlock.iType==EBlockTypeFloor) 
-		iOutBlock.iHeight=0; 
-    else 
+
+    if (iOutBlock.iType==EBlockTypeFloor)
+		iOutBlock.iHeight=0;
+    else
 	{
 		ASSERT( iOutBlock.iNumber < KBlockHeightTableSize );
 		iOutBlock.iHeight=KBlockHeights[iOutBlock.iNumber];
@@ -620,7 +620,7 @@ void CLevel::LoadOldFormat(FILE* aFile)
 void CLevel::AddSpotLight(int aX,int aY,int aSize)
 {
 	CSpotLight* ptr=new CSpotLight((float)aX,(float)aY,aSize);
-	
+
 	if (iSpotLights==NULL)
 	{
 		iSpotLights=ptr;
@@ -639,7 +639,7 @@ void CLevel::AddSpotLight(FILE* fptr)
 {
 	ASSERT(fptr);
 	CSpotLight* ptr=new CSpotLight(fptr);
-	
+
 	if (iSpotLights==NULL)
 	{
 		iSpotLights=ptr;
@@ -655,7 +655,7 @@ void CLevel::AddSpotLight(FILE* fptr)
 void CLevel::AddSteam(int aX,int aY,int aAngle,int aSpeed)
 {
 	CSteam* ptr=new CSteam((float)aX, (float)aY, aAngle, aSpeed);
-	
+
 	if (iSteams==NULL)
 	{
 		iSteams=ptr;
@@ -672,7 +672,7 @@ void CLevel::AddSteam(FILE* fptr)
 {
 	ASSERT(fptr);
 	CSteam* ptr=new CSteam(fptr, iVersion);
-	
+
 	if (iSteams==NULL)
 	{
 		iSteams=ptr;
@@ -713,8 +713,13 @@ void CLevel::AddDMCrate(int aX,int aY,int aType1,int aType2)
 	tmp.iY = aY;
 	tmp.iType1 = aType1;
 	tmp.iType2 = aType2;
-	
+
 	iPlacedCratesDM.push_back( tmp );
+}
+
+char* CLevel::LevelFileName()
+{
+    return iLevelFileName;
 }
 
 void CLevel::ClearLevelInfo()
@@ -737,9 +742,9 @@ void CLevel::DarknessCast()
 	// Leave borders out
 	for(a=1;a<iHeight-1;a++)
 		for(b=1;b<iWidth-1;b++)
-			if (LevelData(b,a).iHeight == 0) 
+			if (LevelData(b,a).iHeight == 0)
 					iLevelData[a*iWidth+b].iCastDarkness=0;
-				else 
+				else
 					iLevelData[a*iWidth+b].iCastDarkness=1;
 }
 
@@ -748,14 +753,14 @@ void CLevel::DarknessCast()
 bool CLevel::VisibilityCheck(const CCoord<float>& aSrc,const CCoord<float>& aDst,CCoord<float>* aCollisionPoint)
 {
 	int a;
-    int iterations=int(max(1.0f,max(abs(aDst.X()-aSrc.X()),abs(aDst.Y()-aSrc.Y()))));
+    int iterations=int(max(1.0,(double)(max(fabs(aDst.X()-aSrc.X()),fabs(aDst.Y()-aSrc.Y())))));
 	int x_sign = sign(aDst.X()-aSrc.X());
 	int y_sign = sign(aDst.Y()-aSrc.Y());
 	float xDelta=((float)aDst.X()-aSrc.X())/iterations;
 	float yDelta=((float)aDst.Y()-aSrc.Y())/iterations;
 	CCoord<float> oldPos = aSrc;
 	CCoord<float> newPos;
-    
+
 	for (a=0;a<=iterations;a++)
 	{
 		newPos = aSrc.Add(xDelta*a,yDelta*a);
@@ -806,7 +811,7 @@ void CLevel::RecurseReachable(const CCoord<int>& aPos, bool aHoriz)
 	if (aHoriz)
 	{
 		int xmin=aPos.X(), xmax=aPos.X(),y=aPos.Y(),a;
-		do 
+		do
 		{
 			xmin--;
 		} while (!Collision(xmin,y)&&!Reachable(CCoord<int>(xmin,y))&&InLevel(xmin,y));
@@ -900,30 +905,30 @@ void CLevel::ModifyBorderBlocks()
 	int a;
 	for (a=0;a<Height();a++)
 	{
-		if (LevelData(0,a).iType==EBlockTypeFloor) 
+		if (LevelData(0,a).iType==EBlockTypeFloor)
 			LevelData(0,a).iType= EBlockTypeWall;
 		if (LevelData(Width()-1,a).iType==EBlockTypeFloor)
 			LevelData(Width()-1,a).iType= EBlockTypeWall;
 
 		ASSERT( iOutBlock.iNumber < KBlockHeightTableSize );
 
-		if (LevelData(0,a).iHeight<KBlockHeights[iOutBlock.iNumber]) 
+		if (LevelData(0,a).iHeight<KBlockHeights[iOutBlock.iNumber])
 			LevelData(0,a).iHeight =  KBlockHeights[iOutBlock.iNumber];
-		if (LevelData(Width()-1, a).iHeight<KBlockHeights[iOutBlock.iNumber]) 
+		if (LevelData(Width()-1, a).iHeight<KBlockHeights[iOutBlock.iNumber])
 			LevelData(Width()-1, a).iHeight = KBlockHeights[iOutBlock.iNumber];
 	}
 	for (a=0;a<Width();a++)
 	{
-		if (LevelData(a,0).iType==EBlockTypeFloor) 
+		if (LevelData(a,0).iType==EBlockTypeFloor)
 			LevelData(a,0).iType= EBlockTypeWall;
-		if (LevelData(a,Height()-1).iType==EBlockTypeFloor) 
+		if (LevelData(a,Height()-1).iType==EBlockTypeFloor)
 			LevelData(a,Height()-1).iType= EBlockTypeWall;
-		
+
 		ASSERT( iOutBlock.iNumber < KBlockHeightTableSize );
 
-		if (LevelData(a,0).iHeight<KBlockHeights[iOutBlock.iNumber]) 
+		if (LevelData(a,0).iHeight<KBlockHeights[iOutBlock.iNumber])
 			LevelData(a,0).iHeight = KBlockHeights[iOutBlock.iNumber];
-		if (LevelData(a, Height()-1).iHeight<KBlockHeights[iOutBlock.iNumber]) 
+		if (LevelData(a, Height()-1).iHeight<KBlockHeights[iOutBlock.iNumber])
 			LevelData(a, Height()-1).iHeight = KBlockHeights[iOutBlock.iNumber];
 	}
 }
@@ -946,13 +951,13 @@ int CLevel::ReadInt( FILE* aFptr )
 	}
 
 	return temp;
-} 
+}
 
 bool CLevel::DustBlock(const CCoord<int>& aPos) const
 {
 	int num = LevelData(aPos).iNumber;
-	for (int a=0;a<KDustBlockAmount;a++) 
-		if (num==KDustBlocks[a]) 
+	for (int a=0;a<KDustBlockAmount;a++)
+		if (num==KDustBlocks[a])
 		{
 			return true;
 		}
@@ -963,7 +968,7 @@ bool CLevel::DustBlock(const CCoord<int>& aPos) const
 CLevel::TRandomCrateInfo CLevel::GetRandomCrateInfo(int aType1,int aType2,std::vector< TRandomCrateInfo >* aRandomCrateInfo) const
 {
 	for (int a=0;a < aRandomCrateInfo->size();a++)
-		if (aRandomCrateInfo->at(a).iType1 == aType1 && 
+		if (aRandomCrateInfo->at(a).iType1 == aType1 &&
 			aRandomCrateInfo->at(a).iType2 == aType2) return aRandomCrateInfo->at(a);
 	TRandomCrateInfo NullCrate(aType1,aType2,0);
 	return NullCrate;

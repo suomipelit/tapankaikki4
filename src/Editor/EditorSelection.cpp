@@ -1,6 +1,6 @@
 #include "EditorSelection.h"
-#include <stdlib.h>
-#include <string>
+#include <malloc.h>
+#include <memory.h>
 
 CEditorSelection::CEditorSelection(void)
 {

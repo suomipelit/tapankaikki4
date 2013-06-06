@@ -1,4 +1,3 @@
-#include <vector>
 #include "CCrate.h"
 
 #include "common/CFonts.h"

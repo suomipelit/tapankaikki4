@@ -2,9 +2,9 @@
 #define __ERROR_H_
 
 #include "defines.h"
-#include <exception>
+#include <stdexcept>
 
-class CGameException : public std::exception
+class CGameException : public std::runtime_error
 {
 protected:
 	EXPORT CGameException();
@@ -42,7 +42,7 @@ public:
 
 EXPORT void logwrite(const char *out, ...);
 
-#ifdef __unix__
+#ifdef __LINUX__
 void error(const char *fmt,...);
 #else
 EXPORT void __declspec(noreturn) error(const char *fmt,...);

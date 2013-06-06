@@ -59,7 +59,7 @@ bool CEventFilter::HandleEvent(SDL_Event	 event)
 	}
 	if (event.type == SDL_VIDEORESIZE)
 	{
-#ifndef __unix__
+#ifndef __LINUX__
 		iGD->SetMode(event.resize.w,event.resize.h,8,0,SDL_RESIZABLE);
 #else
 		iGD->SetMode(event.resize.w,event.resize.h,0,0,SDL_RESIZABLE);

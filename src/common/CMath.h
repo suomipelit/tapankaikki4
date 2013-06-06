@@ -15,17 +15,13 @@ template <class T> class CCoord;
 #define ANGLEFIX(a) { while (a>=360) a-=360;\
 					  while (a<0) a+=360; }
 
-#ifndef __unix__
+#ifndef __LINUX__
 
-#ifndef min
-#define min(a,b) ((a)<=(b)?(a):(b))
-#endif
+#include <algorithm>
+using std::min;
+using std::max;
 
-#ifndef max
-#define max(a,b) ((a)> (b)?(a):(b)) 
-#endif
-
-#else	// __unix__
+#else	// __LINUX__
 
 #ifndef abs
 template<class T> inline T abs(const T& a) { return a<0 ? -a : a; }
@@ -35,16 +31,16 @@ template<class T> inline T abs(const T& a) { return a<0 ? -a : a; }
 using std::min;
 using std::max;
 
-#endif	// end __unix__
+#endif	// end __LINUX__
 
 class CMath
 {
 private:
 	CMath();
-	
+
 public:
 
-#ifndef __unix__
+#ifndef __LINUX__
 	EXPORT static const CMath* Static();
 	EXPORT static void Destroy();
 #else
@@ -70,15 +66,15 @@ public:
 		ANGLEFIX(a);
 		return iCosine[a];
 	}
-	
+
 	template <class T,class U>
 	static inline float GetDist(const CCoord<T>& aPos1,const CCoord<U>& aPos2)
-	{	
+	{
 		return GetDist((float)aPos1.X(),(float)aPos1.Y(),(float)aPos2.X(),(float)aPos2.Y());
 	}
 
 	static inline float GetDist(float x1,float y1,float x2,float y2)
-	{	
+	{
 		float xd, yd;
 		xd = x1-x2;
 		yd = y1-y2;
@@ -91,7 +87,7 @@ public:
 		return GetAngle((float)aPos1.X(),(float)aPos1.Y(),(float)aPos2.X(),(float)aPos2.Y());
 	}
 
-	static inline float GetAngle(float x, float y, float x2,float y2) 
+	static inline float GetAngle(float x, float y, float x2,float y2)
 	{
 		float tmp;
 		tmp = atan2f(y2 - y, x2 - x)*180.0f/pi;

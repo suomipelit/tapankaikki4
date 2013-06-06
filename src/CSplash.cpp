@@ -7,13 +7,13 @@ void CSplash::ShowSplash(const char* aImagePath,const char* aIcon,const char* aC
 	SDL_Surface* screen;
 	SDL_Rect src, dest;
 
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) 
+	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
 		error("Unable to initialize SDL: %s \n", SDL_GetError());
 	}
 
 	SDL_Surface* bitmap = SDL_LoadBMP(aImagePath);
-	if (bitmap  == NULL)
+	if (bitmap == NULL)
 	{
 		error("Unable to load splash.\n");
 	}
@@ -40,7 +40,7 @@ void CSplash::ShowSplash(const char* aImagePath,const char* aIcon,const char* aC
 	SDL_WM_SetCaption(aCaption,NULL);
 
 	screen = SDL_SetVideoMode(bitmap->w, bitmap->h, 32, SDL_HWPALETTE|SDL_NOFRAME);
-	if (screen == NULL) 
+	if (screen == NULL)
 	{
 		error("Unable to set video mode: %s\n", SDL_GetError());
 	}

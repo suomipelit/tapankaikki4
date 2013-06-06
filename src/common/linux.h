@@ -3,9 +3,9 @@
 
 #ifdef __LINUX__
 
-#error "NOO"
+//#error "NOO"
 
-#define putch putchar	
+#define putch putchar
 #define EXPORT
 #define _stat stat
 
@@ -45,7 +45,7 @@ inline char* itoa(int a, char *str,int radix)
 
 inline char* strupr(char *buf)
 {	int len=strlen(buf);
-	
+
 	for (int a=0;a<len;a++)
 	{
 		buf[a]=toupper(buf[a]);
@@ -55,21 +55,21 @@ inline char* strupr(char *buf)
 
 inline char* strlwr(char *buf)
 {	int len=strlen(buf);
-	
+
 	for (int a=0;a<len;a++)
 	{
 		buf[a]=tolower(buf[a]);
-	}	
+	}
 	return buf;
 }
 
 inline char *strset(char *buf,char fill)
 {	int len=strlen(buf);
-	
+
 	for (int a=0;a<len;a++)
 	{
 		buf[a]=fill;
-	}	
+	}
 	return buf;
 }
 

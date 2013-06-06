@@ -77,7 +77,7 @@ void CGameMenuContainer::ChangeState(TGameMenuState aState)
 }
 
 COptions* CGameMenuContainer::Options()
-{ 
+{
 	return iStateController->Options();
 };
 
@@ -105,7 +105,7 @@ void CGameMenuContainer::Draw(CDrawArea& aDirtyArea,CDrawArea& aDrawArea,CGameGr
 	}
 	else
 		iGameMenus[iState]->Draw(aDirtyArea,aDrawArea,aGGI);
-		
+
 	iFullRedraw = false;
 }
 

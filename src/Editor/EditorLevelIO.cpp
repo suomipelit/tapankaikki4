@@ -7,7 +7,7 @@
 #include "EditorDrawer.h"
 #include "EditorGraphics.h"
 
-#ifndef __unix__
+#ifndef __LINUX__
 #include <windows.h>
 #include <commdlg.h>
 #else
@@ -38,7 +38,7 @@ CEditorLevelIO::CEditorLevelIO(CEditableLevel* aLevel,SDL_SysWMinfo aWndInfo,CEd
 	iGraphics = aGraphics;
 	iGD = aGD;
 
-#ifdef __unix__
+#ifdef __LINUX__
 	gtk_init(0, 0);
 #endif
 }
@@ -49,7 +49,7 @@ CEditorLevelIO::~CEditorLevelIO(void)
 
 bool CEditorLevelIO::LoadINI()
 {
-#ifndef __unix__
+#ifndef __LINUX__
 
 	OPENFILENAME ofn;       // common dialog box structure
 	char szFile[FILENAME_MAX];       // buffer for file name
@@ -102,7 +102,7 @@ bool CEditorLevelIO::LoadINI()
 	_chdir( tmp );
 	return false; // if no INI loaded
 
-#else	// __unix__
+#else	// __LINUX__
 	tmp_filename.clear();
 	file_widget = gtk_file_selection_new("Select INI-file");
 	g_signal_connect(G_OBJECT(file_widget), "destroy", G_CALLBACK(gtk_main_quit), 0);
@@ -138,12 +138,12 @@ bool CEditorLevelIO::LoadINI()
 		// smt?
 	}
 	return false;
-#endif	// end __unix__
+#endif	// end __LINUX__
 }
 
 bool CEditorLevelIO::LoadLevel()
 {
-#ifndef __unix__
+#ifndef __LINUX__
 
 	OPENFILENAME ofn;       // common dialog box structure
 	char szFile[FILENAME_MAX];       // buffer for file name
@@ -199,7 +199,7 @@ bool CEditorLevelIO::LoadLevel()
 	_chdir( tmp );
 	return false; // if no level loaded
 
-#else	// __unix__
+#else	// __LINUX__
 	tmp_filename.clear();
 	file_widget = gtk_file_selection_new("Load level:");
 	g_signal_connect(G_OBJECT(file_widget), "destroy", G_CALLBACK(gtk_main_quit), 0);
@@ -236,13 +236,13 @@ bool CEditorLevelIO::LoadLevel()
 	}
 
 	return false;
-#endif	// end __unix__
+#endif	// end __LINUX__
 }
 
 
 bool CEditorLevelIO::SaveLevelAs()
 {
-#ifndef __unix__
+#ifndef __LINUX__
 
 	OPENFILENAME ofn;       // common dialog box structure
 	char szFile[FILENAME_MAX];       // buffer for file name
@@ -301,7 +301,7 @@ bool CEditorLevelIO::SaveLevelAs()
 	_chdir( tmp );
 	return false; // If no level saved
 
-#else	// __unix__
+#else	// __LINUX__
 
 	tmp_filename.clear();
 	file_widget = gtk_file_selection_new("Save level as:");
@@ -346,7 +346,7 @@ bool CEditorLevelIO::SaveLevelAs()
 
 	return false;
 
-#endif	// end __unix__
+#endif	// end __LINUX__
 }
 
 
@@ -359,7 +359,7 @@ bool CEditorLevelIO::SaveLevel()
 		if (! iLevel->Save(iLevel->LevelFileName()))
 			error("Saving Failed (%s)!",iLevel->LevelFileName());
 		else
-#ifndef __unix__
+#ifndef __LINUX__
 			MessageBox(iWndInfo.window,"Level saved !","",MB_OK | MB_ICONINFORMATION);
 #else
 		{

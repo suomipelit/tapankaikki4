@@ -1,8 +1,8 @@
 #include <string.h>
+#include "defines.h"
 #include "Types.h"
 #include "error.h"
 #include "CGameTypeData.h"
-#include "IBodyPartType.h"
 
 CGameTypeData::CGameTypeData()
 {
@@ -67,7 +67,7 @@ void CGameTypeData::Load()
 
 void CGameTypeData::SetupBodyPartTypes()
 {
-	iBodyPartType[EBodyPartHead] = new CBodyPartHead;
+	iBodyPartType[EBodyPartHead]= new CBodyPartHead;
 	iBodyPartType[EBodyPartArm]= new CBodyPartArm;
 	iBodyPartType[EBodyPartChest]= new CBodyPartChest;
 	iBodyPartType[EBodyPartEntrails]= new CBodyPartEntrails;

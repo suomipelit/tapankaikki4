@@ -106,9 +106,9 @@ public:
 
 	inline bool Overlap(const CRect<T>& aRect) const
 	{
-		if (aRect.Width()==0 || 
+		if (aRect.Width()==0 ||
 			aRect.Height()==0) return false;
-		if (Width()==0 || 
+		if (Width()==0 ||
 			Height()==0) return false;
 
 		if (aRect.iBottom<iTop)  return false;
@@ -211,7 +211,7 @@ public:
 		ASSERT(testrect.TopLeft().Y() == 3);
 		ASSERT(testrect.BottomRight().X() == 5);
 		ASSERT(testrect.BottomRight().Y() == 7);
-		
+
 		// Test Width & Height
 
 		ASSERT(testrect.Width()==4);

@@ -1,4 +1,3 @@
-#include <vector>
 #include "common/debug.h"
 
 #include "CGameState.h"

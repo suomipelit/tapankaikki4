@@ -6,6 +6,10 @@
 #include "CPalette.h"
 
 template <class T> class CCoord;
+class CPalette;
+class GraphicsFader;
+class CFilename;
+class CDrawArea;
 
 class CGraphicsDevice
 {

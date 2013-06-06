@@ -1,4 +1,3 @@
-#include <vector>
 #include <stdlib.h>
 #include <string.h>
 #include <SDL.h>
@@ -18,14 +17,14 @@ namespace
 	const int KFadeInTime = 300;
 };
 
-CSoundPlayer::CSoundPlayer(): 
+CSoundPlayer::CSoundPlayer():
 	iSongCounter(0), iFXVolume(-1), iMusicVolume(-1), iMusic(NULL), iReverseStereo(-1),
 	iInitialized(false), iSubsystemInitialized(false)
 {
 	DEBUG0("CSoundPlayer::CSoundPlayer()\n");
 	memset(iTheme,0,sizeof(iTheme));
 
-        Initialize();
+    Initialize();
 }
 
 CSoundPlayer::~CSoundPlayer()
@@ -34,7 +33,7 @@ CSoundPlayer::~CSoundPlayer()
 
 	StopMusic();
 	Mix_FreeMusic(iMusic);
-	
+
 	Mix_CloseAudio();
 }
 
@@ -47,12 +46,12 @@ void CSoundPlayer::Initialize()
 	LOG0("Trying to init. SDL_INIT_AUDIO\n");
 	if (!iSubsystemInitialized)
 	{
-		if (SDL_InitSubSystem(SDL_INIT_AUDIO)<0) 
+		if (SDL_InitSubSystem(SDL_INIT_AUDIO)<0)
 		{
 			LOG1("CSoundPlayer::Initialize: Unable to init SDL_INIT_AUDIO subsystem: %s\n",SDL_GetError());
 			return;
 		}
-		else 
+		else
 			iSubsystemInitialized = true;
 	}
 
@@ -61,7 +60,7 @@ void CSoundPlayer::Initialize()
 	int audio_channels=2;
 
 	LOG0("Trying to Mix_OpenAudio\n");
-	if (Mix_OpenAudio(audio_rate, audio_format, audio_channels,2048) < 0) 
+	if (Mix_OpenAudio(audio_rate, audio_format, audio_channels,2048) < 0)
 	{
 		LOG1("CSoundPlayer::Initialize: Couldn't open audio: %s\n", SDL_GetError());
 		return;
@@ -99,7 +98,7 @@ void CSoundPlayer::LoadMusic(const char *aFileName)
 	{
 		iMusic=Mix_LoadMUS(aFileName);
 
-		if (iMusic==NULL) 
+		if (iMusic==NULL)
 			error("CSoundPlayer::CSoundPlayer: Musicmodule NULL!\n");
 	}
 }
@@ -127,16 +126,16 @@ void CSoundPlayer::PlayMusic(int aLooping)
 //
 //	if (aAmountPlayers==2||aAmountPlayers==4)
 //	{
-//		if (aPlayerNo%2==0) 
+//		if (aPlayerNo%2==0)
 //			PlaySample(aEffect,aVolume,PAN_LEFT);
-//		else 
+//		else
 //			PlaySample(aEffect,aVolume,PAN_RIGHT);
 //		return;
 //	}
 //
 //	if (aAmountPlayers==3)
 //	{
-//		if (aPlayerNo==0) 
+//		if (aPlayerNo==0)
 //			PlaySample(aEffect,aVolume,PAN_LEFT);
 //		else if (aPlayerNo==1)
 //			PlaySample(aEffect,aVolume,PAN_RIGHT);
@@ -181,7 +180,7 @@ void CSoundPlayer::PlayPosSample(enum TIngameSoundEffect aEffect,float aVolume, 
 		PlaySample(iDynData->LevelRuntime()->IngameData()->SoundFX(aEffect),aVolume,PAN_MIDDLE);
 		return;
 	}
-	
+
 	int chan=Mix_PlayChannel(-1,iDynData->LevelRuntime()->IngameData()->SoundFX(aEffect),0);
 	Mix_Volume(chan,(int)(aVolume*iFXVolume*127.0));
 
@@ -209,9 +208,9 @@ void CSoundPlayer::StereoShaper(const CCoord<float>& aObserver, const CCoord<flo
 	// Formula from excel (models from this formula look and sound ok)
 	//=MIN(SQRT(MAX(128*128-B$2^2-($A3-64)^2;0))+10000/SQRT(B$2^2+($A3-64)^2);255)
 
-	aLeft = int (min( sqrt( max(128*128-ydist*ydist-(xdist-64)*(xdist-64),0.0f) ) + 
+	aLeft = int (min( sqrt( (double)(max(128*128-ydist*ydist-(xdist-64)*(xdist-64),0.0f)) ) +
 			10000/sqrt( ydist*ydist+(xdist-64)*(xdist-64)), 255.0 ));
-	aRight = int (min( sqrt( max(128*128-ydist*ydist-(xdist+64)*(xdist+64),0.0f) ) + 
+	aRight = int (min( sqrt( (double)(max(128*128-ydist*ydist-(xdist+64)*(xdist+64),0.0f)) ) +
 			10000/sqrt( ydist*ydist+(xdist+64)*(xdist+64)), 255.0 ));
 
 	// Let's cut the heaps...
@@ -278,7 +277,7 @@ void CSoundPlayer::StopMusic()
 };
 
 char* CSoundPlayer::GetSongFilename( const char* aSoundtrackDir, int aSongNumber )
-{	
+{
 	DEBUG0("CSoundPlayer::GetSongFilename()\n");
 	char buf[ FILENAME_MAX ];
 
@@ -318,7 +317,7 @@ char* CSoundPlayer::GetSongFilename( const char* aSoundtrackDir, int aSongNumber
 }
 
 void CSoundPlayer::GameMusic( const char* aSoundtrackDir, int aSongNumber )
-{	
+{
 	DEBUG0("CSoundPlayer::GameMusic()\n");
 	if (!iInitialized)
 		return;
@@ -334,8 +333,8 @@ void CSoundPlayer::GameMusic( const char* aSoundtrackDir, int aSongNumber )
 	PlayMusic(-1);
 }
 
-void CSoundPlayer::MenuMusic() 
-{	
+void CSoundPlayer::MenuMusic()
+{
 	DEBUG0("CSoundPlayer::MenuMusic()\n");
 	if (!iInitialized)
 		return;
@@ -352,11 +351,11 @@ void CSoundPlayer::SetObserver(IPositionalSoundObserver* aObserver)
 
 /*
 int CSoundPlayer::GetPan( int x1, int x2)
-{	
+{
 	int pan;
  	int diff;
  	// stereo effect
-  	diff=  - ( x1 - x2 ); 
+  	diff=  - ( x1 - x2 );
   	if (diff!=0){
   	pan = diff  / 2;
   	if ( pan <  - 255 ) pan =  - 255;

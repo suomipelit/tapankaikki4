@@ -9,7 +9,7 @@ void ExitHandler()
 	{
 		logwrite("Abnormal exit\n");
 #ifdef _DEBUG
-		_asm { int 3h }
+    assert(false);
 #endif
 	}
 }
@@ -23,10 +23,10 @@ void ChAppDir(const char *argv0)
 	a=strlen(str);
 
 	do
-	{ 
-		a--; 
-	} 
-#ifndef __unix__
+	{
+		a--;
+	}
+#ifndef __LINUX__
 	while (str[a]!='\\');
 #else
 	while (str[a]!='/' || a==0);
@@ -43,7 +43,7 @@ void ChAppDir(const char *argv0)
 const char* KIconFile="tk.ico";
 const char* KWindowCaption="Tapan Kaikki Bloodshed";
 
-int main(int argc,char *argv[]) 
+int main(int argc,char *argv[])
 {
 	CGameApp* GGameApp = NULL;
 	atexit(ExitHandler);
@@ -76,7 +76,7 @@ int main(int argc,char *argv[])
 	{
 		error("std::exception: %s",e.what());
 	}
-	
+
 	abnormal_exit=0;
 	return 0;
 }

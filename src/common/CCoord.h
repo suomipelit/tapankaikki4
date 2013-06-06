@@ -2,8 +2,8 @@
 #define __COORD_H_
 
 #include <sstream>
-#include <iostream> 
 #include <string>
+#include <iostream>
 
 template <class T> class CCoord;
 
@@ -30,12 +30,16 @@ public:
 	inline void SetX(T aX){ iX=aX; }
 	inline void SetY(T aY){ iY=aY; }
 	inline void SetMovement(int aAngle, float aSpeed)
-        {
-                Set(
-                      (T)(CMath::Static() ->Cose(aAngle)*aSpeed),
-                      (T)(CMath::Static() ->Sine(aAngle)*aSpeed)
-                   );
-        }
+	 {
+		 Set(
+			(T) (
+				CMath::Static()
+					->
+						Cose(aAngle) * (aSpeed)),
+			(T)(CMath::Static()
+				->Sine(aAngle)*aSpeed)
+		);
+	 }
 
 	inline CCoord AddMovement(int aAngle, float aSpeed) const { return Add(T(CMath::Static()->Cose(aAngle)*aSpeed),T(CMath::Static()->Sine(aAngle)*aSpeed)); };
 	inline CCoord Sub(T aX, T aY)const { return Sub(CCoord<T>(aX,aY));}

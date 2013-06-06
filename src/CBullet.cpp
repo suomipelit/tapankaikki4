@@ -1,6 +1,5 @@
 #include <string.h>
 #include <stdlib.h>
-#include <vector>
 
 #include "CBullet.h"
 

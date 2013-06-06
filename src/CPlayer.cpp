@@ -1,6 +1,5 @@
-#include <vector>
-#include <stdlib.h>
-#include <string.h>
+#include<stdlib.h>
+#include<string.h>
 
 #include <algorithm>
 
@@ -36,7 +35,7 @@ CPlayer::CPlayer(CDynGameData* aDD, CGameGraphicsInterface* aGGI, CGameData* aGa
 	iSpeed = KPlayerNormalSpeed;
 }
 
-void CPlayer::RandomPlace() 
+void CPlayer::RandomPlace()
 {
 	int a;
 	int testCount=0;
@@ -47,8 +46,8 @@ void CPlayer::RandomPlace()
 
 	ASSERT( iDynData->LevelRuntime()->Level().Width() != 0 );
 	ASSERT( iDynData->LevelRuntime()->Level().Height() != 0 );
-	
-	do 
+
+	do
 	{
 		badLocation = false;
 		bool easyMode = false;
@@ -78,18 +77,18 @@ void CPlayer::RandomPlace()
 		iLocation.SetX( x );
 		iLocation.SetY( y );
 
-		if (iDynData->LevelRuntime()->Level().LevelData(iLocation.Div(KBlockSpriteSize)).iType!= EBlockTypeFloor) 
+		if (iDynData->LevelRuntime()->Level().LevelData(iLocation.Div(KBlockSpriteSize)).iType!= EBlockTypeFloor)
 			badLocation = true;
 
 		if (y%KBlockSpriteSize)
-			if (iDynData->LevelRuntime()->Level().LevelData(iLocation.Div(KBlockSpriteSize).Add(0,1)).iType!= EBlockTypeFloor) 
+			if (iDynData->LevelRuntime()->Level().LevelData(iLocation.Div(KBlockSpriteSize).Add(0,1)).iType!= EBlockTypeFloor)
 				badLocation = true;
 		if ((y%KBlockSpriteSize)&&
 			(x%KBlockSpriteSize))
-			if (iDynData->LevelRuntime()->Level().LevelData(iLocation.Div(KBlockSpriteSize).Add(1,1)).iType!= EBlockTypeFloor) 
+			if (iDynData->LevelRuntime()->Level().LevelData(iLocation.Div(KBlockSpriteSize).Add(1,1)).iType!= EBlockTypeFloor)
 				badLocation = true;
 		if (x%KBlockSpriteSize)
-			if (iDynData->LevelRuntime()->Level().LevelData(iLocation.Div(KBlockSpriteSize).Add(1,0)).iType!= EBlockTypeFloor) 
+			if (iDynData->LevelRuntime()->Level().LevelData(iLocation.Div(KBlockSpriteSize).Add(1,0)).iType!= EBlockTypeFloor)
 				badLocation = true;
 
 		if (!badLocation)
@@ -103,26 +102,26 @@ void CPlayer::RandomPlace()
 			}
 
 			while(iter != iDynData->LevelRuntime()->Enemies().end() &&!badLocation)
-			{	
-				if (CMath::GetDist(iLocation, iter->Location() )<eta) 
+			{
+				if (CMath::GetDist(iLocation, iter->Location() )<eta)
 					badLocation = true;
 				++iter;
 			}
 		}
-		for (a = 0;a<iDynData->Players().size() && !badLocation;a++) 
-		 if (iDynData->Players()[a]!= this) 
-			  if (CMath::GetDist(Location(), iDynData->Players()[a]->Location())<30.0) 
+		for (a = 0;a<iDynData->Players().size() && !badLocation;a++)
+		 if (iDynData->Players()[a]!= this)
+			  if (CMath::GetDist(Location(), iDynData->Players()[a]->Location())<30.0)
 				  badLocation = true; //not good place
 
 		testCount++;
 		if (testCount >= 10000)
 			throw CCriticalException("CPlayer::RandomPlace(): Placing of a player was impossible");
-	} 
+	}
 	while (badLocation);
 	SELFTEST;
 }
 
-void CPlayer::KickBodyParts() 
+void CPlayer::KickBodyParts()
 {
 	std::vector<CBodyPart>::iterator iter = iDynData->LevelRuntime()->Bodyparts().begin();
 
@@ -163,7 +162,7 @@ void CPlayer::ChooseBestWeapon()
 	{
 		if (iWeapons[a]>0 &&  // player has it
 			iGameData->TypeData()->iWeaponType[a]->Priority() > best && // this is better than currect suggestion
-			iBullets[iGameData->TypeData()->iWeaponType[a]->BulletType()]>0 ) // player has bullets 
+			iBullets[iGameData->TypeData()->iWeaponType[a]->BulletType()]>0 ) // player has bullets
 		{
 			best = iGameData->TypeData()->iWeaponType[a]->Priority();
 			selection = a;
@@ -172,7 +171,7 @@ void CPlayer::ChooseBestWeapon()
 	SetCurrentWeapon(selection);
 }
 
-void CPlayer::CheckKeys(int aIndex, CEventHandler* aEH, const CRect<int>& aDrawRect) 
+void CPlayer::CheckKeys(int aIndex, CEventHandler* aEH, const CRect<int>& aDrawRect)
 {
 	SELFTEST;
 
@@ -196,48 +195,48 @@ void CPlayer::CheckKeys(int aIndex, CEventHandler* aEH, const CRect<int>& aDrawR
 	}
 
 	// If I'm not the mouseman...
-	if (iDynData->MouseOwner()!= this&& 
-		!aEH->State(iKeys.keys[EKeyLEFT]) && 
-		!aEH->State(iKeys.keys[EKeyRIGHT]) && 
-		iTargetAngle == iAngle) 
+	if (iDynData->MouseOwner()!= this&&
+		!aEH->State(iKeys.keys[EKeyLEFT]) &&
+		!aEH->State(iKeys.keys[EKeyRIGHT]) &&
+		iTargetAngle == iAngle)
 		Straighten();
 
 	// Rotate player
-	if (aEH->State(iKeys.keys[EKeyLEFT])) 
-		if (!aEH->State(iKeys.keys[EKeySTRAFE])) 
+	if (aEH->State(iKeys.keys[EKeyLEFT]))
+		if (!aEH->State(iKeys.keys[EKeySTRAFE]))
 			Rotate(-KPlayerRotationSpeed);
 
-	if (aEH->State(iKeys.keys[EKeyRIGHT])) 
-		if (!aEH->State(iKeys.keys[EKeySTRAFE])) 
+	if (aEH->State(iKeys.keys[EKeyRIGHT]))
+		if (!aEH->State(iKeys.keys[EKeySTRAFE]))
 			Rotate(KPlayerRotationSpeed);
 
 	// Chk strafe
 	if ((aEH->State(iKeys.keys[EKeySTRAFE])&&aEH->State(iKeys.keys[EKeyLEFT])) ||
-		 aEH->State(iKeys.keys[EKeyLSTRAFE])) 
+		 aEH->State(iKeys.keys[EKeyLSTRAFE]))
 	{
 		strafe = ELeft;//left
 		walk_chk = 1;
 	}
 	if ((aEH->State(iKeys.keys[EKeySTRAFE])&&aEH->State(iKeys.keys[EKeyRIGHT])) ||
-		 aEH->State(iKeys.keys[EKeyRSTRAFE])) 
+		 aEH->State(iKeys.keys[EKeyRSTRAFE]))
 	{
 		strafe = ERight;//right
 		walk_chk = 1;
 	}
 
-	if (aEH->State(iKeys.keys[EKeyUP])) 
+	if (aEH->State(iKeys.keys[EKeyUP]))
 	{
         forward = EUp;//forward
 		walk_chk = 1;
         if (rand()%40 == 0) KickBodyParts();
 	}
 
-	if (aEH->State(iKeys.keys[EKeyDOWN])) 
+	if (aEH->State(iKeys.keys[EKeyDOWN]))
 	{
         forward = EDown;//backwards
 		walk_chk = 1;
 	}
-	
+
 	//Movement start
 	if (iDynData->MouseOwner() == this)
 		FAngle = RealAngle();
@@ -269,83 +268,83 @@ void CPlayer::CheckKeys(int aIndex, CEventHandler* aEH, const CRect<int>& aDrawR
 			FAngle-= 90;
 		if (strafe == ERight)
 			FAngle+= 90;
-		if (strafe>0) 
-			speedi = iSpeed; 
-		else 
+		if (strafe>0)
+			speedi = iSpeed;
+		else
 			speedi = 0;
 	}
 
 	ANGLEFIX(FAngle);
-	if (speedi!= 0) 
+	if (speedi!= 0)
 		Move(FAngle, speedi, aIndex, aDrawRect);
 	//Movement End
-	
-	if (walk_chk && iWalk == 0) 
+
+	if (walk_chk && iWalk == 0)
 		iWalk = 1;
 
-	if (!walk_chk) 
+	if (!walk_chk)
 		iWalk = 0;
 
-	if (aEH->State(iKeys.keys[EKeySHOOT]) || 
+	if (aEH->State(iKeys.keys[EKeySHOOT]) ||
 		(iDynData->MouseOwner() == this && aEH->GetMouse().ChkButtons(CMouse::EMouseCheckModeLeft) ) )
-	{ 
+	{
 		iShootCount++;
 
 		if (iCurrentWeapon->BulletType()!= EBulletFist)
 			if (iLoadCounter == iCurrentWeapon->LoadingTime())
-			{ 
+			{
 				if (iBullets[iCurrentWeapon->BulletType()]>0)
 				{
 					Shoot(1);
 					iWeaponInHand = true;
 				}
-				else 
+				else
 				{
-					SetSecondaryWeapon( 0 );				
+					SetSecondaryWeapon( 0 );
 					iLoadCounter2 = 0;
 					iLoadCounter = 0;
 					ChooseBestWeapon();
 				}
 			}
-          
+
 		if (iSecondaryWeapon!= 0)
-			if (iSecondaryCounter == 0) 
+			if (iSecondaryCounter == 0)
 				if (iLoadCounter2 == iSecondaryWeapon->LoadingTime())
-				{ 
-					if (iBullets[iSecondaryWeapon->BulletType()]>0) 
+				{
+					if (iBullets[iSecondaryWeapon->BulletType()]>0)
 						Shoot(2);
-					else 
+					else
 					{
 						SetSecondaryWeapon( 0 );
 						iLoadCounter2 = 0;
-				    }	
+				    }
 				}
-	 
-		if (iCurrentWeapon->BulletType() == EBulletFist) 
+
+		if (iCurrentWeapon->BulletType() == EBulletFist)
 	        if (iLoadCounter>= iCurrentWeapon->LoadingTime())
-			{  
+			{
 				Shoot(1);
 				KickBodyParts();
 			}
 	}
-	else 
+	else
 	{
 		iShootCount = 0;
 		iWeaponInHand = false;
 	}
-	
-	if (!aEH->GetMouse().ChkButtons(CMouse::EMouseCheckModeRight)) 
+
+	if (!aEH->GetMouse().ChkButtons(CMouse::EMouseCheckModeRight))
 		aEH->GetMouse().SetRightPressed(0);
-    
-	if (aEH->State(iKeys.keys[EKeySHIFT])  || 
-		(iDynData->MouseOwner() == this && 
-		aEH->GetMouse().ChkButtons(CMouse::EMouseCheckModeRight) && 
-		!aEH->GetMouse().RightPressed() ) ) 
+
+	if (aEH->State(iKeys.keys[EKeySHIFT])  ||
+		(iDynData->MouseOwner() == this &&
+		aEH->GetMouse().ChkButtons(CMouse::EMouseCheckModeRight) &&
+		!aEH->GetMouse().RightPressed() ) )
 	{
 		ChangeWeapon(false);
 		aEH->State(iKeys.keys[EKeySHIFT]) = 0;
 
-		if (iDynData->MouseOwner() == this) 
+		if (iDynData->MouseOwner() == this)
 			aEH->GetMouse().SetRightPressed(1);
 	}
 	SELFTEST;
@@ -360,7 +359,7 @@ void CPlayer::Reset(const CRect<int>& aDrawRect)
 	iDead = 0;
 
 	int curWeapIndex = iGameData->TypeData()->ReverseMapWeapon( iCurrentWeapon );
-	
+
 	if (iWeapons[ curWeapIndex ]<=0)
 	{
 		SetCurrentWeapon( 0 );
@@ -384,7 +383,7 @@ void CPlayer::Reset(const CRect<int>& aDrawRect)
 	InitScr( aDrawRect );
 	iLoadCounter = 0;
 	iLoadCounter2 = 0;
-	
+
 	iSpeed = KPlayerNormalSpeed;
 	SELFTEST;
 }
@@ -392,7 +391,7 @@ void CPlayer::Reset(const CRect<int>& aDrawRect)
 void CPlayer::TotalReset(const CRect<int>& aDrawRect)
 {
 	int a;
-	
+
 	iTargetSystem = false;
 	iEnergy = 0;
 	iShield = 0;
@@ -402,52 +401,52 @@ void CPlayer::TotalReset(const CRect<int>& aDrawRect)
 
 	for(a = 1; a< EBulletAmount;a++)
 		iBullets[a] = 0;
-	
+
 	iWeapons[0] = 1;
 	iBullets[0] = 1;
 
 	Reset(aDrawRect);
- 
+
 	SELFTEST;
 }
 
-void CPlayer::Shoot(int hand) 
+void CPlayer::Shoot(int hand)
 {
 	SELFTEST;
 	int r, a;
 	const IWeaponType* weaponPtr = NULL;
 	CCoord<int> rpos = iLocation;
 	CCoord<int> ofs;
-		
-    if (hand == 1) 
+
+    if (hand == 1)
 	{
-        iFire = 1; 
+        iFire = 1;
 	    iLoadCounter = 0;
         weaponPtr = iCurrentWeapon;
 		ofs.SetMovement(RealAngle(),8);
 		ofs = ofs.AddMovement(RealAngle()+90,4);
         iSecondaryCounter = iCurrentWeapon->LoadingTime()/2;
-    } 
+    }
     if (hand == 2)
 	{
-        iFire2 = 1; 
+        iFire2 = 1;
 	    iLoadCounter2 = 0;
         weaponPtr = iSecondaryWeapon;
 		ofs.SetMovement(RealAngle(),8);
 		ofs = ofs.AddMovement(RealAngle()+270,4);
     }
-	
+
 	iDynData->Statistics()->PlayerStats( this ).LevelStats( iDynData->CurrentLevel() ).AddShot();
 
-	for (a = 0;a<weaponPtr->BulletAmount();a++) 
+	for (a = 0;a<weaponPtr->BulletAmount();a++)
 	{
 		if (iSecondaryWeapon == 0)
             r = (weaponPtr->AngleAdd()>> 1)-rand()%weaponPtr->AngleAdd();
 		else
             r = weaponPtr->AngleAdd()- rand()%(2*weaponPtr->AngleAdd());
         iDynData->LevelRuntime()->NewBullet(weaponPtr->BulletType(),
-					rpos.Add(14,14).AddMovement(RealAngle(),10), 
-					RealAngle()+r, 
+					rpos.Add(14,14).AddMovement(RealAngle(),10),
+					RealAngle()+r,
 					0,
 					1.0f/weaponPtr->BulletAmount(),
 					this );
@@ -458,26 +457,26 @@ void CPlayer::Shoot(int hand)
 		if (weaponPtr->ConsumesBullets())
 			iBullets[weaponPtr->BulletType()]--;
 
-		if ( iShootCount % iGameData->TypeData()->iBulletType[weaponPtr->BulletType()]->Multiplier() == 0) 
+		if ( iShootCount % iGameData->TypeData()->iBulletType[weaponPtr->BulletType()]->Multiplier() == 0)
 		{
 			iSP->PlayPosSample( weaponPtr->Sound(), KFullVolume, iLocation );
 
-			if (weaponPtr->Smoke()) 
+			if (weaponPtr->Smoke())
 				iDynData->LevelRuntime()->NewEffect(EEffectGunSmoke, rpos.Add(14, 14).Add(ofs), RealAngle(), 1);
 		}
 	}
-	SELFTEST;    
+	SELFTEST;
 }
 
-void CPlayer::Animate() 
+void CPlayer::Animate()
 {
 	SELFTEST;
     iAnim = 1;
-	if (iWalk) 
+	if (iWalk)
 	{
-		if (iWalk-1<KWalkAnimationDelay) 
+		if (iWalk-1<KWalkAnimationDelay)
 			iWalk++;
-		else 
+		else
 			iWalk = 1;
 
 		iAnim = (iWalk-1)/(KWalkAnimationDelay/4);
@@ -485,24 +484,24 @@ void CPlayer::Animate()
 	}
     if (! iFire && iWeaponInHand)
         iAnim = 3;
-	if (iFire) 
+	if (iFire)
 	{
 		iFire++;
 		if (iFire>7) iFire = 0;
 		iAnim = 4;
 	}
-	if (iFire2) 
+	if (iFire2)
 	{
 		iFire2++;
 		if (iFire2>7) iFire2 = 0;
 		iAnim = 5;
 	}
-	if (iDead) 
+	if (iDead)
 	{
 		if (iDead-1<KDeadAnimationDelay) iDead++;
 		iAnim = (int)(6+((float)(iDead-1)/KDeadAnimationDelay)*3);
 
-        if (iAnim>8) 
+        if (iAnim>8)
 			iAnim = 8;
 
 		if (iDead-1 == KDeadAnimationDelay)
@@ -510,37 +509,37 @@ void CPlayer::Animate()
 			iObserver->CharacterDied(this);
 		}
 	}
-	if (iKick) 
+	if (iKick)
 	{
 		iKick++;
-		if (iKick>6) 
+		if (iKick>6)
 			iKick = 0;
-		if (iSecondaryWeapon == 0) 
-			iAnim = 5; 
-		else 
+		if (iSecondaryWeapon == 0)
+			iAnim = 5;
+		else
 			iAnim = 6;
 	}
 	SELFTEST;
 }
 
-void CPlayer::ChangeWeapon(bool aReverse) 
+void CPlayer::ChangeWeapon(bool aReverse)
 {
 	SELFTEST;
 	int curWeapIndex = iGameData->TypeData()->ReverseMapWeapon(iCurrentWeapon);
 
 	if (!aReverse)
 	{
-		if (iCurrentWeapon->SingleHand() && 
-			iWeapons[curWeapIndex] == 2 && 
+		if (iCurrentWeapon->SingleHand() &&
+			iWeapons[curWeapIndex] == 2 &&
 			iSecondaryWeapon == NULL)
-			iSecondaryWeapon = iCurrentWeapon; 
-		else 
+			iSecondaryWeapon = iCurrentWeapon;
+		else
 			{
 				curWeapIndex++;
 				curWeapIndex%= EWeaponAmount;
 				SetSecondaryWeapon(0);
 			}
-		while (iWeapons[curWeapIndex%(EWeaponAmount)] == 0) 
+		while (iWeapons[curWeapIndex%(EWeaponAmount)] == 0)
 		{
 			curWeapIndex++;
 			curWeapIndex%= EWeaponAmount;
@@ -557,7 +556,7 @@ void CPlayer::ChangeWeapon(bool aReverse)
 			if (curWeapIndex<0)
 				curWeapIndex+=EWeaponAmount;
 
-			while (iWeapons[curWeapIndex%(EWeaponAmount)] == 0) 
+			while (iWeapons[curWeapIndex%(EWeaponAmount)] == 0)
 			{
 				curWeapIndex--;
 				curWeapIndex%= EWeaponAmount;
@@ -576,14 +575,14 @@ void CPlayer::ChangeWeapon(bool aReverse)
 	SELFTEST;
 }
 
-void CPlayer::Footprint(int side) 
+void CPlayer::Footprint(int side)
 {
 	SELFTEST;
 	CCoord<int> footpos;
-	
+
 	footpos = iLocation.Add(15,15).AddMovement(RealAngle()+90+(side*180),4);
 
-	if (iDynData->LevelRuntime()->Level().LevelData(footpos.Div(KBlockSpriteSize)).iType == EBlockTypeFloor) 
+	if (iDynData->LevelRuntime()->Level().LevelData(footpos.Div(KBlockSpriteSize)).iType == EBlockTypeFloor)
 		if ( iDynData->LevelRuntime()->Level().DustBlock(footpos.Div(KBlockSpriteSize)) )
 		{
 			iDynData->LevelRuntime()->NewEffect(EEffectFootprint, footpos, 0, 0);
@@ -592,13 +591,13 @@ void CPlayer::Footprint(int side)
 	SELFTEST;
 }
 
-void CPlayer::Move(int aAngle, float aSpeed, int aIndex, const CRect<int>& aDrawRect ) 
+void CPlayer::Move(int aAngle, float aSpeed, int aIndex, const CRect<int>& aDrawRect )
 {
 	SELFTEST;
 	// Generate Blood effect
 	if (iEnergy<20&&
 		iWalk%4 == 0&&
-		rand()%3 == 0) 
+		rand()%3 == 0)
 	{
 		iDynData->LevelRuntime()->NewEffect(EEffectBloodOnGround, iLocation.Add(15,15), 0, 0);
 	}
@@ -619,12 +618,12 @@ void CPlayer::PickupCrates( const CRect<int>& aDrawRect )
 
 	while(iter != iDynData->LevelRuntime()->Crates().end())
 	{
-		if ((*iter)->InUse()&& 
+		if ((*iter)->InUse()&&
 			(*iter)->TextCounter() == 0&&
-			(*iter)->Location().X()+7>iLocation.X()&& 
-			(*iter)->Location().X()+7<iLocation.X() + KCharacterSpriteSize&& 
-			(*iter)->Location().Y()+7>iLocation.Y()&& 
-			(*iter)->Location().Y()+7<iLocation.Y() + KCharacterSpriteSize) 
+			(*iter)->Location().X()+7>iLocation.X()&&
+			(*iter)->Location().X()+7<iLocation.X() + KCharacterSpriteSize&&
+			(*iter)->Location().Y()+7>iLocation.Y()&&
+			(*iter)->Location().Y()+7<iLocation.Y() + KCharacterSpriteSize)
 		{
 			(*iter)->TryPickup( this, aDrawRect );
 		}
@@ -644,22 +643,22 @@ void CPlayer::Straighten()
 {
 	SELFTEST;
 	//automatic iAngle straightener (0,90,180,270)
-	if (iAngle>= 360-KStraightTolerance || iAngle<= KStraightTolerance) 
+	if (iAngle>= 360-KStraightTolerance || iAngle<= KStraightTolerance)
 	{
 		SetAngle(0);
 		return;
 	}
-	if (iAngle>= 90-KStraightTolerance && iAngle<= 90+KStraightTolerance)  
+	if (iAngle>= 90-KStraightTolerance && iAngle<= 90+KStraightTolerance)
 	{
 		SetAngle(90);
 		return;
 	}
-	if (iAngle>= 180-KStraightTolerance && iAngle<= 180+KStraightTolerance)  
+	if (iAngle>= 180-KStraightTolerance && iAngle<= 180+KStraightTolerance)
 	{
 		SetAngle(180);
 		return;
 	}
-	if (iAngle>= 270-KStraightTolerance && iAngle<= 270+KStraightTolerance)  
+	if (iAngle>= 270-KStraightTolerance && iAngle<= 270+KStraightTolerance)
 	{
 		SetAngle(270);
 		return;
@@ -667,8 +666,8 @@ void CPlayer::Straighten()
 	SELFTEST;
 }
 
-void CPlayer::Rotate(float aChange) 
-{	
+void CPlayer::Rotate(float aChange)
+{
 	SELFTEST;
 	SetAngle(iAngle+aChange);
 	SELFTEST;
@@ -686,43 +685,43 @@ void CPlayer::MoveScr(const CRect<int>& aDrawRect)
 	SELFTEST;
 	int spd;
 
-	if (fabs((iScreenPos.X()+aDrawRect.Width()/2)-(iLocation.X()+14))>100) 
+	if (abs((int)((iScreenPos.X()+aDrawRect.Width()/2)-(iLocation.X()+14)))>100)
 		iScreenPos.SetX(int(iLocation.X()-aDrawRect.Width()/2));
-	spd = int(fabs((iScreenPos.X()+aDrawRect.Width()/2)-((35*CMath::Static()->Cose(RealAngle()))+iLocation.X()+14))/4);
-	if ((iScreenPos.X()+aDrawRect.Width()/2)<(25*CMath::Static()->Cose(RealAngle()))+iLocation.X()+14) 
-#ifndef __unix__
+	spd = int(abs((int)((iScreenPos.X()+aDrawRect.Width()/2)-((35*CMath::Static()->Cose(RealAngle()))+iLocation.X()+14))/4));
+	if ((iScreenPos.X()+aDrawRect.Width()/2)<(25*CMath::Static()->Cose(RealAngle()))+iLocation.X()+14)
+#ifndef __LINUX__
 		iScreenPos = iScreenPos.AddX((float)spd);
 #else
 		iScreenPos = iScreenPos.AddX(spd);
 #endif
-	if ((iScreenPos.X()+aDrawRect.Width()/2)>(25*CMath::Static()->Cose(RealAngle()))+iLocation.X()+14) 
-#ifndef __unix__
+	if ((iScreenPos.X()+aDrawRect.Width()/2)>(25*CMath::Static()->Cose(RealAngle()))+iLocation.X()+14)
+#ifndef __LINUX__
 		iScreenPos = iScreenPos.AddX((float)-spd);
 #else
 		iScreenPos = iScreenPos.AddX(-spd);
 #endif
 
-	spd = int(fabs((iScreenPos.Y()+aDrawRect.Height()/2)-((25*CMath::Static()->Sine(RealAngle()))+iLocation.Y()+14))/4);
-	if (iScreenPos.Y()+aDrawRect.Height()/2<(25*CMath::Static()->Sine(RealAngle()))+iLocation.Y()+14) 
-#ifndef __unix__
+	spd = int(abs((int)((iScreenPos.Y()+aDrawRect.Height()/2)-((25*CMath::Static()->Sine(RealAngle()))+iLocation.Y()+14))/4));
+	if (iScreenPos.Y()+aDrawRect.Height()/2<(25*CMath::Static()->Sine(RealAngle()))+iLocation.Y()+14)
+#ifndef __LINUX__
 		iScreenPos = iScreenPos.AddY((float)spd);
 #else
 		iScreenPos = iScreenPos.AddY(spd);
 #endif
-	if (iScreenPos.Y()+aDrawRect.Height()/2>(25*CMath::Static()->Sine(RealAngle()))+iLocation.Y()+14) 
-#ifndef __unix__
+	if (iScreenPos.Y()+aDrawRect.Height()/2>(25*CMath::Static()->Sine(RealAngle()))+iLocation.Y()+14)
+#ifndef __LINUX__
 		iScreenPos = iScreenPos.AddY((float)-spd);
 #else
 		iScreenPos = iScreenPos.AddY(-spd);
 #endif
-    if (fabs((iScreenPos.Y()+aDrawRect.Height()/2)-(iLocation.Y()+14))>100) 
+    if (abs((int)((iScreenPos.Y()+aDrawRect.Height()/2)-(iLocation.Y()+14)))>100)
 		iScreenPos.SetY(int(iLocation.Y()-(aDrawRect.Height()/2)));
 	SELFTEST;
 }
 
 
-bool CPlayer::GetDamage(float damage, IBulletObserver *aObserver) 
-{   
+bool CPlayer::GetDamage(float damage, IBulletObserver *aObserver)
+{
 	SELFTEST;
 	int a;
 
@@ -735,7 +734,7 @@ bool CPlayer::GetDamage(float damage, IBulletObserver *aObserver)
 	iHit = 15;
 	iEnergy-= damage;
 
-	if (iEnergy<= 0) 
+	if (iEnergy<= 0)
 	{
 		iEnergy = 0;
 
@@ -744,17 +743,17 @@ bool CPlayer::GetDamage(float damage, IBulletObserver *aObserver)
 			aObserver->BulletPlayerKill( this );
 		}
 
-		if (iBurning) 
+		if (iBurning)
 		{
 			iSP->PlaySample(iDynData->LevelRuntime()->IngameData()->SoundFX( ESoundEffectWoosh ), KFullVolume, PAN_MIDDLE);
 			iDynData->LevelRuntime()->NewEffect(EEffectExplo, iLocation.Add(12,12), 0, 0);
 			iDynData->LevelRuntime()->NewEffect(EEffectExplo, iLocation.Add(18,12), 0, 0);
 			iDynData->LevelRuntime()->NewEffect(EEffectExplo, iLocation.Add(15,18), 0, 0);
 		}
-		else 
+		else
 		{
-			for (a = 0;a<16;a++) 
-				if (rand()%2) 
+			for (a = 0;a<16;a++)
+				if (rand()%2)
 					iDynData->LevelRuntime()->NewEffect(EEffectBlood,iLocation.Add(15,15), int(a*22.5f), 2);
 			iSP->PlaySample(iDynData->LevelRuntime()->IngameData()->SoundFX( ESoundEffectDeath ), KFullVolume, PAN_MIDDLE);
 		}
@@ -796,7 +795,7 @@ void CPlayer::ShopBuy(int aAmount, CDynShopData* aDSD)
 			if (bulletType->Cost() > iCash)
 				return;
 
-			if ( iBullets[aDSD->Item()+1] < 
+			if ( iBullets[aDSD->Item()+1] <
 				 bulletType->MaximumForPlayer()*
 				  bulletType->Multiplier() )
 			{
@@ -814,13 +813,13 @@ void CPlayer::ShopBuy(int aAmount, CDynShopData* aDSD)
 			if (iShield<iGameData->TypeData()->iShieldType->Maximum())
 			{
 				iCash -= ShieldPrice();
-				iShield++;				
+				iShield++;
 			}
 			else return;
-				
+
 		}
 
-		if (aDSD->Cat() == 2 && 
+		if (aDSD->Cat() == 2 &&
 			aDSD->Item() == 1 )
 		{
 			if (aDSD->iTargetPrice>iCash)
@@ -862,7 +861,7 @@ void CPlayer::ShopSell(int aAmount,CDynShopData* aDSD)
 
 				iCash += bulletType->Cost();
 				iBullets[aDSD->Item()+1] -= bulletType->Multiplier();
-				if (iBullets[aDSD->Item()+1]<0) 
+				if (iBullets[aDSD->Item()+1]<0)
 					iBullets[aDSD->Item()+1] = 0;
 			}
 			else return;
@@ -873,7 +872,7 @@ void CPlayer::ShopSell(int aAmount,CDynShopData* aDSD)
 			if (iShield)
 			{
 				iCash+= ShieldPrice()/2;
-				iShield--;				
+				iShield--;
 			}
 			else return;
 		}
@@ -892,8 +891,8 @@ void CPlayer::ShopSell(int aAmount,CDynShopData* aDSD)
 }
 
 const CCoord<int>& CPlayer::ScreenPos() const
-{ 
-	return iScreenPos; 
+{
+	return iScreenPos;
 }
 
 
@@ -941,13 +940,13 @@ void CPlayer::BulletPlayerKill( CPlayer* aPlayer )
 {
 	char buf[KMaxMessagesLengthOnBoard];
 
-	if (aPlayer!= this)		
+	if (aPlayer!= this)
 		ASSERT(_snprintf(buf,KMaxMessagesLengthOnBoard,iDynData->LevelRuntime()->IngameData()->RandomKillText(),iName,aPlayer->iName)>0);
 	if (aPlayer == this) // has to be this way. Some problems with ASSERT macro
 		ASSERT(_snprintf(buf,KMaxMessagesLengthOnBoard,iDynData->LevelRuntime()->IngameData()->RandomSuicideText(),iName)>0);
 
 	iGS->GUIStateController()->MessageBoard()->AddMessage(buf);
-	
+
 	iDynData->Statistics()->PlayerStats( this ).LevelStats( iDynData->CurrentLevel() ).
 		AddPlayerKill( aPlayer );
 }
@@ -969,7 +968,7 @@ TEST( CPlayer )
 	ASSERT( iCash   >= 0);
 	ASSERT( iName   != NULL );
 	ASSERT( iSpeed  >  0);
-	
+
 	for (int a=0;a<EWeaponAmount;a++)
 	{
 		ASSERT( iWeapons[a]>=0 );

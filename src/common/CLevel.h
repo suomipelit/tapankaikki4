@@ -117,7 +117,7 @@ public:
 	inline bool Collision(const CCoord<int>& aPos) const;
 	inline bool Collision(int aX,int aY) const {return Collision(CCoord<int>(aX,aY));};
 
-	// How far can object move from src to dst without collision. Coordinates in pixels 
+	// How far can object move from src to dst without collision. Coordinates in pixels
 	// 1 pixel accuracy
 	// Collision location is stored in aCollisionPoint (optional)
 	// return true if two positions are visible each other
@@ -137,7 +137,7 @@ public:
 	EXPORT void AddEnemy(int aX,int aY,int aType);
 	EXPORT void AddNormalCrate(int aX,int aY,int aType1,int aType2);
 	EXPORT void AddDMCrate(int aX,int aY,int aType1,int aType2);
-	EXPORT char* LevelFileName() {return iLevelFileName;};
+	EXPORT char* LevelFileName();
 
 	EXPORT bool Reachable(const CCoord<int>& aPos) const;
 	EXPORT const CCoord<int>& StartPosition(int aIndex) const;
@@ -215,7 +215,7 @@ TBlock& CLevel::LevelData(const CCoord<int>& aPos)
 
 inline bool CLevel::Collision(const CCoord<int>& aPos) const
 {
-	if (InLevel(aPos) && 
+	if (InLevel(aPos) &&
 		iLevelData[aPos.Y()*iWidth+aPos.X()].iType==EBlockTypeFloor)
 		return false;
 

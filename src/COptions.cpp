@@ -157,7 +157,7 @@ void COptions::Load()
 
 void COptions::LoadThemes()
 {
-#ifndef __unix__
+#ifndef __LINUX__
 	struct _finddata_t fbuf;
 
 	int er,error=0;
@@ -183,7 +183,7 @@ void COptions::LoadThemes()
 	}
 	_findclose(er);
 
-#else	// __unix__
+#else	// __LINUX__
 
 	if (chdir("music") == 0) {
 		DIR* fbuf = opendir(".");
@@ -210,7 +210,7 @@ void COptions::LoadThemes()
 
 		chdir("..");
 	}
-#endif	// __unix__
+#endif	// __LINUX__
 }
 
 void COptions::UpdateGammaChanges()
