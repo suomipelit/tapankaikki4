@@ -2,6 +2,7 @@
 #include "error.h"
 #include "CSpotlight.h"
 #include "CSteam.h"
+#include "files.h"
 
 int CEditableLevel::Save(const char* aName)
 {
@@ -14,7 +15,7 @@ int CEditableLevel::Save(const char* aName)
 	TrimRandomCrates( iRandomCratesNormal );
 	TrimRandomCrates( iRandomCratesDM );
 
-	file=fopen(aName,"wb");
+	file=fopen(std::string(aName).c_str(),"wb");
 	if (file!=NULL)
 	{ 
 		strcpy(iLevelFileName,aName);

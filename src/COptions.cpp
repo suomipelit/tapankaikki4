@@ -4,6 +4,7 @@
 #include <SDL.h>
 
 #include "common/defines.h"
+#include "common/files.h"
 
 #ifndef __unix__
 #include <io.h>
@@ -42,7 +43,7 @@ void COptionsData::Reset()
 	iMouseMode = 1;
 	iInGameVideoMode = CCoord<int>(640,480);
 	iProxyEnabled = false;
-	iWebVersionCheckingEnabled = true;
+	iWebVersionCheckingEnabled = false;
 	iMultiPlayGameMode = 0;
 	iMultiPlayEpisode = 1;
 	iMultiPlayNetworkMode = ENetworkModeNone;
@@ -132,7 +133,7 @@ void COptions::Save()
 			len = strlen(iData.iName[ a ]);
 		}
 	};
-	cfg = fopen(KOptionsFilename, "wb");
+	cfg = fopen(getsavepath(KOptionsFilename).c_str(), "wb");
 	fwrite(&iData,sizeof(COptionsData), 1,cfg);
 	fclose(cfg);
 }
@@ -141,9 +142,9 @@ void COptions::Load()
 {
 	FILE *cfg;
 
-	if (filelen(KOptionsFilename)==sizeof(COptionsData))
+	if (filelen(getsavepath(KOptionsFilename).c_str())==sizeof(COptionsData))
 	{
-		cfg = fopen(KOptionsFilename, "rb");
+		cfg = fopen(getsavepath(KOptionsFilename).c_str(), "rb");
 		if (cfg) 
 		{
 			fread(&iData,sizeof(COptionsData), 1,cfg);
@@ -185,13 +186,14 @@ void COptions::LoadThemes()
 
 #else	// __LINUX__
 
-	if (chdir("music") == 0) {
-		DIR* fbuf = opendir(".");
+	DIR* fbuf;
+	fbuf = opendir(getdatapath(std::string("music")).c_str());
+	if (fbuf != NULL) {
 		dirent* cur;
 		struct stat info;
 		bool ok;
-		while ((cur = readdir(fbuf))) {
-			if (stat(cur->d_name, &info) == 0) {
+		while ((cur = readdir(fbuf)) != NULL) {
+			if (stat(getdatapath(std::string(cur->d_name)).c_str(), &info) == 0) {
 				if (S_ISDIR(info.st_mode)) {
 					ok = true;
 					for(int a=0; a<KForbiddenFileAmount; a++)
@@ -200,7 +202,7 @@ void COptions::LoadThemes()
 							break;
 						}
 					if (ok) {
-						char* level = strdup(cur->d_name);
+						char* level = strdup(getdatapath(std::string(cur->d_name)).c_str());
 						iMusicThemes.push_back(level);
 					}
 				}
@@ -208,7 +210,6 @@ void COptions::LoadThemes()
 		}
 		closedir(fbuf);
 
-		chdir("..");
 	}
 #endif	// __LINUX__
 }

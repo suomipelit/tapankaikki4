@@ -1,7 +1,16 @@
+CC ?=		g++
+LD ?=		g++
+
+CFLAGS ?=	-Wall -O2 -DDATADIR=\"${DATADIR}\"
+
 PREFIX =	/usr/local
 DATADIR ?=	${PREFIX}/share/tkb
+
 MAKE_FLAGS =	DATADIR="${DATADIR}"
-MAKE_ENV =	INSTALL_DATA_DIR="${INSTALL_DATA_DIR}" \
+MAKE_ENV =	CC="${CC}" \
+		LD="${LD}" \
+		CFLAGS="${CFLAGS}" \
+		INSTALL_DATA_DIR="${INSTALL_DATA_DIR}" \
 		INSTALL_DATA="${INSTALL_DATA}" \
 		INSTALL_PROGRAM_DIR="${INSTALL_PROGRAM_DIR}" \
 		INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
@@ -17,10 +26,10 @@ INSTALL_PROGRAM =	install -c -s -o root -g bin -m 555
 all: game editor
 
 game:
-	cd src && env -i ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS}
+	cd src && env ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS}
 
 editor:
-	cd src/Editor && env -i ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS}
+	cd src/Editor && env ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS}
 
 install:
 	${INSTALL_PROGRAM_DIR} ${DESTDIR}${PREFIX}/bin
