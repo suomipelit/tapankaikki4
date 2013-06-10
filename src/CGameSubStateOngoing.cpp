@@ -57,7 +57,7 @@ bool CGameSubStateOngoing::RunFrame()
 				iDynData->LevelRuntime()->ChkWakeUps();
 
 			for(int a=0; a<iDynData->LocalPlayers().size(); a++)
-			{ 
+			{
 				iDynData->LocalPlayers()[a]->MoveScr(iDynData->PlayerDrawRect(a));
 				iDynData->LocalPlayers()[a]->LoadWeapons();
 			}
@@ -71,12 +71,12 @@ bool CGameSubStateOngoing::RunFrame()
 
 			iDynData->DecHits();
 			iDynData->ShowSteam();
-			
-			if (iDynData->iNextLevel) 
+
+			if (iDynData->iNextLevel)
 				iDynData->iNextLevel++;
 
 			iDynData->LevelRuntime()->RollEffects();
-		}	
+		}
 
 		// Check if enemies are dead
 		if (iDynData->GameMode()->ObjectiveFulfilled())
@@ -156,7 +156,7 @@ void CGameSubStateOngoing::EnterState()
 	while(iter != iDynData->LevelRuntime()->Enemies().end() )
 	{
 		CCoord<int> pos = iter->Location().Add(KBlockSpriteSize/2,KBlockSpriteSize/2).Div(KBlockSpriteSize);
-		
+
 		if (!iDynData->LevelRuntime()->Level().Reachable(pos))
 		{
 			mb->AddMessage("One or more enemies are placed in invalid positions!");
@@ -167,7 +167,7 @@ void CGameSubStateOngoing::EnterState()
 		}
 		++iter;
 	}
-	
+
 }
 
 void CGameSubStateOngoing::ExitState()
@@ -191,7 +191,7 @@ void CGameSubStateOngoing::SoundHeard(enum TIngameSoundEffect aEffect,float aVol
 	};
 }
 
-void CGameSubStateOngoing::CheckUserInput() 
+void CGameSubStateOngoing::CheckUserInput()
 {
 	char text[100];
 	float temp;
@@ -199,12 +199,12 @@ void CGameSubStateOngoing::CheckUserInput()
 	int key;
 
 	CEventHandler* eh = iStateController->EventHandler();
-	
+
 	if (!iDynData->MessageWritingMode()&&eh->Kbhit())
 	{
 		key=eh->Getch().sym;
 
-		if (key==SDLK_RETURN && iDynData->NetworkMode()!=ENetworkModeNone) 
+		if (key==SDLK_RETURN && iDynData->NetworkMode()!=ENetworkModeNone)
 		{
 			eh->State(SDLK_RETURN)=0;
 			iDynData->SetMessageWritingMode(true);
@@ -225,25 +225,28 @@ void CGameSubStateOngoing::CheckUserInput()
 	{
 		WriteNetworkMessage( eh );
 	}
-	
-	if (eh->State(SDLK_PAGEUP)) 
+
+	/* only available via main menu on openpandora
+
+	if (eh->State(SDLK_PAGEUP))
 	{
-        if (iStateController->GUIStateController()->Options()->Data().iMouseSensitivity<KMouseSensitivityMax) 
-			iStateController->GUIStateController()->Options()->Data().iMouseSensitivity+=KMouseSensitivityStep; 
+        if (iStateController->GUIStateController()->Options()->Data().iMouseSensitivity<KMouseSensitivityMax)
+			iStateController->GUIStateController()->Options()->Data().iMouseSensitivity+=KMouseSensitivityStep;
 	        ASSERT(_snprintf(text,100,"Mouse sensitivity %.2f",iStateController->GUIStateController()->Options()->Data().iMouseSensitivity*100)>0);
 		iStateController->GUIStateController()->MessageBoard()->AddMessage(text);
 		eh->State(SDLK_PAGEUP)=0;
     }
 
-	if (eh->State(SDLK_PAGEDOWN)) 
+	if (eh->State(SDLK_PAGEDOWN))
 	{
-        if (iStateController->GUIStateController()->Options()->Data().iMouseSensitivity>KMouseSensitivityMin) 
-			iStateController->GUIStateController()->Options()->Data().iMouseSensitivity-=KMouseSensitivityStep; 
+        if (iStateController->GUIStateController()->Options()->Data().iMouseSensitivity>KMouseSensitivityMin)
+			iStateController->GUIStateController()->Options()->Data().iMouseSensitivity-=KMouseSensitivityStep;
 
 	        ASSERT(_snprintf(text,100,"Mouse sensitivity %.2f",iStateController->GUIStateController()->Options()->Data().iMouseSensitivity*100)>0);
 			iStateController->GUIStateController()->MessageBoard()->AddMessage(text);
         eh->State(SDLK_PAGEDOWN)=0;
     }
+    */
 
     if (eh->State(SDLK_F4))
 	{
@@ -253,25 +256,25 @@ void CGameSubStateOngoing::CheckUserInput()
 		iStateController->GUIStateController()->MessageBoard()->AddMessage(text);
         eh->State(SDLK_F4)=0;
     }
-	
+
 	// Hide/Show Map
-	if (eh->State(SDLK_F5)) 
+	if (eh->State(SDLK_F5))
 	{
 		iDynData->iShowMap=!iDynData->iShowMap;
 		eh->State(SDLK_F5)=0;
 	}
 
 	// Hide/Show framerate
-	if (eh->State(SDLK_F6)) 
+	if (eh->State(SDLK_F6))
 	{
 		iDynData->iDrawFrames=!iDynData->iDrawFrames;
 		eh->State(SDLK_F6)=0;
 	}
 
 	// Player key handling
-	for(a=0; a<iDynData->LocalPlayers().size(); a++) 
-		if (!iDynData->LocalPlayers()[a]->iDead) 
-			iDynData->LocalPlayers()[a]->CheckKeys(a,eh, 
+	for(a=0; a<iDynData->LocalPlayers().size(); a++)
+		if (!iDynData->LocalPlayers()[a]->iDead)
+			iDynData->LocalPlayers()[a]->CheckKeys(a,eh,
 			iDynData->PlayerDrawRect(a));
 
 	/* Handle mouse input */
