@@ -1,29 +1,13 @@
 #include "files.h"
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <pwd.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <errno.h>
 
-const std::string SaveDataPath=getsavebasedir();
-EXPORT std::string getsavebasedir()
-{
-#ifdef __unix__
-	const char *home = getenv("HOME");
+const std::string SaveDataPath = "./";
+const std::string DATADIR = ".";
 
-	if (home == NULL)
-		exit(1);
-
-	std::string path = std::string(home) + std::string("/.tapankaikki/");
-	if (mkdir(path.c_str(), 0755) != 0 && errno != EEXIST)
-		exit(1);
-
-	return path;
-#else
-#error "getsavebasedir not implemented on this platform."
-#endif
-}
 
 EXPORT std::string getsavepath(const std::string& name)
 {
@@ -55,7 +39,7 @@ EXPORT int exists(const char *name)
 {
     FILE *f;
     f=fopen(name,"rb");
-    if (f==NULL) return(0); 
+    if (f==NULL) return(0);
     fclose(f);
     return(1);
 }
@@ -63,7 +47,7 @@ EXPORT int exists(const char *name)
 EXPORT int filelen(const char *name)
 {
     FILE *f;
-    int len;  
+    int len;
     f=fopen(name,"rb");
     if (f==NULL) return(-1);
     fseek(f,0,SEEK_END);

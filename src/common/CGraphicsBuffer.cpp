@@ -61,8 +61,8 @@ const char* strcasestr(const char* src,const char* match)
 	int mlen=strlen(match);
 	int l=(int)(strlen(src)-mlen);
 
-	for (a=0;a<=l;a++)
-		if (portable_strnicmp(src+a,match,mlen)==NULL)
+    for (a=0;a<=l;a++)
+		if (portable_strnicmp(src+a,match,mlen)==0)
 			return src+a;
 
 	return NULL;
@@ -106,11 +106,13 @@ CGraphicsBuffer::CGraphicsBuffer(CGraphicsBuffer& aBuf)
 void CGraphicsBuffer::Load(std::string aFilename, CPalette* aPalette)
 {
  	ASSERT(aFilename.length()>0);
-	const char* ext = aFilename.c_str() + aFilename.find_last_of('.');
 
 	// Translate the filename to have DATADIR before
 	// calling any of the real loading functions.
 	aFilename = getdatapath(aFilename);
+
+	const char* ext = aFilename.c_str() + aFilename.find_last_of('.');
+
 
 	if (strcasestr(ext,".efp2"))
 	{
