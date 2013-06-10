@@ -16,7 +16,7 @@ void CColorTable::GenerateTransparencyTable(CPalette& aPalette)
 		r1=aPalette.Color(a).r;
 		g1=aPalette.Color(a).g;
 		b1=aPalette.Color(a).b;
-	
+
 		for (b=0;b<256;b++)
 		{
 			r2=aPalette.Color(b).r;
@@ -64,7 +64,7 @@ void CColorTable::WriteTables(char *aFilename)
 	fclose(tab);
 }
 
-int CColorTable::ReadTables(char *aFilename) 
+int CColorTable::ReadTables(char *aFilename)
 {
 	FILE *tab= fopen(getsavepath(std::string(aFilename)).c_str(),"rb");
 
@@ -93,7 +93,7 @@ void CColorTable::Init()
 		WriteTables("palette.tab");
 	}
 
-	for(int a=0; a<KLightAmount; a++) 
+	for(int a=0; a<KLightAmount; a++)
 		iLightMap[a].Make(15+a*5);
 }
 

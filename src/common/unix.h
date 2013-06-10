@@ -21,6 +21,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <pwd.h>
+
 
 //#include "error.h"
 EXPORT void TKAssert( const char* aAssertion, const char* file, int line );
