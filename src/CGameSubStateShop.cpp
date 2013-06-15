@@ -19,7 +19,7 @@ namespace
 	// TODO: CONFIGFILE
 	const char* KSHOP_INSTRUCTION_LINE0="Press ESC to exit the shop.";
 	const char* KSHOP_INSTRUCTION_LINE1="Press ARROWS to navigate. RETURN to buy item, BACKSPACE to sell item";
-	const char* KSHOP_INSTRUCTION_LINE2="Press PAGEUP to buy 25 items and PAGEDOWN to sell 25 items";
+	const char* KSHOP_INSTRUCTION_LINE2="Press O to buy 25 items and P to sell 25 items";
 	const char* KSHOP_TITLE="The Shop";
 
 	const int KSHOP_DESCRIPTION_START_Y=10;
@@ -61,7 +61,7 @@ bool CGameSubStateShop::RunFrame()
 	if (iShopData->PlayerDone())
 	{
 		iShopData->SetPlayer(iShopData->Player()+1);
-		
+
 		if (iShopData->Player()>=iStateController->DynData()->LocalPlayers().size())
 		{
 			iStateController->GUIStateController()->StartFadeOut(CState(CState::EMainStateGame,EGameStateOnGoing));
@@ -70,7 +70,7 @@ bool CGameSubStateShop::RunFrame()
 		}
 		else
 			iStateController->GUIStateController()->StartFadeOut(CState(CState::EMainStateGame,EGameStateShop));
-		
+
 		iShopData->SetSkipOnce();
 		iShopData->SetPlayerDone( false );
 	}
@@ -131,13 +131,13 @@ bool CGameSubStateShop::RunKeys()
 			retval = true;
 		}
 
-		if ( sym == SDLK_PAGEDOWN )
+		if ( sym == SDLK_p )
 		{
 			current->ShopSell(25,iShopData);
 			retval = true;
 		}
 
-		if ( sym == SDLK_PAGEUP )
+		if ( sym == SDLK_o )
 		{
 			current->ShopBuy(25,iShopData);
 			retval = true;
@@ -200,16 +200,16 @@ void CGameSubStateShop::Draw(CDrawArea& aDirtyArea,CDrawArea& aDrawArea,CGameGra
 		{
 			case 0: cur_amount = current->iWeapons[item+1];break;
 			case 1: cur_amount = current->iBullets[item+1]/iGameData->TypeData()->iBulletType[item+1]->Multiplier();break;
-			case 2: if (item==0) 
+			case 2: if (item==0)
 						cur_amount = current->iShield;
 					else
 						cur_amount = current->iTargetSystem;
-				break;			
+				break;
 		}
 
 		if (cur_amount>0)
 		{
-			//We got it, hilite it. 
+			//We got it, hilite it.
 			iCleanArea.Combine(
 				aGGI->DrawBuffer()->Copy(x,y,hilite_picture,x,y,KSHOPITEM_SPRITE_WIDTH,KSHOPITEM_SPRITE_HEIGHT)
 				);
@@ -240,7 +240,7 @@ void CGameSubStateShop::Draw(CDrawArea& aDirtyArea,CDrawArea& aDrawArea,CGameGra
 				x+KSHOPITEM_SPRITE_WIDTH,
 				y+KSHOPITEM_SPRITE_HEIGHT,
 				str,
-				CFonts::EDrawAbove, CFonts::EDrawToLeft, 
+				CFonts::EDrawAbove, CFonts::EDrawToLeft,
 				aGGI->DrawBuffer()));
 		}
 
@@ -251,13 +251,13 @@ void CGameSubStateShop::Draw(CDrawArea& aDirtyArea,CDrawArea& aDrawArea,CGameGra
 		aGGI->DrawBuffer()->Width()-KSHOPITEMS_START_X,
 		KSHOP_DESCRIPTION_START_Y,
 		str,
-		CFonts::EDrawBelow, CFonts::EDrawToLeft, 
+		CFonts::EDrawBelow, CFonts::EDrawToLeft,
 		aGGI->DrawBuffer()));
 
 	aDrawArea.Combine(iCleanArea);
 }
 
-void CGameSubStateShop::DrawWareInfo(int aX, int aY,CDrawArea& aDrawArea,CGameGraphicsInterface* aGGI) 
+void CGameSubStateShop::DrawWareInfo(int aX, int aY,CDrawArea& aDrawArea,CGameGraphicsInterface* aGGI)
 {
 	const int KTempStringLength = 256;
 	CPlayer* current = iStateController->DynData()->LocalPlayers()[iShopData->Player()];
@@ -265,7 +265,7 @@ void CGameSubStateShop::DrawWareInfo(int aX, int aY,CDrawArea& aDrawArea,CGameGr
 	char txt[KTempStringLength];
 	int a;
 
-	if (iShopData->Cat() == 0) 
+	if (iShopData->Cat() == 0)
 	{
 		aDrawArea.Combine(font->Write(aX, aY, iGameData->TypeData()->iWeaponType[iShopData->Item()+1]->Name(),CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 
@@ -274,13 +274,13 @@ void CGameSubStateShop::DrawWareInfo(int aX, int aY,CDrawArea& aDrawArea,CGameGr
 
 		ASSERT(_snprintf(txt,KTempStringLength,"Sell price: %d",iShopData->iWeaponSellPrice[iShopData->Item()])>0);
 		aDrawArea.Combine(font->Write(aX, aY+30, txt,CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
-		
+
 		ASSERT(_snprintf(txt,KTempStringLength,"Bullet type: %s",iGameData->TypeData()->iBulletType[iGameData->TypeData()->iWeaponType[iShopData->Item()+1]->BulletType()]->Name())>0);
 		aDrawArea.Combine(font->Write(aX, aY+40, txt,CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 
 		return;
 	}
-	if (iShopData->Cat() == 1) 
+	if (iShopData->Cat() == 1)
 	{
 		aDrawArea.Combine(font->Write(aX, aY, iGameData->TypeData()->iBulletType[iShopData->Item()+1]->Name(),CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 
@@ -289,9 +289,9 @@ void CGameSubStateShop::DrawWareInfo(int aX, int aY,CDrawArea& aDrawArea,CGameGr
 
 		return;
 	}
-	if (iShopData->Cat() == 2) 
+	if (iShopData->Cat() == 2)
 	{
-		if (iShopData->Item() == 0) 
+		if (iShopData->Item() == 0)
 		{
 			aDrawArea.Combine(font->Write(aX, aY, "Shield",CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 
@@ -304,7 +304,7 @@ void CGameSubStateShop::DrawWareInfo(int aX, int aY,CDrawArea& aDrawArea,CGameGr
 			aDrawArea.Combine(font->Write(aX, aY+30, txt,CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 			return;
 		}
-		if (iShopData->Item() == 1) 
+		if (iShopData->Item() == 1)
 		{
 			aDrawArea.Combine(font->Write(aX, aY, "Target system", CFonts::EDrawBelow, CFonts::EDrawToRight,aGGI->DrawBuffer()));
 			ASSERT(_snprintf(txt,KTempStringLength,"Cost: %d",iShopData->iTargetPrice)>0);
@@ -340,21 +340,21 @@ void CGameSubStateShop::DrawStaticToBackground()
 		KSHOPITEMS_START_X,
 		iBackgroundPicture->Height()-smallfont->Height()*3,
 		KSHOP_INSTRUCTION_LINE0,
-		CFonts::EDrawBelow, CFonts::EDrawToRight, 
+		CFonts::EDrawBelow, CFonts::EDrawToRight,
 		iBackgroundPicture);
 
 	smallfont->Write(
 		KSHOPITEMS_START_X,
 		iBackgroundPicture->Height()-smallfont->Height()*2,
 		KSHOP_INSTRUCTION_LINE1,
-		CFonts::EDrawBelow, CFonts::EDrawToRight, 
+		CFonts::EDrawBelow, CFonts::EDrawToRight,
 		iBackgroundPicture);
 
 	smallfont->Write(
 		KSHOPITEMS_START_X,
 		iBackgroundPicture->Height()-smallfont->Height(),
 		KSHOP_INSTRUCTION_LINE2,
-		CFonts::EDrawBelow, CFonts::EDrawToRight, 
+		CFonts::EDrawBelow, CFonts::EDrawToRight,
 		iBackgroundPicture);
 
 	if (strlen(current->iName)>0)
@@ -366,7 +366,7 @@ void CGameSubStateShop::DrawStaticToBackground()
 		iBackgroundPicture->Width()-KSHOPITEMS_START_X,
 		KSHOP_DESCRIPTION_START_Y+smallfont->Height(),
 		str,
-		CFonts::EDrawBelow, CFonts::EDrawToLeft, 
+		CFonts::EDrawBelow, CFonts::EDrawToLeft,
 		iBackgroundPicture);
 
 }

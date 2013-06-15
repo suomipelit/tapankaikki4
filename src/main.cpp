@@ -24,7 +24,7 @@ int main(int argc,char *argv[])
 {
 	CGameApp* GGameApp = NULL;
 	atexit(ExitHandler);
-	chdir(getdatapath(".").c_str());
+
 
 	try
 	{

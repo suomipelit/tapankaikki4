@@ -12,14 +12,18 @@ const std::string DATADIR = ".";
 EXPORT std::string getsavepath(const std::string& name)
 {
 	std::string ret = SaveDataPath + name;
+#ifdef _DEBUG
 	printf("Savepath: %s\n", ret.c_str());
+#endif
 	return ret;
 }
 
 EXPORT std::string getdatapath(const std::string& name)
 {
 	std::string ret = std::string(DATADIR) + std::string("/") + name;
+#ifdef _DEBUG
 	printf("Datapath: %s\n", ret.c_str());
+#endif
 	return ret;
 }
 
