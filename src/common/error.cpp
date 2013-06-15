@@ -37,14 +37,11 @@ void TKAssert( const char* aAssertion, const char* file, int line )
 
 void logwrite(const char *out, ...)
 {
-	FILE *f=fopen(getsavepath(std::string("runlog.txt")).c_str(),"a+");
 	va_list list;
 	va_start(list, out);
 
-	vfprintf(f,out,list);
+	vfprintf(stdout,out,list);
 	va_end( list );
-
-	fclose(f);
 }
 
 void error(const char *fmt,...)
