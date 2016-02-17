@@ -22,7 +22,7 @@ const char* KForbiddenFiles[]={"..",".","CVS"};
 #ifdef __unix__
 namespace
 {
-	inline int filter_dir(dirent* dir)
+	inline int filter_dir(const dirent* dir)
 	{
 		struct stat info;
 		if (stat(dir->d_name, &info) == 0)
@@ -30,7 +30,7 @@ namespace
 				return true;
 		return false;
 	}
-	inline int filter_norm_lev(dirent* dir)
+	inline int filter_norm_lev(const dirent* dir)
 	{
 		struct stat info;
 		if (stat(dir->d_name, &info) == 0)
@@ -44,7 +44,7 @@ namespace
 			}
 		return false;
 	}
-	inline int filter_level(dirent* file)
+	inline int filter_level(const dirent* file)
 	{
 		if(strncasecmp(file->d_name, "level", 5) == 0) {
 			const char* tmp = file->d_name+5;
@@ -59,9 +59,14 @@ namespace
 		}
 		return false;
 	}
+	inline int sort_level(const dirent** file1, const dirent** file2)
+	{
+		return atoi((*file1)->d_name+5) - atoi((*file2)->d_name+5);
+	}
 	inline int sort_level(const void* file1, const void* file2)
 	{
-		return atoi((*reinterpret_cast<const dirent* const*>(file1))->d_name+5) - atoi((*reinterpret_cast<const dirent* const*>(file2))->d_name+5);
+		return sort_level(static_cast<const dirent**>(const_cast<void*>(file1)),
+		                  static_cast<const dirent**>(const_cast<void*>(file2)));
 	}
 };
 #endif
