@@ -4,3 +4,5 @@ _build_
 .lock-wscript
 runlog.txt
 *.o
+tkb
+tkb-editor
