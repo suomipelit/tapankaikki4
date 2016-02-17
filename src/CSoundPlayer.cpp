@@ -100,7 +100,7 @@ void CSoundPlayer::LoadMusic(const char *aFileName)
 		iMusic=Mix_LoadMUS(aFileName);
 
 		if (iMusic==NULL) 
-			error("CSoundPlayer::CSoundPlayer: Musicmodule NULL!\n");
+			LOG2("CSoundPlayer::LoadMusic(%s) failed: %s\n", aFileName, Mix_GetError());
 	}
 }
 
