@@ -30,7 +30,9 @@ editor:
 
 install:
 	${INSTALL_PROGRAM_DIR} ${DESTDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} src/tkb src/Editor/tkb-editor ${DESTDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} src/tkb ${DESTDIR}${PREFIX}/bin
+	if test -s src/Editor/tkb-editor; then \
+	${INSTALL_PROGRAM} src/Editor/tkb-editor ${DESTDIR}${PREFIX}/bin; fi
 	${INSTALL_DATA_DIR} ${DESTDIR}${DATADIR}
 	${INSTALL_DATA} COPYING ${DESTDIR}${DATADIR}/
 	cd data && env ${MY_MAKE_ENV} ${MAKE} ${MAKEFLAGS} ${MY_MAKEFLAGS} install
