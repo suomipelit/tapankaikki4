@@ -83,11 +83,12 @@ CGraphicsBuffer::CGraphicsBuffer(CGraphicsBuffer& aBuf)
 void CGraphicsBuffer::Load(std::string aFilename, CPalette* aPalette)
 {
  	ASSERT(aFilename.length()>0);
-	const char* ext = aFilename.c_str() + aFilename.find_last_of('.');
 
 	// Translate the filename to have DATADIR before
 	// calling any of the real loading functions.
 	aFilename = getdatapath(aFilename);
+
+	const char* ext = aFilename.c_str() + aFilename.find_last_of('.');
 
 	if (strcasestr(ext,".efp2"))
 	{
