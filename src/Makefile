@@ -88,6 +88,12 @@ SRCS =	CBodyPart.cpp \
 	common/CSpotlight.cpp \
 	common/types.cpp
 
+ifeq ($(OS), Windows_NT)
+	SRCS += lists_win32.cpp
+else
+	SRCS += lists_unix.cpp
+endif
+
 OBJS =		${SRCS:.cpp=.o}
 TARGET = 	tkb
 

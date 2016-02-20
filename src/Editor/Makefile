@@ -7,7 +7,6 @@ SRCS = 	EditorBrush.cpp \
 	StateEditLevel.cpp \
 	StateNewLevel.cpp \
 	EditorClipBoard.cpp \
-	EditorLevelIO.cpp \
 	EventFilter.cpp \
 	StateEditRCData.cpp \
 	StateRemoveObjects.cpp \
@@ -53,6 +52,12 @@ SRCS = 	EditorBrush.cpp \
 	../common/CGraphicsGenerator.cpp \
 	../common/CSpotlight.cpp \
 	../common/types.cpp
+
+ifeq ($(OS), Windows_NT)
+	SRCS += EditorLevelIO_win32.cpp
+else
+	SRCS += EditorLevelIO_gtk.cpp
+endif
 
 OBJS =		${SRCS:.cpp=.o}
 TARGET = 	tkb-editor
