@@ -4,10 +4,10 @@ CFLAGS ?=		-Wall -O2
 PREFIX =		/usr/local
 DATADIR ?=		${PREFIX}/share/tkb
 
-INSTALL_DATA_DIR =	install -d -o root -g bin -m 755
-INSTALL_PROGRAM_DIR =	install -d -o root -g bin -m 755
-INSTALL_DATA =		install -c -o root -g bin -m 444
-INSTALL_PROGRAM =	install -c -s -o root -g bin -m 555
+INSTALL_DATA_DIR =	install -d -m 755
+INSTALL_PROGRAM_DIR =	install -d -m 755
+INSTALL_DATA =		install -c -m 444
+INSTALL_PROGRAM =	install -c -s -m 555
 
 MY_MAKE_ENV =	CXX="${CXX}" \
 		CFLAGS="${CFLAGS}" \
