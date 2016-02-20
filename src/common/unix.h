@@ -1,6 +1,10 @@
 #ifndef __UNIX_H
 #define __UNIX_H
 
+#ifdef __APPLE__
+#define __unix__
+#endif
+
 #ifdef __unix__
 
 #define EXPORT
