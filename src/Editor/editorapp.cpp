@@ -130,7 +130,4 @@ CEditorApp::~CEditorApp()
 	delete iLevel;
 	delete iGraphics;
 	delete iGD;
-	
-	
-	SDL_Quit();
 }
