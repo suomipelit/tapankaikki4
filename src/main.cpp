@@ -17,7 +17,7 @@ void ExitHandler()
 }
 
 // TODO: CONFIGFILE
-const char* KIconFile=getdatapath(std::string("tk.ico")).c_str();
+const std::string KIconFile=getdatapath("tk.ico");
 const char* KWindowCaption="Tapan Kaikki Bloodshed";
 
 int main(int argc,char *argv[]) 
@@ -29,8 +29,8 @@ int main(int argc,char *argv[])
 	try
 	{
 		// TODO: CONFIGFILE
-		CSplash::ShowSplash("efps/splash.bmp",KIconFile,KWindowCaption);
-		GGameApp = new CGameApp(KIconFile,KWindowCaption);
+		CSplash::ShowSplash("efps/splash.bmp",KIconFile.c_str(),KWindowCaption);
+		GGameApp = new CGameApp(KIconFile.c_str(),KWindowCaption);
 #ifdef _DEBUG
 		GGameApp->SelfTest();
 #endif
