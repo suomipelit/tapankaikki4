@@ -1,5 +1,5 @@
-#ifndef __IBODYPARTTYPE_H_
-#define __IBODYPARTTYPE_H_
+#ifndef __IBODYPARTTYPE_H
+#define __IBODYPARTTYPE_H
 
 #include "defines.h"
 

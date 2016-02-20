@@ -1,5 +1,5 @@
-#ifndef __IGUISTATE_H_
-#define __IGUISTATE_H_
+#ifndef __IGUISTATE_H
+#define __IGUISTATE_H
 
 #include "common/CRect.h"
 

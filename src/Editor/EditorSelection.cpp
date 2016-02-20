@@ -1,10 +1,10 @@
 #include "EditorSelection.h"
 #include <stdlib.h>
-#include <string>
+#include <memory.h>
 
 CEditorSelection::CEditorSelection(void)
 {
-	iWidth=35; // n‰ill‰ luvuilla arvioidaan kent‰n keskim. kokoa
+	iWidth=35; // n√§ill√§ luvuilla arvioidaan kent√§n keskim. kokoa
 	iHeight=35;
 	iSelection = (char *)malloc(iWidth*iHeight);
 	Clear();

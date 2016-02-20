@@ -1,5 +1,5 @@
-#ifndef __IWEAPONTYPE_H_
-#define __IWEAPONTYPE_H_
+#ifndef __IWEAPONTYPE_H
+#define __IWEAPONTYPE_H
 
 #include "defines.h"
 #include "IBulletType.h"

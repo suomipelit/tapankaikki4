@@ -1,5 +1,5 @@
-#ifndef __CGUISTATEGAME_H_
-#define __CGUISTATEGAME_H_
+#ifndef __CGUISTATEGAME_H
+#define __CGUISTATEGAME_H
 
 #include "IGUIState.h"
 

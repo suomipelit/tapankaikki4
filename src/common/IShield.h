@@ -1,5 +1,5 @@
-#ifndef __ISHIELD_H_
-#define __ISHIELD_H_
+#ifndef __ISHIELD_H
+#define __ISHIELD_H
 
 class IShield
 {

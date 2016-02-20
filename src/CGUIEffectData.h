@@ -1,5 +1,5 @@
-#ifndef __CGUIEFFECTDATA_H_
-#define __CGUIEFFECTDATA_H_
+#ifndef __CGUIEFFECTDATA_H
+#define __CGUIEFFECTDATA_H
 
 #include "common/CPalette.h"
 #include "CState.h"

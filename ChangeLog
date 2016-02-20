@@ -1,0 +1,19 @@
+- Updating header ifdefs to be consistent across the code
+- Creation of CMusicThemeList class into lists.cpp and updating COptions class accordingly
+- Creation of EF_SNPRINTF macro and replacing _snprintf instances
+- Creation of lists_win32.cpp and lists_unix.cpp for different platforms
+- Refactoring lists.cpp to separate files according to the platform
+- Adding variable KBitDepth to indicate the used bitdepth for mode initialization
+- Remove two assumingly useless float casts from CPlayer.cpp
+- Creation of EditorLevelIO_gtk.cpp and EditorLevelIO_win32.cpp for different libraries
+- Refactoring EditorLevelIO.cpp to separate files according to the library used
+- Convertion of itoa calls to equivalent sprintf calls
+- Add DIR_SEPARATOR define for platform-independent directory separator
+- Introducing EF_SDLWINDOW define for cross-platform SDL windows variable definition
+- Cleaning up ifdefs from CMath.h and cleaning up linux.h and windows.h
+- Update CGameException to include what method to print the exception message
+- Define NORETURN for DLL exports to avoid ifdefs on non-returning functions
+- Add EF_GETCWD and EF_STAT defines for portability again
+- Some cleanups in CGraphicsDevice.cpp that might need some testing
+- Remove useless ifdef from CGraphicsDevice.cpp
+- Convert CLevel.cpp to be endianness aware (a big update!)

@@ -1,5 +1,5 @@
-#ifndef __CGUISTATEQUIT_H_
-#define __CGUISTATEQUIT_H_
+#ifndef __CGUISTATEQUIT_H
+#define __CGUISTATEQUIT_H
 
 #include "IGUIState.h"
 class IGUIStateController;

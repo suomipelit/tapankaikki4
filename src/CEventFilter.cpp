@@ -35,7 +35,7 @@ bool CEventFilter::HandleEvent(SDL_Event event)
 
 						iGA->Options()->Data().iEffectsVolume=min(iGA->Options()->Data().iEffectsVolume+KEffectVolumeStep,KEffectVolumeMax);
 						iGA->Options()->UpdateAudioChanges();
-						ASSERT(_snprintf(text,256,"Effect volume: %.0f%%",100*iGA->Options()->Data().iEffectsVolume)>0);
+						ASSERT(EF_SNPRINTF(text,256,"Effect volume: %.0f%%",100*iGA->Options()->Data().iEffectsVolume)>0);
 						iGA->MessageBoard()->AddMessage(text);
 						return true;
 
@@ -43,7 +43,7 @@ bool CEventFilter::HandleEvent(SDL_Event event)
 				
 						iGA->Options()->Data().iEffectsVolume=max(iGA->Options()->Data().iEffectsVolume-KEffectVolumeStep,KEffectVolumeMin);
 						iGA->Options()->UpdateAudioChanges();
-						ASSERT(_snprintf(text,256,"Effect volume: %.0f%%",100*iGA->Options()->Data().iEffectsVolume)>0);
+						ASSERT(EF_SNPRINTF(text,256,"Effect volume: %.0f%%",100*iGA->Options()->Data().iEffectsVolume)>0);
 						iGA->MessageBoard()->AddMessage(text);
 						return true;
 
@@ -51,7 +51,7 @@ bool CEventFilter::HandleEvent(SDL_Event event)
 				
 						iGA->Options()->Data().iMusicVolume=min(iGA->Options()->Data().iMusicVolume+KMusicVolumeStep,KMusicVolumeMax);
 						iGA->Options()->UpdateAudioChanges();
-						ASSERT(_snprintf(text,256,"Music volume: %.0f%%",100*iGA->Options()->Data().iMusicVolume)>0);
+						ASSERT(EF_SNPRINTF(text,256,"Music volume: %.0f%%",100*iGA->Options()->Data().iMusicVolume)>0);
 						iGA->MessageBoard()->AddMessage(text);
 						return true;
 
@@ -59,7 +59,7 @@ bool CEventFilter::HandleEvent(SDL_Event event)
 			
 						iGA->Options()->Data().iMusicVolume=max(iGA->Options()->Data().iMusicVolume-KMusicVolumeStep,KMusicVolumeMin);
 						iGA->Options()->UpdateAudioChanges();
-						ASSERT(_snprintf(text,256,"Music volume: %.0f%%",100*iGA->Options()->Data().iMusicVolume)>0);
+						ASSERT(EF_SNPRINTF(text,256,"Music volume: %.0f%%",100*iGA->Options()->Data().iMusicVolume)>0);
 						iGA->MessageBoard()->AddMessage(text);
 						return true;
 
@@ -69,7 +69,7 @@ bool CEventFilter::HandleEvent(SDL_Event event)
 							iGA->MessageBoard()->AddMessage("Screen capture disabled in DEBUG version. Sorry!");
 #else
 							char *tmp=iGA->GGI()->ScreenCapture(); 
-							ASSERT(_snprintf(text,256,"%s saved",tmp)>0);
+							ASSERT(EF_SNPRINTF(text,256,"%s saved",tmp)>0);
 							iGA->MessageBoard()->AddMessage(text);
 							delete tmp;
 #endif

@@ -1,5 +1,5 @@
-#ifndef __CGAMESUBSTATESHOP_H_
-#define __CGAMESUBSTATESHOP_H_
+#ifndef __CGAMESUBSTATESHOP_H
+#define __CGAMESUBSTATESHOP_H
 
 #include "IGameSubState.h"
 #include "common/CDrawArea.h"

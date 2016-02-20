@@ -1,5 +1,5 @@
-#ifndef __CGRAPHICSGENERATOR_H_
-#define __CGRAPHICSGENERATOR_H_
+#ifndef __CGRAPHICSGENERATOR_H
+#define __CGRAPHICSGENERATOR_H
 #include "defines.h"
 
 class CGraphicsBuffer;

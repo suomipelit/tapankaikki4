@@ -230,7 +230,7 @@ void CGameSubStateOngoing::CheckUserInput()
 	{
         if (iStateController->GUIStateController()->Options()->Data().iMouseSensitivity<KMouseSensitivityMax) 
 			iStateController->GUIStateController()->Options()->Data().iMouseSensitivity+=KMouseSensitivityStep; 
-	        ASSERT(_snprintf(text,100,"Mouse sensitivity %.2f",iStateController->GUIStateController()->Options()->Data().iMouseSensitivity*100)>0);
+	        ASSERT(EF_SNPRINTF(text,100,"Mouse sensitivity %.2f",iStateController->GUIStateController()->Options()->Data().iMouseSensitivity*100)>0);
 		iStateController->GUIStateController()->MessageBoard()->AddMessage(text);
 		eh->State(SDLK_PAGEUP)=0;
     }
@@ -240,7 +240,7 @@ void CGameSubStateOngoing::CheckUserInput()
         if (iStateController->GUIStateController()->Options()->Data().iMouseSensitivity>KMouseSensitivityMin) 
 			iStateController->GUIStateController()->Options()->Data().iMouseSensitivity-=KMouseSensitivityStep; 
 
-	        ASSERT(_snprintf(text,100,"Mouse sensitivity %.2f",iStateController->GUIStateController()->Options()->Data().iMouseSensitivity*100)>0);
+	        ASSERT(EF_SNPRINTF(text,100,"Mouse sensitivity %.2f",iStateController->GUIStateController()->Options()->Data().iMouseSensitivity*100)>0);
 			iStateController->GUIStateController()->MessageBoard()->AddMessage(text);
         eh->State(SDLK_PAGEDOWN)=0;
     }
@@ -249,7 +249,7 @@ void CGameSubStateOngoing::CheckUserInput()
 	{
 		++iStateController->GUIStateController()->Options()->Data().iMouseMode%=iDynData->LocalPlayers().size()+1;
 		iDynData->UpdateMouseOwner();
-		ASSERT(_snprintf(text,100,"Mouse mode: %s",iStateController->GUIStateController()->Options()->MouseModeText())>0);
+		ASSERT(EF_SNPRINTF(text,100,"Mouse mode: %s",iStateController->GUIStateController()->Options()->MouseModeText())>0);
 		iStateController->GUIStateController()->MessageBoard()->AddMessage(text);
         eh->State(SDLK_F4)=0;
     }

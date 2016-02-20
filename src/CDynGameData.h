@@ -1,5 +1,5 @@
-#ifndef __DYNGAMEDATA_H_
-#define __DYNGAMEDATA_H_
+#ifndef __CDYNGAMEDATA_H
+#define __CDYNGAMEDATA_H
 
 #include <vector>
 #include <list>

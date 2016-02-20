@@ -1,5 +1,5 @@
-#ifndef __SOUND_H_
-#define __SOUND_H_
+#ifndef __CSOUNDPLAYER_H
+#define __CSOUNDPLAYER_H
 
 #define PAN_MIDDLE 0
 #define PAN_LEFT -255

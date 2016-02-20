@@ -1,5 +1,5 @@
-#ifndef __CGUISTATELOGO_H_
-#define __CGUISTATELOGO_H_
+#ifndef __CGUISTATELOGO_H
+#define __CGUISTATELOGO_H
 
 #include "IGUIState.h"
 #include "CGameData.h"

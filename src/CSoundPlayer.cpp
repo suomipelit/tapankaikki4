@@ -296,9 +296,9 @@ char* CSoundPlayer::GetSongFilename( const char* aSoundtrackDir, int aSongNumber
 		for (a=0;a<KAmountMusicFilenameExtensions&&!OK;a++)
 		{
 			if ( aSoundtrackDir && strlen( aSoundtrackDir ) > 0 )
-				ASSERT(_snprintf(buf,FILENAME_MAX,"%s/%d%s",aSoundtrackDir,no,KMusicFilenameExtensions[a])>0);
+				ASSERT(EF_SNPRINTF(buf,FILENAME_MAX,"%s/%d%s",aSoundtrackDir,no,KMusicFilenameExtensions[a])>0);
 			else
-				ASSERT(_snprintf(buf,FILENAME_MAX,"music/%s/%d%s",iTheme,no,KMusicFilenameExtensions[a])>0);
+				ASSERT(EF_SNPRINTF(buf,FILENAME_MAX,"music/%s/%d%s",iTheme,no,KMusicFilenameExtensions[a])>0);
 			if (exists(buf)) OK=1;
 		}
 

@@ -1,5 +1,5 @@
-#ifndef __STATEEDITHEIGHTS_H__
-#define __STATEEDITHEIGHTS_H__
+#ifndef __STATEEDITHEIGHTS_H
+#define __STATEEDITHEIGHTS_H
 #include "EditorState.h"
 
 class CEditorTools;

@@ -1,5 +1,5 @@
-#ifndef __WEAPONBASE_H_
-#define __WEAPONBASE_H_
+#ifndef __CWEAPONBASE_H
+#define __CWEAPONBASE_H
 
 #include "IWeaponType.h"
 #include "defines.h"

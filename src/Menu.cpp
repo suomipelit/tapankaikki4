@@ -333,7 +333,7 @@ CGameMenuChangeKeys::CGameMenuChangeKeys(int playerno,CGameMenuContainer* aGMC):
 {
 	COptions* options=aGMC->Options();
 	char str[100];
-	ASSERT(_snprintf(str,100,"Change Player %d Keys",playerno)>0);
+	ASSERT(EF_SNPRINTF(str,100,"Change Player %d Keys",playerno)>0);
 	CKeys* kptr;
 
 	iIndex=playerno;
@@ -378,7 +378,7 @@ CGameMenuPlayerOptions::CGameMenuPlayerOptions(int playerno,CGameMenuContainer* 
 	COptions* options=aGMC->Options();
 	char str[100];
 
-	ASSERT(_snprintf(str,100,"Player %d options",playerno)>0);
+	ASSERT(EF_SNPRINTF(str,100,"Player %d options",playerno)>0);
 	ASSERT(playerno>=1&&playerno<=KMaxLocalPlayers);
 
 	iMenuItems.push_back(new CGameMenuItemTitle(this,str));

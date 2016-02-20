@@ -1,5 +1,5 @@
-#ifndef __CHARACTER_H_
-#define __CHARACTER_H_
+#ifndef __CCHARACTER_H
+#define __CCHARACTER_H
 
 #include "common/CCoord.h"
 #include "common/CRect.h"

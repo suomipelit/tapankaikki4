@@ -1,5 +1,5 @@
-#ifndef __IGUISTATECONTROLLER_H_
-#define __IGUISTATECONTROLLER_H_ 
+#ifndef __IGUISTATECONTROLLER_H
+#define __IGUISTATECONTROLLER_H 
 
 #include "CGameData.h"
 #include "CState.h"

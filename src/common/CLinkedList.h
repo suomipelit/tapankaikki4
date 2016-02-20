@@ -1,5 +1,5 @@
-#ifndef __LINKEDLIST_H
-#define __LINKEDLIST_H
+#ifndef __CLINKEDLIST_H
+#define __CLINKEDLIST_H
 
 #ifndef NULL
 #define NULL 0

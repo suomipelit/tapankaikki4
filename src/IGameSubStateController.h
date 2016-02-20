@@ -1,5 +1,5 @@
-#ifndef __IGAMESUBSTATECONTROLLER_H_
-#define __IGAMESUBSTATECONTROLLER_H_
+#ifndef __IGAMESUBSTATECONTROLLER_H
+#define __IGAMESUBSTATECONTROLLER_H
 
 class CEventHandler;
 class IGUIStateController;

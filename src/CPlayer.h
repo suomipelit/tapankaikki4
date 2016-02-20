@@ -1,5 +1,5 @@
-#ifndef __PLAYER_H_
-#define __PLAYER_H_
+#ifndef __CPLAYER_H
+#define __CPLAYER_H
 
 #include "CCharacter.h"
 #include "CKeys.h"

@@ -1,5 +1,5 @@
-#ifndef __COORD_H_
-#define __COORD_H_
+#ifndef __CCOORD_H
+#define __CCOORD_H
 
 #include <sstream>
 #include <iostream> 

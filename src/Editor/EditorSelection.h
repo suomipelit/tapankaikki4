@@ -1,5 +1,5 @@
-#ifndef __EDITORSELECTION_H_
-#define __EDITORSELECTION_H_
+#ifndef __EDITORSELECTION_H
+#define __EDITORSELECTION_H
 
 class CEditorSelection
 {

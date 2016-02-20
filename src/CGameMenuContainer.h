@@ -2,8 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifndef __GAMEMENUCONTAINER_H_
-#define __GAMEMENUCONTAINER_H_
+#ifndef __CGAMEMENUCONTAINER_H
+#define __CGAMEMENUCONTAINER_H
 
 #include "common/CRect.h"
 #include "IGUIState.h"

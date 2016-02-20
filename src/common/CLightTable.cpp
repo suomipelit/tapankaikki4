@@ -1,9 +1,7 @@
 #include "CLightTable.h"
 #include "CPalette.h"
 #include <math.h>
-#ifdef __unix__
-	#include <stdlib.h>
-#endif
+#include <stdlib.h>
 
 void CLightTable::Make(int R,int G,int B,CPalette& aPalette)
 {

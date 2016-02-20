@@ -1,5 +1,5 @@
-#ifndef __TEXTS_H_
-#define __TEXTS_H_
+#ifndef __TEXTS_H
+#define __TEXTS_H
 
 #include <string>
 

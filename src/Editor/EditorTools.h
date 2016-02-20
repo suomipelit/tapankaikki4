@@ -1,5 +1,5 @@
-#ifndef __EDITORTOOLS_H__
-#define __EDITORTOOLS_H__
+#ifndef __EDITORTOOLS_H
+#define __EDITORTOOLS_H
 
 class CEditorBrush;
 class CEditorSelection;

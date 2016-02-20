@@ -75,9 +75,9 @@ EXPORT int filelen(const char *name)
 
 EXPORT int filetimestamp(const char *name)
 {
-	struct _stat fileinfo;
+	struct EF_STAT fileinfo;
 
-	if (_stat(name,&fileinfo)==-1) return -1;
+	if (EF_STAT(name,&fileinfo)==-1) return -1;
 
 	return fileinfo.st_mtime;
 }

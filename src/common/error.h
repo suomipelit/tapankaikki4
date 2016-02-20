@@ -1,14 +1,18 @@
-#ifndef __ERROR_H_
-#define __ERROR_H_
+#ifndef __ERROR_H
+#define __ERROR_H
 
 #include "defines.h"
 #include <exception>
 
 class CGameException : public std::exception
 {
+private:
+	const char *errorstr;
 protected:
 	EXPORT CGameException();
 	EXPORT CGameException(const char *const& str);
+public:
+	EXPORT const char *what();
 };
 
 // three levels of exceptions
@@ -42,11 +46,7 @@ public:
 
 EXPORT void logwrite(const char *out, ...);
 
-#ifdef __unix__
-void error(const char *fmt,...);
-#else
-EXPORT void __declspec(noreturn) error(const char *fmt,...);
-#endif
+EXPORT void NORETURN error(const char *fmt,...);
 
 EXPORT void TKAssert( const char* aAssertion, const char* file, int line );
 #define ASSERT(a) (void)( (a) || (TKAssert(#a, __FILE__, __LINE__), 0) )

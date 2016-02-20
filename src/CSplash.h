@@ -1,5 +1,5 @@
-#ifndef __SPLASH_H_
-#define __SPLASH_H_
+#ifndef __CSPLASH_H
+#define __CSPLASH_H
 
 #include <SDL.h>
 

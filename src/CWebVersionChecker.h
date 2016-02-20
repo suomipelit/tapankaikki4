@@ -1,5 +1,5 @@
-#ifndef __WEBVERSIONCHECKER_H_
-#define __WEBVERSIONCHECKER_H_
+#ifndef __CWEBVERSIONCHECKER_H
+#define __CWEBVERSIONCHECKER_H
 
 #include <SDL.h>
 #include <SDL_thread.h>

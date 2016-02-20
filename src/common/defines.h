@@ -1,5 +1,5 @@
-#ifndef __DEFINES_H_
-#define __DEFINES_H_
+#ifndef __DEFINES_H
+#define __DEFINES_H
 
 #include "unix.h"
 #include "macosx.h"
@@ -30,6 +30,8 @@ const int KLevelCompleteDelay=940; // level complete delay
 const float KEnemyRotationSpeed=3.4f; // computer players rotate speed
 
 const int KTimerFreq=100;
+
+const int KBitDepth=16;
 
 // Sounds...
 enum TMenuSoundEffect

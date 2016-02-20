@@ -1,5 +1,5 @@
-#ifndef __STATEEDITGENERALDATA_H_
-#define __STATEEDITGENERALDATA_H_
+#ifndef __STATEEDITGENERALDATA_H
+#define __STATEEDITGENERALDATA_H
 
 #include "EditorState.h"
 #include "editorapp.h"

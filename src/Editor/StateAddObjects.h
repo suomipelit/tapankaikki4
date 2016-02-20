@@ -1,5 +1,5 @@
-#ifndef __STATEADDOBJECTS_H_
-#define __STATEADDOBJECTS_H_
+#ifndef __STATEADDOBJECTS_H
+#define __STATEADDOBJECTS_H
 
 #include "EditorState.h"
 #include "editorapp.h"

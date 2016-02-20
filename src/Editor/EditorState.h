@@ -1,5 +1,5 @@
-#ifndef __EDITORSTATE_H__
-#define __EDITORSTATE_H__
+#ifndef __EDITORSTATE_H
+#define __EDITORSTATE_H
 
 class CEditorDrawer;
 class CEventHandler;

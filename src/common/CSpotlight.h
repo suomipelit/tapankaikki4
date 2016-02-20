@@ -1,5 +1,5 @@
-#ifndef __SPOTLIGHT_H_
-#define __SPOTLIGHT_H_
+#ifndef __CSPOTLIGHT_H
+#define __CSPOTLIGHT_H
 
 #include <stdio.h>
 

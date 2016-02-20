@@ -1,5 +1,5 @@
-#ifndef __MATH_H_
-#define __MATH_H_
+#ifndef __CMATH_H
+#define __CMATH_H
 
 #include "defines.h"
 //#include "CCoord.h"
@@ -15,27 +15,9 @@ template <class T> class CCoord;
 #define ANGLEFIX(a) { while (a>=360) a-=360;\
 					  while (a<0) a+=360; }
 
-#ifndef __unix__
-
-#ifndef min
-#define min(a,b) ((a)<=(b)?(a):(b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a)> (b)?(a):(b)) 
-#endif
-
-#else	// __unix__
-
 #ifndef abs
 template<class T> inline T abs(const T& a) { return a<0 ? -a : a; }
 #endif
-
-#include <algorithm>
-using std::min;
-using std::max;
-
-#endif	// end __unix__
 
 class CMath
 {
@@ -44,13 +26,8 @@ private:
 	
 public:
 
-#ifndef __unix__
 	EXPORT static const CMath* Static();
 	EXPORT static void Destroy();
-#else
-	static const CMath* Static();
-	static void Destroy();
-#endif
 
 	static inline void Swap(int& a,int& b)
 	{

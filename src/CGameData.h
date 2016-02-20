@@ -1,5 +1,5 @@
-#ifndef __GAMEDATA_H_
-#define __GAMEDATA_H_
+#ifndef __CGAMEDATA_H
+#define __CGAMEDATA_H
 
 #include <SDL_mixer.h>
 

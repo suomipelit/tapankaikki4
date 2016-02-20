@@ -1,5 +1,5 @@
-#ifndef __EDITORAPP_H_
-#define __EDITORAPP_H_
+#ifndef __EDITORAPP_H
+#define __EDITORAPP_H
 
 // Editor
 

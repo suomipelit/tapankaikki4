@@ -591,7 +591,7 @@ void CGameDrawManager::DrawInfos(CPlayer const* aPlayer, const CRect<int>& aDraw
 	if (x<0) 
 		x=1;
 
-	itoa(x, text, 10);
+	sprintf(text, "%d", x);
 	if (wtype->BulletType()!=EBulletFist) 
 		iGGI->Font(CGameGraphicsInterface::ESmallFont)->Write(3+aDrawRect.iLeft, aDrawRect.Height()-21-z+aDrawRect.iTop, text,CFonts::EDrawBelow, CFonts::EDrawToRight,   iGGI->DrawBuffer());
 }
@@ -1293,7 +1293,7 @@ void CGameDrawManager::DrawKills(std::vector<CPlayer*>& aPlayers)
 	for (a=0; a<aPlayers.size();a++) 
 	{
 		int kills = iDynData->Statistics()->PlayerStats( aPlayers[a] ).LevelStats( iDynData->CurrentLevel() ).TotalPlayerKills( aPlayers[a] );
-		ASSERT(_snprintf(text,50, "%s %d", aPlayers[a]->iName, kills )>0);
+		ASSERT(EF_SNPRINTF(text,50, "%s %d", aPlayers[a]->iName, kills )>0);
 		iGGI->Font(CGameGraphicsInterface::ESmallFont)->Write(3+(b % 4) *80, 3+(b/4) *10, text,CFonts::EDrawBelow, CFonts::EDrawToRight,  iGGI->DrawBuffer());
 		b++;
 	}
@@ -1438,12 +1438,12 @@ void CGameDrawManager::DrawFPS()
 {
 	char text[20];
 	
-	ASSERT(_snprintf(text,20,"%d / %d fps", (int)iDynData->CurrentFPS(), KTimerFreq)>0);
+	ASSERT(EF_SNPRINTF(text,20,"%d / %d fps", (int)iDynData->CurrentFPS(), KTimerFreq)>0);
 	iGGI->Font(CGameGraphicsInterface::ESmallFont)->Write(iGGI->GD()->Width()/2,20,text,CFonts::EDrawBelow, CFonts::EDrawInMiddle, iGGI->DrawBuffer());
 
 	if ( EF_DEBUG)
 	{
-		ASSERT(_snprintf(text,20,"%d / %d effects", iDynData->LevelRuntime()->Effects().size(), KTimerFreq)>0);
+		ASSERT(EF_SNPRINTF(text,20,"%d / %d effects", iDynData->LevelRuntime()->Effects().size(), KTimerFreq)>0);
 		iGGI->Font(CGameGraphicsInterface::ESmallFont)->Write(iGGI->GD()->Width()/2,40,text,CFonts::EDrawBelow, CFonts::EDrawInMiddle, iGGI->DrawBuffer());
 	}
 }
@@ -1451,6 +1451,6 @@ void CGameDrawManager::DrawFPS()
 std::string CGameDrawManager::FormatTime( int aika ) 
 {
 	char text[10];
-	ASSERT(_snprintf(text,10,"%d:%02d",aika / 60,aika % 60)>0);
+	ASSERT(EF_SNPRINTF(text,10,"%d:%02d",aika / 60,aika % 60)>0);
 	return text;
 }

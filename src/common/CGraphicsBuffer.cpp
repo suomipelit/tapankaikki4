@@ -29,23 +29,6 @@ namespace
 	} TPCXHeader;
 }
 
-#ifndef __unix__
-const char* strcasestr(const char* src,const char* match)
-{
-	ASSERT(src);
-	ASSERT(match);
-	int a;
-	int mlen=strlen(match);
-	int l=(int)(strlen(src)-mlen);
-	
-	for (a=0;a<=l;a++)
-		if (strnicmp(src+a,match,mlen)==NULL)
-			return src+a;
-	
-	return NULL;
-}
-#endif
-
 #define swappaa(a,b) { a+=b;b=a-b;a-=b; }
 #define KFixedPointBits 10
 
@@ -280,7 +263,7 @@ void CGraphicsBuffer::LoadEFP2(const std::string& aFilename, CPalette* aPalette)
 	fread(&iHeight,4,1,efp);	// HEIGHT
 
 	Resize(iWidth,iHeight);
-	// BITS (8 bittiä => palette seuraavaksi)
+	// BITS (8 bittiÃ¤ => palette seuraavaksi)
 	if (fgetc(efp)!=8) error("CGraphicsBuffer::LoadEFP2: Only 8 bits EFP2 files are supported (%s)",aFilename.c_str());
 	
 	if (aPalette)
@@ -383,7 +366,7 @@ void CGraphicsBuffer::SaveEFP(const std::string& aFilename, const CPalette* aPal
 			while(iBuf[a]==iBuf[a+samecol+1]&& 
 				samecol<(255-193)&& 
 				(a+samecol)<(size-1))			
-			samecol++; // kuinka paljon samaa v„ri„
+			samecol++; // kuinka paljon samaa vÃ¤Â„riÃ¤Â„
 
 		if (samecol==0)
 		{ 
@@ -498,7 +481,7 @@ void CGraphicsBuffer::SaveEFP2(const std::string& aFilename, const CPalette* aPa
 	fwrite("EFP2",4,1,efp);		// MAGIC
 	fwrite(&iWidth,4,1,efp);	// WIDTH 
 	fwrite(&iHeight,4,1,efp);	// HEIGHT
-	fputc(8,efp);				// BITS (8 bittiä => palette seuraavaksi)
+	fputc(8,efp);				// BITS (8 bittiÃ¤ => palette seuraavaksi)
 
 	if (aPalette)
 		aPalette->AppendPalette(efp);

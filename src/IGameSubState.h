@@ -1,5 +1,5 @@
-#ifndef __IGAMESUBSTATE_H_
-#define __IGAMESUBSTATE_H_
+#ifndef __IGAMESUBSTATE_H
+#define __IGAMESUBSTATE_H
 
 class CDrawArea;
 class CGameGraphicsInterface;

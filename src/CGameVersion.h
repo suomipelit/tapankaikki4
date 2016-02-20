@@ -1,5 +1,5 @@
-#ifndef __GAMEVERSION_H_
-#define __GAMEVERSION_H_
+#ifndef __CGAMEVERSION_H
+#define __CGAMEVERSION_H
 
 class CGameVersion
 {

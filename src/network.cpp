@@ -511,7 +511,7 @@ char* CNetworkDevice::ReadProxyHTTP(char *proxyaddress,char *host, char *page, i
 	if (SDLNet_ResolveHost(&remote, proxyaddress,proxyport)==-1)
 	{
 		*errval=1;
-		ASSERT(_snprintf(buf,HTTPBUFFER,"CNetworkDevice::ReadProxyHTTP: Couldn't resolve host! (%s)",host)>0);
+		ASSERT(EF_SNPRINTF(buf,HTTPBUFFER,"CNetworkDevice::ReadProxyHTTP: Couldn't resolve host! (%s)",host)>0);
 		return strdup(buf);
 	}
 
@@ -520,7 +520,7 @@ char* CNetworkDevice::ReadProxyHTTP(char *proxyaddress,char *host, char *page, i
 	if ( sock == NULL )
 	{
 		*errval=2;
-		ASSERT(_snprintf(buf,HTTPBUFFER,"CNetworkDevice::ReadProxyHTTP: Unable to open socket: %s\n", SDLNet_GetError())>0);
+		ASSERT(EF_SNPRINTF(buf,HTTPBUFFER,"CNetworkDevice::ReadProxyHTTP: Unable to open socket: %s\n", SDLNet_GetError())>0);
 		return strdup(buf);
 	}
 
@@ -531,7 +531,7 @@ char* CNetworkDevice::ReadProxyHTTP(char *proxyaddress,char *host, char *page, i
 	{
 		SDLNet_TCP_Close(sock);
 		*errval=3;
-		ASSERT(_snprintf(buf,HTTPBUFFER,"CNetworkDevice::ReadProxyHTTP: SDLNet_TCP_Send: %s\n", SDLNet_GetError())>0);
+		ASSERT(EF_SNPRINTF(buf,HTTPBUFFER,"CNetworkDevice::ReadProxyHTTP: SDLNet_TCP_Send: %s\n", SDLNet_GetError())>0);
 		return strdup(buf);
 	}
 
@@ -541,7 +541,7 @@ char* CNetworkDevice::ReadProxyHTTP(char *proxyaddress,char *host, char *page, i
 	{
 		SDLNet_TCP_Close(sock);
 		*errval=4;
-		ASSERT(_snprintf(buf,HTTPBUFFER,"CNetworkDevice::ReadProxyHTTP: SDLNet_TCP_Recv: %s\n", SDLNet_GetError())>0);
+		ASSERT(EF_SNPRINTF(buf,HTTPBUFFER,"CNetworkDevice::ReadProxyHTTP: SDLNet_TCP_Recv: %s\n", SDLNet_GetError())>0);
 		return strdup(buf);
 	}
 
@@ -561,7 +561,7 @@ char* CNetworkDevice::ReadHTTP(char *host,char *page,int port, int* errval)
 	if (SDLNet_ResolveHost(&remote, host,port)==-1)
 	{
 		*errval=1;
-		ASSERT(_snprintf(buf,HTTPBUFFER,"CNetworkDevice::ReadHTTP: Couldn't resolve host! (%s)",host)>0);
+		ASSERT(EF_SNPRINTF(buf,HTTPBUFFER,"CNetworkDevice::ReadHTTP: Couldn't resolve host! (%s)",host)>0);
 		return strdup(buf);
 	}
 
@@ -570,7 +570,7 @@ char* CNetworkDevice::ReadHTTP(char *host,char *page,int port, int* errval)
 	if ( sock == NULL )
 	{
 		*errval=2;
-		ASSERT(_snprintf(buf,HTTPBUFFER,"CNetworkDevice::ReadHTTP: Unable to open socket: %s\n", SDLNet_GetError())>0);
+		ASSERT(EF_SNPRINTF(buf,HTTPBUFFER,"CNetworkDevice::ReadHTTP: Unable to open socket: %s\n", SDLNet_GetError())>0);
 		return strdup(buf);
 	}
 
@@ -581,7 +581,7 @@ char* CNetworkDevice::ReadHTTP(char *host,char *page,int port, int* errval)
 	{
 		SDLNet_TCP_Close(sock);
 		*errval=3;
-		ASSERT(_snprintf(buf,HTTPBUFFER,"CNetworkDevice::ReadHTTP: SDLNet_TCP_Send: %s\n", SDLNet_GetError())>0);
+		ASSERT(EF_SNPRINTF(buf,HTTPBUFFER,"CNetworkDevice::ReadHTTP: SDLNet_TCP_Send: %s\n", SDLNet_GetError())>0);
 		return strdup(buf);
 	}
 
@@ -591,7 +591,7 @@ char* CNetworkDevice::ReadHTTP(char *host,char *page,int port, int* errval)
 	{
 		SDLNet_TCP_Close(sock);
 		*errval=4;
-		ASSERT(_snprintf(buf,HTTPBUFFER,"CNetworkDevice::ReadHTTP: SDLNet_TCP_Recv: %s\n", SDLNet_GetError())>0);
+		ASSERT(EF_SNPRINTF(buf,HTTPBUFFER,"CNetworkDevice::ReadHTTP: SDLNet_TCP_Recv: %s\n", SDLNet_GetError())>0);
 		return strdup(buf);
 	}
 

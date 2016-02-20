@@ -1,5 +1,5 @@
-#ifndef __ICHARACTEROBSERVER
-#define __ICHARACTEROBSERVER
+#ifndef __ICHARACTEROBSERVER_H
+#define __ICHARACTEROBSERVER_H
 
 class CCharacter;
 

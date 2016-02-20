@@ -1,19 +1,7 @@
 #include <stdlib.h> 
 #include <stdio.h> 
 #include <string.h> 
-#include <SDL.h>
-
-#include "common/defines.h"
-#include "common/files.h"
-
-#ifndef __unix__
-#include <io.h>
-#else
-#include <dirent.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#endif
-
+#include <SDL.h> 
 
 #include "COptions.h"
 
@@ -84,6 +72,8 @@ COptions::COptions(CSoundPlayer* aSP): iSP(aSP)
 	iEpisodeList=new CEpisodeList;
 	iEpisodeList->ListFiles("levs");
 
+	iMusicThemeList=new CMusicThemeList;
+
     Load();
 
 	// some sanity checks
@@ -107,12 +97,7 @@ COptions::~COptions()
 
 	Save();
 	delete iEpisodeList;
-
-	for(a=0;a<iMusicThemes.size();a++)
-	{
-		free (iMusicThemes.at(a));
-	}
-	iMusicThemes.clear();
+	delete iMusicThemeList;
 }
 
 COptionsData& COptions::Data()
@@ -152,66 +137,8 @@ void COptions::Load()
 		}
 	}
 
-	LoadThemes();
+	iMusicThemeList->LoadThemes();
 	UpdateAudioChanges();
-}
-
-void COptions::LoadThemes()
-{
-#ifndef __unix__
-	struct _finddata_t fbuf;
-
-	int er,error=0;
-	bool ok;
-
-	er = _findfirst("music/*",&fbuf);
-	while(er != 0&&error==0)
-	{
-		if ((fbuf.attrib&_A_SUBDIR)== _A_SUBDIR)
-		{
-			ok=true;
-			for (int a=0;ok&&a<KForbiddenFileAmount;a++)
-				if (stricmp(fbuf.name,KForbiddenFiles[a])==0)
-					ok=false;
-
-			if (ok)
-			{
-				char* level=strdup(fbuf.name);
-				iMusicThemes.push_back(level);
-			}
-		}
-		error=_findnext(er,&fbuf);
-	}
-	_findclose(er);
-
-#else	// __unix__
-
-	DIR* fbuf;
-	fbuf = opendir(getdatapath(std::string("music")).c_str());
-	if (fbuf != NULL) {
-		dirent* cur;
-		struct stat info;
-		bool ok;
-		while ((cur = readdir(fbuf)) != NULL) {
-			if (stat(getdatapath(std::string(cur->d_name)).c_str(), &info) == 0) {
-				if (S_ISDIR(info.st_mode)) {
-					ok = true;
-					for(int a=0; a<KForbiddenFileAmount; a++)
-						if (strcasecmp(cur->d_name, KForbiddenFiles[a]) == 0) {
-							ok = false;
-							break;
-						}
-					if (ok) {
-						char* level = strdup(getdatapath(std::string(cur->d_name)).c_str());
-						iMusicThemes.push_back(level);
-					}
-				}
-			}
-		}
-		closedir(fbuf);
-
-	}
-#endif	// __unix__
 }
 
 void COptions::UpdateGammaChanges()

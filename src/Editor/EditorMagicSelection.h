@@ -1,5 +1,5 @@
-#ifndef __EDITORMAGICSELECTION_H_
-#define __EDITORMAGICSELECTION_H_
+#ifndef __EDITORMAGICSELECTION_H
+#define __EDITORMAGICSELECTION_H
 
 class CEditableLevel;
 class CEditorSelection;

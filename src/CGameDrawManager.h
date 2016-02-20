@@ -1,5 +1,5 @@
-#ifndef __GAMEDRAWMANAGER_H_
-#define __GAMEDRAWMANAGER_H_
+#ifndef __CGAMEDRAWMANAGER_H
+#define __CGAMEDRAWMANAGER_H
 
 #include <vector>
 #include <list>

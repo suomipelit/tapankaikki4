@@ -264,7 +264,7 @@ void CPlayer::CheckKeys(int aIndex, CEventHandler* aEH, const CRect<int>& aDrawR
 	}
 
 	if (forward == ENowhere)
-	{//Pelk‰st‰‰n sivulle
+	{//Pelk√§st√§√§n sivulle
 		if (strafe == ELeft)
 			FAngle-= 90;
 		if (strafe == ERight)
@@ -690,32 +690,16 @@ void CPlayer::MoveScr(const CRect<int>& aDrawRect)
 		iScreenPos.SetX(int(iLocation.X()-aDrawRect.Width()/2));
 	spd = int(fabs((iScreenPos.X()+aDrawRect.Width()/2)-((35*CMath::Static()->Cose(RealAngle()))+iLocation.X()+14))/4);
 	if ((iScreenPos.X()+aDrawRect.Width()/2)<(25*CMath::Static()->Cose(RealAngle()))+iLocation.X()+14) 
-#ifndef __unix__
-		iScreenPos = iScreenPos.AddX((float)spd);
-#else
 		iScreenPos = iScreenPos.AddX(spd);
-#endif
 	if ((iScreenPos.X()+aDrawRect.Width()/2)>(25*CMath::Static()->Cose(RealAngle()))+iLocation.X()+14) 
-#ifndef __unix__
-		iScreenPos = iScreenPos.AddX((float)-spd);
-#else
 		iScreenPos = iScreenPos.AddX(-spd);
-#endif
 
 	spd = int(fabs((iScreenPos.Y()+aDrawRect.Height()/2)-((25*CMath::Static()->Sine(RealAngle()))+iLocation.Y()+14))/4);
 	if (iScreenPos.Y()+aDrawRect.Height()/2<(25*CMath::Static()->Sine(RealAngle()))+iLocation.Y()+14) 
-#ifndef __unix__
-		iScreenPos = iScreenPos.AddY((float)spd);
-#else
 		iScreenPos = iScreenPos.AddY(spd);
-#endif
 	if (iScreenPos.Y()+aDrawRect.Height()/2>(25*CMath::Static()->Sine(RealAngle()))+iLocation.Y()+14) 
-#ifndef __unix__
-		iScreenPos = iScreenPos.AddY((float)-spd);
-#else
 		iScreenPos = iScreenPos.AddY(-spd);
-#endif
-    if (fabs((iScreenPos.Y()+aDrawRect.Height()/2)-(iLocation.Y()+14))>100) 
+	if (abs((iScreenPos.Y()+aDrawRect.Height()/2)-(iLocation.Y()+14))>100) 
 		iScreenPos.SetY(int(iLocation.Y()-(aDrawRect.Height()/2)));
 	SELFTEST;
 }
@@ -942,9 +926,9 @@ void CPlayer::BulletPlayerKill( CPlayer* aPlayer )
 	char buf[KMaxMessagesLengthOnBoard];
 
 	if (aPlayer!= this)		
-		ASSERT(_snprintf(buf,KMaxMessagesLengthOnBoard,iDynData->LevelRuntime()->IngameData()->RandomKillText(),iName,aPlayer->iName)>0);
+		ASSERT(EF_SNPRINTF(buf,KMaxMessagesLengthOnBoard,iDynData->LevelRuntime()->IngameData()->RandomKillText(),iName,aPlayer->iName)>0);
 	if (aPlayer == this) // has to be this way. Some problems with ASSERT macro
-		ASSERT(_snprintf(buf,KMaxMessagesLengthOnBoard,iDynData->LevelRuntime()->IngameData()->RandomSuicideText(),iName)>0);
+		ASSERT(EF_SNPRINTF(buf,KMaxMessagesLengthOnBoard,iDynData->LevelRuntime()->IngameData()->RandomSuicideText(),iName)>0);
 
 	iGS->GUIStateController()->MessageBoard()->AddMessage(buf);
 	

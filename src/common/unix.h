@@ -1,15 +1,18 @@
-#ifndef ___UNIX_H__
-#define ___UNIX_H__
+#ifndef __UNIX_H
+#define __UNIX_H
 
 #ifdef __unix__
 
-#define putch putchar	
 #define EXPORT
-#define _stat stat
+#define NORETURN
 
-#define _snprintf snprintf
-#define _getcwd getcwd
-#define stricmp strcasecmp
+/* Some functions and names that differ on windows and other platforms */
+#define EF_STAT stat
+#define EF_SNPRINTF snprintf
+#define EF_GETCWD getcwd
+#define EF_SDLWINDOW info.x11.window /* window in SDL_SysWMinfo structure */
+
+#define DIR_SEPARATOR '/'
 
 #ifdef DEBUG
 #  define EF_DEBUG 1
@@ -21,24 +24,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-
-//#include "error.h"
-EXPORT void TKAssert( const char* aAssertion, const char* file, int line );
-#define ASSERT(a) (void)( (a) || (TKAssert(#a, __FILE__, __LINE__), 0) )
+#include <algorithm>
+using std::min;
+using std::max;
 
 inline void ChangeDir(const char* str)
 {
 	chdir(str);
-}
-
-inline char* itoa(int a, char *str,int radix)
-{
-	ASSERT( radix == 10 || radix == 16 );
-	if (radix == 10)
-		sprintf(str,"%d", a);
-	else
-		sprintf(str,"%x", a);
-	return str;
 }
 
 inline char* strupr(char *buf)
@@ -73,5 +65,5 @@ inline char *strset(char *buf,char fill)
 
 #endif // __unix__
 
-#endif // ___UNIX_H__
+#endif // __UNIX_H
 

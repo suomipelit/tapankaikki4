@@ -1,5 +1,5 @@
-#ifndef __EFFECT_H_
-#define __EFFECT_H_
+#ifndef __CEFFECT_H
+#define __CEFFECT_H
 
 #include "common/CCoord.h"
 #include "common/debug.h"

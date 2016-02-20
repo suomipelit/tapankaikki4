@@ -1,5 +1,5 @@
-#ifndef __DEBUG_H_
-#define __DEBUG_H_
+#ifndef __DEBUG_H
+#define __DEBUG_H
 
 #define __DECLARE_TEST inline void __INVARIANT_TEST() const
 

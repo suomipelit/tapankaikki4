@@ -1,12 +1,19 @@
 #! /usr/bin/env python
 # encoding: utf-8
 
+import sys
+
 def build(bld):
 	obj = bld.create_obj('cpp', 'program')
-	obj.find_sources_in_dirs('.')
+	obj.find_sources_in_dirs('.', excludes=['lists_win32.cpp', 'lists_unix.cpp'])
 	obj.uselib='SDL SDL_image SDL_mixer SDL_net'
 	obj.uselib_local='tk4common'
 	obj.target='tk4'
+
+	if sys.platform == "win32":
+		obj.source.append('lists_win32.cpp')
+	else:
+		obj.source.append('lists_unix.cpp')
 
 	bld.add_subdirs('common Editor efpconv')
 

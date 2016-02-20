@@ -234,7 +234,7 @@ void CGameSubStateShop::Draw(CDrawArea& aDirtyArea,CDrawArea& aDrawArea,CGameGra
 
 		if (cur_amount>0)
 		{
-			ASSERT(_snprintf(str,KTempStringLength,"%d",cur_amount)>0);
+			ASSERT(EF_SNPRINTF(str,KTempStringLength,"%d",cur_amount)>0);
 
 			aDrawArea.Combine(smallfont->Write(
 				x+KSHOPITEM_SPRITE_WIDTH,
@@ -246,7 +246,7 @@ void CGameSubStateShop::Draw(CDrawArea& aDirtyArea,CDrawArea& aDrawArea,CGameGra
 
 	 }
 
-	ASSERT(_snprintf(str,KTempStringLength,"Your cash: %d",current->iCash)>0);
+	ASSERT(EF_SNPRINTF(str,KTempStringLength,"Your cash: %d",current->iCash)>0);
 	iCleanArea.Combine(smallfont->Write(
 		aGGI->DrawBuffer()->Width()-KSHOPITEMS_START_X,
 		KSHOP_DESCRIPTION_START_Y,
@@ -269,13 +269,13 @@ void CGameSubStateShop::DrawWareInfo(int aX, int aY,CDrawArea& aDrawArea,CGameGr
 	{
 		aDrawArea.Combine(font->Write(aX, aY, iGameData->TypeData()->iWeaponType[iShopData->Item()+1]->Name(),CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 
-		ASSERT(_snprintf(txt,KTempStringLength,"Cost: %d",iGameData->TypeData()->iWeaponType[iShopData->Item()+1]->Cost())>0);
+		ASSERT(EF_SNPRINTF(txt,KTempStringLength,"Cost: %d",iGameData->TypeData()->iWeaponType[iShopData->Item()+1]->Cost())>0);
 		aDrawArea.Combine(font->Write(aX, aY+20, txt,CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 
-		ASSERT(_snprintf(txt,KTempStringLength,"Sell price: %d",iShopData->iWeaponSellPrice[iShopData->Item()])>0);
+		ASSERT(EF_SNPRINTF(txt,KTempStringLength,"Sell price: %d",iShopData->iWeaponSellPrice[iShopData->Item()])>0);
 		aDrawArea.Combine(font->Write(aX, aY+30, txt,CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 		
-		ASSERT(_snprintf(txt,KTempStringLength,"Bullet type: %s",iGameData->TypeData()->iBulletType[iGameData->TypeData()->iWeaponType[iShopData->Item()+1]->BulletType()]->Name())>0);
+		ASSERT(EF_SNPRINTF(txt,KTempStringLength,"Bullet type: %s",iGameData->TypeData()->iBulletType[iGameData->TypeData()->iWeaponType[iShopData->Item()+1]->BulletType()]->Name())>0);
 		aDrawArea.Combine(font->Write(aX, aY+40, txt,CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 
 		return;
@@ -284,7 +284,7 @@ void CGameSubStateShop::DrawWareInfo(int aX, int aY,CDrawArea& aDrawArea,CGameGr
 	{
 		aDrawArea.Combine(font->Write(aX, aY, iGameData->TypeData()->iBulletType[iShopData->Item()+1]->Name(),CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 
-		ASSERT(_snprintf(txt,KTempStringLength,"Cost: %d",iGameData->TypeData()->iBulletType[iShopData->Item()+1]->Cost())>0);
+		ASSERT(EF_SNPRINTF(txt,KTempStringLength,"Cost: %d",iGameData->TypeData()->iBulletType[iShopData->Item()+1]->Cost())>0);
 		aDrawArea.Combine(font->Write(aX, aY+20, txt,CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 
 		return;
@@ -295,22 +295,22 @@ void CGameSubStateShop::DrawWareInfo(int aX, int aY,CDrawArea& aDrawArea,CGameGr
 		{
 			aDrawArea.Combine(font->Write(aX, aY, "Shield",CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 
-			ASSERT(_snprintf(txt,KTempStringLength,"Cost: %d",current->ShieldPrice())>0);
+			ASSERT(EF_SNPRINTF(txt,KTempStringLength,"Cost: %d",current->ShieldPrice())>0);
 			aDrawArea.Combine(font->Write(aX, aY+20, txt,CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 			a=current->iShield - 1;
 			if (a<0) a=0;
 
-			ASSERT(_snprintf(txt,KTempStringLength,"Sell price: %d",iShopData->iShieldSellPrice+(current->ShieldPrice()>> 1))>0);
+			ASSERT(EF_SNPRINTF(txt,KTempStringLength,"Sell price: %d",iShopData->iShieldSellPrice+(current->ShieldPrice()>> 1))>0);
 			aDrawArea.Combine(font->Write(aX, aY+30, txt,CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 			return;
 		}
 		if (iShopData->Item() == 1) 
 		{
 			aDrawArea.Combine(font->Write(aX, aY, "Target system", CFonts::EDrawBelow, CFonts::EDrawToRight,aGGI->DrawBuffer()));
-			ASSERT(_snprintf(txt,KTempStringLength,"Cost: %d",iShopData->iTargetPrice)>0);
+			ASSERT(EF_SNPRINTF(txt,KTempStringLength,"Cost: %d",iShopData->iTargetPrice)>0);
 			aDrawArea.Combine(font->Write(aX, aY+20, txt,CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 
-			ASSERT(_snprintf(txt,KTempStringLength,"Sell price: %d",iShopData->iTargetSellPrice)>0);
+			ASSERT(EF_SNPRINTF(txt,KTempStringLength,"Sell price: %d",iShopData->iTargetSellPrice)>0);
 			aDrawArea.Combine(font->Write(aX, aY+30, txt,CFonts::EDrawBelow, CFonts::EDrawToRight,  aGGI->DrawBuffer()));
 			return;
 		}
@@ -358,9 +358,9 @@ void CGameSubStateShop::DrawStaticToBackground()
 		iBackgroundPicture);
 
 	if (strlen(current->iName)>0)
-		ASSERT(_snprintf(str,KTempStringLength,"Player %d: %s",iShopData->Player()+1,current->iName)>0);
+		ASSERT(EF_SNPRINTF(str,KTempStringLength,"Player %d: %s",iShopData->Player()+1,current->iName)>0);
 	else
-		ASSERT(_snprintf(str,KTempStringLength,"Player %d",iShopData->Player()+1)>0);
+		ASSERT(EF_SNPRINTF(str,KTempStringLength,"Player %d",iShopData->Player()+1)>0);
 
 	smallfont->Write(
 		iBackgroundPicture->Width()-KSHOPITEMS_START_X,

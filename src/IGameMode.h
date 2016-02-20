@@ -1,5 +1,5 @@
-#ifndef __IGAMEMODE_H_
-#define __IGAMEMODE_H_
+#ifndef __IGAMEMODE_H
+#define __IGAMEMODE_H
 
 class CPlayer;
 class CCharacter;

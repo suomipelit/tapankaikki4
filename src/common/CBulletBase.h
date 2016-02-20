@@ -1,5 +1,5 @@
-#ifndef __BULLETBASE_H_
-#define __BULLETBASE_H_
+#ifndef __CBULLETBASE_H
+#define __CBULLETBASE_H
 
 #include "CColorTable.h"
 #include "IBulletType.h"

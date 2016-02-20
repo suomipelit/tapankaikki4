@@ -1,5 +1,5 @@
-#ifndef __IEVENTINTERFACE_H_
-#define __IEVENTINTERFACE_H_
+#ifndef __IEVENTINTERFACE_H
+#define __IEVENTINTERFACE_H
 
 #include <SDL.h>
 

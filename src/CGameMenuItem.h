@@ -2,8 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifndef __GAMEMENUITEM_H_
-#define __GAMEMENUITEM_H_
+#ifndef __CGAMEMENUITEM_H
+#define __CGAMEMENUITEM_H
 
 #include "common/defines.h"
 #include "CGameMenuBase.h"

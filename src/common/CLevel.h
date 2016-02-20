@@ -1,5 +1,5 @@
-#ifndef __LEVEL_H
-#define __LEVEL_H
+#ifndef __CLEVEL_H
+#define __CLEVEL_H
 
 #include <vector>
 #include "CGameTypeData.h"

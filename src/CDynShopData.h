@@ -2,8 +2,8 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#ifndef __DYNSHOPDATA_H_
-#define __DYNSHOPDATA_H_
+#ifndef __CDYNSHOPDATA_H
+#define __CDYNSHOPDATA_H
 
 #include "common/CGameTypeData.h"
 

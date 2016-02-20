@@ -1,5 +1,5 @@
-#ifndef __IBULLETTYPE_H_
-#define __IBULLETTYPE_H_
+#ifndef __IBULLETTYPE_H
+#define __IBULLETTYPE_H
 
 class IBulletType
 {

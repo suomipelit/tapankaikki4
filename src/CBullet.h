@@ -1,5 +1,5 @@
-#ifndef __BULLET_H_
-#define __BULLET_H_
+#ifndef __CBULLET_H
+#define __CBULLET_H
 
 #include "common/Types.h"
 #include "common/CCoord.h"

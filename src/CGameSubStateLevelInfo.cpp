@@ -85,7 +85,7 @@ void CGameSubStateLevelInfo::Draw(CDrawArea& aDirtyArea,CDrawArea& aDrawArea,CGa
 
 	aGGI->DrawBuffer()->Copy(picture);
 
-	ASSERT(_snprintf(text,120, "Level %d", iDynData->CurrentLevel()+1)>0);
+	ASSERT(EF_SNPRINTF(text,120, "Level %d", iDynData->CurrentLevel()+1)>0);
 
 	aGGI->Font(CGameGraphicsInterface::EBigMenuFont)->Write(16, MainTitleStartY, text, CFonts::EDrawBelow, CFonts::EDrawToRight, aGGI->DrawBuffer());
 	aGGI->Font(CGameGraphicsInterface::EBigMenuFont)->Write(
@@ -116,7 +116,7 @@ void CGameSubStateLevelInfo::Draw(CDrawArea& aDirtyArea,CDrawArea& aDrawArea,CGa
 	        
 			if (total>0)
 			{
-				ASSERT(_snprintf(text,120,"%d %s%s",total, gameData->TypeData()->iEnemyType[a]->Name(), total>1 ? "s":"")>0);
+				ASSERT(EF_SNPRINTF(text,120,"%d %s%s",total, gameData->TypeData()->iEnemyType[a]->Name(), total>1 ? "s":"")>0);
 				aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Write(16, b, text,CFonts::EDrawBelow, CFonts::EDrawToRight, aGGI->DrawBuffer());
 				b += aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Height();
 			}
@@ -124,7 +124,7 @@ void CGameSubStateLevelInfo::Draw(CDrawArea& aDirtyArea,CDrawArea& aDrawArea,CGa
 
 		if (iDynData->GameMode()->ActionTimeMatters() )
 		{
-			ASSERT(_snprintf(text,120,"Your action time is: %s", iStateController->GameDrawManager()->FormatTime((int)(iDynData->LevelRuntime()->Level().iGeneralLevelInfo.iTimeLimit)).c_str())>0);
+			ASSERT(EF_SNPRINTF(text,120,"Your action time is: %s", iStateController->GameDrawManager()->FormatTime((int)(iDynData->LevelRuntime()->Level().iGeneralLevelInfo.iTimeLimit)).c_str())>0);
 			aGGI->Font(CGameGraphicsInterface::ESmallMenuFontDark)->Write(16, b+50,text,CFonts::EDrawBelow, CFonts::EDrawToRight, aGGI->DrawBuffer());
 		}
 	}

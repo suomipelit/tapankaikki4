@@ -1,5 +1,5 @@
-#ifndef __FADE_H_
-#define __FADE_H_
+#ifndef __CGRAPHICSFADER_H
+#define __CGRAPHICSFADER_H
 
 class CGraphicsBuffer;
 class CPalette;

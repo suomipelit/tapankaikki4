@@ -1,5 +1,5 @@
-#ifndef __EDITORDRAWER_H_
-#define __EDITORDRAWER_H_
+#ifndef __EDITORDRAWER_H
+#define __EDITORDRAWER_H
 #include <vector>
 
 #include "../common/CFonts.h"

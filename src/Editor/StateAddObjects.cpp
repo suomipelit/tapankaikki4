@@ -45,7 +45,7 @@ void CStateAddObjects::Draw(CEditorDrawer* aDrawer)
 	int rX2 = iMouseX/SBS*SBS+SBS-1;
 	int rY2 = iMouseY/SBS*SBS+SBS-1;
 	char pl_num[255];
-	itoa(iPlayerToPlace+1,pl_num,10);
+	sprintf(pl_num, "%d", iPlayerToPlace+1);
 	char text[255];
 
 	aDrawer->DrawLevel(0,0,0);

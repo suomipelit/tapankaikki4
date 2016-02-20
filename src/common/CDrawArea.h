@@ -1,5 +1,5 @@
-#ifndef __CDRAWAREA_H_
-#define __CDRAWAREA_H_
+#ifndef __CDRAWAREA_H
+#define __CDRAWAREA_H
 
 #include <vector>
 #include "CRect.h"

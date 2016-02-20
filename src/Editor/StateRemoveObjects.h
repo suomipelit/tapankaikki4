@@ -1,5 +1,5 @@
-#ifndef __STATEREMOVEOBJECTS_H_
-#define __STATEREMOVEOBJECTS_H_
+#ifndef __STATEREMOVEOBJECTS_H
+#define __STATEREMOVEOBJECTS_H
 
 #include "EditorState.h"
 

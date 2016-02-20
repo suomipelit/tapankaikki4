@@ -1,5 +1,5 @@
-#ifndef __STEAM_H_
-#define __STEAM_H_
+#ifndef __CSTEAM_H
+#define __CSTEAM_H
 
 #include <stdio.h>
 

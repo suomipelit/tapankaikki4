@@ -1,5 +1,5 @@
-#ifndef __EVENTHANDLER_H_
-#define __EVENTHANDLER_H_
+#ifndef __CEVENTHANDLER_H
+#define __CEVENTHANDLER_H
 
 #include "CMouse.h"
 

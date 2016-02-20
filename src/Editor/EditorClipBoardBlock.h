@@ -1,5 +1,5 @@
-#ifndef __EDITORCLIPBOARDBLOCK_H_
-#define __EDITORCLIPBOARDBLOCK_H_
+#ifndef __EDITORCLIPBOARDBLOCK_H
+#define __EDITORCLIPBOARDBLOCK_H
 
 #include "../common/CEditableLevel.h"
 

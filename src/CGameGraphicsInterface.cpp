@@ -76,7 +76,7 @@ void CGameGraphicsInterface::UpdateMode()
 	if (iGD->FullScreen()!=iOptions->Data().iFullScreen && 
 		iGD->FullScreenPossible() )
 	{
-		ASSERT(_snprintf(msg,100,"Setting FULL SCREEN %s",KBoolCatStr[iOptions->Data().iFullScreen])>0);
+		ASSERT(EF_SNPRINTF(msg,100,"Setting FULL SCREEN %s",KBoolCatStr[iOptions->Data().iFullScreen])>0);
 		iMB->AddMessage(msg);
 		ChangeMode( iGD->Rect().BottomRight() );
 
@@ -85,7 +85,7 @@ void CGameGraphicsInterface::UpdateMode()
 	}
 	else
 	{
-		ASSERT(_snprintf(msg,100,"Game resolution %d x %d",nmode->X(),nmode->Y())>0);
+		ASSERT(EF_SNPRINTF(msg,100,"Game resolution %d x %d",nmode->X(),nmode->Y())>0);
 		iMB->AddMessage(msg);
 						
 		if ( !iMenuFlag )
@@ -111,11 +111,7 @@ void CGameGraphicsInterface::ChangeMode(const CCoord<int>& aMode)
 	iGD->GetPalette(pal);
 	iGD->SetPalette(pal,0);
 	
-#ifndef __unix__
-	ret=iGD->SetMode(aMode.X(),aMode.Y(),8,iOptions->Data().iFullScreen, iExtraFlags );
-#else
-	ret=iGD->SetMode(aMode.X(),aMode.Y(),0,iOptions->Data().iFullScreen, iExtraFlags );
-#endif
+	ret=iGD->SetMode(aMode.X(),aMode.Y(),KBitDepth,iOptions->Data().iFullScreen, iExtraFlags );
 	iOptions->UpdateGammaChanges();
 
 	if (ret!=0) 
@@ -135,7 +131,7 @@ char* CGameGraphicsInterface::ScreenCapture()
 	
 	while(free==0 &&num<999) 
 	{
-		ASSERT(_snprintf(fname,FILENAME_MAX,"Screen Shot %03d.bmp",num)>0);
+		ASSERT(EF_SNPRINTF(fname,FILENAME_MAX,"Screen Shot %03d.bmp",num)>0);
 		if (!exists(getsavepath(std::string(fname)).c_str())) free=1;
 		num++;
 	}
