@@ -17,7 +17,7 @@ void ExitHandler()
 }
 
 // TODO: CONFIGFILE
-const std::string KIconFile=getdatapath("tk.ico");
+const std::string KIconFile="tk.ico";
 const char* KWindowCaption="Tapan Kaikki Bloodshed";
 
 int main(int argc,char *argv[]) 
