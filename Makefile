@@ -28,6 +28,10 @@ game:
 editor:
 	cd src/Editor && env ${MY_MAKE_ENV} ${MAKE} ${MAKEFLAGS} ${MY_MAKEFLAGS}
 
+clean:
+	cd src && $(MAKE) clean
+	cd src/Editor && $(MAKE) clean
+
 install:
 	${INSTALL_PROGRAM_DIR} ${DESTDIR}${PREFIX}/bin
 	${INSTALL_PROGRAM} src/tkb ${DESTDIR}${PREFIX}/bin
