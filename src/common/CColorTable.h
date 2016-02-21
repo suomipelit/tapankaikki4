@@ -21,9 +21,9 @@ public:
 
 private:
 	void Init();
-	void CreateTables(char *aPaletteFilename);
-	int  ReadTables(char *aFilename);
-	void WriteTables(char *aFilename);
+	void CreateTables(const char *aPaletteFilename);
+	int  ReadTables(const char *aFilename);
+	void WriteTables(const char *aFilename);
 	void GenerateShadowTable(CPalette& aPalette);
 	void GenerateTransparencyTable(CPalette& aPalette);
 

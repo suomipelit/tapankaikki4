@@ -197,7 +197,7 @@ int CBullet::Move()
 		// Check collision with enemies & players
 		if (iCounter>iType->SleepTime() && !hitwall) 
 		{
-			if (!iDynData->NetworkMode()==ENetworkModeClient)
+			if (iDynData->NetworkMode()!=ENetworkModeClient)
 			{
 				std::vector< CEnemy >::iterator iter=iDynData->LevelRuntime()->Enemies().begin();
 

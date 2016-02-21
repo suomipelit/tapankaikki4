@@ -11,7 +11,7 @@ namespace
 {
 	struct TMenuSpriteData
 	{
-		char *filename; // filename
+		const char *filename; // filename
 		int palette;	// Number of palette, -1 if none 
 	};
 

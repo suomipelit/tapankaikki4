@@ -99,8 +99,8 @@ public:
 	const CNetworkAddress* BroadCastAddress();
 	const CNetworkAddress* LocalAddress();
 
-	char* ReadHTTP(char *host,char *page,int port, int* error);
-	char* ReadProxyHTTP(char *proxyaddress,char *host, char *page, int proxyport, int* error);
+	char* ReadHTTP(const char *host, const char *page, int port, int* error);
+	char* ReadProxyHTTP(char *proxyaddress, const char *host, const char *page, int proxyport, int* error);
 
 	CNetworkAddress* iServerAddress;
 	CNetworkAddress* iLocalAddress;

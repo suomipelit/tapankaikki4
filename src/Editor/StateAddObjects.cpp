@@ -53,10 +53,12 @@ void CStateAddObjects::Draw(CEditorDrawer* aDrawer)
 	switch (iCurrentMode) {
 		case EEditObjectModePlaceSpotLight:
 			if (Level()->InLevel(MBX,MBY))
+			{
 				if (! iSpotSetSizeMode)				
 					aDrawer->DrawSpot(iMouseX,iMouseY,iSpotSize);
 				else
 					aDrawer->DrawSpot(iSpotSizeX,iSpotSizeY,iSpotSize);
+			}
 			if (iSpotSetSizeMode)
 				aDrawer->Write(iSpotSizeX,iSpotSizeY,iSpotSize);
 			aDrawer->Write(5,5,"Add objects mode - add spotlight");
@@ -64,10 +66,12 @@ void CStateAddObjects::Draw(CEditorDrawer* aDrawer)
 		break;
 		case EEditObjectModePlaceSteam:
 			if (Level()->InLevel(MBX,MBY))
+			{
 				if (! iSteamAdjustMode)				
 					aDrawer->DrawSteam(iMouseX,iMouseY,iSteamAngle,iSteamSpeed);
 				else
 					aDrawer->DrawSteam(iSteamX,iSteamY,iSteamAngle,iSteamSpeed);
+			}
 			if (iSteamAdjustMode)
 			{
 				aDrawer->Write(iSteamX,iSteamY,iSteamAngle);

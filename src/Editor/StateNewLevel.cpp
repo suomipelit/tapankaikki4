@@ -52,6 +52,7 @@ void CStateNewLevel::HandleKeys(CEventHandler* aEventHandler,CEditorDrawer* aDra
 			aEventHandler->State(SDLK_ESCAPE)=0;
 		}
 		if (iCurKey == SDLK_RETURN)
+		{
 			if (iCursorYPos < 1) 
 			{
 				iCursorYPos++; 
@@ -76,6 +77,7 @@ void CStateNewLevel::HandleKeys(CEventHandler* aEventHandler,CEditorDrawer* aDra
 				aEventHandler->ResetStack();
 				aEventHandler->State(SDLK_RETURN)=0;
 			}
+		}
 
 		if (iCursorYPos==0) NewPointer=iNewWidth;
 		if (iCursorYPos==1) NewPointer=iNewHeight;

@@ -223,7 +223,7 @@ void CLevel::Load(const char* aName)
 		fseek( dat, 0, SEEK_SET );
 
 		if ( iVersion > 100 ) 
-			throw CFailureException("CLevel::Load: Level file corrupted?" + iVersion);
+			throw CFailureException("CLevel::Load: Level file corrupted?");
 
 		try
 		{
@@ -514,7 +514,7 @@ void CLevel::LoadOldFormat(FILE* aFile)
 		if (iVersion<6)
 		{
 			try {
-				iLevelData[a].iShadow == ReadInt(aFile);
+				iLevelData[a].iShadow = ReadInt(aFile);
 			} catch (CFailureException e) {
 				throw CFailureException("CLevel::LoadOldFormat: File loading error 3");
 			}

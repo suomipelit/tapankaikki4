@@ -50,7 +50,7 @@ public:
 	bool DoEffect2( int aCounter ) const;
 
 protected:
-	char* iName;
+	const char* iName;
 	TIngameSoundEffect iBounceSound;
 	TBulletType iType;
 	int iStop;

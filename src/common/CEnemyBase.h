@@ -18,7 +18,7 @@ public:
 	int ExplosionDeath() const;
 	int SightDistance() const;
 protected:
-	char* iName;
+	const char* iName;
 	int iSprite;
 	float iSpeed;
 //	enum

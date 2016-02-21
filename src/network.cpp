@@ -499,7 +499,7 @@ void desetup_ipx()
 
 */
 
-char* CNetworkDevice::ReadProxyHTTP(char *proxyaddress,char *host, char *page, int proxyport, int* errval)
+char* CNetworkDevice::ReadProxyHTTP(char *proxyaddress, const char *host, const char *page, int proxyport, int* errval)
 {
 	IPaddress remote;
 	TCPsocket sock;
@@ -549,7 +549,7 @@ char* CNetworkDevice::ReadProxyHTTP(char *proxyaddress,char *host, char *page, i
 	return strdup(buf);
 }
 
-char* CNetworkDevice::ReadHTTP(char *host,char *page,int port, int* errval)
+char* CNetworkDevice::ReadHTTP(const char *host, const char *page, int port, int* errval)
 {
 	IPaddress remote;
 	TCPsocket sock;

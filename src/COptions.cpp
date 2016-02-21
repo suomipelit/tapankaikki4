@@ -167,7 +167,7 @@ void COptions::UpdateAudioChanges()
 		iSP->SetTheme(iData.iMusicTheme);
 }
 
-char* COptions::MouseModeText()
+const char* COptions::MouseModeText()
 {
 	switch (iData.iMouseMode)
 	{

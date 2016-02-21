@@ -62,7 +62,7 @@ namespace
 	}
 };
 
-void CEpisode::ListFiles(char *filenames)
+void CEpisode::ListFiles(const char *filenames)
 {
 	Reset();
 	iDirName=strdup( filenames );
@@ -86,7 +86,7 @@ void CEpisode::ListFiles(char *filenames)
 	free(filelist);
 }
 
-void CEpisodeList::ListFiles(char *dirnames)
+void CEpisodeList::ListFiles(const char *dirnames)
 {
 	char tmp[FILENAME_MAX];
 	dirent** filelist;
@@ -158,7 +158,7 @@ void CEpisodeList::Sort()
 			}
 }
 
-void CDeathMatchEpisode::ListFiles(char *filenames)
+void CDeathMatchEpisode::ListFiles(const char *filenames)
 {
 	Reset();
 

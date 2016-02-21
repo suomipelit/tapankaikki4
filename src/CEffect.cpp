@@ -32,10 +32,12 @@ int CEffect::Roll(CLevelRuntimeData* aLevelRuntime, int aAmountOfEffects)
 	}
 
 	if (iCounter<iType->TCount()*iType->Delay()) 
+	{
 		if (!iType->Random()) 
 			iCounter+=mul;
 		else 
 			iCounter+=rand()%(mul*3);
+	}
 
 	if (iCounter>=iType->TCount()*iType->Delay()) 
 		die=1;

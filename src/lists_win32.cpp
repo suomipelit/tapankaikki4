@@ -7,7 +7,7 @@
 #include "common/error.h"
 #include "common/CLevel.h"
 
-void CEpisode::ListFiles(char *filenames)
+void CEpisode::ListFiles(const char *filenames)
 {
 	char name[FILENAME_MAX];
 	int a;
@@ -34,7 +34,7 @@ void CEpisode::ListFiles(char *filenames)
 	}
 }
 
-void CEpisodeList::ListFiles(char *dirnames)
+void CEpisodeList::ListFiles(const char *dirnames)
 {
 	struct _finddata_t fbuf;
 	int er,error=0;
@@ -108,7 +108,7 @@ void CEpisodeList::Sort()
 			}
 }
 
-void CDeathMatchEpisode::ListFiles(char *filenames)
+void CDeathMatchEpisode::ListFiles(const char *filenames)
 {
 	char name[FILENAME_MAX],levname[FILENAME_MAX];
 	bool ok;

@@ -744,7 +744,7 @@ TMenuKeyActions CGameMenuItemMouseMode::HandleKeyPress(SDL_keysym key,CGameMenuB
 CRect<int> CGameMenuItemMouseMode::Draw(CGraphicsBuffer* aDst,CGameGraphicsInterface* aGGI, int aX, int aY, int aActive)
 {
 	int xadd,yadd;
-	char *tmp;
+	const char *tmp;
 	CRect<int> rect;
 
 	iDisplaceCounter++;

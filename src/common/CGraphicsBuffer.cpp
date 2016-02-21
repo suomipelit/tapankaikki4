@@ -100,6 +100,7 @@ void CGraphicsBuffer::Load(std::string aFilename, CPalette* aPalette)
 	SDL_Surface* surf = IMG_Load(aFilename.c_str());
 
 	if ( surf )
+	{
 		if (CopyFromSurface(surf ,aPalette)==0)
 		{
 			SDL_FreeSurface( surf );
@@ -107,7 +108,7 @@ void CGraphicsBuffer::Load(std::string aFilename, CPalette* aPalette)
 		}
                 else
                         error("CGraphicsBuffer::Load: Only 8-bit surfaces allowed (%s)!",aFilename.c_str());
-
+	}
 	
 	error("CGraphicsBuffer::Load: File format not detected (%s)!",aFilename.c_str());
 }

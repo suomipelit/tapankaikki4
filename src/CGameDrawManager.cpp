@@ -1443,7 +1443,7 @@ void CGameDrawManager::DrawFPS()
 
 	if ( EF_DEBUG)
 	{
-		ASSERT(EF_SNPRINTF(text,20,"%d / %d effects", iDynData->LevelRuntime()->Effects().size(), KTimerFreq)>0);
+		ASSERT(EF_SNPRINTF(text,20,"%zu / %d effects", iDynData->LevelRuntime()->Effects().size(), KTimerFreq)>0);
 		iGGI->Font(CGameGraphicsInterface::ESmallFont)->Write(iGGI->GD()->Width()/2,40,text,CFonts::EDrawBelow, CFonts::EDrawInMiddle, iGGI->DrawBuffer());
 	}
 }

@@ -50,7 +50,7 @@ void CColorTable::GenerateShadowTable(CPalette& aPalette)
 	}
 }
 
-void CColorTable::WriteTables(char *aFilename)
+void CColorTable::WriteTables(const char *aFilename)
 {
 	FILE *tab=fopen(getsavepath(std::string(aFilename)).c_str(),"wb");
 	if (!tab) error("Error: Couldn't create %s!",aFilename);
@@ -64,7 +64,7 @@ void CColorTable::WriteTables(char *aFilename)
 	fclose(tab);
 }
 
-int CColorTable::ReadTables(char *aFilename) 
+int CColorTable::ReadTables(const char *aFilename) 
 {
 	FILE *tab= fopen(getsavepath(std::string(aFilename)).c_str(),"rb");
 
@@ -97,7 +97,7 @@ void CColorTable::Init()
 		iLightMap[a].Make(15+a*5);
 }
 
-void CColorTable::CreateTables(char *aPaletteFilename)
+void CColorTable::CreateTables(const char *aPaletteFilename)
 {
 	CPalette pal;
 

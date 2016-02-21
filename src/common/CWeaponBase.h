@@ -22,7 +22,7 @@ public:
 	int Priority() const;
 	bool ConsumesBullets() const;
 protected:
-	char* iName;
+	const char* iName;
 	int iSprite;
 	bool iSingleHand;
 	int iCost;

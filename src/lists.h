@@ -17,7 +17,7 @@ public:
 	const char* LevelName(unsigned int aAt);
 	void Reset();
 	unsigned int Amount();
-	virtual void ListFiles(char *filenames);
+	virtual void ListFiles(const char *filenames);
 	const char* Name();
 	const char* DirName();
 protected:
@@ -31,7 +31,7 @@ protected:
 class CDeathMatchEpisode : public CEpisode
 {
 public:
-	void ListFiles(char *filenames);
+	void ListFiles(const char *filenames);
 };
 
 class CEpisodeList
@@ -41,7 +41,7 @@ public:
 	CEpisode* Episode( unsigned int aIndex, bool aDMEpisodes );
 	void Reset();
 	unsigned int Amount( bool aDMEpisodes );
-	void ListFiles(char *dirnames);
+	void ListFiles(const char *dirnames);
 private:
 	void Sort();
 	std::vector<CEpisode*> iEpisodes;

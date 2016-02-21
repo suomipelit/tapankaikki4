@@ -81,7 +81,7 @@ public:
 	COptionsData& Data();
 	inline int MusicThemes(){ return (int)iMusicThemeList->Amount();}
 	inline char* MusicTheme(int a){ if (a<0 || a>=(signed)iMusicThemeList->Amount()) return NULL; return iMusicThemeList->MusicTheme(a);}
-	char* MouseModeText();
+	const char* MouseModeText();
 
 private:
 	CEpisodeList* iEpisodeList;
