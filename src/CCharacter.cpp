@@ -40,7 +40,7 @@ bool CCharacter::CollisionCheck(const CRect<int>& aRect)
 void CCharacter::Move(int aAngle, float aSpeed, CDynGameData* aDynData)
 {
 	CCoord<int> blockpos[8];// **
-	const int reuna=6;      //*  * chk pointit on n‰in
+	const int reuna=6;      //*  * chk pointit on n√§in
 	const int reuna2=4;     //*  *
 				           // **
 	CCoord<int> testpos;

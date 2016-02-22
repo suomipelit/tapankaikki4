@@ -8,7 +8,7 @@ class IBodyPartType
 public:
 	virtual ~IBodyPartType()=0;
 	virtual float Slow() const=0;		// kitka
-	virtual float Kickspeed() const=0;	// vauhti mill‰ l‰htee ku potkasee
+	virtual float Kickspeed() const=0;	// vauhti mill√§ l√§htee ku potkasee
 	virtual int Bounce() const=0;		// boolean 1=kimpoo 0=not kimpoo
 	virtual int DropBlood() const=0;		// boolean 1=pudottaa verta 0=not
 	virtual TIngameSoundEffect Sound() const=0; // sound when kicked or hits the wall

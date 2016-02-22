@@ -117,7 +117,7 @@ void CGameDrawer::DrawDarkBlock(int aX,int aY,int aType,int aNumber, unsigned ch
 	}
 }
 
-//Mit‰ tekee? answer: draws human's shadows
+//Mit√§ tekee? answer: draws human's shadows
 void CGameDrawer::DrawHumanShadow(int aX,int aY,int aNumber,const unsigned char* aShadowSprite,CGraphicsBuffer* aDrawBuffer,const CRect<int>& aDrawRect) 
 {
 	int a, b;
@@ -170,7 +170,7 @@ void CGameDrawer::DrawWallShadow(int aX,int aY,int aNumber,int aSize, CGraphicsB
 				if (b>=clipRect.iLeft) vb[b]=iColorTable->ShadowTable[vb[b]][lum];
 			*/
 			break;	
-    case 3: // Vasen yl‰kolmio tummennettu
+    case 3: // Vasen yl√§kolmio tummennettu
 		for (a=clipRect.iTop; a<clipRect.iBottom; a++, vb+=aDrawBuffer->Width()) 
 			for (b=clipRect.iLeft; b<aSize-a && clipRect.iLeft<aSize-a && b<clipRect.iRight; b++) 
 				vb[b]=iColorTable->ShadowTable[vb[b]][lum];

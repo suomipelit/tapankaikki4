@@ -30,12 +30,12 @@ const int KMoneyAmounts[KMoneyCrates]={50,100,200,500};
 
 enum TEditMode
 {
-	EEditModeEditLevel=0,			// kentÑn editointi mode
+	EEditModeEditLevel=0,			// kent√§n editointi mode
 	EEditModeGetBlock,				// blockin valinta mode
 	EEditModeEditHeights,			// korkeus muokkaus
-	EEditModeAddObjects,			// objektin lis‰ys mode
+	EEditModeAddObjects,			// objektin lis√§ys mode
 	EEditModeRemoveObjects,			// objektin poisto mode
-	EEditModeNewLevel,              // uuden kent‰n luonti mode
+	EEditModeNewLevel,              // uuden kent√§n luonti mode
 	EEditModeEditRCData,			// randomcratedata edit mode
 	EEditModeEditGeneralData,
 	EEditModeHelp,

@@ -40,7 +40,7 @@ int CBodyPart::SpriteOffset()
 
 void CBodyPart::Move( CLevelRuntimeData* aLevelRuntimeData ) 
 {
-	int reuna=4;  //**chk pointit on n„in
+	int reuna=4;  //**chk pointit on nÃ¤in
 	int reuna2=2; //**
 				  //**
 	CCoord<float> newpos;

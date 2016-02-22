@@ -69,7 +69,7 @@ void CEnemy::CheckPlayerVisibility()
 			int ply_angle = int(CMath::GetAngle(Location(),iDynData->Players()[b]->Location()));
 			if (iAngle<270 &&iAngle>90) 
 			{
-				// näkökenttä 180 astetta
+				// nÃ¤kÃ¶kenttÃ¤ 180 astetta
 				if (ply_angle>min &&ply_angle<maximum) 
 					go_on=1;
 			}
@@ -365,7 +365,7 @@ void CEnemy::TargetAngle(int aSpeed)
 
 		ANGLEFIX(iAngle);
 
- // 		vähän pyöristää, nin iAngle saavuttaa joskus iTargetAnglen ...
+ // 		vÃ¤hÃ¤n pyÃ¶ristÃ¤Ã¤, nin iAngle saavuttaa joskus iTargetAnglen ...
 		if (fabs(iAngle-iTargetAngle) < aSpeed ||
 			fabs((iAngle+360) - iTargetAngle) <aSpeed) 
 			iAngle=iTargetAngle;

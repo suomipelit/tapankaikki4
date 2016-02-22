@@ -72,7 +72,7 @@ public:
 
 	struct TEnemyCoords
 	{
-	   int iType; // 1 J‰rjestys on t‰rke‰ ladatessa kentt‰‰
+	   int iType; // 1 J√§rjestys on t√§rke√§ ladatessa kentt√§√§
 	   int iX;    // 2
 	   int iY;    // 3
 	};

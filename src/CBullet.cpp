@@ -220,9 +220,9 @@ int CBullet::Move()
 						iter->GotoBulletOrigin(this);
 
 						vpos = iter->Location().Add(14,14).AddMovement(iAngle,4);
-						iter->iPushAngle=iAngle;// äijä lentää
+						iter->iPushAngle=iAngle;// Ã¤ijÃ¤ lentÃ¤Ã¤
 						if (iType->PushPower()>iter->iPushPower) 
-							iter->iPushPower=(float) iType->PushPower()*0.75f;// äijä lentää
+							iter->iPushPower=(float) iType->PushPower()*0.75f;// Ã¤ijÃ¤ lentÃ¤Ã¤
 
 						if (iType->Type()==IBulletType::EBulletTypeIncendiary) 
 						{
@@ -266,9 +266,9 @@ int CBullet::Move()
 						
 					if ((iDynData->NetworkMode()==ENetworkModeNone))// || (iDynData->LocalPlayer(0)==iDynData->Players()[b]))
 					{
-						iDynData->Players()[b]->iPushAngle=iAngle;// „ij„lent„„
+						iDynData->Players()[b]->iPushAngle=iAngle;// Ã¤ijÃ¤lentÃ¤Ã¤
 						if (iType->PushPower()>iDynData->Players()[b]->iPushPower) 
-							iDynData->Players()[b]->iPushPower=(float) iType->PushPower()*0.75f;// „ij„lent„„
+							iDynData->Players()[b]->iPushPower=(float) iType->PushPower()*0.75f;// Ã¤ijÃ¤lentÃ¤Ã¤
 						if (iType->Type()==IBulletType::EBulletTypeIncendiary) 
 						{
 							iDynData->Players()[b]->iBurning += 15;
@@ -284,7 +284,7 @@ int CBullet::Move()
 		}
 	}
 
-	// tämä tietysti on vähän kyseenalaista...
+	// tÃ¤mÃ¤ tietysti on vÃ¤hÃ¤n kyseenalaista...
 	if (iType->Type()==IBulletType::EBulletTypeNormal||
 		iType->Type()==IBulletType::EBulletTypeFist) 
 		if (hitwall) 

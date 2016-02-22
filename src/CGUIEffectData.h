@@ -18,7 +18,7 @@ public:
 	bool iFadeIn;
 	const CPalette* iPalette;
 	CPalette iSparePalette;
-	// Let me introduce you method pointers.. I just lööv C++
+	// Let me introduce you method pointers.. I just lÃ¶Ã¶v C++
 	void (CGraphicsFader::* iFaderMethod)(const CGraphicsBuffer&, CGraphicsBuffer&, const CPalette&, int, int);
 
 	CGUIEffectData();

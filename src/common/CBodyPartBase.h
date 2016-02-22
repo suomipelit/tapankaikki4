@@ -17,7 +17,7 @@ public:
 
 protected:
 	float iSlow;		// kitka
-	float iKickspeed;	// vauhti mill‰ l‰htee ku potkasee
+	float iKickspeed;	// vauhti mill√§ l√§htee ku potkasee
 	int iBounce;		// boolean 1=kimpoo 0=not kimpoo
 	int iDropBlood;		// boolean 1=pudottaa verta 0=not
 	TIngameSoundEffect iSound; // sound when kicked or hits the wall
