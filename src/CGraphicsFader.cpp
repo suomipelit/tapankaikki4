@@ -17,22 +17,20 @@ CGraphicsFader::CGraphicsFader(CGameGraphicsInterface* aGGI): iGGI(aGGI)
 		iSine[a]=(int)(255*(sin((float)a/256*pi*2)));
 }
 
-void CGraphicsFader::DrawPhase( int phase,const CGraphicsBuffer* image,CGraphicsBuffer *aDest ) 
+void CGraphicsFader::DrawPhase( int phase, const CGraphicsBuffer& image, CGraphicsBuffer& aDest ) 
 {
 	const unsigned char *srcptr;
 	unsigned char *dstptr;
 	int x, y, yfix, xfix, l=(phase*30)>>8;
-	int targetWidth=aDest->Width(),targetHeight=aDest->Height();
-	int srcWidth=image->Width();
+	int targetWidth=aDest.Width(),targetHeight=aDest.Height();
+	int srcWidth=image.Width();
 
 	ASSERT(phase>=0&&phase<256);
-	ASSERT(image);
-	ASSERT(aDest);
 
-	srcptr=image->Ptr();
-	dstptr=aDest->Ptr();
+	srcptr=image.Ptr();
+	dstptr=aDest.Ptr();
 
-	for (y=0;y<aDest->Height();y++) 
+	for (y=0;y<aDest.Height();y++) 
 	{
 		yfix=(l*iSine[(y+phase) &0xff])>>8;
 		if (yfix+y<0||yfix+y>=targetHeight) 
@@ -48,59 +46,47 @@ void CGraphicsFader::DrawPhase( int phase,const CGraphicsBuffer* image,CGraphics
 				else dstptr[x]=0;
 			}
 		}
-		srcptr+=image->Width();
-		dstptr+=aDest->Width();
+		srcptr+=image.Width();
+		dstptr+=aDest.Width();
 	}
 }
 
-void CGraphicsFader::FadeIn(const CGraphicsBuffer* image,CGraphicsBuffer *aDest, const CPalette* pal, int StartTime, int LastingTime) 
+void CGraphicsFader::FadeIn(const CGraphicsBuffer& image, CGraphicsBuffer& aDest, const CPalette& pal, int StartTime, int LastingTime) 
 {
-	int time;
-	ASSERT(image);
-	ASSERT(aDest);
-	ASSERT(pal);
-	
-	time=TimerCounter;
+	int time=TimerCounter;
 
 	if (time>=StartTime+LastingTime)
 	{
-		iGGI->GD()->SetPalette(*pal,256);
+		iGGI->GD()->SetPalette(pal,256);
 		return;
 	}
 
 	if (time>=StartTime)
 	{
-		iGGI->GD()->SetPalette(*pal,max( (time-StartTime)*256/LastingTime,0));
+		iGGI->GD()->SetPalette(pal,max( (time-StartTime)*256/LastingTime,0));
 		DrawPhase(255-(time-StartTime)*256/LastingTime, image,aDest );
 	}
 }
 
-void CGraphicsFader::FadeOut(const CGraphicsBuffer* image,CGraphicsBuffer *aDest, const CPalette* pal, int StartTime, int LastingTime) 
+void CGraphicsFader::FadeOut(const CGraphicsBuffer& image, CGraphicsBuffer& aDest, const CPalette& pal, int StartTime, int LastingTime) 
 {
-	int time;
-	ASSERT(image);
-	ASSERT(aDest);
-	ASSERT(pal);
-	time=TimerCounter;
+	int time=TimerCounter;
 
 	if (time>=StartTime+LastingTime)
 	{
-		iGGI->GD()->SetPalette(*pal,0);
+		iGGI->GD()->SetPalette(pal,0);
 		return;
 	}
 
 	if (time>=StartTime)
 	{
 		DrawPhase((time-StartTime)*256/LastingTime,image, aDest);
-		iGGI->GD()->SetPalette(*pal,max( 255 - (time-StartTime)*256/LastingTime,0));
+		iGGI->GD()->SetPalette(pal,max( 255 - (time-StartTime)*256/LastingTime,0));
 	}
 }
 
-void CGraphicsFader::DrawZoom(float mul,const CGraphicsBuffer* image,CGraphicsBuffer* aDest)
+void CGraphicsFader::DrawZoom(float mul, const CGraphicsBuffer& image, CGraphicsBuffer& aDest)
 {
-	ASSERT(image);
-	ASSERT(aDest);
-
     int x=0,y=0;
 	int dstw=0,dsth=0;
 	int srcw=0,srch=0;
@@ -112,13 +98,13 @@ void CGraphicsFader::DrawZoom(float mul,const CGraphicsBuffer* image,CGraphicsBu
 	ASSERT(mul>=0);
 	ASSERT(mul<=1);
 
-	dsth=aDest->Height();
-	dstw=aDest->Width();
-	srch=image->Height();
-	srcw=image->Width();
+	dsth=aDest.Height();
+	dstw=aDest.Width();
+	srch=image.Height();
+	srcw=image.Width();
 
-	dstbuf=aDest->Ptr();
-	srcbuf=image->Ptr();
+	dstbuf=aDest.Ptr();
+	srcbuf=image.Ptr();
 
 	yoffs=(dsth*(1.0f-mul))/2.0f;
 
@@ -139,16 +125,13 @@ void CGraphicsFader::DrawZoom(float mul,const CGraphicsBuffer* image,CGraphicsBu
 }
 
 
-void CGraphicsFader::FadeZoomOut(const CGraphicsBuffer* image,CGraphicsBuffer *aDest,const CPalette* pal , int StartTime, int LastingTime)
+void CGraphicsFader::FadeZoomOut(const CGraphicsBuffer& image, CGraphicsBuffer& aDest, const CPalette& pal, int StartTime, int LastingTime)
 {
-	ASSERT(image);
-	ASSERT(aDest);
-	ASSERT(pal);
 	int time=TimerCounter;
 
 	if (time>=StartTime+LastingTime)
 	{
-		iGGI->GD()->SetPalette(*pal,0);
+		iGGI->GD()->SetPalette(pal,0);
 		return;
 	}
 
@@ -156,7 +139,7 @@ void CGraphicsFader::FadeZoomOut(const CGraphicsBuffer* image,CGraphicsBuffer *a
 	{
 		int phase=(time-StartTime)*256/LastingTime;
 		DrawZoom(1-((float)phase*(0.95f/255.0f)),image,aDest);
-		iGGI->GD()->SetPalette( *pal, 255-phase );
+		iGGI->GD()->SetPalette( pal, 255-phase );
 	}
 }
 

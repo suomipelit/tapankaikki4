@@ -19,7 +19,7 @@ public:
 	const CPalette* iPalette;
 	CPalette iSparePalette;
 	// Let me introduce you method pointers.. I just lööv C++
-	void (CGraphicsFader :: * iFaderMethod)(const CGraphicsBuffer*,CGraphicsBuffer *, const CPalette*, int, int );
+	void (CGraphicsFader::* iFaderMethod)(const CGraphicsBuffer&, CGraphicsBuffer&, const CPalette&, int, int);
 
 	CGUIEffectData();
 };

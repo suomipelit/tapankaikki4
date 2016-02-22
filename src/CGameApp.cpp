@@ -195,9 +195,9 @@ void CGameApp::Loop()
 				// Don't try this at home:    ;)
 				(iGGI->Fader()->*iEffectData->iFaderMethod)
 					(
-						iGGI->DrawBuffer(), 
-						iGGI->PostProBuffer(),
-						iEffectData->iPalette,
+						*iGGI->DrawBuffer(), 
+						*iGGI->PostProBuffer(),
+						*iEffectData->iPalette,
 						iEffectData->iStarted,
 						iEffectData->iDuration
 					);
