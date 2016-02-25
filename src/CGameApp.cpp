@@ -347,7 +347,7 @@ void CGameApp::Run(int argc,char *argv[])
 					 break;
 
 			default:
-					error("Unkwown commandline parameter!?!\n");
+					error("Unknown commandline parameter!?!\n");
 					break;
 		}
 		free(tmp);
