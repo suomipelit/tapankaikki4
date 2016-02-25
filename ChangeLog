@@ -1,0 +1,207 @@
+ChangeLog
+=========
+
+TK Bloodshed
+------------
+
+### Official TK 4 Bloodshed 4.08 (patch)
+- Fixed the editor bug. Delete ALL *.generated.* files in efps/
+  directory.
+
+### Official TK 4 Bloodshed 4.07 (patch)
+- Fixed again DM moving speed.
+- Editor processor usage is now very low when it's idle (used to be very
+  high)
+- Now generated files are saved in correct format. Used to save always
+  in EFP format independent of filename.
+- Graphics are now in .bmp format. This enables easier mods.
+- Fixed a rare image loading bug.
+- Rambo & Enemy graphics are now generated on the fly so that sprite is
+  needed in only one angle.
+- Any player can now use mouse.  (not just pl1 & pl2)
+
+### Official TK 4 Bloodshed 4.06 (patch)
+- Added the gamma setting in options. Though the hardware might not
+  always support it.
+- Online update check is now on by default.
+- Removed Deathmatch "episode" from cooperative game modes.
+- Added possibility for user graphics, sounds, music and some texts
+  without need of overwriting default data files.
+- Some more graphics are now generated in the fly, if they are missing.
+  walls1_X.generated.efp are generated (old name was walls1_X.efp) if
+  they are missing. This is convenient for those who want to make their
+  own graphic mods for the game. Graphic files walls1_X.efp are not
+  needed by the game anymore.
+- Level version bump.
+- Fixed filetype detection for graphic files.
+- Fixed episode selection. It can be now controlled using player 1 keys.
+- Updated "Using TK Editor" section of this document.
+- Added two new crate types (money and target).
+
+### Official TK 4 Bloodshed 4.05 (patch)
+- Fixed resolution change problem.
+
+### Official TK 4 Bloodshed 4.04 (patch)
+- Mouse wheel functionality added for adding objects in editor
+- Fixed problems related to writing level comment in editor
+- Embedded icons inside exe files
+- Fixed stereo sound in single player mode
+- Bodyparts don't move anymore behind walls in explosions
+- Fixed frag messages
+- Player names can now be up to 14 letters.
+- Added the possibility to enable target system in DM options
+- Limited the speed of bodyparts
+- Fixed some grenade related bugs
+- Some internal changes
+
+### Official TK 4 Bloodshed 4.03 (patch)
+- Placing DM crates is now possible with Z-key in the editor
+- Paste mode can now be canceled with right mouse button in the editor
+- Mouse wheel can now be used for zooming in the editor
+- Editor framerate limited to 20fps
+- Cursor coordinates are now shown in the editor
+- Map toggle key changed from TAB to F5
+- Framerate toggle key changed from F5 to F6
+- Changed screen update methods
+- Multiplier bug with gas crates in the editor fixed
+- ALT-TAB problem should be fixed now
+- ALT-ENTER no more functions as ENTER in menus.
+- Keys can now be changed even though they are assigned to other player.
+- Smaller resolutions can be used again.
+- Next gun in line is now chosen automatically when you run out of ammo.
+  Guns have certain priorities
+- Burning damage halved
+- Outblock height adjusting is now possible (Level version upgrade)
+- Fire effects for rockets and burning fixed
+- Fixed problem with incorrect files in "levs" directory
+- Added "reset to defaults" in options
+- It is possible to disable enemies in DM now. (switch in options didn't
+  work earlier).
+- Fixed moving speed (DM options)
+- Fixed level info screen (DM)
+- Windows icons are now included in the package
+- Fixed some graphical gunfire issues
+- Fixed a slowing issue in case of respawning a player
+- Enemy cannot hear around the corner anymore
+- ESC works now as quit also in level info view
+- Enemies now choose the closest player instead of the weakest
+- Fixed one bug which might have caused some random crashes during
+  gameplay
+- Optimized some routines to speed up levels which have a lot of enemies
+  (especially civilians)
+- Changed messageboard functionality so that messageboard text slowdown
+  should be fixed (please report if it doesn't work)
+- Player's weapon of choice is now remembered from the last level
+- If an enemy's explosion kills more enemies those are counted as your
+  kills
+- Bodyparts move now if they are in an explosion area
+- The amount of effects visible is limited to help maintain at least
+  minimal framerate now. Also some effects (bloodstains, footsteps)
+  vanish faster if there are lots of effects on screen.
+- Fixed one graphical bug in statistics view
+- Some animation problems related to shooting fixed
+- Updated readme.html to contain information about efpconv.exe
+- Fixed a problem with audio options menu
+- Fixed a collision detection issue related to grenade bouncing
+- and of course some other minor cleanups and optimizations
+
+### Official TK 4 Bloodshed (4.02)
+- Fixed several bugs based on alpha tester user feedback
+- Split-screen multiplay works now with 4 players.
+- Some overall polishing done
+
+### TK 4 Bloodshed alpha 2 (4.01)
+- Game now works in Windows (Linux version coming ?).
+- Very cool 3d walls option added !!! (software draw. OpenGL coming ?)
+- New polygon line of sight (darkness) system !
+- High resolutions (resolutions now from 320x200 to 1600x1200 and more)
+- Mouse targeting
+- 2 new enemies and 1 new weapon
+- Smoother movement and targeting
+- Screenshots are saved to BMP format
+- Code converted from C to C++ (not a very pleasant job to do)
+- Major internal restructuring (for future improvements :))
+- IPX Support gone
+- New Musics and sound effects
+- MIDAS gone, replaced with SDL_Mixer
+- SDL Libraries now used everything possible
+- Some small details added for fun ! + Gazillion bugs fixed.
+
+The Ultimate TK
+---------------
+
+### 1.21 (3.21)
+- One major bug fixed: The enemies didn't move in splitscreen
+  cooperative game in v1.2 !!!!
+
+### 1.2 (3.2)
+- LAN (IPX) - Game!
+- More Music. 2 More In-game songs added.
+- TK has moved to SVGA! 320*240 resolution gives more visibility.
+- Mines added.
+- Shortcut keys for weapons added.
+- Limits for bullet amounts added.
+- Frames per sec shown by key F5 instead of F
+- Screen capture to PCX.
+- Player rotation angles increased to 40.
+- Some new episodes by Blanket
+- With editor v1.3 crates can be placed on levels.
+- New MIDAS v1.1.2 used + Many bugs fixed and many new bugs found.
+
+### 1.1 (3.1)
+- Lots of work done with the source code.
+- Episodes added -> Users can make their own episodes by creating new
+  directories under LEVS dir.
+- Flamethrower added !!!!!
+- Some other improvements (can't remember them all).
+- One new episode (Blanket) included.
+- Moving speed for deathmatch can now be set to normal or fast.
+- This version was supposed to have network game but we had no time to
+  make it :( Maybe in next version...
+
+### 1.0 (3.0)
+- The first version of The Ultimate TK !!!!!!
+- Totally new game including Deathmatch game and Level editor.
+- Lots of other new features...
+- Because of new graphic effects game needs much more CPU speed than The
+  Original TK -> Pentium rules !!!
+- Lots of Original TK is still remaining for the spirit (ugh ugh).
+
+The Original TK
+---------------
+
+### 2.1
+- The update to version 2.0 !!!!!!
+- Graphically better than v2.0.
+- Some cool LIGHT EFFECTS added !!!!
+- Player can kick body parts and you have 900 money when you begin.
+- Screen fades are even more faster and some optimizations to code have
+  been made.
+- For player rotation there are 32 positions instead of 16 now.
+
+### 2.0
+- MANY new things !!!
+- New weapons (including auto shotgun),
+- few new levels
+- many other nice features.
+- Now all enemies have different graphics and if you want, you can't see
+  through walls.
+- Screen fades were too slow in earlier versions and so they are faster
+  now.
+- Changes to GUS problems have NOT been made !!!
+- STRAFE added and in two player game screen follows player very nicely !
+- Even if it's not possible some bugs were found in version 1.1. These
+  bugs are now fixed and there are no known bugs in this version !!!
+
+### 2.0 beta
+- The beta version of version 2.0.
+- Lots of things were fixed after this for full version 2.0 !!!!!
+
+### 1.1
+- Faster than v 1.0 because of optimized compiling.
+- Now uses DOS4G instead of PMODEW (just for fun).
+- Still problems with GUS ???
+
+### 1.0
+- The First version of TK !
+- GUS sounds didn't work properly in some machines ???
