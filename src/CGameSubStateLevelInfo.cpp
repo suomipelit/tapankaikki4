@@ -29,7 +29,7 @@ CGameSubStateLevelInfo::~CGameSubStateLevelInfo()
 // return true if draw is needed
 bool CGameSubStateLevelInfo::RunFrame()
 {
-	SDLKey key;
+	SDL_Keycode key;
 	bool exit=false; // Used for controlling state
 
 	/* Check for almighty quit*/ 

@@ -44,6 +44,8 @@ public:
 
 	EXPORT int SurfaceOK();
 
+	SDL_Window* GetSDLwindow() { return iSDLwindow; }
+
 private:
 
 	void CopyToSurface(const CGraphicsBuffer* aBuf, const CRect<int>& rect);
@@ -71,10 +73,11 @@ private:
 
 	CDrawArea iDirtyArea;
 	SDL_Rect iRects[KMaxRectsInDrawArea];
-    const SDL_VideoInfo *iVideoInfo;
- 
+
 	volatile int iLocked,iDontLock;
 	std::vector<CCoord<int>*> iResolutions;
+	SDL_Window *iSDLwindow;
+	SDL_Renderer *iSDLrenderer;
 	SDL_Surface *iSDLsurface;
 	CPalette iPalette;
 };

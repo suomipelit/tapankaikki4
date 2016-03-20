@@ -112,7 +112,7 @@ void CGameGraphicsInterface::ChangeMode(const CCoord<int>& aMode)
 	iGD->SetPalette(pal,0);
 	
 	ret=iGD->SetMode(aMode.X(),aMode.Y(),KBitDepth,iOptions->Data().iFullScreen, iExtraFlags );
-	iOptions->UpdateGammaChanges();
+	iOptions->UpdateGammaChanges(*iGD);
 
 	if (ret!=0) 
 		error("CGameGraphicsInterface::ChangeMode: Couldn't set videomode!");

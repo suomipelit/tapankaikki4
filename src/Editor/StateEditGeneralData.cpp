@@ -27,7 +27,7 @@ void CStateEditGeneralData::HandleKeys(CEventHandler* aEventHandler,CEditorDrawe
 
 	if (! aEventHandler->Kbhit()) return;
 	
-	SDL_keysym key = aEventHandler->Getch();
+	SDL_Keysym key = aEventHandler->Getch();
 	int curKey = key.sym;
 
 	aEventHandler->ResetStack();

@@ -1,5 +1,5 @@
-CFLAGS +=	`pkg-config --cflags SDL_image sdl gtk+-2.0` -I/usr/local/include
-LDFLAGS +=	`pkg-config --libs SDL_image sdl gtk+-2.0` -lSDL_net
+CFLAGS +=	`pkg-config --cflags SDL2_image sdl2 gtk+-2.0` -I/usr/local/include
+LDFLAGS +=	`pkg-config --libs SDL2_image sdl2 gtk+-2.0` -lSDL2_net
 
 SRCS = 	EditorBrush.cpp \
 	EditorGraphics.cpp \

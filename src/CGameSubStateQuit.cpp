@@ -28,7 +28,7 @@ bool CGameSubStateQuit::RunFrame()
 {
 	if (iEH->Kbhit())
 	{
-		SDLKey key=iEH->Getch().sym;
+		SDL_Keycode key=iEH->Getch().sym;
 		if (key!=SDLK_y)
 		{
 			restoreTimer();

@@ -6,15 +6,9 @@
 #include "CGraphicsDevice.h"
 #include "IEventInterface.h"
 
-char* CEventHandler::KeyToStr(int key)
+const char* CEventHandler::KeyToStr(SDL_Keycode key)
 {
-	char *ptr;
-	ASSERT(key>=SDLK_UNKNOWN);
-	ASSERT(key<SDLK_LAST);
-
-	ptr=SDL_GetKeyName(SDLKey(key));
-
-   	return ptr;
+	return SDL_GetKeyName(SDL_Keycode(key));
 }
 
 CMouse& CEventHandler::GetMouse()
@@ -22,7 +16,7 @@ CMouse& CEventHandler::GetMouse()
 	return *iMouse;
 }
 
-//SDL_keysym CEventHandler::CheckGetch()
+//SDL_Keysym CEventHandler::CheckGetch()
 //{
 //	int tmpEnd;
 //
@@ -31,7 +25,7 @@ CMouse& CEventHandler::GetMouse()
 //	return iStack[tmpEnd];
 //}
 
-SDL_keysym CEventHandler::Getch()
+SDL_Keysym CEventHandler::Getch()
 {
 	ASSERT( iStackHead!=iStackEnd );
 
@@ -58,16 +52,11 @@ CEventHandler::CEventHandler(CGraphicsDevice* aGD)
 		iState[a]=0;
     iStackHead=0;
     iStackEnd=iStackHead;
-	SDL_EnableKeyRepeat(250, 30);
-	SDL_EnableUNICODE(1);
 }
 
 void CEventHandler::GrabInputs(bool aGrab)
 {
-	if (aGrab)
-		SDL_WM_GrabInput(SDL_GRAB_ON);
-	else
-		SDL_WM_GrabInput(SDL_GRAB_OFF);
+	SDL_SetRelativeMouseMode(SDL_bool(aGrab));
 }
 
 CEventHandler::~CEventHandler()
@@ -81,7 +70,7 @@ void CEventHandler::ResetStack()
         iStackEnd=iStackHead;
 }
 
-void CEventHandler::PushKey(SDL_keysym aKSYM)
+void CEventHandler::PushKey(SDL_Keysym aKSYM)
 {
         iStackHead++;
         if (iStackHead==iStackEnd) {iStackHead--;return;}
@@ -125,7 +114,7 @@ int CEventHandler::HandleEvents()
 					break;
 
 				case SDL_MOUSEMOTION:
-					if (SDL_GetAppState()&SDL_APPINPUTFOCUS)
+					if (SDL_GetWindowFlags(iGD->GetSDLwindow()) & SDL_WINDOW_INPUT_FOCUS)
 					{
 						iMouse->SetXPos(event.motion.x);
 						iMouse->SetYPos(event.motion.y);
@@ -135,7 +124,7 @@ int CEventHandler::HandleEvents()
 					break;
 
 				case SDL_MOUSEBUTTONDOWN:
-					if (SDL_GetAppState()&SDL_APPINPUTFOCUS)
+					if (SDL_GetWindowFlags(iGD->GetSDLwindow()) & SDL_WINDOW_INPUT_FOCUS)
 					{
 						switch (event.button.button)
 						{
@@ -147,12 +136,6 @@ int CEventHandler::HandleEvents()
 								break;
 							case SDL_BUTTON_RIGHT:
 								iMouse->IncButton(CMouse::EButtonRight);
-								break;
-							case SDL_BUTTON_WHEELUP:
-								iMouse->IncButton(CMouse::EButtonWheelUp);
-								break;
-							case SDL_BUTTON_WHEELDOWN:
-								iMouse->IncButton(CMouse::EButtonWheelDown);
 								break;
 						};
 					}
@@ -172,6 +155,16 @@ int CEventHandler::HandleEvents()
 							break;
 					};
 
+					break;
+
+				case SDL_MOUSEWHEEL:
+					if (SDL_GetWindowFlags(iGD->GetSDLwindow()) & SDL_WINDOW_INPUT_FOCUS)
+					{
+						if (event.wheel.y > 0)
+							iMouse->IncButton(CMouse::EButtonWheelUp);
+						else
+							iMouse->IncButton(CMouse::EButtonWheelDown);
+					}
 					break;
 
 				/* SDL_QUIT event (window close) */

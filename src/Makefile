@@ -1,5 +1,5 @@
-CFLAGS +=	-DDATADIR=\"${DATADIR}\" `pkg-config --cflags SDL_image SDL_mixer sdl` -I/usr/local/include
-LDFLAGS +=	`pkg-config --libs SDL_image SDL_mixer sdl` -lSDL_net
+CFLAGS +=	-DDATADIR=\"${DATADIR}\" `pkg-config --cflags SDL2_image SDL2_mixer sdl2` -I/usr/local/include
+LDFLAGS +=	`pkg-config --libs SDL2_image SDL2_mixer sdl2` -lSDL2_net
 
 SRCS =	CBodyPart.cpp \
 	CGUIStateGame.cpp \

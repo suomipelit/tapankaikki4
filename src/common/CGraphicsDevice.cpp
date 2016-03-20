@@ -6,7 +6,8 @@ namespace
 	const CCoord<int> KDefaultResolution(640,480);
 };
 
-CGraphicsDevice::CGraphicsDevice(const char *aCaption, const char* aIcon): iWidth(0), iHeight(0), iBits(0), iBasicModes(0), iLocked(0), iDontLock(0), iSurfaceOK(0), iSDLsurface(0), iCursorMode(SDL_DISABLE)
+CGraphicsDevice::CGraphicsDevice(const char *aCaption, const char* aIcon):
+	iWidth(0), iHeight(0), iBits(0), iBasicModes(0), iLocked(0), iDontLock(0), iSurfaceOK(0), iSDLwindow(0), iSDLrenderer(0), iSDLsurface(0), iCursorMode(SDL_DISABLE)
 {
 	int a=0;
 	if (SDL_InitSubSystem(SDL_INIT_VIDEO)<0) 
@@ -25,13 +26,6 @@ CGraphicsDevice::CGraphicsDevice(const char *aCaption, const char* aIcon): iWidt
 		iIconFile=NULL;
 
 	ListVideoModes();
-
-   /* Fetch the video info */
-    iVideoInfo = SDL_GetVideoInfo( );
-	if ( !iVideoInfo )
-	{
-	    error("Video query failed: %s\n",SDL_GetError( ) );
-	}
 }
 
 void CGraphicsDevice::SetCursorMode(int aMode)
@@ -65,9 +59,7 @@ CGraphicsBuffer* CGraphicsDevice::NewBuf()
 
 bool CGraphicsDevice::FullScreen()
 {
-	bool booli;
-	booli=(iSDLsurface->flags&SDL_FULLSCREEN)==SDL_FULLSCREEN;
-	return booli;
+	return SDL_GetWindowFlags(iSDLwindow) & SDL_WINDOW_FULLSCREEN;
 }
 
 int CGraphicsDevice::SurfaceOK()
@@ -222,14 +214,14 @@ void CGraphicsDevice::Close()
 /* Return 0 if no error*/
 int CGraphicsDevice::SetMode(int aWidth,int aHeight,int aBits, bool aFullScreen, int aExtraFlags)
 {
-	unsigned int mode=SDL_HWPALETTE|aExtraFlags;
+	unsigned int mode=aExtraFlags;
 
 	Close(); // If we're already in graphics mode
 	while (iDontLock);
 
 	if ( aFullScreen && iFullScreenPossible )
 	{
-		mode |= SDL_FULLSCREEN;
+		mode |= SDL_WINDOW_FULLSCREEN;
 	}
 
 	mode |= SDL_SWSURFACE;

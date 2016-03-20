@@ -87,7 +87,7 @@ bool CGameSubStateShop::RunKeys()
 	/* Lets check keyboard input */
 	while (iEventHandler->Kbhit())
 	{
-		SDLKey sym = iEventHandler->Getch().sym;
+		SDL_Keycode sym = iEventHandler->Getch().sym;
 
 		if ( sym == SDLK_ESCAPE )
 		{

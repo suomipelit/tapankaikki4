@@ -648,7 +648,7 @@ void CEditorDrawer::UpdateCaption()
 {
 	char text[255];
 	sprintf(text,"Tapan Kaikki Bloodshed - Level Editor %s - Zoom: %d%%",KVersion,(int)iZoom*100);
-	SDL_WM_SetCaption(text,"tk.ico");
+	SDL_SetWindowTitle(iGD->GetSDLwindow(), text);
 }
 
 void CEditorDrawer::SetZoom(int aZoom)

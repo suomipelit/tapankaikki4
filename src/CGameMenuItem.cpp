@@ -23,7 +23,7 @@ namespace
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-TMenuKeyActions CGameMenuItem::HandleKeyPress(SDL_keysym key,CGameMenuBase* aMenu,CGameGraphicsInterface* ggi)
+TMenuKeyActions CGameMenuItem::HandleKeyPress(SDL_Keysym key,CGameMenuBase* aMenu,CGameGraphicsInterface* ggi)
 {
 	return EMenuKeyNotProcessed;
 }
@@ -119,7 +119,7 @@ void CGameMenuItem::Activate()
 	iDisplaceCounter=0;
 }
 
-bool CGameMenuItem::LeftKey( SDL_keysym key )
+bool CGameMenuItem::LeftKey( SDL_Keysym key )
 {
 	if ( key.sym==SDLK_LEFT || key.sym == iParent->Container()->Options()->Data().iKeys[ 0 ].keys[EKeyLEFT]|| key.sym == iParent->Container()->Options()->Data().iKeys[ 0 ].keys[EKeyLSTRAFE] )
 		return true;
@@ -127,7 +127,7 @@ bool CGameMenuItem::LeftKey( SDL_keysym key )
 	return false;
 }
 
-bool CGameMenuItem::RightKey( SDL_keysym key )
+bool CGameMenuItem::RightKey( SDL_Keysym key )
 {
 	if ( key.sym==SDLK_RIGHT || key.sym == iParent->Container()->Options()->Data().iKeys[ 0 ].keys[EKeyRIGHT]|| key.sym == iParent->Container()->Options()->Data().iKeys[ 0 ].keys[EKeyRSTRAFE]  )
 		return true;
@@ -135,7 +135,7 @@ bool CGameMenuItem::RightKey( SDL_keysym key )
 	return false;
 }
 
-bool CGameMenuItem::UpKey( SDL_keysym key )
+bool CGameMenuItem::UpKey( SDL_Keysym key )
 {
 	if ( key.sym==SDLK_UP || key.sym == iParent->Container()->Options()->Data().iKeys[ 0 ].keys[EKeyUP] )
 		return true;
@@ -143,7 +143,7 @@ bool CGameMenuItem::UpKey( SDL_keysym key )
 	return false;
 }
 
-bool CGameMenuItem::DownKey( SDL_keysym key )
+bool CGameMenuItem::DownKey( SDL_Keysym key )
 {
 	if ( key.sym==SDLK_DOWN || key.sym == iParent->Container()->Options()->Data().iKeys[ 0 ].keys[EKeyDOWN] )
 		return true;
@@ -151,7 +151,7 @@ bool CGameMenuItem::DownKey( SDL_keysym key )
 	return false;
 }
 
-bool CGameMenuItem::ActionKey( SDL_keysym key )
+bool CGameMenuItem::ActionKey( SDL_Keysym key )
 {
 	if ( key.sym==SDLK_RETURN|| key.sym==SDLK_SPACE || key.sym == iParent->Container()->Options()->Data().iKeys[ 0 ].keys[EKeySHOOT] )
 		return true;
@@ -159,7 +159,7 @@ bool CGameMenuItem::ActionKey( SDL_keysym key )
 	return false;
 }
 
-bool CGameMenuItem::AnyKey( SDL_keysym key )
+bool CGameMenuItem::AnyKey( SDL_Keysym key )
 {
 	if (LeftKey(key)||RightKey(key)||ActionKey(key))
 		return true;

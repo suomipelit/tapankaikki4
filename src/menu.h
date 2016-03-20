@@ -65,7 +65,7 @@ public:
 	void ValueUpdated( CGameMenuItem* aUpdatedItem );
 
 protected:
-	TMenuKeyActions HandleKeyPress(SDL_keysym aKey,CGameGraphicsInterface* aGGI);
+	TMenuKeyActions HandleKeyPress(SDL_Keysym aKey,CGameGraphicsInterface* aGGI);
 	CGameMenuItem* iMusicVolume;
 	CGameMenuItem* iFXVolume;
 };
@@ -78,7 +78,7 @@ class CGameMenuEpisodeSelect: public CGameMenuBase
 public:
 	CGameMenuEpisodeSelect(CGameMenuContainer* aGMC);
 	TGameMenuState PrevMenu();
-	TMenuKeyActions HandleKeyPress(SDL_keysym aKey,CGameGraphicsInterface* aGGI);
+	TMenuKeyActions HandleKeyPress(SDL_Keysym aKey,CGameGraphicsInterface* aGGI);
 
 protected:
 	int iSubScroll;

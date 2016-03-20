@@ -24,7 +24,7 @@ const int KFrameRate=20;
 volatile bool Refresh = false; // Screen update flag
 bool NewRefreshPossible = false;
 
-static Uint32 TimerCallBack(Uint32 interval)
+static Uint32 TimerCallBack(Uint32 interval, void*)
 {
 	NewRefreshPossible = true;		
 	return interval;
@@ -39,7 +39,7 @@ CEditorApp::CEditorApp()
 	}
 	atexit(SDL_Quit);
 
-	SDL_SetTimer(1000/KFrameRate, TimerCallBack);
+	SDL_AddTimer(1000/KFrameRate, TimerCallBack, NULL);
 	SDL_SysWMinfo WndInfo; 
 
     WndInfo.EF_SDLWINDOW = 0;
@@ -47,9 +47,9 @@ CEditorApp::CEditorApp()
 	
 	iGD=new CGraphicsDevice("Tapan Kaikki Bloodshed - Level Editor","editor.ico");
 	iGD->SetCursorMode(SDL_ENABLE);
-	iGD->SetMode(640,480,KBitDepth,0,SDL_RESIZABLE);
+	iGD->SetMode(640,480,KBitDepth,0,SDL_WINDOW_RESIZABLE);
 	
-	if(SDL_GetWMInfo(&WndInfo)<0)  {
+	if(SDL_GetWindowWMInfo(iGD->GetSDLwindow(), &WndInfo)<0)  {
         /* Can't get WndInfo */
 		error("Can't get WndInfo");
 	}

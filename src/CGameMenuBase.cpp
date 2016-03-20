@@ -3,7 +3,6 @@
 //////////////////////////////////////////////////////////////////////
 
 #include <stdlib.h>
-#include <SDL_keysym.h>
 
 #include "common/CEventHandler.h"
 #include "common/CFonts.h"
@@ -40,7 +39,7 @@ CGameMenuBase::~CGameMenuBase()
 	iMenuItems.clear();
 }
 
-TMenuKeyActions CGameMenuBase::HandleKeyPress(SDL_keysym aKey,CGameGraphicsInterface* aGGI)
+TMenuKeyActions CGameMenuBase::HandleKeyPress(SDL_Keysym aKey,CGameGraphicsInterface* aGGI)
 {
 	CKeys& pl1keys = iGMC->Options()->Data().iKeys[ 0 ];
 	DEBUG_ASSERT(aGGI);

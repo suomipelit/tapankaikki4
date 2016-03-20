@@ -42,7 +42,7 @@ public:
 	virtual void SetBackground(const CGraphicsBuffer* aBackground);
 	virtual void ValueUpdated( CGameMenuItem* aUpdatedItem );
 protected:
-	virtual TMenuKeyActions HandleKeyPress(SDL_keysym aKey,CGameGraphicsInterface* aGGI);
+	virtual TMenuKeyActions HandleKeyPress(SDL_Keysym aKey,CGameGraphicsInterface* aGGI);
 
 protected:
 	std::vector<CGameMenuItem*> iMenuItems;

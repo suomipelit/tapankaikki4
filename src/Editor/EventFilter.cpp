@@ -24,7 +24,7 @@ CEventFilter::~CEventFilter(void)
 
 bool CEventFilter::HandleEvent(SDL_Event	 event)
 {
-	if ((SDL_EVENTMASK( event.type ) & SDL_MOUSEEVENTMASK))
+	if (event.type >= SDL_MOUSEMOTION && event.type <= SDL_MOUSEWHEEL)
 		Refresh = true;
 	if (event.type == SDL_KEYDOWN)
 	{
@@ -57,9 +57,9 @@ bool CEventFilter::HandleEvent(SDL_Event	 event)
 					return true;
 				}
 	}
-	if (event.type == SDL_VIDEORESIZE)
+	if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_RESIZED)
 	{
-		iGD->SetMode(event.resize.w,event.resize.h,KBitDepth,0,SDL_RESIZABLE);
+		iGD->SetMode(event.window.data1,event.window.data2,KBitDepth,0,SDL_WINDOW_RESIZABLE);
 		iDrawer->Resize(iGD->Width(),iGD->Height());
 		Refresh = true;
 		return true;

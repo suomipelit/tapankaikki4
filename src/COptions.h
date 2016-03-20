@@ -8,6 +8,7 @@
 #include "CPlayer.h"
 
 class CGameGraphicsInterface;
+class CGraphicsDevice;
 class CSoundPlayer;
 
 #define DEFAULT_MUSICTHEME "Default"
@@ -76,7 +77,7 @@ public:
 	void Load();
 	void Reset();
 	void UpdateAudioChanges();
-	void UpdateGammaChanges();
+	void UpdateGammaChanges(CGraphicsDevice&);
 	inline CEpisodeList* EpisodeList(){return iEpisodeList;};
 	COptionsData& Data();
 	inline int MusicThemes(){ return (int)iMusicThemeList->Amount();}

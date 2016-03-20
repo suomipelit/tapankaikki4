@@ -50,7 +50,7 @@ bool CGameSubStateStatistics::RunFrame()
 
 	if (iEventHandler->Kbhit())
 	{
-		SDL_keysym key = iEventHandler->Getch();
+		SDL_Keysym key = iEventHandler->Getch();
 
 		if ( GetNextPlayer(2) == -1  )
 		{
