@@ -1,5 +1,5 @@
 CXX ?=			g++
-CFLAGS ?=		-Wall -O2
+CFLAGS ?=		-Wall -O0 -g
 
 PREFIX =		/usr/local
 DATADIR ?=		${PREFIX}/share/tkb

@@ -681,10 +681,14 @@ void CGraphicsBuffer::SaveBMP(const std::string& aFilename,const CPalette* aPale
 SDL_Surface* CGraphicsBuffer::CopyToSurface(const CPalette* aPalette) const
 {
 	ASSERT(aPalette);
-	SDL_Surface* surface=SDL_CreateRGBSurfaceFrom(iBuf,iWidth,iHeight,8,iWidth,8,8,8,8);
+	// error("lulz: iBuf=%p, width=%d, height=%d", iBuf, iWidth, iHeight);
+	SDL_Surface* surface=SDL_CreateRGBSurfaceFrom(iBuf,iWidth,iHeight,8,iWidth,0,0,0,0);
 
 	if (surface==NULL) 
+	{
+		error("CGraphicsBuffer::CopyToSurface failed: %s\n", SDL_GetError());
 		return NULL;
+	}
 
 	ASSERT( surface->format->palette->ncolors == 256 );
 	memcpy(surface->format->palette->colors, aPalette->ColorData(), 256*sizeof(SDL_Color));

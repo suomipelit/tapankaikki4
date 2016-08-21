@@ -5,6 +5,8 @@
 
 #include "COptions.h"
 
+#include "common/CGraphicsDevice.h"
+
 #include "CSoundPlayer.h"
 
 namespace
@@ -141,20 +143,15 @@ void COptions::Load()
 	UpdateAudioChanges();
 }
 
-void COptions::UpdateGammaChanges()
+void COptions::UpdateGammaChanges(CGraphicsDevice& aGD)
 {
 	if (iData.iGamma < KMinGamma)
 		iData.iGamma = KMinGamma;
 	if (iData.iGamma > KMaxGamma)
 		iData.iGamma = KMaxGamma;
 
-	int err = SDL_SetGamma( iData.iGamma, iData.iGamma, iData.iGamma );
-
-	if ( err == -1 )
-	{
+	if (SDL_SetWindowBrightness(aGD.GetSDLwindow(), iData.iGamma) < 0)
 		iData.iGamma = 1;
-		LOG0("Gamma is not supported by the hardware\n");
-	}
 }
 
 void COptions::UpdateAudioChanges()

@@ -28,13 +28,13 @@ def configure(conf):
 	conf.check_tool('compiler_cxx')
 
 	# Check for SDL and GTK libraries
-	if not conf.check_pkg2('sdl', version='1.2.9', uselib='SDL', mandatory=0):
-		conf.check_cfg2('sdl', uselib='SDL')
+	if not conf.check_pkg2('sdl2', version='2.0.0', uselib='SDL2', mandatory=0):
+		conf.check_cfg2('sdl2', uselib='SDL2')
 
 	# Check for used additional libraries
-	check_library(conf, 'SDL_image', uselib='SDL_image', path=conf.env['LIBPATH_SDL'])
-	check_library(conf, 'SDL_mixer', uselib='SDL_mixer', path=conf.env['LIBPATH_SDL'])
-	check_library(conf, 'SDL_net', uselib='SDL_net', path=conf.env['LIBPATH_SDL'])
+	check_library(conf, 'SDL2_image', uselib='SDL2_image', path=conf.env['LIBPATH_SDL2'])
+	check_library(conf, 'SDL2_mixer', uselib='SDL2_mixer', path=conf.env['LIBPATH_SDL2'])
+	check_library(conf, 'SDL2_net', uselib='SDL2_net', path=conf.env['LIBPATH_SDL2'])
 	
 	# On Windows native win32 api is used and therefore GTK+ is not needed
 	if sys.platform != "win32":

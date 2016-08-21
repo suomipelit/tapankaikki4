@@ -4,7 +4,6 @@
 
 void CSplash::ShowSplash(const char* aImagePath,const char* aIcon,const char* aCaption)
 {
-	SDL_Surface* screen;
 	SDL_Rect src, dest;
 
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) 
@@ -18,7 +17,6 @@ void CSplash::ShowSplash(const char* aImagePath,const char* aIcon,const char* aC
 		error("Unable to load splash.\n");
 	}
 
-
 	src.x = 0;
 	src.y = 0;
 	src.w = bitmap->w;
@@ -31,23 +29,35 @@ void CSplash::ShowSplash(const char* aImagePath,const char* aIcon,const char* aC
 
 	atexit(SDL_Quit);
 
-	// This must be done before videomode call...
+	SDL_Window* screen = SDL_CreateWindow(aCaption,
+	                                      SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+	                                      bitmap->w, bitmap->h,
+	                                      SDL_WINDOW_ALLOW_HIGHDPI|SDL_WINDOW_BORDERLESS);
+	if (screen == NULL) 
+	{
+		error("Unable to create window: %s\n", SDL_GetError());
+	}
+
 	if (aIcon!=NULL && exists(aIcon))
 	{
 		SDL_Surface* icon=SDL_LoadBMP(aIcon);
-		SDL_WM_SetIcon(icon, NULL);
+		SDL_SetWindowIcon(screen, icon);
 	}
-	SDL_WM_SetCaption(aCaption,NULL);
 
-	screen = SDL_SetVideoMode(bitmap->w, bitmap->h, 32, SDL_HWPALETTE|SDL_NOFRAME);
-	if (screen == NULL) 
+	SDL_Renderer* renderer = SDL_CreateRenderer(screen, -1, 0);
+	if (renderer == NULL)
 	{
-		error("Unable to set video mode: %s\n", SDL_GetError());
+		error("Unable to create renderer: %s\n", SDL_GetError());
 	}
-	SDL_BlitSurface(bitmap, &src, screen, &dest);
-    SDL_UpdateRect(screen, 0, 0, 0, 0);
-	SDL_Flip(screen);
 
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, bitmap);
+
+	SDL_RenderCopy(renderer, texture, NULL, NULL);
+	SDL_RenderPresent(renderer);
+
+	SDL_DestroyTexture( texture );
+	SDL_DestroyRenderer( renderer );
+	SDL_DestroyWindow( screen );
 	SDL_FreeSurface( bitmap );
 }
 

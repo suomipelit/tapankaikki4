@@ -15,21 +15,12 @@ CWebVersionChecker::CWebVersionChecker(CMessageBoard* aMB, CNetworkDevice* aND, 
 
 CWebVersionChecker::~CWebVersionChecker()
 {
-	Kill();
-}
-
-void CWebVersionChecker::Kill()
-{
-	if (iThread)
-	{
-		SDL_KillThread(iThread);
-		iThread=NULL;
-	}
+	SDL_WaitThread(iThread, NULL);
 }
 
 void CWebVersionChecker::Start()
 {
-	iThread=SDL_CreateThread(WebVersionCheckerObserver,this);
+	iThread=SDL_CreateThread(WebVersionCheckerObserver, "WebVersionChecker", this);
 }
 
 void CWebVersionChecker::Run()

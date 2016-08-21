@@ -88,7 +88,6 @@ CGameApp::~CGameApp()
 {
 	stopTimer();
 
-	iWVC->Kill();
 	delete iWVC;
 
 	delete iEffectData;
@@ -333,10 +332,10 @@ void CGameApp::Run(int argc,char *argv[])
 		if((tmp[0]=='-')||(tmp[0]=='/'))
 		switch(tmp[1]) 
 		{
-			case '1': extra |= SDL_HWACCEL;
+			case '1': // SDL2 TODO: extra |= SDL_HWACCEL;
 					break;
 
-			case '2': extra |= SDL_HWSURFACE;
+			case '2': // SDL2 TODO: extra |= SDL_HWSURFACE;
 					break;
 
 			case 'W':iOptions->Data().iFullScreen=0; 

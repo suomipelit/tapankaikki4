@@ -1,7 +1,7 @@
 
 Requirements:
 
-SDL, SDL_image, SDL_mixer, SDL_net, libgtk (for Editor to work)
+SDL2, SDL2_image, SDL2_mixer, SDL2_net, libgtk (for Editor to work)
 
 Build instructions (currently tested on Linux only):
 

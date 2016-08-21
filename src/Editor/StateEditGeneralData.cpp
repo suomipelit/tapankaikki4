@@ -73,11 +73,10 @@ void CStateEditGeneralData::HandleKeys(CEventHandler* aEventHandler,CEditorDrawe
 			curKey!=SDLK_ESCAPE && 
 			curKey!=SDLK_BACKSPACE) 
 		{
-			int  unic = key.unicode;
-
-			if (len < KCommentMaxLength-1 && unic < 255 && unic > 0)
+			if (len < KCommentMaxLength-1 && key.sym < 255 && key.sym > 0)
 			{
-				iLevel->iGeneralLevelInfo.iComment[ len++ ] = toupper(unic);
+				printf("%c\n", char(key.sym)); // SDL2 TODO: remove
+				iLevel->iGeneralLevelInfo.iComment[ len++ ] = toupper(key.sym);
 				iLevel->iGeneralLevelInfo.iComment[ len   ] = 0;
 			}
 		}

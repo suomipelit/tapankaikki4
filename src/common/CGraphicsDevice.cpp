@@ -46,6 +46,10 @@ CGraphicsDevice::~CGraphicsDevice()
 	for (iter=iResolutions.begin();iter!=iResolutions.end();iter++)
 //		free(*iter);
 		delete *iter;
+
+	// SDL2 TODO: SDL_DestroyTexture(iFrameTexture);
+	SDL_DestroyRenderer(iSDLrenderer);
+	SDL_DestroyWindow(iSDLwindow);
 }
 
 
@@ -95,7 +99,7 @@ int CGraphicsDevice::RefreshAll()
 	if (!Locked())
 	{
 		if (iSDLsurface!=NULL&&Width()!=0)
-			SDL_UpdateRect(iSDLsurface,0,0,0,0);
+			SDL_UpdateWindowSurface(iSDLwindow);
 	}
 	else retval=1;
 
@@ -106,7 +110,13 @@ int CGraphicsDevice::RefreshAll()
 
 void CGraphicsDevice::SaveShot(const char* aName)
 {
-	SDL_SaveBMP(iSDLsurface,aName);
+	int width, height;
+	SDL_GetRendererOutputSize(iSDLrenderer, &width, &height);
+	SDL_Surface* screen = SDL_CreateRGBSurface(0, width, height, 32,
+	                      0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff);
+	SDL_RenderReadPixels(iSDLrenderer, NULL, 0, screen->pixels, screen->pitch);
+	SDL_SaveBMP(screen, aName);
+	SDL_FreeSurface(screen);
 }
 
 void CGraphicsDevice::CopyToSurface(const CGraphicsBuffer* aBuf, const CRect<int>& rect)
@@ -165,7 +175,7 @@ void CGraphicsDevice::Update()
 		iRects[a] = iDirtyArea.Rect(a, Rect());
 	}
 
-	SDL_UpdateRects(iSDLsurface, iDirtyArea.Size(), iRects);
+	SDL_UpdateWindowSurfaceRects(iSDLwindow, iRects, iDirtyArea.Size());
 	iDirtyArea.Reset();
 }
 
@@ -201,7 +211,7 @@ int CGraphicsDevice::Clear()
 	SDL_FillRect( iSDLsurface, NULL, 0 );
 
 	UnLock();
-    SDL_UpdateRect(iSDLsurface, 0, 0,0,0);
+	SDL_UpdateWindowSurface(iSDLwindow);
 	return 0;
 }
 
@@ -230,13 +240,27 @@ int CGraphicsDevice::SetMode(int aWidth,int aHeight,int aBits, bool aFullScreen,
 	if (iIconFile!=NULL && exists(getdatapath(std::string(iIconFile)).c_str()))
 	{
 		SDL_Surface* icon=SDL_LoadBMP(getdatapath(std::string(iIconFile)).c_str());
-		SDL_WM_SetIcon(icon, NULL);
+		SDL_SetWindowIcon(iSDLwindow, icon);
 	}
 
-    iSDLsurface=SDL_SetVideoMode(aWidth,aHeight, aBits,mode);
+	iSDLwindow=SDL_CreateWindow(iCaptionText,
+	                            SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+	                            aWidth, aHeight, mode);
 	
+	if (iSDLwindow==NULL)
+		error("CGraphicsDevice::SetMode: SDL_CreateWindow() failed: %s\n", SDL_GetError());
+
+	iSDLrenderer = SDL_CreateRenderer(iSDLwindow, -1, 0);
+
+	if (iSDLrenderer==NULL)
+		error("CGraphicsDevice::SetMode: SDL_CreateRenderer() failed: %s\n", SDL_GetError());
+
+	iSDLsurface = SDL_CreateRGBSurface(0, aWidth, aHeight, aBits,
+	                                   0, 0, 0, 0);
+	                                //    0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff);
+
 	if (iSDLsurface==NULL)
-        error("CGraphicsDevice::SetMode: SDL_SetVideoMode(%d,%d,%d,%x) failed: %s\n",aWidth,aHeight, aBits,mode, SDL_GetError());
+		error("CGraphicsDevice::SetMode: SDL_CreateRGBSurface() failed: %s\n", SDL_GetError());
 
 	// Make sure initialization worked out as supposed (if aBits is 0 then current screen mode is used)
 	ASSERT((aBits==0 && iSDLsurface->format->BitsPerPixel) ||
@@ -248,14 +272,13 @@ int CGraphicsDevice::SetMode(int aWidth,int aHeight,int aBits, bool aFullScreen,
 	iBits=aBits;
 
 	SDL_ShowCursor(iCursorMode);
-	SDL_WM_SetCaption(iCaptionText,NULL);
 
 	// Let user fuck up (if that's wanted :)
 	iSurfaceOK=1;
 	iLocked=0;
 
 	Clear();
-	SDL_SetPalette(iSDLsurface, SDL_LOGPAL|SDL_PHYSPAL, iPalette.ColorData(), 0, 256);
+	SDL_SetPaletteColors(iSDLsurface->format->palette, iPalette.ColorData(), 0, 256);
 	
 	return 0;
 }
@@ -275,7 +298,7 @@ int CGraphicsDevice::SetPalette(const CPalette& pal,int mul)
 		iPalette.Color(i).g=(pal.Color(i).g*mul)>>8;
 		iPalette.Color(i).b=(pal.Color(i).b*mul)>>8;
 	}
-	SDL_SetPalette(iSDLsurface, SDL_LOGPAL|SDL_PHYSPAL, iPalette.ColorData(), 0, 256);
+	SDL_SetPaletteColors(iSDLsurface->format->palette, iPalette.ColorData(), 0, 256);
 
 	return 0;
 }
@@ -288,42 +311,30 @@ void CGraphicsDevice::GetPalette(CPalette& pal)
 void CGraphicsDevice::ListVideoModes()
 {	
 	int i;
-	SDL_Rect **modes;
+	SDL_DisplayMode mode;
 
-	/* Get available fullscreen modes */
-	modes=SDL_ListModes(0, SDL_FULLSCREEN);
+	iFullScreenPossible = false;
 
-	/* Check if our resolution is unrestricted */
-	if(
-/* XXX what's the use of this, used to be in windows
-		modes == (SDL_Rect **)-1 || 
-*/
-		modes == (SDL_Rect **)0)
-	{   
-		iFullScreenPossible = false;
-	}
-	else
+	for (i = 0; i < SDL_GetNumDisplayModes(0); ++i)
 	{
-		iFullScreenPossible = true;
+		SDL_GetDisplayMode(0, i, &mode);
 
-		for(i=0;modes[i];++i)
+		/* We're not interested of modes less than 320x200... are we? */
+		if (mode.w>=320&&mode.h>=200)
 		{
-			/* We're not interested of modes less than 320x200... are we? */
-			if (modes[i]->w>=320&&modes[i]->h>=200)
-			{
-				/* SDL_ListModes() returns often multiple modes with same resolution in linux, ignore those */
-				bool added = false;
-				for (std::vector<CCoord<int>*>::iterator a = iResolutions.begin(); a != iResolutions.end(); a++) {
-					if ( ((*a)->X() == modes[i]->w) && ((*a)->Y() == modes[i]->h) ) {
-						added = true;
-						break;
-					}
-				}
-				if (added) continue;
+			iFullScreenPossible = true;
 
-				CCoord<int>* mode=new CCoord<int>(modes[i]->w,modes[i]->h);
-				iResolutions.push_back(mode);
-			}
+			/* SDL_ListModes() returns often multiple modes with same resolution in linux, ignore those */
+			// bool added = false;
+			// for (std::vector<CCoord<int>*>::iterator a = iResolutions.begin(); a != iResolutions.end(); a++) {
+			// 	if ( ((*a)->X() == modes[i]->w) && ((*a)->Y() == modes[i]->h) ) {
+			// 		added = true;
+			// 		break;
+			// 	}
+			// }
+			// if (added) continue;
+
+			iResolutions.push_back(new CCoord<int>(mode.w,mode.h));
 		}
 	}
 

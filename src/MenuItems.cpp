@@ -539,12 +539,12 @@ TMenuKeyActions CGameMenuItemString::HandleKeyPress(SDL_Keysym key,CGameMenuBase
 
 		if (strlen(iParamStr)<iMaxLen)
 		{
-			if (key.unicode==0)
+			if (!isprint(key.sym))
 				return EMenuKeyNotProcessed;
 
 			int end=(int)strlen(iParamStr);
 			iParamStr[end+1]=0;
-			iParamStr[end]=(char)key.unicode;
+			iParamStr[end]=(char)key.sym;
 			return EMenuKeyProcessed;
 		}
 	}
