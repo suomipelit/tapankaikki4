@@ -13,3 +13,4 @@ tkb-editor
 Debug/
 Release/
 *.exe
+options.cfg
