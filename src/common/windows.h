@@ -18,6 +18,7 @@
 
 #define DIR_SEPARATOR '\\'
 
+#include <string.h>
 #include <direct.h>
 
 inline void ChangeDir(const char* str)
@@ -41,14 +42,12 @@ inline void ChangeDir(const char* str)
 
 inline const char* strcasestr(const char* src,const char* match)
 {
-	ASSERT(src);
-	ASSERT(match);
 	int a;
 	int mlen=strlen(match);
 	int l=(int)(strlen(src)-mlen);
 	
 	for (a=0;a<=l;a++)
-		if (strnicmp(src+a,match,mlen)==NULL)
+		if (_strnicmp(src+a,match,mlen)==NULL)
 			return src+a;
 	
 	return NULL;

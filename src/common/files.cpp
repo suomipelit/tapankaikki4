@@ -1,4 +1,6 @@
 #include "files.h"
+
+#ifdef __unix__
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <pwd.h>
@@ -6,6 +8,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
+#endif
 
 const std::string SaveDataPath=getsavebasedir();
 EXPORT std::string getsavebasedir()
@@ -22,7 +25,7 @@ EXPORT std::string getsavebasedir()
 
 	return path;
 #else
-#error "getsavebasedir not implemented on this platform."
+	return "";
 #endif
 }
 
@@ -37,7 +40,11 @@ EXPORT std::string getsavepath(const std::string& name)
 
 EXPORT std::string getdatapath(const std::string& name)
 {
+#ifdef __unix__
 	std::string ret = std::string(DATADIR) + std::string("/") + name;
+#else
+	std::string ret = name;
+#endif
 #ifdef EF_DEBUG
 	printf("Datapath: %s\n", ret.c_str());
 #endif
