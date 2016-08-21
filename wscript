@@ -43,9 +43,6 @@ def configure(conf):
 	# Define that we want to use the linux header (remove this hack later)
 	conf.env['CXXDEFINES'] = '__LINUX__'
 
-	# Remove -Wall flag added by waf because it causes too much warnings
-	conf.env['CXXFLAGS'].remove('-Wall')
-
 	# Make default install directory the current directory
 	conf.env['PREFIX'] = '.'
 

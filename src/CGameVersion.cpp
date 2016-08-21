@@ -36,7 +36,7 @@ int CGameVersion::ExtractMajor(const char* aVersion)
 
 int CGameVersion::ExtractMinor(const char* aVersion)
 {
-	char *comma;
+	const char* comma;
 	ASSERT(aVersion);
 	ASSERT(strlen(aVersion)>3);
 	ASSERT(strlen(aVersion)<256);

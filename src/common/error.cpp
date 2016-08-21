@@ -52,7 +52,8 @@ void logwrite(const char *out, ...)
 }
 
 void error(const char *fmt,...)
-{	auto va_list ap;
+{
+	va_list ap;
 	char str[5000];
 
 	va_start(ap,fmt);

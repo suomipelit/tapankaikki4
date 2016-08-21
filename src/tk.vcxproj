@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Semidebug (release libs)|Win32">
+      <Configuration>Semidebug (release libs)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{22F51724-EC65-4316-BC42-C0BF5E374718}</ProjectGuid>
+    <RootNamespace>tk</RootNamespace>
+    <SccProjectName />
+    <SccLocalPath />
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Semidebug (release libs)|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Semidebug (release libs)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.25420.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>tk_debug</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Semidebug (release libs)|Win32'">
+    <OutDir>$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/GS %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader />
+      <PrecompiledHeaderOutputFile>.\Release/tk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>sdllibs\SDL.lib;sdllibs\SDLmain.lib;sdllibs\SDL_mixer.lib;sdllibs\sdl_net.lib;release\common.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\Release\tk.exe</OutputFile>
+      <Version>4.00</Version>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>k:\SDL-1.2.5\visualc\sdl\release;k:\sdl-1.2.5\visualc\sdlmain\release;k:\sdl_mixer-1.2.4\VisualC\release;K:\sdl_net-1.2.4\VisualC\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Release/tk_release.pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>.\Release\tk.map</MapFileName>
+      <MapExports>true</MapExports>
+      <SubSystem>Windows</SubSystem>
+      <SwapRunFromCD>false</SwapRunFromCD>
+      <OptimizeReferences>false</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <SetChecksum>true</SetChecksum>
+      <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/tk.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x040b</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader />
+      <PrecompiledHeaderOutputFile>.\Debug/tk.pch</PrecompiledHeaderOutputFile>
+      <ExpandAttributedSource>false</ExpandAttributedSource>
+      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <AdditionalIncludeDirectories>$(SDLDIR)\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>sdllibs\SDL.lib;sdllibs\SDLmain.lib;sdllibs\SDL_mixer.lib;sdllibs\sdl_net.lib;debug\common_debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+      <OutputFile>.\Debug\tk_debug.exe</OutputFile>
+      <Version>4.00</Version>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+      <ProgramDatabaseFile>.\Debug/tk_debug.pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>.\Debug\tk_debug.map</MapFileName>
+      <MapExports>true</MapExports>
+      <SubSystem>Windows</SubSystem>
+      <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/tk.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Semidebug (release libs)|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader />
+      <PrecompiledHeaderOutputFile>.\Debug/tk.pch</PrecompiledHeaderOutputFile>
+      <ExpandAttributedSource>true</ExpandAttributedSource>
+      <AssemblerOutput>All</AssemblerOutput>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>sdllibs\SDL.lib;sdllibs\SDLmain.lib;sdllibs\SDL_mixer.lib;sdllibs\sdl_net.lib;k:\tk\common.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+      <OutputFile>K:\tk\tk_semidebug.exe</OutputFile>
+      <Version>4.00</Version>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>false</AssemblyDebug>
+      <ProgramDatabaseFile>k:\tk\src\semidebug\tk_semidebug.pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>k:\tk\tk_semidebug.map</MapFileName>
+      <MapExports>true</MapExports>
+      <SubSystem>Windows</SubSystem>
+      <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/tk.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="CBodyPart.cpp" />
+    <ClCompile Include="CBullet.cpp" />
+    <ClCompile Include="CBulletCrate.cpp" />
+    <ClCompile Include="CCharacter.cpp" />
+    <ClCompile Include="CCrate.cpp" />
+    <ClCompile Include="CDynGameData.cpp" />
+    <ClCompile Include="CDynShopData.cpp" />
+    <ClCompile Include="CEffect.cpp" />
+    <ClCompile Include="CEnemy.cpp" />
+    <ClCompile Include="CEnergyCrate.cpp" />
+    <ClCompile Include="CEventFilter.cpp" />
+    <ClCompile Include="CGameApp.cpp" />
+    <ClCompile Include="CGameData.cpp" />
+    <ClCompile Include="CGameDrawer.cpp" />
+    <ClCompile Include="CGameDrawManager.cpp" />
+    <ClCompile Include="CGameGraphicsInterface.cpp" />
+    <ClCompile Include="CGameMenuBase.cpp" />
+    <ClCompile Include="CGameMenuContainer.cpp" />
+    <ClCompile Include="CGameMenuItem.cpp" />
+    <ClCompile Include="CGameModeCooperative.cpp" />
+    <ClCompile Include="CGameModeDeathmatch.cpp" />
+    <ClCompile Include="CGameState.cpp" />
+    <ClCompile Include="CGameStatisticsData.cpp" />
+    <ClCompile Include="CGameSubStateLevelInfo.cpp" />
+    <ClCompile Include="CGameSubStateNextLevel.cpp" />
+    <ClCompile Include="CGameSubStateOngoing.cpp" />
+    <ClCompile Include="CGameSubStateQuit.cpp" />
+    <ClCompile Include="CGameSubStateShop.cpp" />
+    <ClCompile Include="CGameSubStateStatistics.cpp" />
+    <ClCompile Include="CGameSubStateVictory.cpp" />
+    <ClCompile Include="CGameSystem.cpp" />
+    <ClCompile Include="CGameVersion.cpp" />
+    <ClCompile Include="CGraphicsFader.cpp" />
+    <ClCompile Include="CGUIEffectData.cpp" />
+    <ClCompile Include="CGUIStateGame.cpp" />
+    <ClCompile Include="CGUIStateLogo.cpp" />
+    <ClCompile Include="CGUIStateQuit.cpp" />
+    <ClCompile Include="CIngameData.cpp" />
+    <ClCompile Include="CKeys.cpp" />
+    <ClCompile Include="CLevelRuntimeData.cpp" />
+    <ClCompile Include="CMessageBoard.cpp" />
+    <ClCompile Include="CMoneyCrate.cpp" />
+    <ClCompile Include="COptions.cpp" />
+    <ClCompile Include="CPlayer.cpp" />
+    <ClCompile Include="CSoundPlayer.cpp" />
+    <ClCompile Include="CSplash.cpp" />
+    <ClCompile Include="CState.cpp" />
+    <ClCompile Include="CStatViewData.cpp" />
+    <ClCompile Include="CTargetSystemCrate.cpp" />
+    <ClCompile Include="CWeaponCrate.cpp" />
+    <ClCompile Include="CWebVersionChecker.cpp" />
+    <ClCompile Include="lists.cpp" />
+    <ClCompile Include="lists_win32.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuItems.cpp" />
+    <ClCompile Include="network.cpp" />
+    <ClCompile Include="texts.cpp" />
+    <ClCompile Include="Timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="tk.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CBodyPart.h" />
+    <ClInclude Include="CBullet.h" />
+    <ClInclude Include="CBulletCrate.h" />
+    <ClInclude Include="CCharacter.h" />
+    <ClInclude Include="CCrate.h" />
+    <ClInclude Include="CDynGameData.h" />
+    <ClInclude Include="CDynShopData.h" />
+    <ClInclude Include="CEffect.h" />
+    <ClInclude Include="CEnemy.h" />
+    <ClInclude Include="CEnergyCrate.h" />
+    <ClInclude Include="CEventFilter.h" />
+    <ClInclude Include="CGameApp.h" />
+    <ClInclude Include="CGameData.h" />
+    <ClInclude Include="CGameDrawer.h" />
+    <ClInclude Include="CGameDrawManager.h" />
+    <ClInclude Include="CGameGraphicsInterface.h" />
+    <ClInclude Include="CGameMenuBase.h" />
+    <ClInclude Include="CGameMenuContainer.h" />
+    <ClInclude Include="CGameMenuItem.h" />
+    <ClInclude Include="CGameModeCooperative.h" />
+    <ClInclude Include="CGameModeDeathmatch.h" />
+    <ClInclude Include="CGameState.h" />
+    <ClInclude Include="CGameStatisticsData.h" />
+    <ClInclude Include="CGameSubStateLevelInfo.h" />
+    <ClInclude Include="CGameSubStateNextLevel.h" />
+    <ClInclude Include="CGameSubStateOngoing.h" />
+    <ClInclude Include="CGameSubStateQuit.h" />
+    <ClInclude Include="CGameSubStateShop.h" />
+    <ClInclude Include="CGameSubStateStatistics.h" />
+    <ClInclude Include="CGameSubStateVictory.h" />
+    <ClInclude Include="CGameSystem.h" />
+    <ClInclude Include="CGameVersion.h" />
+    <ClInclude Include="CGraphicsFader.h" />
+    <ClInclude Include="CGUIEffectData.h" />
+    <ClInclude Include="CGUIStateGame.h" />
+    <ClInclude Include="CGUIStateLogo.h" />
+    <ClInclude Include="CGUIStateQuit.h" />
+    <ClInclude Include="CIngameData.h" />
+    <ClInclude Include="CKeys.h" />
+    <ClInclude Include="CLevelRuntimeData.h" />
+    <ClInclude Include="CMessageBoard.h" />
+    <ClInclude Include="CMoneyCrate.h" />
+    <ClInclude Include="COptions.h" />
+    <ClInclude Include="CPlayer.h" />
+    <ClInclude Include="CSoundPlayer.h" />
+    <ClInclude Include="CSplash.h" />
+    <ClInclude Include="CState.h" />
+    <ClInclude Include="CStatViewData.h" />
+    <ClInclude Include="CTargetSystemCrate.h" />
+    <ClInclude Include="CWeaponCrate.h" />
+    <ClInclude Include="CWebVersionChecker.h" />
+    <ClInclude Include="IBulletObserver.h" />
+    <ClInclude Include="ICharacterObserver.h" />
+    <ClInclude Include="IGameMode.h" />
+    <ClInclude Include="IGameSubState.h" />
+    <ClInclude Include="IGameSubStateController.h" />
+    <ClInclude Include="IGraphicsModeObserver.h" />
+    <ClInclude Include="IGUIState.h" />
+    <ClInclude Include="IGUIStateController.h" />
+    <ClInclude Include="IPluginFactory.h" />
+    <ClInclude Include="IPositionalSoundObserver.h" />
+    <ClInclude Include="lists.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="menu.h" />
+    <ClInclude Include="MenuItems.h" />
+    <ClInclude Include="network.h" />
+    <ClInclude Include="texts.h" />
+    <ClInclude Include="timer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\patchfiles.txt" />
+    <Text Include="..\todo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="common\common.vcxproj">
+      <Project>{5cce524f-3811-492c-8476-09c16cd764d4}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
