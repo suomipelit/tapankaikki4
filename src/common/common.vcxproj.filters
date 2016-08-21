@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{b74b74a6-2936-46fc-8f6a-7e418dc926a4}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{fa1058b7-a069-4d55-8f1a-e86fc2a76cea}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CBodyPartBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CBulletBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CColorTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CConfigFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawArea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CEditableLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CEffectBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemyBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CEventHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CFonts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameTypeData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CGraphicsBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CGraphicsDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CGraphicsGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CLightMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CLightTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CMouse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CPalette.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CSpotlight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CSteam.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CWeaponBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="defines.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="error.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="files.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeInterfaces.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="types.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CBodyPartBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CBulletBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CColorTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CConfigFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CCoord.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawArea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CEditableLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CEffectBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemyBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CEventHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CFonts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameTypeData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CGraphicsBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CGraphicsDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CGraphicsGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CLightMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CLightTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CLinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CMouse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CPalette.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CRect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CSpotlight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CSteam.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CWeaponBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="files.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IBodyPartType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IBulletType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IEffectType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IEnemyType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IShield.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IWeaponType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="unix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="windows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

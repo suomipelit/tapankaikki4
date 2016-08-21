@@ -1,6 +1,5 @@
 // Microsoft Visual C++ generated resource script.
 //
-#include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
@@ -66,7 +65,7 @@ LANGUAGE LANG_FINNISH, SUBLANG_DEFAULT
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON1               ICON                    "..\..\editor_src.ico"
+IDI_ICON1               ICON                    "..\\..\\data\\editor.ico"
 #endif    // Finnish resources
 /////////////////////////////////////////////////////////////////////////////
 

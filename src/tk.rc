@@ -1,6 +1,5 @@
 // Microsoft Visual C++ generated resource script.
 //
-#include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
@@ -64,7 +63,7 @@ LANGUAGE LANG_FINNISH, SUBLANG_DEFAULT
 // Bitmap
 //
 
-IDB_ICON1             ICON                  "..\\tk_src.ico"
+IDB_ICON1             ICON                  "..\\data\\tk.ico"
 #endif    // Finnish resources
 /////////////////////////////////////////////////////////////////////////////
 
