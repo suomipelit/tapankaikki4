@@ -29,4 +29,5 @@ installed the SDL headers and libraries, for example:
     setx SDLDIR C:\path\to\SDL-1.2.15
 
 Open `src\tk.sln` in Visual Studio. Build. Copy SDL .dll files to build
-directory if needed.
+directory if needed. You may also want to set `data` as the working
+directory for launching the game directly from Visual Studio.
