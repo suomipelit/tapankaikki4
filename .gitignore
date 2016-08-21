@@ -6,3 +6,10 @@ runlog.txt
 *.o
 tkb
 tkb-editor
+.vs/
+*.user
+*.VC.db
+*.VC.VC.opendb
+Debug/
+Release/
+*.exe
