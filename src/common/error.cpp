@@ -17,7 +17,7 @@ CGameException::CGameException(const char *const& str)
 #endif
 }
 
-const char *CGameException::what()
+const char *CGameException::what() const noexcept
 {
 	return errorstr;
 }
@@ -40,7 +40,7 @@ void TKAssert( const char* aAssertion, const char* file, int line )
  }
 
 void logwrite(const char *out, ...)
-{ 
+{
 	FILE *f=fopen(getsavepath(std::string("runlog.txt")).c_str(),"a+");
 	va_list list;
 	va_start(list, out);
@@ -66,7 +66,7 @@ void error(const char *fmt,...)
 #else
 	fprintf(stderr, "Error: %s\n", str);
 #endif
-	
+
 #ifdef _DEBUG
 	_asm { int 3h }; // Let's break here
 #endif

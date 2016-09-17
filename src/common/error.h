@@ -12,7 +12,7 @@ protected:
 	EXPORT CGameException();
 	EXPORT CGameException(const char *const& str);
 public:
-	EXPORT const char *what();
+	EXPORT const char *what() const noexcept override;
 };
 
 // three levels of exceptions
