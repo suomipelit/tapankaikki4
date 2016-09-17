@@ -33,7 +33,7 @@ class CGraphicsBuffer;
 class CLevelRuntimeData;
 class IGameMode;
 
-class CDynGameData : public IGraphicsModeObserver
+class CDynGameData final : public IGraphicsModeObserver
 {
 public: // Constructor & Destructor
 	CDynGameData(CGameGraphicsInterface* aGGI, CGameData* aGameData, CSoundPlayer* aSP,CGameSystem* aGS,COptions* aOptions,int aPlayerAmount);

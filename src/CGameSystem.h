@@ -21,7 +21,7 @@ class CGameApp;
 class CGameData;
 class IGameSubState;
 
-class CGameSystem : public ICharacterObserver, public IGameSubStateController
+class CGameSystem final : public ICharacterObserver, public IGameSubStateController
 {
 public:
 

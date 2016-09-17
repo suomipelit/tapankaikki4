@@ -15,7 +15,7 @@ class CEventFilter;
 class CGameSystem;
 class CGUIEffectData;
 
-class CGameApp : public IGUIStateController, public IGraphicsModeObserver
+class CGameApp final : public IGUIStateController, public IGraphicsModeObserver
 {
 public:
 	CGameApp(const char* aIcon, const char* aCaption);

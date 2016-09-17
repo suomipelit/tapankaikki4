@@ -10,11 +10,10 @@ class CEditorLevelIO;
 class CStateHandler;
 class CEditorSelection;
 
-class CEventFilter: public IEventInterface
+class CEventFilter final : public IEventInterface
 {
 public:
 	CEventFilter(CGraphicsDevice* aGD,CEditorDrawer* aDrawer,CEditorLevelIO* aLevelIO,CStateHandler* aStateHandler, CEditorSelection* aLevelSelection);
-	~CEventFilter(void);
 
 	bool HandleEvent(SDL_Event event);
 

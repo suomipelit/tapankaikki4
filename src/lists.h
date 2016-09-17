@@ -12,7 +12,7 @@ class CEpisode
 {
 public:
 	CEpisode();
-	~CEpisode();
+	virtual ~CEpisode();
 	const char* Level(unsigned int aAt);
 	const char* LevelName(unsigned int aAt);
 	void Reset();

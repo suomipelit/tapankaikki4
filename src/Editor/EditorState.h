@@ -10,6 +10,7 @@ class CStateHandler;
 class CEditorState
 {
 public:
+	virtual ~CEditorState() = default;
 	virtual void HandleKeys(CEventHandler* aEventHandler,CEditorDrawer* aDrawer)=0;
 	virtual void HandleMouse(CEventHandler* aEventHandler,CEditorDrawer* aDrawer)=0;
 	virtual void Draw(CEditorDrawer* aDrawer)=0;

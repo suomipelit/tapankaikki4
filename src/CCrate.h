@@ -12,6 +12,7 @@ class CCrate
 {
 public:
 	CCrate( const CCoord<int>& aPos, IGUIStateController* aController );
+	virtual ~CCrate() = default;
 	void MoveText();
 	void CheckWakeUp();
 

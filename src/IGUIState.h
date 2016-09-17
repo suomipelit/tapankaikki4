@@ -9,6 +9,8 @@ class CGameGraphicsInterface;
 class IGUIState
 {
 public:
+	virtual ~IGUIState() = default;
+
 	// return true if draw is needed
 	virtual bool RunFrame() = 0;
 	virtual void Draw(CDrawArea& aDirtyArea,CDrawArea& aDrawArea,CGameGraphicsInterface* aGGI) = 0;

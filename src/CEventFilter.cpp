@@ -10,10 +10,6 @@ CEventFilter::CEventFilter(IGUIStateController* aGA): iGA(aGA)
 {
 }
 
-CEventFilter::~CEventFilter(void)
-{
-}
-
 bool CEventFilter::HandleEvent(SDL_Event event)
 {
 	char text[256];

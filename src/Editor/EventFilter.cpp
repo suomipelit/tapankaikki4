@@ -18,10 +18,6 @@ CEventFilter::CEventFilter(CGraphicsDevice* aGD, CEditorDrawer* aDrawer, CEditor
 	iLevelSelection = aLevelSelection;
 }
 
-CEventFilter::~CEventFilter(void)
-{
-}
-
 bool CEventFilter::HandleEvent(SDL_Event	 event)
 {
 	if ((SDL_EVENTMASK( event.type ) & SDL_MOUSEEVENTMASK))

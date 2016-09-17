@@ -5,11 +5,10 @@
 
 class IGUIStateController;
 
-class CEventFilter: public IEventInterface
+class CEventFilter final : public IEventInterface
 {
 public:
 	CEventFilter(IGUIStateController* aGA);
-	~CEventFilter(void);
 
 	// From IEventInterface
 	bool HandleEvent(SDL_Event event);

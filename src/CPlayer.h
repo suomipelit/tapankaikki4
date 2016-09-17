@@ -22,7 +22,7 @@ class CEventHandler;
 class CDynGameData;
 class CDynShopData;
 
-class CPlayer: public CCharacter
+class CPlayer final : public CCharacter
 {
 public:
 	CPlayer(CDynGameData* aDD, CGameGraphicsInterface* aGGI, CGameData* aGameData, CSoundPlayer* aSP,CGameSystem* aGS,ICharacterObserver* aObserver);

@@ -7,7 +7,7 @@
 
 class CPalette;
 
-class CGraphicsBuffer
+class CGraphicsBuffer final
 {
 public:
 	
