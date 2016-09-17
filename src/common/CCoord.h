@@ -9,8 +9,6 @@ template <class T> class CCoord;
 
 #include "CMath.h"
 
-using namespace std;
-
 template <class T>
 class CCoord
 {
@@ -54,8 +52,8 @@ public:
 
 	inline std::string String() const
 	{
-		stringstream tmp;
-		string t;
+		std::stringstream tmp;
+		std::string t;
 		tmp<<"(" << iX << "," << iY << ")";
 		tmp >> t;
 		return t;
