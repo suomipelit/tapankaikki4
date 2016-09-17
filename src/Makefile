@@ -102,7 +102,7 @@ TARGET = 	tkb
 all: ${TARGET}
 
 ${TARGET}: ${OBJS}
-	${CXX} ${LDFLAGS} ${OBJS} -o ${TARGET}
+	${CXX} ${OBJS} ${LDFLAGS} -o ${TARGET}
 
 .cpp.o:
 	${CXX} ${CFLAGS} -c -o $@ ${@:.o=.cpp}
