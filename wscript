@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python
 # encoding: utf-8
 
 import sys
@@ -35,7 +35,7 @@ def configure(conf):
 	check_library(conf, 'SDL_image', uselib='SDL_image', path=conf.env['LIBPATH_SDL'])
 	check_library(conf, 'SDL_mixer', uselib='SDL_mixer', path=conf.env['LIBPATH_SDL'])
 	check_library(conf, 'SDL_net', uselib='SDL_net', path=conf.env['LIBPATH_SDL'])
-	
+
 	# On Windows native win32 api is used and therefore GTK+ is not needed
 	if sys.platform != "win32":
 		conf.check_pkg2('gtk+-2.0', version='2.0', uselib='GTK')
@@ -49,4 +49,3 @@ def configure(conf):
 def build(bld):
 	# Add wscript files in subdirectories
 	bld.add_subdirs('src')
-
