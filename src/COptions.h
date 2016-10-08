@@ -59,6 +59,7 @@ public:
 	float iMouseSensitivity;
 	int iMouseMode;
 	CCoord<int> iInGameVideoMode;
+	bool iInGameLargeText;
 	char iMusicTheme[FILENAME_MAX];
 	char iProxyPort[PROXYPORT_LENGTH];
 	bool iProxyEnabled;

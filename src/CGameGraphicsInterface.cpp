@@ -124,6 +124,13 @@ void CGameGraphicsInterface::ChangeMode(const CCoord<int>& aMode)
 	//iGameData->ResizeUpdate(aMode);
 } 
 
+void CGameGraphicsInterface::UpdateLargeTextMode()
+{
+	const int scale = iOptions->Data().iInGameLargeText ? 2 : 1;
+	iSystemFonts[ESmallFont]->SetScaleX(scale);
+	iSystemFonts[ESmallFont]->SetScaleY(scale);
+}
+
 char* CGameGraphicsInterface::ScreenCapture() 
 {
 	int free=0,num=0;

@@ -161,6 +161,13 @@ protected:
 	CGameGraphicsInterface* iGGI;
 };
 
+class CGameMenuItemLargeText: public CGameMenuItemBoolean
+{
+public:
+	CGameMenuItemLargeText(CGameMenuBase* aParent, const char* aStr, bool* aBool);
+	TMenuKeyActions HandleKeyPress(SDL_keysym key, CGameMenuBase* aMenu, CGameGraphicsInterface* aGGI);
+};
+
 class CGameMenuItemString: public CGameMenuItem
 {
 public:
@@ -213,4 +220,3 @@ protected:
 	void UpdateText();
 	int iSelected;
 };
-

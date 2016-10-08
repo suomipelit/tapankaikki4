@@ -492,6 +492,23 @@ void CGameMenuItemResolution::UpdateText()
 	SetText( tmp );
 }
 
+
+/***************************************************\
+*	Class CGameMenuItemLargeText					*
+\***************************************************/
+CGameMenuItemLargeText::CGameMenuItemLargeText(CGameMenuBase* aParent, const char* aStr, bool* aBool):
+	CGameMenuItemBoolean(aParent, aStr, aBool)
+{
+}
+
+TMenuKeyActions CGameMenuItemLargeText::HandleKeyPress(SDL_keysym key, CGameMenuBase* aMenu, CGameGraphicsInterface* aGGI)
+{
+	TMenuKeyActions retval = CGameMenuItemBoolean::HandleKeyPress(key, aMenu, aGGI);
+	aGGI->UpdateLargeTextMode();
+	return retval;
+}
+
+
 /***************************************************\
 *	Class CGameMenuItemString						*
 \***************************************************/

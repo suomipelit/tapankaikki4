@@ -49,7 +49,7 @@ CGameMenuGameOptions::CGameMenuGameOptions(CGameMenuContainer* aGMC): CGameMenuB
 	COptions* options=aGMC->Options();
 
 	iGamma = new CGameMenuItemPercent(this,"gamma: ",&options->Data().iGamma,KMinGamma,KMaxGamma,KGammaStep);
-	iMenuItems.reserve(9);
+	iMenuItems.reserve(10);
 	iMenuItems.push_back(new CGameMenuItemTitle(this,"game options"));
 	iMenuItems.push_back(new CGameMenuItemTitle(this,""));
 	iMenuItems.push_back(new CGameMenuItemMouseMode(this,"mouse controls: "));
@@ -58,6 +58,7 @@ CGameMenuGameOptions::CGameMenuGameOptions(CGameMenuContainer* aGMC): CGameMenuB
 
 	iMenuItems.push_back(new CGameMenuItemResolution(this,"game resolution: ",&options->Data().iInGameVideoMode ));
 	iMenuItems.push_back(new CGameMenuItemFullScreen(this,"fullscreen",&options->Data().iFullScreen));
+	iMenuItems.push_back(new CGameMenuItemLargeText(this,"large text",&options->Data().iInGameLargeText));
 	iMenuItems.push_back(new CGameMenuItemTitle(this,""));
 	iMenuItems.push_back(new CGameMenuItemExit(this,"previous menu"));
 }
@@ -444,4 +445,3 @@ TGameMenuState CGameMenuNetOptions::PrevMenu()
 {
 	return EGameMenuStateOptions;
 }
-

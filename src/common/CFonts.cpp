@@ -2,7 +2,8 @@
 #include "CGraphicsBuffer.h"
 #include "files.h"
 
-CFonts::CFonts(const char *name, int aOneIsZero)
+CFonts::CFonts(const char *name, int aOneIsZero):
+	iScaleX(1), iScaleY(1)
 {
 	ASSERT(!Load(name));
 	iOneIsZero=aOneIsZero;
@@ -92,23 +93,25 @@ CRect<int> CFonts::Write(int aX,int aY,const unsigned char *aStr,TVertAlign aVAl
 		{
 			xpos1=0;xpos2=iWidth / 2;
 		}
-		for(d=0; d<iHeight; d++) 
+		for(d=0; d<iHeight*iScaleY; d+=iScaleY) 
 			for(c=xpos1; c<xpos2; c++) 
-				if (iFontData[aStr[a]*fsize+(d*iWidth)+c]!=0)
+				if (iFontData[aStr[a]*fsize+(d/iScaleY*iWidth)+c]!=0)
 				   if ((d+aY)<aTarget->Height() && 
 						(d+aY)>=0 && 
 						(c-xpos1)+aX+textcnt<aTarget->Width() &&
 						(c-xpos1)+aX+textcnt>=0)
 					{
-						if (iFontData[aStr[a]*fsize+(d*iWidth)+c]==1 && iOneIsZero)
-							aTarget->PutPixel((c-xpos1)+aX+textcnt,d+aY,0);
-						else
-							aTarget->PutPixel((c-xpos1)+aX+textcnt,d+aY,iFontData[aStr[a]*fsize+(d*iWidth)+c]);
+						auto pixel = iFontData[aStr[a] * fsize + (d/iScaleY * iWidth) + c];
+						if (pixel == 1 && iOneIsZero) pixel = 0;
+
+						for (int subX = 0; subX < iScaleX; ++subX)
+							for (int subY = 0; subY < iScaleY; ++subY)
+								aTarget->PutPixel((c - xpos1)*iScaleX + aX + textcnt + subX, d + aY + subY, pixel);
 
 						if (maxX<(c-xpos1)+aX+textcnt) maxX = (c-xpos1)+aX+textcnt;
 						if (maxY<d+aY ) maxY = d+aY;
 					}
-		textcnt+=xpos2-xpos1;
+		textcnt+=(xpos2-xpos1)*iScaleX;
 	}
 	return CRect<int>(aX,aY,maxX+1,maxY+1);
 };
@@ -150,6 +153,5 @@ int CFonts::Length(const unsigned char *str) const
 		}
 		length+=(xpos2-xpos1)+1;
 	}
-	return(length);
+	return length * iScaleX;
 }
-

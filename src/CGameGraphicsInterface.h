@@ -41,6 +41,7 @@ public:
     void SetMenuMode();
 	void SetGameMode();
 	void UpdateMode();
+	void UpdateLargeTextMode();
 	void SetExtraFlags( int aExtraFlags );
 
 	char* ScreenCapture();
@@ -75,5 +76,3 @@ private:
 };
 
 #endif
-
-

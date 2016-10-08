@@ -37,6 +37,10 @@ public:
 	}  
 	inline int Width() const { return iWidth; };
 	inline int Height() const { return iHeight; };
+	void SetScaleX(int a) { iScaleX = a; }
+	void SetScaleY(int a) { iScaleY = a; }
+	int ScaleX() const { return iScaleX; }
+	int ScaleY() const { return iScaleY; }
 
 private:
  
@@ -44,6 +48,7 @@ private:
 	int iOneIsZero;
     char *iFontData;
     int iWidth,iHeight;
+	int iScaleX, iScaleY;
 };
 
 #endif
