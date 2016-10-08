@@ -32,9 +32,6 @@ EXPORT std::string getsavebasedir()
 EXPORT std::string getsavepath(const std::string& name)
 {
 	std::string ret = SaveDataPath + name;
-#ifdef EF_DEBUG
-	printf("Savepath: %s\n", ret.c_str());
-#endif
 	return ret;
 }
 
@@ -44,9 +41,6 @@ EXPORT std::string getdatapath(const std::string& name)
 	std::string ret = std::string(DATADIR) + std::string("/") + name;
 #else
 	std::string ret = name;
-#endif
-#ifdef EF_DEBUG
-	printf("Datapath: %s\n", ret.c_str());
 #endif
 	return ret;
 }
