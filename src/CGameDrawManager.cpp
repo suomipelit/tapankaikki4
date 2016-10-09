@@ -569,6 +569,7 @@ void CGameDrawManager::DrawInfos(CPlayer const* aPlayer, const CRect<int>& aDraw
 	
 	DEBUG_ASSERT( wtype );
 
+	const int fontHeight = iGGI->Font(CGameGraphicsInterface::ESmallFont)->Height();
     z=iGGI->GD()->Height()/80;
     
     strcpy(text,wtype->Name());
@@ -576,7 +577,7 @@ void CGameDrawManager::DrawInfos(CPlayer const* aPlayer, const CRect<int>& aDraw
         strcat(text, " (double)");
     iGGI->Font(CGameGraphicsInterface::ESmallFont)->
 		Write(3+aDrawRect.iLeft, 
-			aDrawRect.Height()-13 -z+aDrawRect.iTop,
+			aDrawRect.Height()-5 -z+aDrawRect.iTop - fontHeight,
 			text,
 			CFonts::EDrawBelow, CFonts::EDrawToRight, 
 			iGGI->DrawBuffer());
@@ -593,7 +594,7 @@ void CGameDrawManager::DrawInfos(CPlayer const* aPlayer, const CRect<int>& aDraw
 
 	sprintf(text, "%d", x);
 	if (wtype->BulletType()!=EBulletFist) 
-		iGGI->Font(CGameGraphicsInterface::ESmallFont)->Write(3+aDrawRect.iLeft, aDrawRect.Height()-21-z+aDrawRect.iTop, text,CFonts::EDrawBelow, CFonts::EDrawToRight,   iGGI->DrawBuffer());
+		iGGI->Font(CGameGraphicsInterface::ESmallFont)->Write(3+aDrawRect.iLeft, aDrawRect.Height()-5-z+aDrawRect.iTop - fontHeight * 2, text,CFonts::EDrawBelow, CFonts::EDrawToRight,   iGGI->DrawBuffer());
 }
 
 void CGameDrawManager::DrawWalls(CLevel* aLevel, CPlayer* aPlayer, const CRect<int>& aDrawRect, const CCoord<int>& aPlayerScreenPos) 
