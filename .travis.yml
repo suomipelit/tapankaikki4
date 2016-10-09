@@ -13,4 +13,7 @@ before_install:
   - sudo apt-get install -y libgtk2.0-dev
 
 script:
+  - mkdir build
+  - cd build
+  - cmake ..
   - make
