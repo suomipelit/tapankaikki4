@@ -8,6 +8,9 @@ set(CMAKE_CXX_FLAGS -std=c++11 ${CMAKE_CXX_FLAGS})
 find_package(SDL 1 REQUIRED)
 include_directories(${SDL_INCLUDE_DIR})
 include_directories(/usr/local/include) # Temporary workaround for 'X11/Xlib.h not found'
+if(APPLE)
+	add_definitions(-DDISABLE_GAMMA) # SDL_SetGamma causes segfaults occasionally
+endif()
 
 # On Windows native win32 api is used and therefore GTK+ is not needed
 if(NOT WIN32)

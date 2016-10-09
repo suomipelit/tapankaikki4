@@ -38,23 +38,26 @@ TGameMenuState CGameMenuMain::PrevMenu()
 
 void CGameMenuGameOptions::ValueUpdated( CGameMenuItem* aUpdatedItem )
 {
+#ifndef DISABLE_GAMMA
 	if ( aUpdatedItem == iGamma )
 	{
 		iGMC->Options()->UpdateGammaChanges();
 	}
+#endif
 }
 
 CGameMenuGameOptions::CGameMenuGameOptions(CGameMenuContainer* aGMC): CGameMenuBase(aGMC)
 {
 	COptions* options=aGMC->Options();
 
-	iGamma = new CGameMenuItemPercent(this,"gamma: ",&options->Data().iGamma,KMinGamma,KMaxGamma,KGammaStep);
 	iMenuItems.reserve(10);
 	iMenuItems.push_back(new CGameMenuItemTitle(this,"game options"));
 	iMenuItems.push_back(new CGameMenuItemTitle(this,""));
 	iMenuItems.push_back(new CGameMenuItemMouseMode(this,"mouse controls: "));
 	iMenuItems.push_back(new CGameMenuItemPercent(this,"mouse sensitivity: ",&options->Data().iMouseSensitivity,KMouseSensitivityMin,KMouseSensitivityMax,KMouseSensitivityStep));
-	iMenuItems.push_back( iGamma );
+#ifndef DISABLE_GAMMA 
+	iMenuItems.push_back(iGamma = new CGameMenuItemPercent(this, "gamma: ", &options->Data().iGamma, KMinGamma, KMaxGamma, KGammaStep));
+#endif
 
 	iMenuItems.push_back(new CGameMenuItemResolution(this,"game resolution: ",&options->Data().iInGameVideoMode ));
 	iMenuItems.push_back(new CGameMenuItemFullScreen(this,"fullscreen",&options->Data().iFullScreen));

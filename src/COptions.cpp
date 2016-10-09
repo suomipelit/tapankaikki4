@@ -144,6 +144,7 @@ void COptions::Load()
 
 void COptions::UpdateGammaChanges()
 {
+#ifndef DISABLE_GAMMA
 	if (iData.iGamma < KMinGamma)
 		iData.iGamma = KMinGamma;
 	if (iData.iGamma > KMaxGamma)
@@ -156,6 +157,7 @@ void COptions::UpdateGammaChanges()
 		iData.iGamma = 1;
 		LOG0("Gamma is not supported by the hardware\n");
 	}
+#endif
 }
 
 void COptions::UpdateAudioChanges()
