@@ -4,23 +4,27 @@ Tapan Kaikki
 Tapan Kaikki is a top view shooter game. The sole purpose of the game is to
 kill everything that moves. 1-4 players.
 
+
 Requirements
 ------------
 
-SDL, SDL_image, SDL_mixer, SDL_net, libgtk (for Editor to work on Linux)
+SDL, SDL_image, SDL_mixer, SDL_net, libgtk (for Editor to work on Linux and Mac)
 
 
-Build instructions for Linux
-----------------------------
+Build instructions for Linux and Mac
+------------------------------------
 
-    ./waf configure
-    ./waf build
-    ./waf install
+    cmake .
+    make
+    make install
 
-The `./waf install` command will install files under the `bin` directory of
-current working directory. 
+The `make install` command will install the game data files and executables
+under your install prefix (`/usr/local` by default). You can customize the
+install prefix with the following CMake invocation:
 
-After all this you should be ready for the game.
+    cmake -DCMAKE_INSTALL_PREFIX=/path/to/install/to .
+
+After all this you should be ready for the game: run `tk4`.
 
 
 Build instructions for Windows
