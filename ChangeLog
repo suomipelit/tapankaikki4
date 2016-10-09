@@ -35,7 +35,7 @@ TK Bloodshed
 - Level version bump.
 - Fixed filetype detection for graphic files.
 - Fixed episode selection. It can be now controlled using player 1 keys.
-- Updated "Using TK Editor" section of this document.
+- Updated "Using TK Editor" section of readme.html.
 - Added two new crate types (money and target).
 
 ### Official TK 4 Bloodshed 4.05 (patch)
