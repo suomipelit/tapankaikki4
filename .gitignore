@@ -7,8 +7,10 @@ install_manifest.txt
 *.swp
 runlog.txt
 *.o
-tkb
-tkb-editor
+*.a
+tk4
+tk4-editor
+efpconv
 .vs/
 *.user
 *.VC.db
