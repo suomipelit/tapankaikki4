@@ -1421,6 +1421,8 @@ void CGameDrawManager::DrawComplete()
 		iGGI->DrawBuffer());
 }
 
+const int timeYPos = 10;
+
 void CGameDrawManager::DrawTime() 
 {
 	char col=1;
@@ -1432,20 +1434,22 @@ void CGameDrawManager::DrawTime()
 	if ( iDynData->iCompleteTime > iDynData->LevelRuntime()->Level().iGeneralLevelInfo.iTimeLimit ) 
 		col=3*16; // red, I presume?
 
-	fnt->Write(iGGI->GD()->Width()/2,10,FormatTime(iDynData->iCompleteTime).c_str(),CFonts::EDrawBelow, CFonts::EDrawInMiddle, iGGI->DrawBuffer());
+	fnt->Write(iGGI->GD()->Width()/2,timeYPos,FormatTime(iDynData->iCompleteTime).c_str(),CFonts::EDrawBelow, CFonts::EDrawInMiddle, iGGI->DrawBuffer());
 }
 
 void CGameDrawManager::DrawFPS() 
 {
 	char text[20];
+	const int fpsYPos = timeYPos + iGGI->Font(CGameGraphicsInterface::ESmallFont)->Height() + 2;
 	
 	ASSERT(EF_SNPRINTF(text,20,"%d / %d fps", (int)iDynData->CurrentFPS(), KTimerFreq)>0);
-	iGGI->Font(CGameGraphicsInterface::ESmallFont)->Write(iGGI->GD()->Width()/2,20,text,CFonts::EDrawBelow, CFonts::EDrawInMiddle, iGGI->DrawBuffer());
+	iGGI->Font(CGameGraphicsInterface::ESmallFont)->Write(iGGI->GD()->Width()/2,fpsYPos,text,CFonts::EDrawBelow, CFonts::EDrawInMiddle, iGGI->DrawBuffer());
 
 	if ( EF_DEBUG)
 	{
+		const int effectsYPos = fpsYPos + iGGI->Font(CGameGraphicsInterface::ESmallFont)->Height() + 2;
 		ASSERT(EF_SNPRINTF(text,20,"%zu / %d effects", iDynData->LevelRuntime()->Effects().size(), KTimerFreq)>0);
-		iGGI->Font(CGameGraphicsInterface::ESmallFont)->Write(iGGI->GD()->Width()/2,40,text,CFonts::EDrawBelow, CFonts::EDrawInMiddle, iGGI->DrawBuffer());
+		iGGI->Font(CGameGraphicsInterface::ESmallFont)->Write(iGGI->GD()->Width()/2,effectsYPos,text,CFonts::EDrawBelow, CFonts::EDrawInMiddle, iGGI->DrawBuffer());
 	}
 }
 

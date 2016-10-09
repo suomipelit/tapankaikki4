@@ -49,6 +49,7 @@ void CMessageBoard::AddMessage(const char* msg)
 void CMessageBoard::Draw(CGameGraphicsInterface* aGGI,CDrawArea& aDrawArea)
 {
 	const int yoffs=5+iOffset;
+	const int lineHeight = aGGI->Font(CGameGraphicsInterface::ESmallFont)->Height() + 1;
 	
 	iCleanArea.Reset();
 
@@ -59,7 +60,7 @@ void CMessageBoard::Draw(CGameGraphicsInterface* aGGI,CDrawArea& aDrawArea)
 
 	for (int a=0;a<iMessages.size(); a++)
 		iCleanArea.Combine(aGGI->Font(CGameGraphicsInterface::ESmallFont)->
-			Write(5,yoffs+a*9,iMessages[a].c_str(),CFonts::EDrawBelow, CFonts::EDrawToRight,aGGI->DrawBuffer()));
+			Write(5,yoffs+a*lineHeight,iMessages[a].c_str(),CFonts::EDrawBelow, CFonts::EDrawToRight,aGGI->DrawBuffer()));
 
 	SDL_SemPost(iSemaphore);
 
@@ -99,4 +100,3 @@ void CMessageBoard::SetDrawOffset( int aOffset )
 	ASSERT( aOffset < 1000 );
 	iOffset = aOffset;
 }
-
