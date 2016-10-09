@@ -1,6 +1,9 @@
 Tapan Kaikki
 ============
 
+Tapan Kaikki is a top view shooter game. The sole purpose of the game is to
+kill everything that moves. 1-4 players.
+
 Requirements
 ------------
 
