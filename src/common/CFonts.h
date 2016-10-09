@@ -35,8 +35,8 @@ public:
 	{
 		return Length((const unsigned char*)aStr);
 	}  
-	inline int Width() const { return iWidth; };
-	inline int Height() const { return iHeight; };
+	inline int Width() const { return iWidth * iScaleX; }
+	inline int Height() const { return iHeight * iScaleY; }
 	void SetScaleX(int a) { iScaleX = a; }
 	void SetScaleY(int a) { iScaleY = a; }
 	int ScaleX() const { return iScaleX; }
