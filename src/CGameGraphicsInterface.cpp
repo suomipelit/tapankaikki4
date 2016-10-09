@@ -124,6 +124,8 @@ void CGameGraphicsInterface::ChangeMode(const CCoord<int>& aMode)
 	iVirBuf->Resize(aMode);
 	iPostBuf->Resize(aMode);
 	//iGameData->ResizeUpdate(aMode);
+
+	UpdateLargeTextMode();
 } 
 
 void CGameGraphicsInterface::UpdateLargeTextMode()
