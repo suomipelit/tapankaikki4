@@ -108,8 +108,8 @@ CRect<int> CFonts::Write(int aX,int aY,const unsigned char *aStr,TVertAlign aVAl
 							for (int subY = 0; subY < iScaleY; ++subY)
 								aTarget->PutPixel((c - xpos1)*iScaleX + aX + textcnt + subX, d + aY + subY, pixel);
 
-						if (maxX<(c-xpos1)+aX+textcnt) maxX = (c-xpos1)+aX+textcnt;
-						if (maxY<d+aY ) maxY = d+aY;
+						maxX = max(maxX, (c - xpos1) * iScaleX + aX + textcnt);
+						maxY = max(maxY, d + aY);
 					}
 		textcnt+=(xpos2-xpos1)*iScaleX;
 	}
