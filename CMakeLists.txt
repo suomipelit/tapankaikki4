@@ -11,11 +11,19 @@ endif()
 
 # dependencies ###########################################################################
 find_package(SDL 1 REQUIRED)
-include_directories(${SDL_INCLUDE_DIR})
+find_package(SDL_image 1 REQUIRED)
+find_package(SDL_mixer 1 REQUIRED)
+find_package(SDL_net 1 REQUIRED)
+include_directories(
+	${SDL_INCLUDE_DIR}
+	${SDL_IMAGE_INCLUDE_DIRS}
+	${SDL_MIXER_INCLUDE_DIRS}
+	${SDL_NET_INCLUDE_DIRS})
 include_directories(/usr/local/include) # Temporary workaround for 'X11/Xlib.h not found'
 if(APPLE)
 	add_definitions(-DDISABLE_GAMMA) # SDL_SetGamma causes segfaults occasionally
 endif()
+
 
 # On Windows native win32 api is used and therefore GTK+ is not needed
 if(NOT WIN32)
@@ -33,7 +41,7 @@ if(WIN32)
 else()
 	add_library(tk4-common STATIC ${COMMON_SOURCES})
 endif()
-target_link_libraries(tk4-common ${SDL_LIBRARY})
+target_link_libraries(tk4-common ${SDL_LIBRARY} ${SDL_IMAGE_LIBRARIES})
 
 
 # game ###################################################################################
@@ -44,7 +52,7 @@ else()
 	list(REMOVE_ITEM GAME_SOURCES ${CMAKE_SOURCE_DIR}/src/lists_win32.cpp)
 endif()
 add_executable(tk4 ${GAME_SOURCES})
-target_link_libraries(tk4 tk4-common ${SDL_LIBRARY} SDL_image SDL_mixer SDL_net)
+target_link_libraries(tk4 tk4-common ${SDL_LIBRARY} ${SDL_IMAGE_LIBRARIES} ${SDL_MIXER_LIBRARIES} ${SDL_NET_LIBRARIES})
 
 
 # editor #################################################################################
@@ -55,13 +63,13 @@ else()
 	list(REMOVE_ITEM EDITOR_SOURCES ${CMAKE_SOURCE_DIR}/src/Editor/EditorLevelIO_win32.cpp)
 endif()
 add_executable(tk4-editor ${EDITOR_SOURCES})
-target_link_libraries(tk4-editor tk4-common ${SDL_LIBRARY} SDL_image ${GTK2_LIBRARIES})
+target_link_libraries(tk4-editor tk4-common ${SDL_LIBRARY} ${SDL_IMAGE_LIBRARIES} ${GTK2_LIBRARIES})
 
 
 # efpconv ################################################################################
 file(GLOB EFPCONV_SOURCES src/efpconv/*.h src/efpconv/*.cpp)
 add_executable(efpconv ${EFPCONV_SOURCES})
-target_link_libraries(efpconv tk4-common ${SDL_LIBRARY} SDL_image)
+target_link_libraries(efpconv tk4-common ${SDL_LIBRARY} ${SDL_IMAGE_LIBRARIES})
 
 
 # installation configuration #############################################################
