@@ -43,7 +43,7 @@ inline const char* strcasestr(const char* src,const char* match)
 	int l=(int)(strlen(src)-mlen);
 	
 	for (a=0;a<=l;a++)
-		if (_strnicmp(src+a,match,mlen)==NULL)
+		if (_strnicmp(src+a,match,mlen)==0)
 			return src+a;
 	
 	return NULL;
