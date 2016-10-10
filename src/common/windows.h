@@ -1,7 +1,7 @@
 #ifndef __WINDOWS_H
 #define __WINDOWS_H
 
-#ifdef WIN32
+#ifdef _WIN32
 
 #ifdef COMMON_EXPORTS
 #define EXPORT __declspec(dllexport)
@@ -53,7 +53,7 @@ inline const char* strcasestr(const char* src,const char* match)
 	return NULL;
 }
 
-#endif // _WINDOWS
+#endif // _WIN32
 
 #endif // ___WINDOWS_H_
 
