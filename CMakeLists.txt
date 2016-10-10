@@ -1,8 +1,13 @@
 cmake_minimum_required(VERSION 2.8.12.2)
 project(tapankaikki)
 set(PROJECT_VERSION 4.09)
-set(CMAKE_CXX_FLAGS -std=c++11 ${CMAKE_CXX_FLAGS})
 
+if(NOT MINGW)
+	set(CMAKE_CXX_FLAGS -std=c++11 ${CMAKE_CXX_FLAGS})
+else()
+	# Workaround for http://stackoverflow.com/q/38538924/3425536
+	set(CMAKE_CXX_FLAGS -std=gnu++11 ${CMAKE_CXX_FLAGS})
+endif()
 
 # dependencies ###########################################################################
 find_package(SDL 1 REQUIRED)
