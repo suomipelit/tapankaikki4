@@ -45,7 +45,7 @@ target_link_libraries(tk4-common ${SDL_LIBRARY} ${SDL_IMAGE_LIBRARIES})
 
 
 # game ###################################################################################
-file(GLOB GAME_SOURCES src/*.h src/*.cpp)
+file(GLOB GAME_SOURCES src/*.h src/*.cpp src/*.rc)
 if(WIN32)
 	list(REMOVE_ITEM GAME_SOURCES ${CMAKE_SOURCE_DIR}/src/lists_unix.cpp)
 else()
@@ -56,7 +56,7 @@ target_link_libraries(tk4 tk4-common ${SDL_LIBRARY} ${SDL_IMAGE_LIBRARIES} ${SDL
 
 
 # editor #################################################################################
-file(GLOB EDITOR_SOURCES src/Editor/*.h src/Editor/*.cpp)
+file(GLOB EDITOR_SOURCES src/Editor/*.h src/Editor/*.cpp src/Editor/*.rc)
 if(WIN32)
 	list(REMOVE_ITEM EDITOR_SOURCES ${CMAKE_SOURCE_DIR}/src/Editor/EditorLevelIO_gtk.cpp)
 else()
