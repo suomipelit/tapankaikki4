@@ -1,4 +1,6 @@
 #include "CConfigFile.h"
+
+#include <stdio.h>
 #include "error.h"
 #include "files.h"
 

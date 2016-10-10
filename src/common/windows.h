@@ -1,7 +1,7 @@
 #ifndef __WINDOWS_H
 #define __WINDOWS_H
 
-#ifdef WIN32
+#ifdef _WIN32
 
 #ifdef COMMON_EXPORTS
 #define EXPORT __declspec(dllexport)
@@ -32,13 +32,9 @@ inline void ChangeDir(const char* str)
 #define EF_DEBUG 0
 #endif // _DEBUG
 
-#ifndef min
-#define min(a,b) ((a)<=(b)?(a):(b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a)> (b)?(a):(b)) 
-#endif
+#include <algorithm>
+using std::min;
+using std::max;
 
 inline const char* strcasestr(const char* src,const char* match)
 {
@@ -47,13 +43,13 @@ inline const char* strcasestr(const char* src,const char* match)
 	int l=(int)(strlen(src)-mlen);
 	
 	for (a=0;a<=l;a++)
-		if (_strnicmp(src+a,match,mlen)==NULL)
+		if (_strnicmp(src+a,match,mlen)==0)
 			return src+a;
 	
 	return NULL;
 }
 
-#endif // _WINDOWS
+#endif // _WIN32
 
 #endif // ___WINDOWS_H_
 

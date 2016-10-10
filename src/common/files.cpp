@@ -1,10 +1,13 @@
 #include "files.h"
 
+#include <stdio.h>
+#ifdef __MINGW32__
+#include <sys/stat.h>
+#endif
 #ifdef __unix__
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <pwd.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
