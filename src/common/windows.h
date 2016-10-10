@@ -32,13 +32,9 @@ inline void ChangeDir(const char* str)
 #define EF_DEBUG 0
 #endif // _DEBUG
 
-#ifndef min
-#define min(a,b) ((a)<=(b)?(a):(b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a)> (b)?(a):(b)) 
-#endif
+#include <algorithm>
+using std::min;
+using std::max;
 
 inline const char* strcasestr(const char* src,const char* match)
 {
