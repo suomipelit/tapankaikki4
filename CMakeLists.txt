@@ -7,6 +7,9 @@ if(NOT MINGW)
 else()
 	# Workaround for http://stackoverflow.com/q/38538924/3425536
 	set(CMAKE_CXX_FLAGS -std=gnu++11 ${CMAKE_CXX_FLAGS})
+	# Add -mwindows to the linker flags to avoid opening a console window when the
+	# program is started (see https://cygwin.com/ml/cygwin/2007-04/msg00027.html)
+	set(CMAKE_EXE_LINKER_FLAGS -mwindows)
 endif()
 
 # dependencies ###########################################################################
