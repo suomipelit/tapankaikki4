@@ -4,6 +4,10 @@ Tapan Kaikki
 Tapan Kaikki is a top view shooter game. The sole purpose of the game is to
 kill everything that moves. 1-4 players.
 
+This is a fork of the open-source release of Tapan Kaikki 4 (available [here](
+https://sourceforge.net/projects/tapankaikki/)), with some minor bug fixes,
+ported to Linux and Mac, and converted to use CMake as the build system.
+
 
 Requirements
 ------------
