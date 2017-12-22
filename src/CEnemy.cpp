@@ -270,7 +270,7 @@ void CEnemy::Shoot(int/*hand*/)
 							this );
 	}
 
-	if (iCurrentWeapon>0) 
+	if (iCurrentWeapon != NULL)
 		if (iShootCount%iGM->TypeData()->iBulletType[iCurrentWeapon->BulletType()]->Multiplier()==0) 
 		{
 			iSP->PlayPosSample(iCurrentWeapon->Sound(), KFullVolume, iLocation);

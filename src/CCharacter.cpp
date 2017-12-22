@@ -24,7 +24,7 @@ void CCharacter::LoadWeapons()
 	if (iLoadCounter<iCurrentWeapon->LoadingTime()) 
 		iLoadCounter++;
 
-	if (iSecondaryWeapon>0)
+	if (iSecondaryWeapon != NULL)
         if (iLoadCounter2<iSecondaryWeapon->LoadingTime()) 
 			iLoadCounter2++;
 

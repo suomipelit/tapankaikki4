@@ -573,7 +573,7 @@ void CGameDrawManager::DrawInfos(CPlayer const* aPlayer, const CRect<int>& aDraw
     z=iGGI->GD()->Height()/80;
     
     strcpy(text,wtype->Name());
-    if (aPlayer->SecondaryWeapon()>0)
+    if (aPlayer->SecondaryWeapon() != NULL)
         strcat(text, " (double)");
     iGGI->Font(CGameGraphicsInterface::ESmallFont)->
 		Write(3+aDrawRect.iLeft, 
@@ -1065,7 +1065,7 @@ void CGameDrawManager::DrawPlayers(int pos, std::vector<CPlayer*>& aPlayer, cons
 			spr =0; 
 		else 
 		{
-            if (aPlayer[a]->CurrentWeapon()>0 && aPlayer[a]->SecondaryWeapon()>0)
+            if (aPlayer[a]->CurrentWeapon() != NULL && aPlayer[a]->SecondaryWeapon() != NULL)
 				spr =2;
             else
 				spr =aPlayer[a]->CurrentWeapon()->Sprite();
