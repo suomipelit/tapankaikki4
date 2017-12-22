@@ -209,10 +209,10 @@ void CSoundPlayer::StereoShaper(const CCoord<float>& aObserver, const CCoord<flo
 	// Formula from excel (models from this formula look and sound ok)
 	//=MIN(SQRT(MAX(128*128-B$2^2-($A3-64)^2;0))+10000/SQRT(B$2^2+($A3-64)^2);255)
 
-	aLeft = int (min( sqrt( max(128*128-ydist*ydist-(xdist-64)*(xdist-64),0.0f) ) + 
-			10000/sqrt( ydist*ydist+(xdist-64)*(xdist-64)), 255.0 ));
-	aRight = int (min( sqrt( max(128*128-ydist*ydist-(xdist+64)*(xdist+64),0.0f) ) + 
-			10000/sqrt( ydist*ydist+(xdist+64)*(xdist+64)), 255.0 ));
+	aLeft = int (min( sqrtf( max(128*128-ydist*ydist-(xdist-64)*(xdist-64),0.0f) ) +
+			10000/sqrtf( ydist*ydist+(xdist-64)*(xdist-64)), 255.0f ));
+	aRight = int (min( sqrtf( max(128*128-ydist*ydist-(xdist+64)*(xdist+64),0.0f) ) +
+			10000/sqrtf( ydist*ydist+(xdist+64)*(xdist+64)), 255.0f ));
 
 	// Let's cut the heaps...
 	if (aLeft+aRight>256)
