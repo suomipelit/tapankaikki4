@@ -35,7 +35,8 @@ Build instructions for Windows
 ------------------------------
 
 Set the environment variable `SDLDIR` to point to the directory where you
-installed the SDL headers and libraries, for example:
+installed the SDL/SDL_image/SDL_mixer/SDL_net headers and libraries, for
+example:
 
     setx SDLDIR C:\path\to\SDL-1.2.15
 
