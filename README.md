@@ -1,7 +1,7 @@
-Tapan Kaikki
-============
+Tapan Kaikki 4: Bloodshed
+=========================
 
-Tapan Kaikki is a top view shooter game. The sole purpose of the game is to
+Tapan Kaikki 4: Bloodshed is a top view shooter game. The sole purpose of the game is to
 kill everything that moves. 1-4 players.
 
 This is a fork of the open-source release of Tapan Kaikki 4 (available [here](
