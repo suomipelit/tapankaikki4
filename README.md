@@ -1,6 +1,8 @@
 Tapan Kaikki 4: Bloodshed
 =========================
 
+![Tapan Kaikki 4: Bloodshed GIF](https://github.com/suomipelit/suomipelit.github.io/blob/master/pngs/tk4.png)
+
 Tapan Kaikki 4: Bloodshed is a top view shooter game. The sole purpose of the game is to
 kill everything that moves. 1-4 players.
 
